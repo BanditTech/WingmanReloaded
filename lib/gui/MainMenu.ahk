@@ -66,47 +66,47 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	MainGui.SetFont()
 	ctrl := MainGui.Add("Text", "Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar", "Character Active")
 	MainMenuIDOnChar := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnChar, "Red", "")
+	CtlColors.Attach(MainMenuIDOnChar, "RED", "")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnChar)
 	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnOHB", "Overhead Health Bar")
 	MainMenuIDOnOHB := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnOHB, "Red", "")
+	CtlColors.Attach(MainMenuIDOnOHB, "RED", "")
 	; MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnOHB)
 	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnChat", "Chat Open")
 	MainMenuIDOnChat := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnChat, "", "Green")
+	CtlColors.Attach(MainMenuIDOnChat, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnChat)
 	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnInventory", "Inventory Open")
 	MainMenuIDOnInventory := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnInventory, "", "Green")
+	CtlColors.Attach(MainMenuIDOnInventory, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnInventory)
 	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnDiv", "Div Trade Open")
 	MainMenuIDOnDiv := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnDiv, "", "Green")
+	CtlColors.Attach(MainMenuIDOnDiv, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnDiv)
 	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnStash", "Stash Open")
 	MainMenuIDOnStash := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnStash, "", "Green")
+	CtlColors.Attach(MainMenuIDOnStash, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnStash)
 	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnMenu", "Talent Menu Open")
 	MainMenuIDOnMenu := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnMenu, "", "Green")
+	CtlColors.Attach(MainMenuIDOnMenu, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnMenu)
 	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnVendor", "Vendor Trade Open")
 	MainMenuIDOnVendor := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnVendor, "", "Green")
+	CtlColors.Attach(MainMenuIDOnVendor, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnVendor)
 	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnDelveChart", "Delve Chart Open")
 	MainMenuIDOnDelveChart := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnDelveChart, "", "Green")
+	CtlColors.Attach(MainMenuIDOnDelveChart, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnDelveChart)
 	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnLeft", "Left Panel Open")
 	MainMenuIDOnLeft := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnLeft, "", "Green")
+	CtlColors.Attach(MainMenuIDOnLeft, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnStash)
 	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnDetonate", "Detonate Shown")
 	MainMenuIDOnDetonate := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
+	CtlColors.Attach(MainMenuIDOnDetonate, "", "GREEN")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateDetonate)
 
 	MainGui.SetFont("Bold s9 cBlack", "Arial")
