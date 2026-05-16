@@ -4,7 +4,7 @@ LootScan(Reset:=0){
 		SetMouseDelay(SetMouseDelayValue)
 		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
 		Static LV_LastClick := 0
-		Global LootVacuumActive
+		Global LootVacuumActive, ComboHex, ComboHexX, ComboHexY
 		If (!ComboHex || Reset)
 		{
 			ComboHex := Hex2FindText(LootColors,0,0,"",30,8)
@@ -20,49 +20,73 @@ LootScan(Reset:=0){
 			GrowingAreaScale := AreaScale
 				While GrowingAreaScale < MaxArea
 				{
-					MouseGetPos mX, mY
+					MouseGetPos(&mX, &mY)
 					ClampGameScreen(x := mX - GrowingAreaScale, y := mY - GrowingAreaScale)
 					ClampGameScreen(xx := mX + GrowingAreaScale, yy := mY + GrowingAreaScale)
 					If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0,,,,5))
 					{
-						ScanPx := loot.1.x
-						ScanPy := loot.1.y
+						ScanPx := loot[1].x
+						ScanPy := loot[1].y
 						width := loot[1][3]
 						height := loot[1][4]
 						loot_x := loot[1][1]
 						loot_xx := loot_x + width
 						loot_y := loot[1][2]
 						loot_yy := loot_y + height
-						
-						GoSub LootScan_FindCenterX
-						GoSub LootScan_FindCenterY
+
+						; FindCenterX
+						x1 := loot_x
+						x2 := loot_xx
+						; FindLeftEdge
+						match := loot
+						Loop {
+							xx := match[1][1]
+							x := xx - match[1][3]
+							match := FindText(x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
+						} Until !match
+						x1 := xx
+						; FindRightEdge
+						match := loot
+						Loop {
+							x := match[1][1] + match[1][3]
+							xx := x + match[1][3]
+							match := FindText(x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
+						} Until !match
+						x2 := x
+						ScanPx := (x1 + x2) / 2
+
+						; FindCenterY
+						ClampGameScreen(x := x1, y := loot_y - 22)
+						ClampGameScreen(xx := x1 + 10, yy := loot_yy + 22)
+						if (match := FindText(x,y,xx,yy,0,0,ComboHexY,0,0,,,,9))
+							ScanPy := match[1].y
 
 						If ( LootVacuumActive )
-							GoSub LootScan_Click
+							LootScan_Click()
 						LV_LastClick := A_TickCount
 						Return
 					}
 					If OnMines && YesLootDelve
 					{
-						MouseGetPos mX, mY
+						MouseGetPos(&mX, &mY)
 						ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
 						ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
 						loot := FindText(x,y,xx,yy,0.1,0.1,DelveStr,0,0)
 					}
 					Else If YesLootChests
 					{
-						MouseGetPos mX, mY
+						MouseGetPos(&mX, &mY)
 						ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
 						ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
 						loot := FindText(x,y,xx,yy,0.1,0.1,ChestStr,0,0)
 					}
 					If (loot)
 					{
-						ScanPx := loot.1.1, ScanPy := loot.1.y
+						ScanPx := loot[1][1], ScanPy := loot[1].y
 						, ScanPy += 30
-						If (OnMines && !(loot.Id ~= "cache" || loot.Id ~= "vein"))
-							ScanPx += loot.3
-						GoSub LootScan_Click
+						If (OnMines && !(loot[1].id ~= "cache" || loot[1].id ~= "vein"))
+							ScanPx += loot[1][3]
+						LootScan_Click()
 						LV_LastClick := A_TickCount
 						Return
 					}
@@ -85,50 +109,14 @@ LootScan(Reset:=0){
 		}
 		BlockInput("MouseMove")
 
-		MouseMove, ScanPx, ScanPy
-		Sleep, 10
+		MouseMove(ScanPx, ScanPy)
+		Sleep(10)
 
 		Click(ScanPx " " ScanPy)
 		BlockInput("Mousemoveoff")
 		If (GetKeyState("RButton","P"))
 			Click("Right down")
 	}
-
-LootScan_FindRightEdge:
-		match := loot
-		Loop{
-			x := match[1][1] + match[1][3]
-			xx := x + match[1][3]
-			match := FindText(x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
-		} Until match=0
-		x2 := x
-	Return
-	
-	LootScan_FindLeftEdge:
-		match := loot
-		Loop{
-			xx := match[1][1]
-			x := xx - match[1][3]
-			match := FindText(x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
-		} Until match=0
-		x1 := xx
-	Return
-
-	LootScan_FindCenterX:
-		x1 := loot_x
-		x2 := loot_xx
-
-		GoSub LootScan_FindLeftEdge
-		GoSub LootScan_FindRightEdge
-		ScanPx := (x1 + x2) / 2
-	Return
-
-	LootScan_FindCenterY:
-		ClampGameScreen(x := x1, y := loot_y - 22)
-		ClampGameScreen(xx := x1 + 10, yy := loot_yy + 22)
-		if match := FindText(x,y,xx,yy,0,0,ComboHexY,0,0,,,,9)
-			ScanPy := match.1.y
-	Return
 }
 LootScanCommand(*) {
 	Global LootVacuumActive
