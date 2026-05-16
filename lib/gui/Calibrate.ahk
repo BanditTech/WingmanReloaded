@@ -312,7 +312,7 @@ updateDetonate(*)
 }
 
 CalibrationWizard(*){
-	Global PauseTooltips
+	Global PauseTooltips, MainGui
 	Static WizardGui := ""
 	; Shared state accessible to nested closure functions
 	Static SampleTT := "", EmptySampleTT := "", strToSave := ""
@@ -325,6 +325,7 @@ CalibrationWizard(*){
 	Static varOnDelveChart := "", varOnDetonate := ""
 
 	Critical
+	MainGui.Hide()
 	WizardGui := Gui("+AlwaysOnTop")
 	WizardGui.SetFont("Bold")
 	WizardGui.Add("GroupBox", "x10 y9 w500 h270", "Select which calibrations to run")
@@ -361,7 +362,7 @@ CalibrationWizard(*){
 	{
 		Critical
 		PauseTooltips := 1
-		saved := WizardGui.Submit(0)
+		saved := WizardGui.Submit(1)
 		CalibrationOnChar      := saved.CalibrationOnChar
 		CalibrationOnChat      := saved.CalibrationOnChat
 		CalibrationOnInventory := saved.CalibrationOnInventory
@@ -702,7 +703,7 @@ CalibrationWizard(*){
 			IniWrite(varOnDelveChart, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnDelveChart")
 		If CalibrationDetonate
 			IniWrite(varOnDetonate, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnDetonate")
-		WizardGui.Submit(0)
+		WizardGui.Destroy()
 		MainGui.Show()
 	}
 
