@@ -119,7 +119,7 @@ class ItemScan
 		}
 		; Disenchant value for Unique Items
 		If (This.Prop.RarityUnique && (This.Prop.SlotType || This.Prop.IsWeapon || This.Prop.Quiver)) {
-			multi := WR.Disenchant.%This.Prop.ItemName%
+			multi := WR.Disenchant.Has(This.Prop.ItemName) ? WR.Disenchant[This.Prop.ItemName] : ""
 			if multi {
 				This.Prop.DustValue := This.DisenchantCalculation(multi,This.Prop.ItemLevel,This.Prop.Quality)
 				totalSize := This.Prop.Item_Width * This.Prop.Item_Height

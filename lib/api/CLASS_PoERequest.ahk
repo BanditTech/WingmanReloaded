@@ -35,7 +35,7 @@ Class PoERequest {
     response := RegexReplace(response,"[^\]\[\{\}`"]*$","")
     Try {
       obj := JSON.Load(response)
-      If obj.error {
+      If (obj is Map && obj.Has("error") && obj["error"]) {
         Log("POERequest Error ", "API endpoint returned an error code",obj)
         Return False
       }
