@@ -100,8 +100,11 @@ DrawZoom_MoveAway() {
 
 DrawZoom_ClearGDI() {
   Global hdc_frame, hdd_frame, ZoomInitialize
-  DllCall("gdi32.dll\DeleteDC", "Ptr",hdc_frame )
-  DllCall("gdi32.dll\DeleteDC", "Ptr",hdd_frame )
+  ; GetDC handles must be released via ReleaseDC, not DeleteDC.
+  ; MagnifierID hwnd is now stale (window destroyed), pass 0 - ReleaseDC
+  ; ignores the hwnd for DC accounting; we just need the DC to be freed.
+  DllCall("User32.dll\ReleaseDC", "Ptr", 0, "Ptr", hdc_frame)
+  DllCall("User32.dll\ReleaseDC", "Ptr", 0, "Ptr", hdd_frame)
   ZoomInitialize := 0
 }
 
@@ -128,7 +131,11 @@ DrawZoom_ToggleZoom() {
     ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside " y0 NA")
     MagnifierID := WinGetID("Magnifier")
     WinSetTransparent(255, "Magnifier") ; makes the window invisible to magnification
-    hdd_frame := DllCall("GetDC", "Ptr", GamePID, "Ptr")
+    ; Source = the screen DC (HWND 0), not the game window's HDC.
+    ; PoE renders via DirectX, so GetDC on the game HWND sees only the
+    ; (empty/black) GDI surface, not the composited GPU frame. The screen
+    ; DC sees the desktop including DX-rendered windows.
+    hdd_frame := DllCall("GetDC", "Ptr", 0, "Ptr")
     hdc_frame := DllCall("GetDC", "Ptr", MagnifierID, "Ptr")
     HotIf()
     Hotkey("Up", PushMouse, "On")
