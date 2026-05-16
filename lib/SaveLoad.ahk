@@ -1302,7 +1302,18 @@ Profile(args*){
 		FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","w").Write(JSON.Dump(WR.%Type%, 2))
 		IniWrite(name, A_ScriptDir "\save\Settings.ini", "Chosen Profile", Type)
 	} Else If (Action == "Load") {
-		obj := JSON.LoadFile(A_ScriptDir "\save\profiles\" Type "\" name ".json")
+		profilePath := A_ScriptDir "\save\profiles\" Type "\" name ".json"
+		profileText := Trim(FileRead(profilePath), " `t`r`n")
+		If (profileText == "") {
+			MsgBox("Cannot Load the " name " " Type " Profile - the file is empty.", "Empty profile file", 262144)
+			Return
+		}
+		Try
+			obj := JSON.Load(profileText)
+		Catch as e {
+			MsgBox("Failed to parse the " name " " Type " Profile JSON.`n`n" (e.HasProp("Message") ? e.Message : ""), "Profile parse error", 262144)
+			Return
+		}
 		For k, v in WR.%Type%.OwnProps()
 			If (IsObject(obj[k]))
 			For l, w in v.OwnProps()
