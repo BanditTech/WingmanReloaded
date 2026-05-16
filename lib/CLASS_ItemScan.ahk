@@ -11,7 +11,7 @@ class ItemScan
 		This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
 		This.Data.Blocks := {Affix:"", Enchant:"", Implicit:"", Influence:"", TempleRooms:"", ObstructedRooms:"", FlavorText:"", NamePlate:"", Properties:"", ClusterImplicit:""}
 		This.Pseudo := Map()
-		This.Affix := {}
+		This.Affix := Map()
 		This.Prop := {}
 		This.Modifier := Map()
 		This.Percent := {}
@@ -79,7 +79,7 @@ class ItemScan
 		This.MatchAffixes(This.Data.Blocks.ObstructedRooms)
 		This.MatchAffixes(This.Data.Blocks.ClusterImplicit)
 		This.MatchProperties()
-		If (This.Prop.Rarity_Digit == 4 && !This.Affix.Unidentified)
+		If (This.Prop.Rarity_Digit == 4 && !This.Affix.Has("Unidentified"))
 			This.ApproximatePerfection()
 		This.MatchPseudoAffix()
 		If (This.Prop.ClusterJewel) {
@@ -91,9 +91,9 @@ class ItemScan
 				If InStr(k, "Added Small Passive Skills also grant:")
 					This.Prop.ClusterSmall += 1
 				If (RegExMatch(k, "Added Small Passive Skills grant\: (.*) \(enchant\)", &match))
-					This.Prop.ClusterKey := StrReplace(match[1],"#",This.Affix.%k%)
+					This.Prop.ClusterKey := StrReplace(match[1],"#",This.Affix.Get(k, ""))
 			}
-			This.Prop.ClusterVariant := This.Affix.%"Adds # Passive Skills (enchant)"% " passives"
+			This.Prop.ClusterVariant := This.Affix.Get("Adds # Passive Skills (enchant)", "") " passives"
 		}
 		This.MatchExtenalDB()
 		This.MatchCraftingBases()
@@ -835,7 +835,7 @@ class ItemScan
 		}
 		;End Prop Block Parser for Vaal Gems
 
-		If (This.Affix.%"Veiled Prefix"% || This.Affix.%"Veiled Suffix"%)
+		If (This.Affix.Get("Veiled Prefix", 0) || This.Affix.Get("Veiled Suffix", 0))
 		{
 			This.Prop.Veiled := True
 			This.Prop.SpecialType := "Veiled Item"
@@ -878,7 +878,7 @@ class ItemScan
 		This.Prop.MapSumWeightGoodMod := 0
 		This.Prop.MapSumWeightBadMod := 0
 		For k, v in WR.CustomMapMods.MapMods{
-			if(This.Affix[v["Map Affix"]])
+			if(This.Affix.Has(v["Map Affix"]))
 			{
 				if(v["Mod Type"] == "Impossible"){
 					This.Prop.MapImpossibleMod := True
@@ -906,7 +906,7 @@ class ItemScan
 		} Else {
 			This.Prop.MapRerollFlag := True
 		}
-		If (This.Prop.Corrupted && (YesMapUnid && !This.Affix.Unidentified || !YesMapUnid) && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
+		If (This.Prop.Corrupted && (YesMapUnid && !This.Affix.Has("Unidentified") || !YesMapUnid) && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
 			This.Prop.IsBrickedMap := True
 		}
 	}
@@ -919,7 +919,7 @@ class ItemScan
 		LastID :=0
 		For k, v in WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector]
 		{
-			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"] && This.Affix[v["Affix"]])
+			If(This.Affix.Get(v["ModWRFormat"], 0) >= v["ValueWRFormatLow"] && This.Affix.Get(v["ModWRFormat"], 0) <= v["ValueWRFormatHigh"] && This.Affix.Has(v["Affix"]))
 			{
 				If(v["ModGenerationType"] == "Prefix"){
 					If(v["RNMod"] > 1){
@@ -983,7 +983,7 @@ class ItemScan
 			if(AffixWRLine.Length > 1){
 				AffixWRLine[1] := "(Hybrid) " . AffixWRLine[1]
 			}
-			If(!This.Affix[AffixWRLine[1]])
+			If(!This.Affix.Has(AffixWRLine[1]))
 			{
 				Continue
 			}
@@ -1011,7 +1011,7 @@ class ItemScan
 	}
 	HasModifierFromList(ModList){
 		for k,v in ModList{
-			if (This.Affix.%v%){
+			if (This.Affix.Has(v)){
 				return true
 			}
 		}
@@ -1085,7 +1085,7 @@ class ItemScan
 		{
 			If (This.Prop.SlotType == v)
 			{
-				If This.Affix.Unidentified {
+				If This.Affix.Has("Unidentified") {
 					CountValue := retCount(RecipeMap["uChaos"][v]) + retCount(RecipeMap["uRegal"][v])
 					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingUNID
 				} Else {
@@ -1103,7 +1103,7 @@ class ItemScan
 				{
 					If (OnStash && deposit)
 					{
-						If This.Affix.Unidentified
+						If This.Affix.Has("Unidentified")
 						{
 							If This.Prop.ChaosRecipe
 								RecipeMap["uChaos"][v].Push(This)
@@ -1130,7 +1130,7 @@ class ItemScan
 		{
 			If (This.Prop.SlotType == v)
 			{
-				If This.Affix.Unidentified{
+				If This.Affix.Has("Unidentified"){
 					WeaponCount := retCount(RecipeMap["uRegal"]["Two Hand"]) + retCount(RecipeMap["uChaos"]["Two Hand"])
 					WeaponCount += (retCount(RecipeMap["uRegal"]["One Hand"]) + retCount(RecipeMap["uChaos"]["One Hand"])) / 2
 					WeaponCount += (retCount(RecipeMap["uRegal"]["Shield"]) + retCount(RecipeMap["uChaos"]["Shield"])) / 2
@@ -1145,7 +1145,7 @@ class ItemScan
 				{
 					If (OnStash && deposit)
 					{
-						If This.Affix.Unidentified
+						If This.Affix.Has("Unidentified")
 						{
 							If This.Prop.ChaosRecipe
 								RecipeMap["uChaos"][v].Push(This)
@@ -1186,9 +1186,9 @@ class ItemScan
 
 					If (vals.Length == 1 && This.CheckIfActualHybridMod(key))
 					{
-						If This.Affix.%key%
+						If This.Affix.Has(key)
 						{
-							This.Affix.%key% -= vals[1]
+							This.Affix[key] -= vals[1]
 							This.AddHybridModAffix(key,vals[1])
 						}
 						Else{
@@ -1211,19 +1211,19 @@ class ItemScan
 				If (vals.Length >= 2)
 				{
 					If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
-						This.Affix.%key% := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+						This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
 					Else
-						This.Affix.%key% := vals[1]
+						This.Affix[key] := vals[1]
 					For k, v in vals
 						This.Affix[ key "_value" k ] := v
 				}
 				Else If (vals.Length == 1)
 				{
-					If (This.Affix.%key% && DoubleModCounter != 2)
+					If (This.Affix.Has(key) && DoubleModCounter != 2)
 					{
-						This.Affix.%key% += vals[1]
+						This.Affix[key] += vals[1]
 					}Else If(DoubleModCounter != 2){
-						This.Affix.%key% := vals[1]
+						This.Affix[key] := vals[1]
 					}Else{
 						This.AddHybridModAffix(key,vals[1])
 					}
@@ -1233,7 +1233,7 @@ class ItemScan
 				If(key == "")
 					Continue
 				Else
-					This.Affix.%key% := True
+					This.Affix[key] := True
 			}
 			LastLine := line
 
@@ -1285,16 +1285,16 @@ class ItemScan
 	}
 	AddHybridModAffix(Key,Value){
 		HybridKey := "(Hybrid) " . Key
-		If(!This.Affix.%HybridKey%)
+		If(!This.Affix.Has(HybridKey))
 		{
 			aux := Value
 			If (aux != 0)
-				This.Affix.%HybridKey% := aux
+				This.Affix[HybridKey] := aux
 		}Else
 		{
 			aux := This.GetValue("Affix", HybridKey) + Value
 			If (aux != 0)
-				This.Affix.%HybridKey% := aux
+				This.Affix[HybridKey] := aux
 		}
 		return
 	}
@@ -1317,22 +1317,22 @@ class ItemScan
 				If (vals.Length >= 2)
 				{
 					If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
-						This.Affix.%key% := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+						This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
 					Else
-						This.Affix.%key% := vals[1]
+						This.Affix[key] := vals[1]
 					For k, v in vals
 						This.Affix[ key "_value" k ] := v
 				}
 				Else If (vals.Length == 1)
 				{
-					If This.Affix.%key%
-						This.Affix.%key% += vals[1]
+					If This.Affix.Has(key)
+						This.Affix[key] += vals[1]
 					Else
-						This.Affix.%key% := vals[1]
+						This.Affix[key] := vals[1]
 				}
 			}
 			Else
-				This.Affix.%key% := True
+				This.Affix[key] := True
 		}
 	}
 	MatchLine(lineString){
@@ -1624,7 +1624,7 @@ class ItemScan
 	MergePseudoInAffixs(){
 		for k, v in This.Pseudo
 		{
-			This.Affix.%k% := v
+			This.Affix[k] := v
 		}
 		; Free Object (Not needed)
 		This.Pseudo := ""
@@ -1920,7 +1920,7 @@ class ItemScan
 	DisplayPSA(){
 		Global ItemInfoGui
 		propText:=statText:=affixText:=modifierText:=""
-		For key, value in This.Prop
+		For key, value in This.Prop.OwnProps()
 		{
 			If( RegExMatch(key, "^Required")
 				|| RegExMatch(key, "^Rating")
