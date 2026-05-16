@@ -106,7 +106,7 @@ Global Clip_Contents:=""
 Global CheckGamestates:=False
 Global ScriptPID := ProcessExist()
 Global MainMenuIDAutoFlask := 0, MainMenuIDAutoQuit := 0, MainMenuIDAutoMove := 0, MainMenuIDAutoUtility := 0
-Global LootFilter := {}
+Global LootFilter := Map()
 Global BlackList := Map()
 Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
 Global StackSizes := {Wisdom:40,Portal:40,Scouring:30,Perandus:5000

@@ -154,9 +154,9 @@ LoadArray(){
 	Global LootFilter
 	LootFilter := FileExist(A_ScriptDir "\save\LootFilter.json")
 		? JSON.LoadFile(A_ScriptDir "\save\LootFilter.json")
-		: {}
+		: Map()
 	If !LootFilter
-		LootFilter := {}
+		LootFilter := Map()
 	Return
 }
 
