@@ -1,5 +1,5 @@
 ; Shim replacing the v1 AHK (adash) instance.
-; adash v0[6][0] lacks sortBy/sumBy/meanBy, so they are implemented here.
+; adash v0.6.0 lacks sortBy/sumBy/meanBy, so they are implemented here.
 Class AHK {
 	static reverse(arr) => adash.reverse(arr)
 	; Internal: resolve iteratee to a callable mapping obj -> sort key.
