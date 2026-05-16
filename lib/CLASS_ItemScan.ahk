@@ -586,7 +586,7 @@ class ItemScan
 			{
 				This.Prop.ItemLevel := RxMatch[1]
 			}
-			If (This.Data.Blocks.Has("Enchant"))
+			If (This.Data.Blocks.Enchant != "")
 			{
 				This.Prop.SpecialType := "Enchanted Item"
 			}
@@ -1795,7 +1795,7 @@ class ItemScan
 			If This.MatchNinjaDB("Beast", "ItemBase")
 				Return
 		}
-		If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.Has("Enchant"))
+		If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.Enchant != "")
 		{
 			For k, v in Ninja.HelmetEnchant
 			{
