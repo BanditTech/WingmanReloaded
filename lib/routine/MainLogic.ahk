@@ -8,6 +8,16 @@ TGameTick(DoGuiCheck:=True){
 			WR_StatusBarCtrl.SetText("No game found", 1)
 		If CheckTime("seconds",5,"StatusBar3")
 			WR_StatusBarCtrl.SetText("No game found", 3)
+		; clear in-game state flags so the main-menu Logic State chips
+		; reflect 'no game' (Char red, panels green) instead of freezing
+		; at whatever they were when the game window disappeared
+		Global OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor
+		Global OnDiv, OnLeft, OnDelveChart, OnDetonate, YesXButtonFound
+		OnChar := False, OnChat := False, OnMenu := False, OnInventory := False
+		OnStash := False, OnVendor := False, OnDiv := False, OnLeft := False
+		OnDelveChart := False, OnDetonate := False, YesXButtonFound := False
+		If CheckGamestates
+			mainmenuGameLogicState()
 		Return
 	}
 	If GamePID
