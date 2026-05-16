@@ -1,4 +1,5 @@
 ; LootScan - Finds matching colors under the cursor while key pressed
+Global LootVacuumActive := False
 LootScan(Reset:=0){
 		Static LV_LastClick := 0
 		Global LootVacuumActive, ComboHex, ComboHexX, ComboHexY
