@@ -1,8 +1,5 @@
 ; LootScan - Finds matching colors under the cursor while key pressed
 LootScan(Reset:=0){
-		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
-		SetMouseDelay(SetMouseDelayValue)
-		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
 		Static LV_LastClick := 0
 		Global LootVacuumActive, ComboHex, ComboHexX, ComboHexY
 		Global SetKeyDelayValue1, SetKeyDelayValue2, SetMouseDelayValue, SetDefaultMouseSpeedValue
@@ -10,6 +7,9 @@ LootScan(Reset:=0){
 		Global OnMines, YesLootDelve, YesLootChests, DelveStr, ChestStr
 		AreaScale := 15
 		MaxArea := 600
+		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+		SetMouseDelay(SetMouseDelayValue)
+		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
 		If (!ComboHex || Reset)
 		{
 			ComboHex := Hex2FindText(LootColors,0,0,"",30,8)
