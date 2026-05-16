@@ -11,40 +11,34 @@
     GroupAdd("POEGameGroup", "ahk_exe " exe)
   Global CLFStashTabDefault := 1
   CLFStashTabDefault := IniRead("LootFilter.ini", "LootFilter", "CLFStashTabDefault", 1)
-  Global LootFilter := {}
+  Global LootFilter := Map()
 
   JSONtext := FileRead(A_ScriptDir "/WR_Prop.json")
   temp := JSON.Load(JSONtext)
 
-  textListProp:=""
+  textListProp := []
   For k, v in temp
-    textListProp .= (!textListProp ? "" : "|") v
+    textListProp.Push(v)
 
   JSONtext := FileRead(A_ScriptDir "/WR_Pseudo.json")
   temp := JSON.Load(JSONtext)
 
-  textListAffix:=""
+  textListAffix := []
   For k, v in temp
-    textListAffix .= (!textListAffix ? "" : "|") v
+    textListAffix.Push(v)
 
   JSONtext := FileRead(A_ScriptDir "/WR_Affix.json")
   temp := JSON.Load(JSONtext)
 
   For k, v in temp
-    textListAffix .= (!textListAffix ? "" : "|") v
+    textListAffix.Push(v)
 
   JSONtext := temp := ""
 
-  Eval := [ "<","<=","=","!=",">=",">","~","~=",">0<",">0<=" ]
-  textListEval:=""
-  For k, v in Eval
-    textListEval .= (!textListEval ? "" : "|") v
-  StashTabs := [-2]
+  textListEval := [ "<","<=","=","!=",">=",">","~","~=",">0<",">0<=" ]
+  textListStashTabs := [-2]
   Loop 99
-    StashTabs.Push(A_Index)
-  textListStashTabs:=""
-  For k, v in StashTabs
-    textListStashTabs .= (!textListStashTabs ? "" : "|") v
+    textListStashTabs.Push(A_Index)
 
 
   MyMenuBar := MenuBar()
@@ -71,7 +65,8 @@ Redraw(*) {
   ypos := IniRead("LootFilter.ini", "Settings", "ypos", "first")
 
   ; LootFilterGui.Add("Button", "gAddGroup xs y+20", "Add new Group")
-  LootFilter_CLFStashTabDefault := LootFilterGui.Add("DropDownList", "xs y+20 w40", CLFStashTabDefault "||" textListStashTabs)
+  LootFilter_CLFStashTabDefault := LootFilterGui.Add("DropDownList", "xs y+20 w40", textListStashTabs)
+  LootFilter_CLFStashTabDefault.Choose(CLFStashTabDefault)
   LootFilter_CLFStashTabDefault.OnEvent("Change", UpdateStashDefault)
   LootFilterGui.Add("Text", "x+5 yp+3", "Assign default stash tab for new or imported groups")
   ; LootFilterGui.Add("Button", "gPrintout x+10 yp", "Print Array")
@@ -138,7 +133,8 @@ RedrawNewGroup(*) {
   ToolTip("Building menu...")
   BuildNewGroupMenu(groupKey)
   ToolTip()
-  LootFilterGui2.Show("w650 h475", "Add or Edit a Group")
+  LootFilterGui2.Title := "Add or Edit a Group"
+  LootFilterGui2.Show("w650 h475")
   DisableCloseButton()
   LootFilterGui2.Opt("+LastFound")        ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
   GroupAdd("MyGui", "ahk_id " . WinExist())    ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
@@ -159,7 +155,7 @@ Return ""
 ImportGroup(*) {
   Global LootFilter, CLFStashTabDefault
   LootFilterEmpty:=0
-  Loop LootFilter.Count() + 1
+  Loop LootFilter.Count + 1
   {
     ++LootFilterEmpty
     groupstr := ReplaceDigit000("Group" LootFilterEmpty)
@@ -185,10 +181,10 @@ ChangeButtonNamesVar(*) {
 
 ReformatJSON(String)
 {
-  String := RegExReplace(String, "O`am)(?<!\])(?<!\],)\n *("".*""\: [\d""])", " $1")
-  String := RegExReplace(String, "O`am)(?<!\])(?<!\],)(?<!\})\n *(\})", " }")
-  String := RegExReplace(String, "O`am)\n *(""~ElementList"")", " $1")
-  String := RegExReplace(String, "O`am) *\]\n( *)\}", "$1]}")
+  String := RegExReplace(String, "m)(?<!\])(?<!\],)\n *("".*""\: [\d""])", " $1")
+  String := RegExReplace(String, "m)(?<!\])(?<!\],)(?<!\})\n *(\})", " }")
+  String := RegExReplace(String, "m)\n *(""~ElementList"")", " $1")
+  String := RegExReplace(String, "m) *\]\n( *)\}", "$1]}")
   Return String
 }
 
@@ -197,7 +193,7 @@ ExportGroup(*) {
   LootFilterGui.Submit(0)
   buttonstr := StrSplit(A_GuiControl, "_")
   GKey := buttonstr[2]
-  A_Clipboard := ReformatJSON(JSON.Dump(LootFilter[GKey],,1))
+  A_Clipboard := ReformatJSON(JSON.Dump(LootFilter[GKey], 1))
   SetTimer(ChangeButtonNamesVar, 10)
   result := MsgBox(A_Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy", "Export String", 262147)
   if (result = "Yes")
@@ -219,7 +215,7 @@ AddGroup(*) {
   Global LootFilter, groupKey, CLFStashTabDefault, LootFilterGui2
   LootFilterGui.Submit()
   LootFilterEmpty:=0
-  Loop (LootFilter.Count() + 1)
+  Loop (LootFilter.Count + 1)
   {
     ++LootFilterEmpty
     groupstr := ReplaceDigit000("Group" LootFilterEmpty)
@@ -269,8 +265,8 @@ BuildMenu(Min,Max,AllEdit:=0)
     {
       If (SKey = "Data")
         Continue
-      totalHeight += ((LootFilter[GKey][SKey].Count() + 1) * 25) + 45
-      LootFilterGui.Add("GroupBox", " section xs y+15 w675 h" (LootFilter[GKey][SKey].Count() + 1) * 25, SKey)
+      totalHeight += ((LootFilter[GKey][SKey].Count + 1) * 25) + 45
+      LootFilterGui.Add("GroupBox", " section xs y+15 w675 h" (LootFilter[GKey][SKey].Count + 1) * 25, SKey)
       LootFilterGui.SetFont("Bold s10 cBlack")
       For AKey, Val in selectedItems
       {
@@ -300,10 +296,10 @@ BuildNewGroupMenu(GKey)
   {
     If ( SKey = "Data" )
       Continue
-    LootFilterGui2.Add("GroupBox", " section xs y+18 w37 h" (LootFilter[GKey][SKey].Count() + 1) * 25, "  OR")
-    LootFilterGui2.Add("GroupBox", " x+2 yp w247 h" (LootFilter[GKey][SKey].Count() + 1) * 25, SKey)
-    LootFilterGui2.Add("GroupBox", " x+2 yp w54 h" (LootFilter[GKey][SKey].Count() + 1) * 25, "Eval:")
-    LootFilterGui2.Add("GroupBox", " x+2 yp w254 h" (LootFilter[GKey][SKey].Count() + 1) * 25, "Min:")
+    LootFilterGui2.Add("GroupBox", " section xs y+18 w37 h" (LootFilter[GKey][SKey].Count + 1) * 25, "  OR")
+    LootFilterGui2.Add("GroupBox", " x+2 yp w247 h" (LootFilter[GKey][SKey].Count + 1) * 25, SKey)
+    LootFilterGui2.Add("GroupBox", " x+2 yp w54 h" (LootFilter[GKey][SKey].Count + 1) * 25, "Eval:")
+    LootFilterGui2.Add("GroupBox", " x+2 yp w254 h" (LootFilter[GKey][SKey].Count + 1) * 25, "Min:")
     For AKey, Val in selectedItems
     {
       ; If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
@@ -314,10 +310,12 @@ BuildNewGroupMenu(GKey)
       cbOrFlag.OnEvent("Click", UpdateLootFilterDDL)
       cbOrFlag.Name := "LootFilter_" GKey "_" SKey "_" AKey "_OrFlag"
       textListMap := Map("Prop", textListProp, "Affix", textListAffix)
-      cbKey := LootFilterGui2.Add("ComboBox", "x+9 w240", LootFilter[GKey][SKey][AKey]["#Key"] "||" (textListMap.Has(SKey) ? textListMap[SKey] : ""))
+      cbKey := LootFilterGui2.Add("ComboBox", "x+9 w240", textListMap.Has(SKey) ? textListMap[SKey] : [])
+      cbKey.Text := LootFilter[GKey][SKey][AKey]["#Key"]
       cbKey.OnEvent("Change", UpdateLootFilterDDL)
       cbKey.Name := "LootFilter_" GKey "_" SKey "_" AKey "_#Key"
-      ddlEval := LootFilterGui2.Add("DropDownList", "x+9 w50", LootFilter[GKey][SKey][AKey]["Eval"] "||" textListEval)
+      ddlEval := LootFilterGui2.Add("DropDownList", "x+9 w50", textListEval)
+      ddlEval.Choose(LootFilter[GKey][SKey][AKey]["Eval"])
       ddlEval.OnEvent("Change", UpdateLootFilterDDL)
       ddlEval.Name := "LootFilter_" GKey "_" SKey "_" AKey "_Eval"
       editMin := LootFilterGui2.Add("Edit", "x+6 w250 h21", LootFilter[GKey][SKey][AKey]["Min"])
@@ -331,11 +329,13 @@ BuildNewGroupMenu(GKey)
     btnAddNew.OnEvent("Click", AddNewGroupDDL)
   }
   ddlStash := LootFilterGui2.Add("Text", "y+12", GKey " Stash Tab:")
-  ddlGroupStash := LootFilterGui2.Add("DropDownList", "w40 x+5 yp-6", LootFilter[GKey]["Data"]["StashTab"] "||" textListStashTabs)
+  ddlGroupStash := LootFilterGui2.Add("DropDownList", "w40 x+5 yp-6", textListStashTabs)
+  ddlGroupStash.Choose(LootFilter[GKey]["Data"]["StashTab"])
   ddlGroupStash.OnEvent("Change", UpdateGroupInfo)
   ddlGroupStash.Name := "LootFilter_" GKey "_StashTab"
   LootFilterGui2.Add("Text", "x+5 yp+6", "Min OR #:")
-  ddlOrCount := LootFilterGui2.Add("DropDownList", "w40 x+5 yp-6", LootFilter[GKey]["Data"]["OrCount"] "||1|2|3|4|5|6|7|8|9|10|11|12")
+  ddlOrCount := LootFilterGui2.Add("DropDownList", "w40 x+5 yp-6", ["1","2","3","4","5","6","7","8","9","10","11","12"])
+  ddlOrCount.Choose(LootFilter[GKey]["Data"]["OrCount"])
   ddlOrCount.OnEvent("Change", UpdateGroupInfo)
   ddlOrCount.Name := "LootFilter_" GKey "_OrCount"
   btnExport := LootFilterGui2.Add("Button", "w60 h21 x+5", "Export")
@@ -367,9 +367,9 @@ SaveArray_Menu(*) {
 SaveArray()
 {
   LootFilterGui.Submit(0)
-  ; JSONtext := ReformatJSON(JSON.Dump(LootFilter,,1))
-  JSONtext := ReformatJSON(JSON.Dump(LootFilter,,1))
-  ; JSONtext := JSON.Dump(LootFilter,,1)
+  ; JSONtext := ReformatJSON(JSON.Dump(LootFilter, 1))
+  JSONtext := ReformatJSON(JSON.Dump(LootFilter, 1))
+  ; JSONtext := JSON.Dump(LootFilter, 1)
   FileDelete("LootFilter.json")
   FileAppend(JSONtext, "LootFilter.json")
 }
@@ -512,9 +512,9 @@ Printout(*) {
 PrintJSON(*) {
   Global LootFilter
   LootFilterGui.Submit(0)
-  arrStr := JSON.Dump(LootFilter,,1)
+  arrStr := JSON.Dump(LootFilter, 1)
   MsgBox(arrStr)
-  arrStr := JSON.Dump(LootFilterTabs,,1)
+  arrStr := JSON.Dump(LootFilterTabs, 1)
   MsgBox(arrStr)
 }
 
@@ -713,7 +713,8 @@ PrintArray(Array, Display:=1, Level:=0)
   PrintArrayGui.Opt("+MaximizeBox +Resize")
   PrintArrayGui.SetFont("s9", "Courier New")
   PrintArrayGui.Add("Edit", "x12 y10 w450 h350 ReadOnly HScroll", Output)
-  PrintArrayGui.Show("w476 h374", "PrintArray")
+  PrintArrayGui.Title := "PrintArray"
+  PrintArrayGui.Show("w476 h374")
   PrintArrayGui.Opt("+LastFound")
   ControlSend("{Right}")
   WinWaitClose()
@@ -776,9 +777,5 @@ ReplaceDigit000(Name:="Group1"){
   Return "Group" . Format("{1:03i}",StrSplit(Name,," ",6)[6])
 }
 
-#Include ..\lib\ref\JSON.ahk
-#Include ..\lib\ref\DeepClone.ahk
-#Include ..\lib\ref\CBMatchingGUI.ahk
-#Include ..\lib\ref\OrderedAssociativeArray.ahk
-#Include ..\lib\ref\OrderedArray.ahk
+#Include ..\lib\Aris\G33kDude\cJson.ahk
 #Include ..\lib\Helpers.ahk
