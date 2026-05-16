@@ -190,7 +190,7 @@ TGameTick(GuiCheck:=True){
 								Else If (WR.Utility.%A_Index%.IconSearch == 3) ; Custom Icon Area
 									x1:=WR.Utility.%A_Index%.IconArea.X1, y1:=WR.Utility.%A_Index%.IconArea.Y1, x2:=WR.Utility.%A_Index%.IconArea.X2, y2:=WR.Utility.%A_Index%.IconArea.Y2
 
-								BuffIcon := FindText(x1, y1, x2, y2, WR.Utility.%A_Index%.IconVar1, WR.Utility.%A_Index%.IconVar0, WR.Utility.%A_Index%.Icon,0)
+								BuffIcon := FindText(&FT_X, &FT_Y, x1, y1, x2, y2, WR.Utility.%A_Index%.IconVar1, WR.Utility.%A_Index%.IconVar0, WR.Utility.%A_Index%.Icon,0)
 
 								If ((WR.Utility.%A_Index%.IconShown && BuffIcon) || (!WR.Utility.%A_Index%.IconShown && !BuffIcon))
 									Trigger(WR.Utility.%A_Index%,True)

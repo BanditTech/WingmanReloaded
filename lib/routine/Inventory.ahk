@@ -86,7 +86,7 @@ CheckRunning(ret:=false){
 ; Search Stash Routine
 SearchStash()
 {
-	If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
+	If (FindStash:=FindText(&FT_X, &FT_Y, GameX,GameY,GameW,GameH,0,0,StashStr))
 	{
 		LeftClick(FindStash.1.x,FindStash.1.y)
 		Loop 66
@@ -95,7 +95,7 @@ SearchStash()
 			GuiStatus()
 			If OnStash
 				Return True
-			Else If ( !Mod(A_Index,20) && (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr)) )
+			Else If ( !Mod(A_Index,20) && (FindStash:=FindText(&FT_X, &FT_Y, GameX,GameY,GameW,GameH,0,0,StashStr)) )
 				LeftClick(FindStash.1.x,FindStash.1.y)
 		}
 	}
@@ -113,7 +113,7 @@ ShooMouse()
 ClearNotifications()
 {
 	; Global InventoryGridY
-	If (xBtn := FindText(GameW - 30,InventoryGridY[1] - 90,GameW,InventoryGridY[5] + 30,0.2,0.2,XButtonStr,0))
+	If (xBtn := FindText(&FT_X, &FT_Y, GameW - 30,InventoryGridY[1] - 90,GameW,InventoryGridY[5] + 30,0.2,0.2,XButtonStr,0))
 	{
 		Log("Verbose","Clearing Notifications #" xBtn.Length, GameW, InventoryGridY[1], InventoryGridY[5])
 		For k, v in xBtn
@@ -647,14 +647,14 @@ SearchVendor()
 			Return
 	}
 	Sleep(60*Latency)
-	Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0)
+	Sell:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0)
 	If (Sell)	{
 		Sleep(60*Latency)
 		LeftClick(Sell.1.x,Sell.1.y)
 		Sleep(150*Latency)
 		Return True
 	}
-	Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
+	Vendor:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
 	If (FirstAutomationSetting == "Search Stash" && !Vendor)
 	{
 		If (Town == "The Sarn Encampment")
@@ -683,14 +683,14 @@ SearchVendor()
 		}
 	}
 	If (!Vendor)
-		Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
+		Vendor:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
 	if (Vendor)
 	{
 		LeftClick(Vendor.1.x, Vendor.1.y)
 		Sleep(120)
 		Loop 66
 		{
-			If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0))
+			If (Sell:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0))
 			{
 				Sleep(30*Latency)
 				LeftClick(Sell.1.x,Sell.1.y)
@@ -699,7 +699,7 @@ SearchVendor()
 			}
 			Else If !Mod(A_Index, 20)
 			{
-				If (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)) {
+				If (Vendor:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)) {
 					LeftClick(Vendor.1.x, Vendor.1.y)
 					Sleep(120)
 				}
