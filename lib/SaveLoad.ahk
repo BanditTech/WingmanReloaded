@@ -223,8 +223,8 @@ readFromFile(){
 
 	;Item Crafting Options
 
-	ItemCraftingSubCategorySelector := IniRead(A_ScriptDir "\save\Settings.ini", "Item Crafting Settings", "ItemCraftingSubCategorySelector", "Abyss Jewels")
-	ItemCraftingCategorySelector := IniRead(A_ScriptDir "\save\Settings.ini", "Item Crafting Settings", "ItemCraftingCategorySelector", "Ghastly Eye Jewel")
+	ItemCraftingCategorySelector := IniRead(A_ScriptDir "\save\Settings.ini", "Item Crafting Settings", "ItemCraftingCategorySelector", "Abyss Jewels")
+	ItemCraftingSubCategorySelector := IniRead(A_ScriptDir "\save\Settings.ini", "Item Crafting Settings", "ItemCraftingSubCategorySelector", "Ghastly Eye Jewel")
 	ItemCraftingNumberPrefix := IniRead(A_ScriptDir "\save\Settings.ini", "Item Crafting Settings", "ItemCraftingNumberPrefix", 1)
 	ItemCraftingNumberSuffix := IniRead(A_ScriptDir "\save\Settings.ini", "Item Crafting Settings", "ItemCraftingNumberSuffix", 1)
 	ItemCraftingNumberCombination := IniRead(A_ScriptDir "\save\Settings.ini", "Item Crafting Settings", "ItemCraftingNumberCombination", 0)
