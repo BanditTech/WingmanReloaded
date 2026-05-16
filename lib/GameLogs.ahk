@@ -38,7 +38,6 @@ CompareLocation(cStr:="")
     ; first we confirm if this line contains our zone change phrase
     If InStr(cStr, ": You have entered")
     {
-      ZoneChangeCount++
       ; We split away the rest of the sentence for only location
       CurrentLocation := StrSplit(cStr, " : You have entered "," .`r`n" )[2]
       ; We should now have our location name and can begin comparing
