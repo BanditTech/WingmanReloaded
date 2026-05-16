@@ -243,9 +243,22 @@ Monitor_GameLogs(Initialize:=0)
   OldTown := OnTown, OldHideout := OnHideout, OldMines := OnMines, OldLocation := CurrentLocation
   if (Initialize)
   {
+    errchk := 0
+    If !FileExist(ClientLog)
+    {
+      CurrentLocation := "Client.txt not found"
+      Log("Error","Client.txt not found at configured path",ClientLog)
+      Return
+    }
     Try
     {
       CLogFO := FileOpen(ClientLog, "r")
+      If !CLogFO
+      {
+        CurrentLocation := "Client.txt open failed"
+        Log("Error","FileOpen returned 0 for Client.txt",ClientLog)
+        Return
+      }
       errchk := FileGetSize(ClientLog, "M")
       If (errchk >= 64)
       {
@@ -291,9 +304,9 @@ Monitor_GameLogs(Initialize:=0)
     }
     Catch as loaderror
     {
-      Ding(5000,-10,"Client.txt Critical Load Error`nSize: " . errchk . "MB")
+      Ding(5000,-10,"Client.txt Critical Load Error`nSize: " errchk "MB`n" loaderror.Message)
       CurrentLocation := "Client File Load Error"
-      Log("Error","Error loading File, Submit information about your client.txt",loaderror)
+      Log("Error","Error loading File, Submit information about your client.txt",loaderror.Message,loaderror.File,loaderror.Line)
     }
     Return
   } Else {
