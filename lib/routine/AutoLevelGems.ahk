@@ -15,7 +15,7 @@ autoLevelGems()
 			LastCheck := A_TickCount
 			if (ok:=FindText(&FT_X, &FT_Y, GameX + Round(GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr,0))
 			{
-				X:=ok[1][1], Y:=ok[1][2], W:=ok[1][3], H:=ok[1][4], X+=W//2, Y+=H//2
+				X:=ok[1].1, Y:=ok[1].2, W:=ok[1].3, H:=ok[1].4, X+=W//2, Y+=H//2
 				MouseGetPos(&mX, &mY)
 				LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
 				If (LP || RP)
