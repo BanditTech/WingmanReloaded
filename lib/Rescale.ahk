@@ -234,7 +234,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX
+      WR.loc.pixel.OnChat.X:=GameX ; native 1920: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
@@ -439,7 +439,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX
+      WR.loc.pixel.OnChat.X:=GameX ; native 1440: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1440 / 1103))
@@ -642,7 +642,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX
+      WR.loc.pixel.OnChat.X:=GameX ; native 2560: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (2560 / 2223))
@@ -850,7 +850,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX
+      WR.loc.pixel.OnChat.X:=GameX ; native 3440: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (3440 / 2991))
@@ -1050,7 +1050,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX
+      WR.loc.pixel.OnChat.X:=GameX ; native 3840: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (3840 / 3503))
@@ -1264,7 +1264,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
       
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX
+      WR.loc.pixel.OnChat.X:=GameX ; native 1680: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
       
       ;Status Check OnInventory
