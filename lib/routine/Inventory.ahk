@@ -398,6 +398,7 @@ StashRoutine()
 			Notify("PoEPrice.info Offline","",2)
 	}
 	CurrentTab:=0
+	Unstashed := 0
 	SortFirst := Map()
 	Loop 99
 	{
