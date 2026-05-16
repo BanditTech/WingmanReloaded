@@ -12,7 +12,7 @@ class ItemScan
 		This.Data.Blocks := {Affix:"", Enchant:"", Implicit:"", Influence:"", TempleRooms:"", ObstructedRooms:"", FlavorText:"", NamePlate:"", Properties:"", ClusterImplicit:""}
 		This.Pseudo := Map()
 		This.Affix := Map()
-		This.Prop := {Rarity:"", ItemClass:"", Rarity_Digit:0, ClusterJewel:False, SlotType:"", RarityUnique:False, IsWeapon:False, Quiver:False, WantedCraftingBase:False, HeistGear:False}
+		This.Prop := {Rarity:"", ItemClass:"", Rarity_Digit:0, ClusterJewel:False, SlotType:"", RarityUnique:False, IsWeapon:False, Quiver:False, WantedCraftingBase:False, HeistGear:False, Influence:""}
 		This.Modifier := Map()
 		This.Percent := Map()
 		; Split our sections from the clipboard
