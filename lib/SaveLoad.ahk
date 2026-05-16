@@ -1270,7 +1270,14 @@ Settings(name:="perChar",Action:="Load"){
 }
 ; Profile Save/Load/Remove
 Profile(args*){
-	MainGui.Submit(0)
+	Global MainGui
+	; MainGui is created later in script-include order (gui/MainMenu.ahk),
+	; but ScriptObject.ahk calls Profile(...,'Save','Default') at script
+	; load time to seed missing defaults. Skip the gui submit when the
+	; window doesn't exist yet. The Global declaration is required so
+	; IsSet() consults the script-level MainGui rather than a local.
+	If IsSet(MainGui) && MainGui is Gui
+		MainGui.Submit(0)
 	confirm := False
 	If (IsObject(args[1])){  ; called as GUI click handler (GuiCtrl, Info)
 		split := StrSplit(args[1].Name, "_")
