@@ -19,7 +19,7 @@ Trigger(obj,force:=False){
 	}
 	For k, v in ActionList[obj.Group]
 	{
-		type := StrSplit(v, " ")[1], recheck := (StrSplit(v, " ")[3] == "Check"?True:False), v := StrSplit(v, " ")[2]
+		type := StrSplit(v, " ")[1], recheck := (StrSplit(v, " ")[3] == "Check"?True:False), v := Integer(StrSplit(v, " ")[2])
 		If (!recheck || (recheck && ConfirmMatchingTriggers(WR.%type%.%v%)))
 		If (WR.cdExpires.%type%[v] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
 		{
