@@ -7,7 +7,7 @@ Trigger(obj,force:=False){
 	Global MovementHotkeyActive
 	If !ActionList.Has(obj.Group)
 		ActionList[obj.Group] := []
-	If (force && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount)
+	If (force && WR.cdExpires.%obj.Type%.%obj.Slot% < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount)
 		ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Force")
 	Else If ( !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) && ConfirmMatchingTriggers(obj))
 		ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Check")
@@ -21,7 +21,7 @@ Trigger(obj,force:=False){
 	{
 		type := StrSplit(v, " ")[1], recheck := (StrSplit(v, " ")[3] == "Check"?True:False), v := StrSplit(v, " ")[2]
 		If (!recheck || (recheck && ConfirmMatchingTriggers(WR.%type%.%v%)))
-		If (WR.cdExpires.%type%[v] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount)
+		If (WR.cdExpires.%type%.%v% < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount)
 		{
 			If (WR.%type%.%v%.Move && !force)
 			{
@@ -43,7 +43,7 @@ Trigger(obj,force:=False){
 			}
 			SendHotkey(WR.%type%.%v%.Key)
 			WR.cdExpires.Group.%obj.Group% := A_TickCount + WR.%type%.%v%.GroupCD
-			WR.cdExpires.%type%[v] := A_TickCount + WR.%type%.%v%.CD
+			WR.cdExpires.%type%.%v% := A_TickCount + WR.%type%.%v%.CD
 			ActionList[obj.Group].RemoveAt(k)
 			If (WR.%type%.%v%.Group == "QuickSilver")
 				Loop 10
@@ -55,7 +55,7 @@ Trigger(obj,force:=False){
 	Return
 }
 ConfirmMatchingTriggers(obj){
-	If ((obj.Type == "Flask" || obj.Enable) && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
+	If ((obj.Type == "Flask" || obj.Enable) && WR.cdExpires.%obj.Type%.%obj.Slot% < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
 	{
 		If (WR.func.Toggle.PopAll && obj.PopAll) ; PopAll trigger
 			Return True
@@ -109,7 +109,7 @@ MainAttackCommandRelease(*)
 	For k, types in ["Flask","Utility"]
 		loop (types="Flask"?5:10) {
 			obj := WR.%types%.%A_Index%
-			If ((obj.Type == "Flask" || obj.Enable) && obj.MainAttackRelease && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
+			If ((obj.Type == "Flask" || obj.Enable) && obj.MainAttackRelease && WR.cdExpires.%obj.Type%.%obj.Slot% < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
 				Trigger(obj,True)
 		}
 	Return
@@ -132,7 +132,7 @@ SecondaryAttackCommandRelease(*)
 	For k, types in ["Flask","Utility"]
 		loop (types="Flask"?5:10) {
 			obj := WR.%types%.%A_Index%
-			If ((obj.Type == "Flask" || obj.Enable) && obj.SecondaryAttackRelease && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
+			If ((obj.Type == "Flask" || obj.Enable) && obj.SecondaryAttackRelease && WR.cdExpires.%obj.Type%.%obj.Slot% < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
 				Trigger(obj,True)
 		}
 	Return
