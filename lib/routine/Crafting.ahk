@@ -349,7 +349,7 @@ CountCurrency(NameList:=""){
 	If !IsObject(NameList)
 		NameList := StrSplit(NameList,",")
 	For key, currency in NameList {
-		If !WR.loc.pixel.Has(currency)
+		If !WR.loc.pixel.HasOwnProp(currency)
 			Return False
 		If (WR.loc.pixel.%currency%.X == 0 && WR.loc.pixel.%currency%.Y == 0) {
 			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)

@@ -862,7 +862,7 @@ RunRestock(){
 			If (v.Normal || v.Ignored || v.RestockName == "")
 				Continue
 			If !(v.RestockName == "Custom") {
-				If !WR.loc.pixel.Has(v.RestockName){
+				If !WR.loc.pixel.HasOwnProp(v.RestockName){
 					Notify("Missing Location","There is no entry for " v.RestockName,5)
 					Continue
 				} Else If (WR.loc.pixel.%v.RestockName%.X == 0 && WR.loc.pixel.%v.RestockName%.Y == 0) {
