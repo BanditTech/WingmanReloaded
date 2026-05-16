@@ -28,7 +28,9 @@ SaveBasicCraft(GuiCtrl, *) {
 
 BasicCraftRadio(ctrl, *) {
 	Global BasicCraftChanceMethod, BasicCraftColorMethod, BasicCraftLinkMethod, BasicCraftSocketMethod
-	ctrl.Gui.Submit(0)
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
 	IniWrite(BasicCraftChanceMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftChanceMethod")
 	IniWrite(BasicCraftColorMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftColorMethod")
 	IniWrite(BasicCraftLinkMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftLinkMethod")
@@ -43,7 +45,9 @@ SaveStashTabs(GuiCtrl, *) {
 SaveChaosRadio(ctrl, *) {
 	Global ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal
 	Global ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort
-	ctrl.Gui.Submit(0)
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
 	IniWrite(ChaosRecipeTypePure, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypePure")
 	IniWrite(ChaosRecipeTypeHybrid, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypeHybrid")
 	IniWrite(ChaosRecipeTypeRegal, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypeRegal")
@@ -61,7 +65,9 @@ UpdateExtra(ctrl, *) {
 	Global AutoUpdateOff, YesGuiLastPosition, YesDX12, AreaScale, LVdelay, YesOHB
 	Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation
 	Global YesEnableAutoSellConfirmation, YesEnableAutoSellConfirmationSafe, YesLootChests, YesLootDelve
-	ctrl.Gui.Submit(0)
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
 	; Gui, Inventory: Submit, NoHide
 	IniWrite(BranchName, A_ScriptDir "\save\Settings.ini", "General", "BranchName")
 	IniWrite(ScriptUpdateTimeInterval, A_ScriptDir "\save\Settings.ini", "General", "ScriptUpdateTimeInterval")
@@ -126,7 +132,9 @@ UpdateStringEdit(GuiCtrl, *) {
 
 UpdateResolutionScale(ctrl, *) {
 	Global ResolutionScale
-	ctrl.Gui.Submit(0)
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
 	IniWrite(ResolutionScale, A_ScriptDir "\save\Settings.ini", "General", "ResolutionScale")
 	Rescale()
 }
@@ -134,7 +142,9 @@ UpdateResolutionScale(ctrl, *) {
 
 UpdateDebug(ctrl, *) {
 	Global DebugMessages, YesTimeMS, YesLocation
-	ctrl.Gui.Submit(0)
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
 	IniWrite(DebugMessages, A_ScriptDir "\save\Settings.ini", "General", "DebugMessages")
 	IniWrite(YesTimeMS, A_ScriptDir "\save\Settings.ini", "General", "YesTimeMS")
 	IniWrite(YesLocation, A_ScriptDir "\save\Settings.ini", "General", "YesLocation")
