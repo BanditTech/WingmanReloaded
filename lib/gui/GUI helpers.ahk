@@ -295,77 +295,77 @@ mainmenuGameLogicState(refresh:=False) {
     If OnChar
       CtlColors.Change(MainMenuIDOnChar, "52D165", "")
     Else
-      CtlColors.Change(MainMenuIDOnChar, "Red", "")
+      CtlColors.Change(MainMenuIDOnChar, "RED", "")
   }
   If ((NewOHB := (CheckOHB()?1:0)) != OldOHB) || refresh {
     OldOHB := NewOHB
     If NewOHB
       CtlColors.Change(MainMenuIDOnOHB, "52D165", "")
     Else
-      CtlColors.Change(MainMenuIDOnOHB, "Red", "")
+      CtlColors.Change(MainMenuIDOnOHB, "RED", "")
   }
   If (OnInventory != OldOnInventory) || refresh {
     OldOnInventory := OnInventory
     If (OnInventory)
-      CtlColors.Change(MainMenuIDOnInventory, "Red", "")
+      CtlColors.Change(MainMenuIDOnInventory, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnInventory, "", "Green")
+      CtlColors.Change(MainMenuIDOnInventory, "", "GREEN")
   }
   If (OnChat != OldOnChat) || refresh {
     OldOnChat := OnChat
     If OnChat
-      CtlColors.Change(MainMenuIDOnChat, "Red", "")
+      CtlColors.Change(MainMenuIDOnChat, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnChat, "", "Green")
+      CtlColors.Change(MainMenuIDOnChat, "", "GREEN")
   }
   If (OnStash != OldOnStash) || refresh {
     OldOnStash := OnStash
     If (OnStash)
-      CtlColors.Change(MainMenuIDOnStash, "Red", "")
+      CtlColors.Change(MainMenuIDOnStash, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnStash, "", "Green")
+      CtlColors.Change(MainMenuIDOnStash, "", "GREEN")
   }
   If (OnDiv != OldOnDiv) || refresh {
     OldOnDiv := OnDiv
     If (OnDiv)
-      CtlColors.Change(MainMenuIDOnDiv, "Red", "")
+      CtlColors.Change(MainMenuIDOnDiv, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnDiv, "", "Green")
+      CtlColors.Change(MainMenuIDOnDiv, "", "GREEN")
   }
   If (OnLeft != OldOnLeft) || refresh {
     OldOnLeft := OnLeft
     If (OnLeft)
-      CtlColors.Change(MainMenuIDOnLeft, "Red", "")
+      CtlColors.Change(MainMenuIDOnLeft, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnLeft, "", "Green")
+      CtlColors.Change(MainMenuIDOnLeft, "", "GREEN")
   }
   If (OnDelveChart != OldOnDelveChart) || refresh {
     OldOnDelveChart := OnDelveChart
     If (OnDelveChart)
-      CtlColors.Change(MainMenuIDOnDelveChart, "Red", "")
+      CtlColors.Change(MainMenuIDOnDelveChart, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
+      CtlColors.Change(MainMenuIDOnDelveChart, "", "GREEN")
   }
   If (OnVendor != OldOnVendor) || refresh {
     OldOnVendor := OnVendor
     If (OnVendor)
-      CtlColors.Change(MainMenuIDOnVendor, "Red", "")
+      CtlColors.Change(MainMenuIDOnVendor, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnVendor, "", "Green")
+      CtlColors.Change(MainMenuIDOnVendor, "", "GREEN")
   }
   If (OnDetonate != OldOnDetonate) || refresh {
     OldOnDetonate := OnDetonate
     If (OnDetonate)
-      CtlColors.Change(MainMenuIDOnDetonate, "Red", "")
+      CtlColors.Change(MainMenuIDOnDetonate, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
+      CtlColors.Change(MainMenuIDOnDetonate, "", "GREEN")
   }
   If (OnMenu != OldOnMenu) || refresh {
     OldOnMenu := OnMenu
     If (OnMenu)
-      CtlColors.Change(MainMenuIDOnMenu, "Red", "")
+      CtlColors.Change(MainMenuIDOnMenu, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnMenu, "", "Green")
+      CtlColors.Change(MainMenuIDOnMenu, "", "GREEN")
   }
   Return
 }
