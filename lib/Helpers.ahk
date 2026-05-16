@@ -1,4 +1,10 @@
 ; Make a MsgBox Printout of an array
+; HotIf context predicate used for every POE-gated hotkey registration.
+; Must be the SAME function object across Off / On calls or v2 treats
+; the contexts as distinct.
+GameWindowActive(*) {
+  return WinActive("ahk_group POEGameGroup")
+}
 MsgBoxVals(obj,indent:=0){
   txt := ""
   Loop indent

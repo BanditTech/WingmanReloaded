@@ -93,7 +93,7 @@ for n, exe in POEGameArr
 	GroupAdd("POEGameGroup", "ahk_exe " exe)
 Global GameStr := "ahk_exe PathOfExile_x64.exe"
 ; Global GameStr := "ahk_group POEGameGroup"
-HotIf((*) => WinActive("ahk_group POEGameGroup"))
+HotIf(GameWindowActive)
 
 ; Binding Objects for Spam keys
 Global CtrlSpam := SpamClick.Bind("On","Ctrl")
