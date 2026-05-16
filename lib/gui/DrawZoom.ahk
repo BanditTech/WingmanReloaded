@@ -38,34 +38,34 @@ DrawZoom( Mode := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
   }
 
   ;specify the style, thickness and color of the cross lines
-  h_pen := DllCall( "gdi32.dll\CreatePen", "int", 0, "int", 1, "uint", 0x0000FF)
+  h_pen := DllCall( "gdi32.dll\CreatePen", "Int", 0, "Int", 1, "UInt", 0x0000FF, "Ptr")
   ;select the correct pen into DC
-  DllCall( "gdi32.dll\SelectObject", "uint", dc, "uint", h_pen )
+  DllCall( "gdi32.dll\SelectObject", "Ptr", dc, "Ptr", h_pen )
   ;update the current position to specified point - 1st horizontal
-  DllCall( "gdi32.dll\MoveToEx", "uint", dc, "int", M_C, "int", R_C, "uint", 0)
+  DllCall( "gdi32.dll\MoveToEx", "Ptr", dc, "int", M_C, "int", R_C, "Ptr", 0)
   ;draw a line from the current position up to, but not including, the specified point.
-  DllCall( "gdi32.dll\LineTo", "uint", dc, "int", R_C, "int", R_C)
+  DllCall( "gdi32.dll\LineTo", "Ptr", dc, "int", R_C, "int", R_C)
   ; 2nd horizontal
-  DllCall( "gdi32.dll\MoveToEx", "uint", dc, "int", M_C, "int", R_C+zoom_c, "uint", 0)
-  DllCall( "gdi32.dll\LineTo", "uint", dc, "int", R_C, "int", R_C+zoom_c)
+  DllCall( "gdi32.dll\MoveToEx", "Ptr", dc, "int", M_C, "int", R_C+zoom_c, "Ptr", 0)
+  DllCall( "gdi32.dll\LineTo", "Ptr", dc, "int", R_C, "int", R_C+zoom_c)
   ; 3rd horizontal
-  DllCall( "gdi32.dll\MoveToEx", "uint", dc, "int", R_C+zoom_c, "int", R_C, "uint", 0)
-  DllCall( "gdi32.dll\LineTo", "uint", dc, "int", 2*R_C+zoom_c-M_C, "int", R_C)
+  DllCall( "gdi32.dll\MoveToEx", "Ptr", dc, "int", R_C+zoom_c, "int", R_C, "Ptr", 0)
+  DllCall( "gdi32.dll\LineTo", "Ptr", dc, "int", 2*R_C+zoom_c-M_C, "int", R_C)
   ; 4th horizontal
-  DllCall( "gdi32.dll\MoveToEx", "uint", dc, "int", R_C+zoom_c, "int", R_C+zoom_c, "uint", 0)
-  DllCall( "gdi32.dll\LineTo", "uint", dc, "int", 2*R_C+zoom_c-M_C, "int", R_C+zoom_c)
+  DllCall( "gdi32.dll\MoveToEx", "Ptr", dc, "int", R_C+zoom_c, "int", R_C+zoom_c, "Ptr", 0)
+  DllCall( "gdi32.dll\LineTo", "Ptr", dc, "int", 2*R_C+zoom_c-M_C, "int", R_C+zoom_c)
   ; 1st vertical
-  DllCall( "gdi32.dll\MoveToEx", "uint", dc, "int", R_C, "int", M_C, "uint", 0)
-  DllCall( "gdi32.dll\LineTo", "uint", dc, "int", R_C, "int", R_C)
+  DllCall( "gdi32.dll\MoveToEx", "Ptr", dc, "int", R_C, "int", M_C, "Ptr", 0)
+  DllCall( "gdi32.dll\LineTo", "Ptr", dc, "int", R_C, "int", R_C)
   ; 2nd vertical
-  DllCall( "gdi32.dll\MoveToEx", "uint", dc, "int", R_C+zoom_c, "int", M_C, "uint", 0)
-  DllCall( "gdi32.dll\LineTo", "uint", dc, "int", R_C+zoom_c, "int", R_C)
+  DllCall( "gdi32.dll\MoveToEx", "Ptr", dc, "int", R_C+zoom_c, "int", M_C, "Ptr", 0)
+  DllCall( "gdi32.dll\LineTo", "Ptr", dc, "int", R_C+zoom_c, "int", R_C)
   ; 3rd vertical
-  DllCall( "gdi32.dll\MoveToEx", "uint", dc, "int", R_C, "int", R_C+zoom_c, "uint", 0)
-  DllCall( "gdi32.dll\LineTo", "uint", dc, "int", R_C, "int", 2*R_C+zoom_c-M_C)
+  DllCall( "gdi32.dll\MoveToEx", "Ptr", dc, "int", R_C, "int", R_C+zoom_c, "Ptr", 0)
+  DllCall( "gdi32.dll\LineTo", "Ptr", dc, "int", R_C, "int", 2*R_C+zoom_c-M_C)
   ; 4th vertical
-  DllCall( "gdi32.dll\MoveToEx", "uint", dc, "int", R_C+zoom_c, "int", R_C+zoom_c, "uint", 0)
-  DllCall( "gdi32.dll\LineTo", "uint", dc, "int", R_C+zoom_c, "int", 2*R_C+zoom_c-M_C)
+  DllCall( "gdi32.dll\MoveToEx", "Ptr", dc, "int", R_C+zoom_c, "int", R_C+zoom_c, "Ptr", 0)
+  DllCall( "gdi32.dll\LineTo", "Ptr", dc, "int", R_C+zoom_c, "int", 2*R_C+zoom_c-M_C)
   Return
 }
 
@@ -75,8 +75,8 @@ DrawZoom_Repaint() {
   xz := x - DZ_Rz
   yz := y - DZ_Rz
 
-  DllCall("gdi32.dll\StretchBlt", "UInt",hdc_frame, "Int",0, "Int",0, "Int",2*DZ_R+DZ_zoom, "Int",2*DZ_R+DZ_zoom
-  , "UInt",hdd_frame, "UInt",xz, "UInt",yz, "Int",2*DZ_Rz+1, "Int",2*DZ_Rz+1, "UInt",0xCC0020) ; SRCCOPY
+  DllCall("gdi32.dll\StretchBlt", "Ptr",hdc_frame, "Int",0, "Int",0, "Int",2*DZ_R+DZ_zoom, "Int",2*DZ_R+DZ_zoom
+  , "Ptr",hdd_frame, "Int",xz, "Int",yz, "Int",2*DZ_Rz+1, "Int",2*DZ_Rz+1, "UInt",0xCC0020) ; SRCCOPY
 
   DrawZoom( "", DZ_LineMargin, DZ_R, DZ_zoom, hdc_frame )
   ; DrawZoom_MoveAway()
@@ -100,8 +100,8 @@ DrawZoom_MoveAway() {
 
 DrawZoom_ClearGDI() {
   Global hdc_frame, hdd_frame, ZoomInitialize
-  DllCall("gdi32.dll\DeleteDC", "UInt",hdc_frame )
-  DllCall("gdi32.dll\DeleteDC", "UInt",hdd_frame )
+  DllCall("gdi32.dll\DeleteDC", "Ptr",hdc_frame )
+  DllCall("gdi32.dll\DeleteDC", "Ptr",hdd_frame )
   ZoomInitialize := 0
 }
 
@@ -128,8 +128,8 @@ DrawZoom_ToggleZoom() {
     ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside " y0 NA")
     MagnifierID := WinGetID("Magnifier")
     WinSetTransparent(255, "Magnifier") ; makes the window invisible to magnification
-    hdd_frame := DllCall("GetDC", "UInt", GamePID)
-    hdc_frame := DllCall("GetDC", "UInt", MagnifierID)
+    hdd_frame := DllCall("GetDC", "Ptr", GamePID, "Ptr")
+    hdc_frame := DllCall("GetDC", "Ptr", MagnifierID, "Ptr")
     HotIf()
     Hotkey("Up", PushMouse, "On")
     Hotkey("Down", PushMouse, "On")
