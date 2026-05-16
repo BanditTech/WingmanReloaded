@@ -35,11 +35,11 @@ LootScan(Reset:=0){
 					{
 						ScanPx := loot[1].x
 						ScanPy := loot[1].y
-						width := loot[1][3]
-						height := loot[1][4]
-						loot_x := loot[1][1]
+						width := loot[1].3
+						height := loot[1].4
+						loot_x := loot[1].1
 						loot_xx := loot_x + width
-						loot_y := loot[1][2]
+						loot_y := loot[1].2
 						loot_yy := loot_y + height
 
 						; FindCenterX
@@ -48,16 +48,16 @@ LootScan(Reset:=0){
 						; FindLeftEdge
 						match := loot
 						Loop {
-							xx := match[1][1]
-							x := xx - match[1][3]
+							xx := match[1].1
+							x := xx - match[1].3
 							match := FindText(&FT_X, &FT_Y, x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
 						} Until !match
 						x1 := xx
 						; FindRightEdge
 						match := loot
 						Loop {
-							x := match[1][1] + match[1][3]
-							xx := x + match[1][3]
+							x := match[1].1 + match[1].3
+							xx := x + match[1].3
 							match := FindText(&FT_X, &FT_Y, x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
 						} Until !match
 						x2 := x
@@ -96,10 +96,10 @@ LootScan(Reset:=0){
 					}
 					If (loot)
 					{
-						ScanPx := loot[1][1], ScanPy := loot[1].y
+						ScanPx := loot[1].1, ScanPy := loot[1].y
 						, ScanPy += 30
 						If (OnMines && !(loot[1].id ~= "cache" || loot[1].id ~= "vein"))
-							ScanPx += loot[1][3]
+							ScanPx += loot[1].3
 						LootScan_Click()
 						LV_LastClick := A_TickCount
 						Return
