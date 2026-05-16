@@ -1,5 +1,5 @@
 ; TGameTick - Main Logic timer - Coordinates all other functions
-TGameTick(GuiCheck:=True){
+TGameTick(DoGuiCheck:=True){
 	Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, OnScreenMM := 0
 	Global GlobeActive, CurrentMessage, NoGame, GamePID, Detonated
 	If (NoGame)
@@ -46,7 +46,7 @@ TGameTick(GuiCheck:=True){
 		}
 
 		; Check what status is your character in the game
-		if (GuiCheck)
+		if (DoGuiCheck)
 		{
 			If !GuiStatus()
 			{
