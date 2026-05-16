@@ -9,7 +9,7 @@ class ItemScan
 		This.Data := {}
 		This.Data.ClipContents := RegExReplace(Clip_Contents, "<<.*?>>|<.*?>") ; Clipboard
 		This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
-		This.Data.Blocks := {}
+		This.Data.Blocks := {Affix:"", Enchant:"", Implicit:"", Influence:"", TempleRooms:"", ObstructedRooms:"", FlavorText:"", NamePlate:"", Properties:"", ClusterImplicit:""}
 		This.Pseudo := Map()
 		This.Affix := {}
 		This.Prop := {}
@@ -61,7 +61,7 @@ class ItemScan
 					This.Prop.IsAbyss := True
 				Else If (SVal ~= "^Unidentified$")
 					This.Data.Blocks.Affix := SVal
-				Else If (This.Data.Blocks.Has("Affix") || SVal ~= "`".*`"$")
+				Else If (This.Data.Blocks.Affix != "" || SVal ~= "`".*`"$")
 					This.Data.Blocks.FlavorText := SVal
 				Else
 					This.Data.Blocks.Affix := SVal
