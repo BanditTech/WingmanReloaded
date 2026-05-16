@@ -26,6 +26,9 @@ Global MainAttackLastRelease := 0
 Global ZoomInitialize := False
 Global fn2 := ""
 Global fn3 := ""
+Global ComboHex := ""
+Global ComboHexX := ""
+Global ComboHexY := ""
 ; ChaosRecipe() rebuilds this each run, but CountChaosRecipe()/
 ; UpdateGuiChaosCounts may iterate it before ChaosRecipe is ever called.
 Global RecipeMap := Map()
