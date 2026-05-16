@@ -16,7 +16,8 @@ class ItemScan
 			, TimelessSplinter:False, TimelessEmblem:False, BreachSplinter:False, ConquererFragment:False, SacrificeFragment:False, MortalFragment:False, GuardianFragment:False, ProphecyFragment:False, Scarab:False, Offering:False, UberDuberOffering:False, Vessel:False
 			, Catalyst:False, ChaosRecipe:False, RegalRecipe:False, Chromatic:False, Jeweller:False, Essence:False, Expedition:False, Flask:False, Fossil:False, Resonator:False, HarvestCurrency:False, Heist:False, Incubator:False, IsBeast:False, IsBlightedMap:False, IsBrickedMap:False, IsInvitation:False, IsMemory:False, IsOmen:False, IsRune:False, IsTattoo:False, MiscMapItem:False, MapImpossibleMod:False, Oil:False, Veiled:False, Ring:False, Corrupted:False, IsInfluenceItem:False, IsSynthesisItem:False, HasImplicit:False
 			, ChaosValue:0, ClusterKey:"", SpecialType:"", Gem_Tags:"", Item_Height:0, Item_Width:0, ItemLevel:0, Quality:0, Sockets_Link:0, Sockets_Num:0
-			, Weapon_APS:0, Weapon_Avg_Physical_Dmg:0, Weapon_DPS_Physical:0, Weapon_DPS_Elemental:0, Weapon_DPS_Chaos:0}
+			, Weapon_APS:0, Weapon_Avg_Physical_Dmg:0, Weapon_DPS_Physical:0, Weapon_DPS_Elemental:0, Weapon_DPS_Chaos:0
+			, MapPrep:False, MapLikeItem:False}
 		This.Modifier := Map()
 		This.Percent := Map()
 		; Split our sections from the clipboard
