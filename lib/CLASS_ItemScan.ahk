@@ -2831,6 +2831,8 @@ class ItemScan
 		update := false
 		For ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]
 		{
+			If !WR.CustomCraftingBases.HasOwnProp(vi)
+				Continue
 			For k,v in WR.CustomCraftingBases.%vi%
 			{
 				If (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
