@@ -6,6 +6,7 @@ PoEWindowCheck()
 	try {
 		If (GamePID := WinExist(GameStr))
 		{
+			NoGame := False
 			GameActive := WinActive(GameStr)
 			WinGetPos(,, &nGameW, &nGameH)
 			newDim := (nGameW != GameW || nGameH != GameH)
@@ -41,6 +42,7 @@ PoEWindowCheck()
 		}
 		Else
 		{
+			NoGame := True
 			If CheckTime("seconds",5,"CheckActiveType")
 				CheckActiveType()
 			If GameActive
