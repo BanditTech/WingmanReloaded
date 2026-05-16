@@ -192,7 +192,7 @@ RestockMenu(choice:="", *){
 		If indexOf(VarName,radios) {
 			For k,v in radios {
 				if (v == VarName){
-					radios.Delete(k)
+					radios.RemoveAt(k)
 					Break
 				}
 			}
