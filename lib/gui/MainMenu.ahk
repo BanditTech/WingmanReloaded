@@ -66,11 +66,11 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	MainGui.SetFont()
 	ctrl := MainGui.Add("Text", "Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar", "Character Active")
 	MainMenuIDOnChar := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnChar, "52D165", "")
+	CtlColors.Attach(MainMenuIDOnChar, "Red", "")
 	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnChar)
 	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnOHB", "Overhead Health Bar")
 	MainMenuIDOnOHB := ctrl.Hwnd
-	CtlColors.Attach(MainMenuIDOnOHB, "52D165", "")
+	CtlColors.Attach(MainMenuIDOnOHB, "Red", "")
 	; MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnOHB)
 	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnChat", "Chat Open")
 	MainMenuIDOnChat := ctrl.Hwnd
