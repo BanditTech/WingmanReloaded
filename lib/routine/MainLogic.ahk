@@ -2,6 +2,7 @@
 TGameTick(DoGuiCheck:=True){
 	Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, OnScreenMM := 0
 	Global GlobeActive, CurrentMessage, NoGame, GamePID, Detonated
+	t1 := 0
 	If (NoGame)
 	{
 		If CheckTime("seconds",5,"StatusBar1")
