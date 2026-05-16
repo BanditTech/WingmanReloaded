@@ -366,17 +366,17 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	If (Amount < 1)
 		Return True
 	If (cname == "Hybrid") {
-		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+		If (WR.data.Counts["Binding"] >= WR.data.Counts["Alchemy"])
 			cname := "Binding"
 		Else
 			cname := "Alchemy"
 	}
 	If WR.data.Counts.Has(cname) {
-		If (WR.data.Counts.%cname% <= 0) {
+		If (WR.data.Counts[cname] <= 0) {
 			Log("Error","Not enough " cname " to continue crafting")
 			Return False
 		}
-		WR.data.Counts.%cname%--
+		WR.data.Counts[cname]--
 	}
 	Log("Currency","Applying " cname " onto item at " x "," y)
 	RightClick(WR.loc.pixel.%cname%.X, WR.loc.pixel.%cname%.Y)
@@ -418,7 +418,7 @@ MapRoll(Method, x, y){
 	}
 	Else If (Method ~= "Chaos")
 	{
-		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+		If (WR.data.Counts["Binding"] >= WR.data.Counts["Alchemy"])
 			cname := "Binding"
 		Else
 			cname := "Alchemy"
@@ -426,7 +426,7 @@ MapRoll(Method, x, y){
 	}
 	Else If (Method ~= "Hybrid")
 	{
-		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+		If (WR.data.Counts["Binding"] >= WR.data.Counts["Alchemy"])
 			cname := "Binding"
 		Else
 			cname := "Alchemy"
