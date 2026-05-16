@@ -1901,6 +1901,8 @@ class ItemScan
 		}
 	}
 	MatchNinjaDB(ApiStr,MatchKey:="ItemName",NinjaKey:="name"){
+		If !(Ninja is Map && Ninja.Has(ApiStr))
+			Return False
 		For k, v in Ninja[ApiStr]
 		{
 			If (This.Prop.%MatchKey% == v[NinjaKey])
