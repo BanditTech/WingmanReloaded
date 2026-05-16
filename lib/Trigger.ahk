@@ -59,7 +59,7 @@ ConfirmMatchingTriggers(obj){
 	{
 		If (WR.func.Toggle.PopAll && obj.PopAll) ; PopAll trigger
 			Return True
-		If (obj.OnCD)
+		If (obj.HasOwnProp("OnCD") && obj.OnCD)
 			Return True
 		If ( ( WR.func.Toggle.%obj.Type% && obj.Condition == 1 ; Any/All Resource Triggers
 			&& (obj.Life && obj.Life > Player.Percent.Life) || (obj.ES && obj.ES > Player.Percent.ES) || (obj.Mana && obj.Mana > Player.Percent.Mana) )
