@@ -14,7 +14,7 @@ Loop 21 + ( Y := 15 ) - 15 ; Loop 21 times
 }
 
 ItemInfoGui.Add("Text", "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000") ; SS_SUNKEN := 0x1000
-graphCtrl1 := ItemInfoGui.Add("Text", "xp+1 yp+1 w" graphWidth " h" graphHeight)
+graphCtrl1 := ItemInfoGui.Add("Text", "vpGraph1 xp+1 yp+1 w" graphWidth " h" graphHeight)
 hGraph1 := graphCtrl1.Hwnd
 ItemInfoGui.Add("Text", "Section x+8 vPComment1", PComment1)
 ItemInfoGui.Add("Text", "x+8 vPData1", PData1)
@@ -45,7 +45,7 @@ Loop 21 + ( Y := 15 ) - 15 ; Loop 21 times
   ItemInfoGui.Add("Text", "vPercentText2G" A_Index " xs+10 y" addY " w70 h10 0x200 Right", Abs( 125 - ( Y += 10 ) ) "%")
 }
 ItemInfoGui.Add("Text", "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000") ; SS_SUNKEN := 0x1000
-graphCtrl2 := ItemInfoGui.Add("Text", "xp+1 yp+1 w" graphWidth " h" graphHeight)
+graphCtrl2 := ItemInfoGui.Add("Text", "vpGraph2 xp+1 yp+1 w" graphWidth " h" graphHeight)
 hGraph2 := graphCtrl2.Hwnd
 ItemInfoGui.Add("Text", "Section x+8 vSComment1", SComment1)
 ItemInfoGui.Add("Text", "x+8 vSData1", SData1)
