@@ -1261,6 +1261,7 @@ WR_Menu(Function:="",Var*){
     CraftingGui.Show()
   } Else if (Function == "Area") {
     GlobeGui.Submit(0)
+    GlobeGui.Hide()
     Grab := LetUserSelectRect()
     AreaType := Var[2]
     Globe.%AreaType%.X1 := Grab.X1, Globe.%AreaType%.Y1 := Grab.Y1, Globe.%AreaType%.X2 := Grab.X2, Globe.%AreaType%.Y2 := Grab.Y2
