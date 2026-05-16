@@ -976,6 +976,8 @@ class ItemScan
 	}
 	CreateAllActualTiers()
 	{
+		If !(This.Prop.ItemClass && WR.ActualTier.HasOwnProp(This.Prop.ItemClass))
+			Return
 		for a , b in WR.ActualTier.%This.Prop.ItemClass%
 		{
 			ILvLList := b["ILvL"]
