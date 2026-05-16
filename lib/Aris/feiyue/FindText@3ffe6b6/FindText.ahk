@@ -39,7 +39,19 @@ if (!A_IsCompiled && A_LineFile=A_ScriptFullPath)
 FindText(args*)
 {
   static obj:=FindTextClass()
-  return !args.Length ? obj : obj.FindText(args*)
+  if !args.Length
+    return obj
+  ; legacy-signature adapter: callers that pass (x1, y1, x2, y2, ...)
+  ; without &OutputX/&OutputY refs get dummy refs injected here so the
+  ; project's existing FindText(x,y,xx,yy,...) call sites keep working.
+  ; Modern callers that pass &x, &y as the first two args bypass this
+  ; branch because args[1] is then a VarRef, not a number.
+  if (args.Length >= 4 && IsNumber(args[1]))
+  {
+    OutputX := "", OutputY := ""
+    return obj.FindText(&OutputX, &OutputY, args*)
+  }
+  return obj.FindText(args*)
 }
 
 Class FindTextClass
