@@ -14,7 +14,7 @@ class ItemScan
 		This.Affix := Map()
 		This.Prop := {}
 		This.Modifier := Map()
-		This.Percent := {}
+		This.Percent := Map()
 		; Split our sections from the clipboard
 		; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
 		For SectionKey, SVal in This.Data.Sections
@@ -1251,7 +1251,7 @@ class ItemScan
 				}
 				EndValue := EndValue / EndEntries
 				If !This.Percent.Has(Key)
-					This.Percent.%key% := EndValue
+					This.Percent[key] := EndValue
 				Else {
 					Loop {
 						If !This.Percent.Has(Key A_Index + 1){
@@ -1263,12 +1263,12 @@ class ItemScan
 				This.Prop.HasRange := True
 			}
 		}
-		If This.Percent.Length {
+		If This.Percent.Count {
 			This.Prop.PercentageAffix := 0
 			For mod, val in This.Percent {
 				This.Prop.PercentageAffix += val
 			}
-			This.Prop.PercentageAffix := Round(This.Prop.PercentageAffix / This.Percent.Length,2)
+			This.Prop.PercentageAffix := Round(This.Prop.PercentageAffix / This.Percent.Count,2)
 		} Else {
 			This.Prop.PercentageAffix := 100
 		}
