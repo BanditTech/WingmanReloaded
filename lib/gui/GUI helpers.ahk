@@ -237,20 +237,22 @@ SelectClientLog(GuiCtrl, *) {
 }
 
 GreyOutAffinity() {
-  Global MainGui
+  Global InventoryGui
+  If !(IsSet(InventoryGui) && InventoryGui is Gui)
+    Return
   for key, val in ["Blight","Delirium","Divination","Fragment","Ultimatum","Delve","Essence","Map","Currency","Unique","Gem","Flask"] {
-    CheckBoxState := MainGui["StashTabYes" val].Value
+    CheckBoxState := InventoryGui["StashTabYes" val].Value
     If (CheckBoxState == 0) {
-      MainGui[val "Edit"].Enabled := false
-      MainGui[val "EditText"].Value := "Disable Type"
+      InventoryGui[val "Edit"].Enabled := false
+      InventoryGui[val "EditText"].Value := "Disable Type"
     } Else If (CheckBoxState == 1) {
-      MainGui[val "Edit"].Enabled := true
-      MainGui[val "EditText"].Value := "Assign a Tab"
+      InventoryGui[val "Edit"].Enabled := true
+      InventoryGui[val "EditText"].Value := "Assign a Tab"
     } Else {
       if(val !="Currency" ) {
-        MainGui[val "Edit"].Enabled := false
+        InventoryGui[val "Edit"].Enabled := false
       }
-      MainGui[val "EditText"].Value := "Enable Affinity"
+      InventoryGui[val "EditText"].Value := "Enable Affinity"
     }
   }
   Return
