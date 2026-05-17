@@ -717,7 +717,8 @@ readFromFile(){
 	Return
 }
 
-updateEverything(*){
+updateEverything(senderCtrl:=0, *){
+		Global MainGui
 		Global ToggleExist, WinGuiX, WinGuiY, AccountNameSTR, PoECookie
 			, BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType
 			, DebugMessages, YesTimeMS, YesLocation, ShowPixelGrid, ShowItemInfo
@@ -908,6 +909,19 @@ updateEverything(*){
 		; up the user's changes (e.g. unbinding hotkeyItemInfo).
 		For propName, val in saved.OwnProps()
 			Try %propName% := val
+
+		; If the Save Configuration click came from a sub-Gui
+		; (InventoryGui, CraftingGui, ChatGui, ControllerGui, ...),
+		; also submit + copy that gui's named controls back into
+		; their globals, then close it - the v1 default-gui idiom
+		; relied on the click target being the active gui.
+		senderGui := (IsObject(senderCtrl) && senderCtrl.HasProp("Gui")) ? senderCtrl.Gui : 0
+		If (IsObject(senderGui) && senderGui is Gui && senderGui != MainGui)
+		{
+			subSaved := senderGui.Submit(1)
+			For propName, val in subSaved.OwnProps()
+				Try %propName% := val
+		}
 
 		IniWrite(AccountNameSTR, A_ScriptDir "\save\Account.ini", "GGG", "AccountNameSTR")
 		temp := {Cookie: PoECookie}
