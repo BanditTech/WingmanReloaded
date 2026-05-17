@@ -1,29 +1,26 @@
-SaveINI(ctrlName, type:="General") {
-	Global MainGui
+SaveINI(ctrl, type:="General") {
+	ctrlName := ctrl.Name
+	gui := ctrl.Gui
 	If ctrlName ~= "UpDown"
-	{
-		control := StrReplace(ctrlName, "UpDown", "")
-		IniWrite(MainGui[control].Value, A_ScriptDir "\save\Settings.ini", type, control)
-	}
-	Else
-	IniWrite(MainGui[ctrlName].Value, A_ScriptDir "\save\Settings.ini", type, ctrlName)
+		ctrlName := StrReplace(ctrlName, "UpDown", "")
+	IniWrite(gui[ctrlName].Value, A_ScriptDir "\save\Settings.ini", type, ctrlName)
 	Return
 }
 
 SaveGeneral(GuiCtrl, *) {
-	SaveINI(GuiCtrl.Name, "General")
+	SaveINI(GuiCtrl, "General")
 }
 
 SaveDelays(GuiCtrl, *) {
-	SaveINI(GuiCtrl.Name, "Delays")
+	SaveINI(GuiCtrl, "Delays")
 }
 
 SaveChaos(GuiCtrl, *) {
-	SaveINI(GuiCtrl.Name, "Chaos Recipe")
+	SaveINI(GuiCtrl, "Chaos Recipe")
 }
 
 SaveBasicCraft(GuiCtrl, *) {
-	SaveINI(GuiCtrl.Name, "Basic Craft")
+	SaveINI(GuiCtrl, "Basic Craft")
 }
 
 BasicCraftRadio(ctrl, *) {
@@ -38,7 +35,7 @@ BasicCraftRadio(ctrl, *) {
 }
 
 SaveStashTabs(GuiCtrl, *) {
-	SaveINI(GuiCtrl.Name, "Stash Tab")
+	SaveINI(GuiCtrl, "Stash Tab")
 	GreyOutAffinity()
 }
 

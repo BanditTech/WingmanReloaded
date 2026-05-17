@@ -84,7 +84,7 @@ FillItemCraftingSubCategoryDropdown(){
 ItemCraftingSubmit(GuiCtrl, *)
 {
   global ItemCraftingCategorySelector
-  SaveINI(GuiCtrl.Name, "Item Crafting Settings")
+  SaveINI(GuiCtrl, "Item Crafting Settings")
   If (GuiCtrl.Name ~= "ItemCraftingCategorySelector")
     FillItemCraftingSubCategoryDropdown()
 }
