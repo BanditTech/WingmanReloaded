@@ -32,6 +32,7 @@ RestockMenu(choice:="", *){
 
 		RestockGui.Add("Text", "w1 h1 xs+26 ys+13", "")
 
+		ind := 0
 		For C, GridX in InventoryGridX
 		{
 			If (C != 1)
