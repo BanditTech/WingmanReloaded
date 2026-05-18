@@ -870,7 +870,11 @@ RunRestock(){
 	BlockInput("MouseMove")
 	For C, vv in WR.Restock {
 		For R, v in vv {
-			If (v["Normal"] || v["Ignored"] || v["RestockName"] == "")
+			; Only attempt restock for slots explicitly set to 'Restock' with a
+			; non-empty RestockName. Skip Normal / Ignored / unconfigured /
+			; missing-key slots silently. Map.Get(k, default) tolerates
+			; missing keys on older saved data.
+			If !(v.Get("Restock", 0) && v.Get("RestockName", "") != "")
 				Continue
 			If !(v["RestockName"] == "Custom") {
 				If !WR.loc.pixel.HasOwnProp(v["RestockName"]){
