@@ -177,20 +177,15 @@ ItemInfoClose(GuiObj) {
 }
 
 LaunchLootFilter(*) {
-	Global MainGui
-	; MainGui is +AlwaysOnTop, so plain MsgBox / MB_TOPMOST still pops
-	; underneath it. Tell MainGui to own subsequent dialogs so they stack
-	; above; reset after to avoid leaking that state.
-	If (IsSet(MainGui) && MainGui is Gui)
-		MainGui.Opt("+OwnDialogs")
+	; The built-in CLF editor (data\LootFilter.ahk) is non-functional and
+	; the community has largely moved to https://www.filterblade.xyz for
+	; building custom loot filters. Prompt the user to open the site.
 	result := MsgBox(
 		"The built-in Custom Loot Filter editor is no longer maintained.`n`n"
 		. "For building custom loot filters we recommend filterblade.xyz.`n`n"
 		. "Open filterblade.xyz now?",
 		"Custom Loot Filter",
 		0x4 | 0x20)  ; MB_YESNO | MB_ICONQUESTION
-	If (IsSet(MainGui) && MainGui is Gui)
-		MainGui.Opt("-OwnDialogs")
 	If (result == "Yes")
 		Run("https://www.filterblade.xyz")
 }
