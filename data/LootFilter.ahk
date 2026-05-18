@@ -224,7 +224,7 @@ AddGroup(*) {
     Else
       break
   }
-  LootFilter[groupstr] := {Prop: [], Affix: [], Data:{OrCount: 1, StashTab: CLFStashTabDefault}}
+  LootFilter[groupstr] := Map("Prop", [], "Affix", [], "Data", Map("OrCount", 1, "StashTab", CLFStashTabDefault))
   groupKey := groupstr
   LootFilterGui2.Destroy()
   RedrawNewGroup()
@@ -265,8 +265,8 @@ BuildMenu(Min,Max,AllEdit:=0)
     {
       If (SKey = "Data")
         Continue
-      totalHeight += ((LootFilter[GKey][SKey].Count + 1) * 25) + 45
-      LootFilterGui.Add("GroupBox", " section xs y+15 w675 h" (LootFilter[GKey][SKey].Count + 1) * 25, SKey)
+      totalHeight += ((LootFilter[GKey][SKey].Length + 1) * 25) + 45
+      LootFilterGui.Add("GroupBox", " section xs y+15 w675 h" (LootFilter[GKey][SKey].Length + 1) * 25, SKey)
       LootFilterGui.SetFont("Bold s10 cBlack")
       For AKey, Val in selectedItems
       {
@@ -296,10 +296,10 @@ BuildNewGroupMenu(GKey)
   {
     If ( SKey = "Data" )
       Continue
-    LootFilterGui2.Add("GroupBox", " section xs y+18 w37 h" (LootFilter[GKey][SKey].Count + 1) * 25, "  OR")
-    LootFilterGui2.Add("GroupBox", " x+2 yp w247 h" (LootFilter[GKey][SKey].Count + 1) * 25, SKey)
-    LootFilterGui2.Add("GroupBox", " x+2 yp w54 h" (LootFilter[GKey][SKey].Count + 1) * 25, "Eval:")
-    LootFilterGui2.Add("GroupBox", " x+2 yp w254 h" (LootFilter[GKey][SKey].Count + 1) * 25, "Min:")
+    LootFilterGui2.Add("GroupBox", " section xs y+18 w37 h" (LootFilter[GKey][SKey].Length + 1) * 25, "  OR")
+    LootFilterGui2.Add("GroupBox", " x+2 yp w247 h" (LootFilter[GKey][SKey].Length + 1) * 25, SKey)
+    LootFilterGui2.Add("GroupBox", " x+2 yp w54 h" (LootFilter[GKey][SKey].Length + 1) * 25, "Eval:")
+    LootFilterGui2.Add("GroupBox", " x+2 yp w254 h" (LootFilter[GKey][SKey].Length + 1) * 25, "Min:")
     For AKey, Val in selectedItems
     {
       ; If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
