@@ -710,11 +710,11 @@ WR_Menu(Function:="",Var*){
         aux.Push(a)
       }
       CraftingGui.Add("DropDownList", "vItemCraftingCategorySelector xs+70 yp-4 w210", aux).OnEvent("Change", ItemCraftingSubmit)
-      CraftingGui["ItemCraftingCategorySelector"].Choose(ItemCraftingCategorySelector)
+      Try CraftingGui["ItemCraftingCategorySelector"].Choose(ItemCraftingCategorySelector)
       CraftingGui.Add("Text", "xs+5 y+5 w60", "SubCategory:")
       CraftingGui.Add("DropDownList", "vItemCraftingSubCategorySelector Sort xs+70 yp-4 w210").OnEvent("Change", ItemCraftingSubmit)
       FillItemCraftingSubCategoryDropdown()
-      CraftingGui["ItemCraftingSubCategorySelector"].Choose(ItemCraftingSubCategorySelector)
+      Try CraftingGui["ItemCraftingSubCategorySelector"].Choose(ItemCraftingSubCategorySelector)
 
       ; Affix Rules
       CraftingGui.SetFont("Bold s9 cBlack", "Arial")
