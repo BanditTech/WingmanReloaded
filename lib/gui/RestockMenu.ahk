@@ -117,8 +117,8 @@ RestockMenu(choice:="", *){
 		btnArr := StrSplit(ctrl.Name, "_")
 		ButtonNum := ctrl.Text
 		ToolTip(ButtonNum)
-		C := btnArr[2]
-		R := btnArr[3]
+		C := Integer(btnArr[2])
+		R := Integer(btnArr[3])
 		Active := [C,R]
 		LoadedValues := WR.Restock[C][R]
 		RestockRefreshOption()
