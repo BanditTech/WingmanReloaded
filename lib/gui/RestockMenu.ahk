@@ -170,7 +170,18 @@ RestockMenu(choice:="", *){
 	LoadRestockArray()
 	{
 		If FileExist(A_ScriptDir "\save\Restock.json") {
-			WR.Restock := JSON.LoadFile(A_ScriptDir "\save\Restock.json")
+			loaded := JSON.LoadFile(A_ScriptDir "\save\Restock.json")
+			; cJson loads JSON object keys as Strings, but the script keys
+			; WR.Restock by Integer (For C in InventoryGridX -> A_Index).
+			; Normalize the outer + inner Maps to Integer keys so lookups
+			; like WR.Restock[Active[1]][Active[2]] match.
+			WR.Restock := Map()
+			For sC, inner in loaded {
+				c := IsInteger(sC) ? Integer(sC) : sC
+				WR.Restock[c] := Map()
+				For sR, slot in inner
+					WR.Restock[c][IsInteger(sR) ? Integer(sR) : sR] := slot
+			}
 		} Else {
 			WR.Restock := Map()
 			For C, GridX in InventoryGridX{
