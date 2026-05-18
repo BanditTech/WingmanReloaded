@@ -4,7 +4,7 @@ QuickPortal(){
 		If (OnTown || OnHideout || OnMines)
 			Return
 		if (hotkeyOpenPortal == A_Space) {
-			Notify("Hotkey Unset","Set the keybinding to match the in-game Open Portal key.",3)
+			Notify.Show("Hotkey Unset","Set the keybinding to match the in-game Open Portal key.",3)
 			Return
 		}
 

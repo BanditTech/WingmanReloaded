@@ -1388,7 +1388,7 @@ WR_Menu(Function:="",Var*){
         Else
           Log("Error","JSON Load: unknown ValueType " ValueType)
       } Else {
-        Notify("Error loading " ValueType " file","",3)
+        Notify.Show("Error loading " ValueType " file","",3)
         Log("Error","issue with loading " ValueType " file")
       }
     }

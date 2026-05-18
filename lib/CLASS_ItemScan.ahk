@@ -1086,7 +1086,7 @@ class ItemScan
 		{
 			If !ChaosRecipe(1)
 			{
-				Notify("Error","Requesting stash information Failed`nCheck your POESESSID",3)
+				Notify.Show("Error","Requesting stash information Failed`nCheck your POESESSID",3)
 				Return False
 			}
 		}

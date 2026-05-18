@@ -600,7 +600,7 @@ VendorRoutineChaos(){
   ClearNotifications()
 	If !OnVendor
 	{
-		Notify("Error", "Not at vendor", 2)
+		Notify.Show("Error", "Not at vendor", 2)
 		Return
 	}
 
@@ -793,7 +793,7 @@ VendorChaosRecipe(*){
 		Sleep(60)
   ; Vendor set
 		If !VendorRoutineChaos() {
-				Notify("Recipe Set INCOMPLETE","Trying to fetch items Again",2)
+				Notify.Show("Recipe Set INCOMPLETE","Trying to fetch items Again",2)
 				sleep(180)
 				SendHotkey(hotkeyCloseAllUI)
 				sleep(180)
@@ -823,13 +823,13 @@ VendorChaosRecipe(*){
 						Sleep(60)
       ; Vendor set
 						If !VendorRoutineChaos() {
-							Notify("Recipe Set INCOMPLETE","Second Time failing",2)
+							Notify.Show("Recipe Set INCOMPLETE","Second Time failing",2)
 							CheckRunning("Off")
 							Return False
 						}
 					}
 				} Else {
-					Notify("Could Not reopen stash automatically","",2)
+					Notify.Show("Could Not reopen stash automatically","",2)
 					CheckRunning("Off")
 					Return False
 				}
@@ -876,7 +876,7 @@ PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){
   CountObj := CountChaosRecipe()
   Tally := CountObj.Tally
   uTally := CountObj.uTally
-	Notify("Chaos Recipe ID/UNID", Message "`n"
+	Notify.Show("Chaos Recipe ID/UNID", Message "`n"
 	. "Amulet: " Tally["Amulet"] "/" uTally["Amulet"] "`t"
 	. "Ring: " Tally["Ring"] "/" uTally["Ring"] "`n"
 	. "Belt: " Tally["Belt"] "/" uTally["Belt"] "`t`t"

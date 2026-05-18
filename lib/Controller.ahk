@@ -423,7 +423,7 @@ GridPosition(x,y,gridArea:="StashQuad"){
 			}
 			If InArea(x,y,x1,y1,x2,y2)
 			{
-				; Notify("Mouse Exact","Grid C" C " R" R )
+				; Notify.Show("Mouse Exact","Grid C" C " R" R )
 				Return {C:C, R:R}
 			}
 			Else
@@ -442,7 +442,7 @@ GridPosition(x,y,gridArea:="StashQuad"){
 			Best := match
 	}
 	Partial := ""
-	; Notify("Mouse Closest",Best.Distance " distance is C" Best.C " R" Best.R)
+	; Notify.Show("Mouse Closest",Best.Distance " distance is C" Best.C " R" Best.R)
 	Return Best
 }
 InArea(x,y,x1,y1,x2,y2){

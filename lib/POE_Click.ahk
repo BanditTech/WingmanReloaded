@@ -151,7 +151,7 @@ WisdomScroll(x, y){
 		}
 	}
 	If !Found {
-		Notify("Missing Configuration","Assign an inventory slot to Wisdom Scrolls`nMake sure to select Ignore or Restock")
+		Notify.Show("Missing Configuration","Assign an inventory slot to Wisdom Scrolls`nMake sure to select Ignore or Restock")
 		Log("Error","Wisdom Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Wisdom Scrolls","The slot must be configured to Restock or Ignore and select Wisdom in the dropdown menu")
 		Return False
 	}

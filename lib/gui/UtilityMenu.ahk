@@ -123,7 +123,7 @@ UtilityMenu(GuiCtrl, *){
 			If (UtilityIconAreas[slot2].X1 != "" && UtilityIconAreas[slot2].Y1 != "" && UtilityIconAreas[slot2].X2 != "" && UtilityIconAreas[slot2].Y2 != "")
 				MouseTip(UtilityIconAreas[slot2])
 			Else
-				Notify("Custom Area has not been set","",2)
+				Notify.Show("Custom Area has not been set","",2)
 		} Else If (action == "Set") {
 			UtilityIconAreas[slot2] := LetUserSelectRect()
 			MouseTip(UtilityIconAreas[slot2])
