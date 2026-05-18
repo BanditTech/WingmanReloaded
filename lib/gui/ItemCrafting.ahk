@@ -73,8 +73,14 @@ SaveItemCraftingMenu()
 FillItemCraftingSubCategoryDropdown(){
   global ItemCraftingCategorySelector
   aux := []
-  for a,b in POEData[ItemCraftingCategorySelector] {
-    aux.Push(b)
+  ; Stale Settings.ini values (e.g. the pre-86bf282 swapped 'Ghastly
+  ; Eye Jewel' default) may not exist as a top-level POEData category;
+  ; v2 Map bracket throws on missing key. Skip the populate silently
+  ; in that case - the dropdown stays empty and the user can re-pick.
+  If (POEData is Map && POEData.Has(ItemCraftingCategorySelector)) {
+    for a,b in POEData[ItemCraftingCategorySelector] {
+      aux.Push(b)
+    }
   }
   ctrl := MainGui["ItemCraftingSubCategorySelector"]
   ctrl.Delete()
