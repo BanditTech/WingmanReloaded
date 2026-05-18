@@ -181,9 +181,9 @@ ChangeButtonNamesVar(*) {
 
 ReformatJSON(String)
 {
-  String := RegExReplace(String, "m)(?<!\])(?<!\],)\n *("".*""\: [\d""])", " $1")
+  String := RegExReplace(String, 'm)(?<!\])(?<!\],)\n *(".*"\: [\d"])', " $1")
   String := RegExReplace(String, "m)(?<!\])(?<!\],)(?<!\})\n *(\})", " }")
-  String := RegExReplace(String, "m)\n *(""~ElementList"")", " $1")
+  String := RegExReplace(String, 'm)\n *("~ElementList")', " $1")
   String := RegExReplace(String, "m) *\]\n( *)\}", "$1]}")
   Return String
 }
