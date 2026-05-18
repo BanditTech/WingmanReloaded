@@ -1798,7 +1798,8 @@ class ItemScan
 		}
 		If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.Enchant != "")
 		{
-			For k, v in Ninja.HelmetEnchant
+			If Ninja.Has("HelmetEnchant")
+				For k, v in Ninja["HelmetEnchant"]
 			{
 				If (InStr(This.Data.Blocks.Enchant, v["name"]))
 				{
@@ -1864,7 +1865,8 @@ class ItemScan
 		}
 		If (This.Prop.ClusterJewel)
 		{
-			For k, v in Ninja.ClusterJewel
+			If Ninja.Has("ClusterJewel")
+				For k, v in Ninja["ClusterJewel"]
 			{
 				If (This.Prop.ClusterKey == v["name"]
 					&& This.Prop.ClusterVariant == v["variant"]
@@ -1884,7 +1886,8 @@ class ItemScan
 		}
 		If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "" && !This.Prop.RarityUnique)
 		{
-			For k, v in Ninja.BaseType
+			If Ninja.Has("BaseType")
+				For k, v in Ninja["BaseType"]
 			{
 				If (This.Prop.ItemBase == v["name"]
 					&& This.Prop.Influence ~= v["variant"]
