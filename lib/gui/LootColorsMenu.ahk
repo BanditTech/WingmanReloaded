@@ -73,13 +73,13 @@ LootColorsMenu(*){
 		ind := LootColors.Length
 		If (ctrl.Name == "LG_Add")
 		{
-			LootColors[ind + 1] := 0xFFFFFF
-			LootColors[ind + 2] := 0xFFFFFF
+			LootColors.Push(0xFFFFFF)
+			LootColors.Push(0xFFFFFF)
 		}
 		Else If (ctrl.Name == "LG_Rem" && ind > 2)
 		{
-			LootColors.Pop(ind)
-			LootColors.Pop(ind - 1)
+			LootColors.Pop()
+			LootColors.Pop()
 		}
 		LootColorsGui.Destroy()
 		LootColorsMenu()
