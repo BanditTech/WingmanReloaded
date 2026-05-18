@@ -122,9 +122,8 @@ Clamp( Val, Min, Max){
 }
 ; GameWindow / Speed / Latency are normally populated by the main
 ; script (Rescale.ahk + GLOBALS.ahk). Initialize them at script scope
-; so any analyser context that doesn't load the full main-script
-; chain sees defined values before consumers (RandomSleep,
-; ClampGameScreen) read them.
+; so any analyser or embedded-include context (e.g. data/LootFilter.ahk
+; pulling Helpers in standalone) sees defined values.
 Global GameWindow := {X:0, Y:0, W:0, H:0, BBarY:0}
 Global Speed := 1
 Global Latency := 1
