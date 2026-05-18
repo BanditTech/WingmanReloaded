@@ -51,6 +51,8 @@
   MyMenuBar.Add("Import Group From Clipboard", ImportGroup)
 
   LoadArray()
+  Redraw()
+  Return
 
 Redraw(*) {
   Global LootFilterGui, xpos, ypos, Maxed, CLFStashTabDefault, LootFilter
