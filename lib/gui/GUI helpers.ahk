@@ -177,17 +177,7 @@ ItemInfoClose(GuiObj) {
 }
 
 LaunchLootFilter(*) {
-	; The built-in CLF editor (data\LootFilter.ahk) is non-functional and
-	; the community has largely moved to https://www.filterblade.xyz for
-	; building custom loot filters. Prompt the user to open the site.
-	result := MsgBox(
-		"The built-in Custom Loot Filter editor is no longer maintained.`n`n"
-		. "For building custom loot filters we recommend filterblade.xyz.`n`n"
-		. "Open filterblade.xyz now?",
-		"Custom Loot Filter",
-		0x4 | 0x20)  ; MB_YESNO | MB_ICONQUESTION
-	If (result == "Yes")
-		Run("https://www.filterblade.xyz")
+	Run(A_ScriptDir "\data\LootFilter.ahk") ; Open the custom loot filter editor
 }
 
 LaunchHelp(*) {
