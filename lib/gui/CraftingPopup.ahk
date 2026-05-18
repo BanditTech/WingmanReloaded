@@ -15,17 +15,17 @@ CraftBasicPopUp(*){
 			If DebugMessages
 			{
 				If (selection == "Maps")
-					Notify("Begin Bulk Crafting Maps","",2)
+					Notify.Show("Begin Bulk Crafting Maps","",2)
 				Else If (selection == "Socket")
-					Notify("Socketing Selected Item","",2)
+					Notify.Show("Socketing Selected Item","",2)
 				Else If (selection == "Color")
-					Notify("Coloring Selected Item","",2)
+					Notify.Show("Coloring Selected Item","",2)
 				Else If (selection == "Link")
-					Notify("Linking Selected Item","",2)
+					Notify.Show("Linking Selected Item","",2)
 				Else If (selection == "Chance")
-					Notify("Chance Selected Item until Unique","Either Bulk mode or Scour",2)
+					Notify.Show("Chance Selected Item until Unique","Either Bulk mode or Scour",2)
 				Else
-					Notify("Result is:",selection,2)
+					Notify.Show("Result is:",selection,2)
 			}
 			WinActivate(GameStr)
 			Crafting(selection)

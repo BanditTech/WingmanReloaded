@@ -17,7 +17,7 @@ Crafting(selection:="Maps"){
 		GuiStatus()
 		If (!OnChar)
 		{
-			Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
+			Notify.Show("You do not appear to be in game.","Likely need to calibrate Character Active",1)
 			CheckRunning("Off")
 			Return
 		}
@@ -64,7 +64,7 @@ Crafting(selection:="Maps"){
 					CraftingItem()
 			}
 			Else
-				Notify("Unknown Result is:",selection,2)
+				Notify.Show("Unknown Result is:",selection,2)
 			}
 			Else
 			{
@@ -81,7 +81,7 @@ Crafting(selection:="Maps"){
 ; CraftingChance - Use the settings to apply chance to item(s) until unique
 CraftingChance(){
 	local f
-	; Notify("Chance Logic Coming Soon","",2)
+	; Notify.Show("Chance Logic Coming Soon","",2)
 	f := Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
 }
 ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
@@ -149,44 +149,44 @@ CraftingItem(){
 	/*
 	Each case must be revised
 	If (!ItemCraftingBaseComparator(ItemCraftingSubCategorySelector,Item.Prop.ItemClass)) {
-		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
+		Notify.Show("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
 		Return
 	}
 	*/
 	If (ObjCount(WR.ItemCrafting.%ItemCraftingCategorySelector%.%ItemCraftingSubCategorySelector%) == 0) {
-		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
+		Notify.Show("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
 	}
 	If (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
-		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
+		Notify.Show("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
 		Return
 	}
 	If (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
-		Notify("Missing Advanced Tooltip","Restore the default binding for advanced tooltip in-game to Alt as this is required for CTRL+ALT+C to get advanced clip information")
+		Notify.Show("Missing Advanced Tooltip","Restore the default binding for advanced tooltip in-game to Alt as this is required for CTRL+ALT+C to get advanced clip information")
 		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","Restore the default binding for advanced tooltip in-game to Alt as this is required for CTRL+ALT+C to get advanced clip information")
 		Return
 	}
 
 	If(ItemCraftingMethod == "Alteration Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
-			Notify("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
+			Notify.Show("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
 			Log("[End]Item Crafting - Item Crafting Error","Match conditions are out of range for a magic item, reduce the required count")
 			Return
 		}
 		ItemCraftingRoll("Alt", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
-			Notify("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
+			Notify.Show("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
 			Log("[End]Item Crafting - Item Crafting Error","Match conditions are out of range for a magic item, reduce the required count")
 			Return
 		}
 		ItemCraftingRoll("AltAug", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug and Regal Spam"){
 		If(((ItemCraftingNumberPrefix + ItemCraftingNumberSuffix) > 3) || ItemCraftingNumberCombination > 3){
-			Notify("Magic Item Mismatch","Magic Itens with Regal Orb can only have 3 Mods",4)
+			Notify.Show("Magic Item Mismatch","Magic Itens with Regal Orb can only have 3 Mods",4)
 			Log("[End]Item Crafting - Item Crafting Error","Magic Itens with Regal Orb can only have 3 Mods")
 			Return
 		}
@@ -352,7 +352,7 @@ CountCurrency(NameList:=""){
 		If !WR.loc.pixel.HasOwnProp(currency)
 			Return False
 		If (WR.loc.pixel.%currency%.X == 0 && WR.loc.pixel.%currency%.Y == 0) {
-			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
+			Notify.Show("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
 			retCount[currency] := 0
 		} Else {
 			ClipItem(WR.loc.pixel.%currency%.X,WR.loc.pixel.%currency%.Y)
@@ -478,7 +478,7 @@ MapRoll(Method, x, y){
 			break
 		}
 		If(!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)){
-			Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
+			Notify.Show("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 			Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 			Return
 		}
@@ -601,7 +601,7 @@ ItemCraftingRoll(Method, x, y){
 
 	}
 	If (Item.Prop.ItemCraftingHit) {
-		Notify("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
+		Notify.Show("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
 		Log("[End]Item Crafting - Sucess ","End Routine")
 	}
 

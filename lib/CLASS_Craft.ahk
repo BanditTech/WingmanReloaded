@@ -65,7 +65,7 @@ Class Craft {
 		|| (This.Desired.Sockets > 3 && IndexOf(Item.Prop.SlotType,["One Hand","Shield"]) && !This.Desired.Auto)
 		|| ((This.Desired.R + This.Desired.G + This.Desired.B) > Item.Prop.Sockets_Num)
 		{
-			Notify("Validation Failed","",2)
+			Notify.Show("Validation Failed","",2)
 			Return False
 		}
 		Else
@@ -150,6 +150,6 @@ Class Craft {
 				}
 				This.ApplyCurrency(namearr[This.Type],x,y)
 			}
-		Notify("Loop Complete","",1)
+		Notify.Show("Loop Complete","",1)
 	}
 }

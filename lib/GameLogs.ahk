@@ -266,7 +266,7 @@ Monitor_GameLogs(Initialize:=0)
         If (VersionNumber != "")
         {
           Log("Error","Client.txt Log File is too large (" . errchk . "MB)")
-          Notify("Client.txt file is too large (" . errchk . "MB)`nDelete contents of the log file and reload`nYou Must change zones to update Location","",0,,110)
+          Notify.Show("Client.txt file is too large (" . errchk . "MB)`nDelete contents of the log file and reload`nYou Must change zones to update Location","",0,,110)
         }
         Return
       }

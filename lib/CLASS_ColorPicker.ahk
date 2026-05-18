@@ -76,6 +76,6 @@ class ColorPicker {
   CopyColor(){
     A_Clipboard := "0x" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
     ; MsgBox(262144, "Color Copied", "The Hex color code has been copied to the Clipboard `n`n " A_Clipboard)
-    Notify("Copied To Clipboard`n`n" A_Clipboard,"",3)
+    Notify.Show("Copied To Clipboard`n`n" A_Clipboard,"",3)
   }
 }

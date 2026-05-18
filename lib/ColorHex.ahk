@@ -133,7 +133,7 @@ AverageAreaColor(AreaObj){
     } Until EscBreak := GetKeyState("Escape", "P")
     If EscBreak
     {
-      Notify("Canceled area calculation","",3,,110)
+      Notify.Show("Canceled area calculation","",3,,110)
       Load_BarControl(100,"Canceled",-1)
       Return
     }

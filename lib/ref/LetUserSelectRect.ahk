@@ -75,7 +75,7 @@ LetUserSelectRect(PixelToo:=0)
 			Ding(1,-11,"")
 			PauseTooltips := 0
 			A_Clipboard := col " @ " xorigin "," yorigin
-			Notify(A_Clipboard,"Copied to the clipboard",5)
+			Notify.Show(A_Clipboard,"Copied to the clipboard",5)
 			DrawZoom("Toggle")
 			Return False
 		}

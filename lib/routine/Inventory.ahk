@@ -13,7 +13,7 @@ ItemSortCommand(*){
 		GuiStatus()
 		If (!OnChar)
 		{ ;Need to be on Character
-			Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
+			Notify.Show("You do not appear to be in game.","Likely need to calibrate Character Active",1)
 			CheckRunning("Off")
 			Return
 		}
@@ -72,7 +72,7 @@ CheckRunning(ret:=false){
 	{
 		RunningToggle := False ; Signal that thread's loop to stop.
 		ResetMainTimer("On")
-		Notify("Aborting Current Process","",2)
+		Notify.Show("Aborting Current Process","",2)
 		exit ; End this thread so that the one underneath will resume and see the change made by the line above.
 	} Else If (ret=="On") {
 		RunningToggle := True
@@ -164,7 +164,7 @@ VendorRoutine()
 	If StashTabYesPredictive
 	{
 		If !PPServerStatus()
-			Notify("PoEPrice.info Offline","",2)
+			Notify.Show("PoEPrice.info Offline","",2)
 	}
 	VendoredItems := False
 	; Main loop through inventory
@@ -395,7 +395,7 @@ StashRoutine()
 	If StashTabYesPredictive
 	{
 		If !PPServerStatus()
-			Notify("PoEPrice.info Offline","",2)
+			Notify.Show("PoEPrice.info Offline","",2)
 	}
 	CurrentTab:=0
 	Unstashed := 0
@@ -827,7 +827,7 @@ MoveStash(Tab,CheckStatus:=0)
 	{
 		If !GuiStatus("OnStash")
 		{
-			Notify("Was not able to verify OnStash","",2)
+			Notify.Show("Was not able to verify OnStash","",2)
 			Return
 		}
 		CurrentTab := 0
@@ -874,10 +874,10 @@ RunRestock(){
 				Continue
 			If !(v["RestockName"] == "Custom") {
 				If !WR.loc.pixel.HasOwnProp(v["RestockName"]){
-					Notify("Missing Location","There is no entry for " v["RestockName"],5)
+					Notify.Show("Missing Location","There is no entry for " v["RestockName"],5)
 					Continue
 				} Else If (WR.loc.pixel.%v["RestockName"]%.X == 0 && WR.loc.pixel.%v["RestockName"]%.Y == 0) {
-					Notify("Unscaled Location","The entry for " v["RestockName"] " has not been scaled from 0",5)
+					Notify.Show("Unscaled Location","The entry for " v["RestockName"] " has not been scaled from 0",5)
 					Continue
 				}
 			}
@@ -919,7 +919,7 @@ RunRestock(){
 				} Else {
 					dif := v["RestockTo"] - InvCount
 					If (StashCount < dif) {
-						Notify("Out of Stock","Attempting to restock " v["RestockName"] " but not enough in stock",2)
+						Notify.Show("Out of Stock","Attempting to restock " v["RestockName"] " but not enough in stock",2)
 						Continue
 					} Else If (dif == 0) {
 						Continue
