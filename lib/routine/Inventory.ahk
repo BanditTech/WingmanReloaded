@@ -176,7 +176,7 @@ VendorRoutine()
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If ((C <= BlackList.Length && R <= BlackList[C].Length && BlackList[C][R]) || !WR.Restock[C][R].Normal)
+			If ((C <= BlackList.Length && R <= BlackList[C].Length && BlackList[C][R]) || !WR.Restock[C][R]["Normal"])
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
@@ -352,7 +352,7 @@ EmptyGrid(){
 	EmptySlots := []
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
-			If !WR.Restock[C][R].Normal
+			If !WR.Restock[C][R]["Normal"]
 				Continue 1
 			PointColor := FindText().GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
@@ -419,7 +419,7 @@ StashRoutine()
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If ((C <= BlackList.Length && R <= BlackList[C].Length && BlackList[C][R]) || !WR.Restock[C][R].Normal)
+			If ((C <= BlackList.Length && R <= BlackList[C].Length && BlackList[C][R]) || !WR.Restock[C][R]["Normal"])
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
@@ -738,7 +738,7 @@ DivRoutine()
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If ((C <= BlackList.Length && R <= BlackList[C].Length && BlackList[C][R]) || !WR.Restock[C][R].Normal)
+			If ((C <= BlackList.Length && R <= BlackList[C].Length && BlackList[C][R]) || !WR.Restock[C][R]["Normal"])
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
@@ -784,7 +784,7 @@ IdentifyRoutine()
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If ((C <= BlackList.Length && R <= BlackList[C].Length && BlackList[C][R]) || !WR.Restock[C][R].Normal)
+			If ((C <= BlackList.Length && R <= BlackList[C].Length && BlackList[C][R]) || !WR.Restock[C][R]["Normal"])
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)

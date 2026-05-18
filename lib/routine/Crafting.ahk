@@ -217,7 +217,7 @@ CraftingMaps(){
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
+			If (BlackList[C][R] || !WR.Restock[C][R]["Normal"])
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
