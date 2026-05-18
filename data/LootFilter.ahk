@@ -354,10 +354,17 @@ LoadArray_Menu(*) {
 LoadArray()
 {
   Global LootFilter
+  If !FileExist("LootFilter.json") {
+    LootFilter := Map()
+    Return
+  }
   JSONtext := FileRead("LootFilter.json")
-  LootFilter := JSON.Load(JSONtext)
+  Try
+    LootFilter := JSON.Load(JSONtext)
+  Catch
+    LootFilter := Map()
   If !LootFilter
-    LootFilter:={}
+    LootFilter := Map()
 }
 
 SaveArray_Menu(*) {
