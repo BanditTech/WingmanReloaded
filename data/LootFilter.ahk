@@ -188,10 +188,10 @@ ReformatJSON(String)
   Return String
 }
 
-ExportGroup(*) {
+ExportGroup(ctrl, *) {
   Global LootFilter
   LootFilterGui.Submit(0)
-  buttonstr := StrSplit(A_GuiControl, "_")
+  buttonstr := StrSplit(ctrl.Name, "_")
   GKey := buttonstr[2]
   A_Clipboard := ReformatJSON(JSON.Dump(LootFilter[GKey], 1))
   SetTimer(ChangeButtonNamesVar, 10)
@@ -202,10 +202,10 @@ ExportGroup(*) {
     ImportGroup()
 }
 
-EditGroup(*) {
+EditGroup(ctrl, *) {
   Global groupKey, LootFilterGui2
   LootFilterGui.Submit()
-  buttonstr := StrSplit(A_GuiControl, "_")
+  buttonstr := StrSplit(ctrl.Name, "_")
   groupKey := buttonstr[2]
   LootFilterGui2.Destroy()
   RedrawNewGroup()
@@ -240,10 +240,10 @@ FinishAddGroup(*) {
 }
 
 
-AddNewGroupDDL(*) {
+AddNewGroupDDL(ctrl, *) {
   Global LootFilter, LootFilterGui2
   LootFilterGui.Submit(0)
-  buttonstr := StrSplit(A_GuiControl, A_Space)
+  buttonstr := StrSplit(ctrl.Name, A_Space)
   SKey := buttonstr[3]
   GKey := buttonstr[5]
   LootFilter[GKey][SKey].Push(Map("#Key","Blank","Eval",">=","Min",0,"OrFlag",0))
@@ -398,10 +398,10 @@ UpdateStashDefault(ctrl, *) {
   IniWrite(CLFStashTabDefault, "LootFilter.ini", "LootFilter", "CLFStashTabDefault")
 }
 
-RemoveMenuItem(*) {
+RemoveMenuItem(ctrl, *) {
   Global LootFilter
   LootFilterGui.Submit(0)
-  buttonstr := StrSplit(A_GuiControl, "_")
+  buttonstr := StrSplit(ctrl.Name, "_")
   GKey := buttonstr[2]
   SKey := buttonstr[3]
   buttonstr[4] := RegExReplace(buttonstr[4], "Min$", "")
@@ -415,10 +415,10 @@ RemoveMenuItem(*) {
   Redraw()
 }
 
-RemoveNewMenuItem(*) {
+RemoveNewMenuItem(ctrl, *) {
   Global LootFilter, LootFilterGui2
   LootFilterGui.Submit(0)
-  buttonstr := StrSplit(A_GuiControl, "_")
+  buttonstr := StrSplit(ctrl.Name, "_")
   GKey := buttonstr[2]
   SKey := buttonstr[3]
   buttonstr[4] := RegExReplace(buttonstr[4], "Min$", "")
@@ -432,10 +432,10 @@ RemoveNewMenuItem(*) {
   RedrawNewGroup()
 }
 
-RemoveNewGroupMenuItem(*) {
+RemoveNewGroupMenuItem(ctrl, *) {
   Global LootFilter, LootFilterGui2
   LootFilterGui.Submit(0)
-  buttonstr := StrSplit(A_GuiControl, "_")
+  buttonstr := StrSplit(ctrl.Name, "_")
   GKey := buttonstr[2]
   SKey := buttonstr[3]
   buttonstr[4] := RegExReplace(buttonstr[4], "Min$", "")
@@ -449,10 +449,10 @@ RemoveNewGroupMenuItem(*) {
   RedrawNewGroup()
 }
 
-RemGroup(*) {
+RemGroup(ctrl, *) {
   Global LootFilter
   LootFilterGui.Submit(0)
-  buttonstr := StrSplit(A_GuiControl, A_Space)
+  buttonstr := StrSplit(ctrl.Name, A_Space)
   gnumber := buttonstr[2]
   GKey := "Group" gnumber
 
