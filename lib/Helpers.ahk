@@ -120,6 +120,11 @@ Clamp( Val, Min, Max){
     Val := Max
   Return
 }
+; GameWindow is normally populated by Rescale.ahk's FirstScale path.
+; Initialize it to a sentinel at script scope so any analyser or
+; embedded-include context (e.g. data/LootFilter.ahk pulling Helpers
+; in standalone) sees a defined value even before Rescale runs.
+Global GameWindow := {X:0, Y:0, W:0, H:0, BBarY:0}
 ; ClampGameScreen - Ensure points do not go outside Game Window
 ClampGameScreen(&ValX, &ValY){
   Global GameWindow
