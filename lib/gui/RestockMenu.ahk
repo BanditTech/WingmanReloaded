@@ -2,16 +2,16 @@ RestockMenu(choice:="", *){
 	static Built := False
 	static Active := [1,1]
 	static LoadedValues := ""
-	Static DefaultSettings := {Normal:"1"
-	                          , Ignored:"0"
-	                          , Restock:"0"
-	                          , RestockName:""
-	                          , RestockMin:20
-	                          , RestockMax:40
-	                          , RestockTo:30
-	                          , CustomTab:0
-	                          , CustomX:0
-	                          , CustomY:0}
+	Static DefaultSettings := Map("Normal","1"
+	                          , "Ignored","0"
+	                          , "Restock","0"
+	                          , "RestockName",""
+	                          , "RestockMin",20
+	                          , "RestockMax",40
+	                          , "RestockTo",30
+	                          , "CustomTab",0
+	                          , "CustomX",0
+	                          , "CustomY",0)
 	static RestockGui := ""
 	static CustomSlotHWND := []
 
@@ -126,10 +126,10 @@ RestockMenu(choice:="", *){
 
 	RestockRefreshOption()
 	{
-		if (LoadedValues.RestockName == "")
+		if (LoadedValues["RestockName"] == "")
 			RestockGui["RestockRestockName"].Choose(0)
 		Else
-			RestockGui["RestockRestockName"].Choose(LoadedValues.RestockName)
+			RestockGui["RestockRestockName"].Choose(LoadedValues["RestockName"])
 
 		max := StackSizes.Get(LoadedValues["RestockName"], 0)
 		if (max <= 0)
@@ -137,11 +137,11 @@ RestockMenu(choice:="", *){
 		RestockGui["RestockRestockMax"].Opt("+Range0-" max)
 		RestockGui["RestockRestockMin"].Opt("+Range0-" max)
 		RestockGui["RestockRestockTo"].Opt("+Range0-" max)
-		If (LoadedValues["RestockMax"] > max || LoadedValues.RestockName == "")
+		If (LoadedValues["RestockMax"] > max || LoadedValues["RestockName"] == "")
 			LoadedValues["RestockMax"] := max
-		If (LoadedValues["RestockMin"] >= max - 2 || LoadedValues.RestockName == "")
+		If (LoadedValues["RestockMin"] >= max - 2 || LoadedValues["RestockName"] == "")
 			LoadedValues["RestockMin"] := max // 2
-		If (LoadedValues["RestockTo"] > max || LoadedValues.RestockName == "")
+		If (LoadedValues["RestockTo"] > max || LoadedValues["RestockName"] == "")
 			LoadedValues["RestockTo"] := Round(max * (3/4))
 		If (LoadedValues["RestockMin"] >= LoadedValues["RestockMax"] - 1)
 			LoadedValues["RestockMin"] := LoadedValues["RestockMax"] - 2
@@ -150,7 +150,7 @@ RestockMenu(choice:="", *){
 		If (LoadedValues["RestockTo"] <= LoadedValues["RestockMin"])
 			LoadedValues["RestockTo"] := LoadedValues["RestockMin"] + 1
 		for k,v in DefaultSettings {
-			If !LoadedValues.HasOwnProp(k)
+			If !LoadedValues.Has(k)
 				LoadedValues[k] := v
 			If (k == "RestockName")
 				Continue
@@ -178,7 +178,7 @@ RestockMenu(choice:="", *){
 					WR.Restock[C] := Map()
 				For R, GridY in InventoryGridY{
 					If !WR.Restock[C].Has(R)
-						WR.Restock[C][R] := adash.cloneDeep(DefaultSettings)
+						WR.Restock[C][R] := DefaultSettings.Clone()
 				}
 			}
 		}
