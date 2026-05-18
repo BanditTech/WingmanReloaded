@@ -100,7 +100,7 @@ StringReplaceN( Haystack, Needle, Replacement:="", Instance:=1 ){
   If !( Instance := 0 | Instance )
     Return StrReplace(Haystack, Needle, Replacement)
   ; Collect all match positions
-  Positions := [], pos := 1
+  Positions := [], pos := 1, _m := ""
   While RegExMatch(Haystack, Needle, &_m, pos) {
     Positions.Push({Pos: _m.Pos, Len: _m.Len})
     pos := _m.Pos + Max(_m.Len, 1)
