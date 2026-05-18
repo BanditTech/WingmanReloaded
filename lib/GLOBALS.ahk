@@ -110,11 +110,11 @@ Global LootFilter := Map()
 Global BlackList := Map()
 ; BlackList[C][R]: outer = 12 inventory columns, inner = 5 rows
 Global BlackList_Default := [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
-Global StackSizes := {Wisdom:40,Portal:40,Scouring:30,Perandus:5000
-	,Alteration:20,Transmutation:40,Augment:30,Chance:20
-	,Alchemy:20,Binding:20,Vaal:20,Chisel:20
-	,Harbinger:20,Horizon:20,Chaos:20,Engineer:20,Regal:10
-	,Simple:10,Prime:10,Exalted:10,Veiled:10}
+Global StackSizes := Map("Wisdom",40,"Portal",40,"Scouring",30,"Perandus",5000
+	,"Alteration",20,"Transmutation",40,"Augment",30,"Chance",20
+	,"Alchemy",20,"Binding",20,"Vaal",20,"Chisel",20
+	,"Harbinger",20,"Horizon",20,"Chaos",20,"Engineer",20,"Regal",10
+	,"Simple",10,"Prime",10,"Exalted",10,"Veiled",10)
 Global MainAttackPressedActive := False, MainAttackLastRelease := 0, SecondaryAttackPressedActive := False
 Global ColorPicker_Group_Color := "", ColorPicker_Group_Color_Hex := "", ColorPicker_Red := "", ColorPicker_Red_Edit := "", ColorPicker_Red_Edit_Hex := "", ColorPicker_Green := "", ColorPicker_Green_Edit := "", ColorPicker_Green_Edit_Hex := "", ColorPicker_Blue := "", ColorPicker_Blue_Edit := "", ColorPicker_Blue_Edit_Hex := ""
 Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven Cloak"

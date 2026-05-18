@@ -131,7 +131,7 @@ RestockMenu(choice:="", *){
 		Else
 			RestockGui["RestockRestockName"].Choose(LoadedValues.RestockName)
 
-		max := StackSizes[LoadedValues["RestockName"]]
+		max := StackSizes.Get(LoadedValues["RestockName"], 0)
 		if (max <= 0)
 			max := 40
 		RestockGui["RestockRestockMax"].Opt("+Range0-" max)
