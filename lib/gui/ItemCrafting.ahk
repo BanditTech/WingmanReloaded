@@ -82,7 +82,13 @@ FillItemCraftingSubCategoryDropdown(){
       aux.Push(b)
     }
   }
-  ctrl := MainGui["ItemCraftingSubCategorySelector"]
+  ; The SubCategorySelector DDL lives on CraftingGui (built in
+  ; WR_Menu.ahk's Crafting branch), not on MainGui. Bail if it
+  ; hasn't been built yet (first run before the Crafting menu opens).
+  Global CraftingGui
+  If !(IsSet(CraftingGui) && CraftingGui is Gui)
+    Return
+  ctrl := CraftingGui["ItemCraftingSubCategorySelector"]
   ctrl.Delete()
   ctrl.Add(aux)
 }
