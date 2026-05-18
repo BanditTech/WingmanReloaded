@@ -505,15 +505,6 @@ TestEval(*) {
     MsgBox("No")
 }
 
-PrintJSON(*) {
-  Global LootFilter
-  LootFilterGui.Submit(0)
-  arrStr := JSON.Dump(LootFilter, 1)
-  MsgBox(arrStr)
-  arrStr := JSON.Dump(LootFilterTabs, 1)
-  MsgBox(arrStr)
-}
-
 RefreshGUI(*) {
   LootFilterGui.Submit(0)
   LootFilterGui.Destroy()
