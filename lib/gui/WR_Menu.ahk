@@ -78,7 +78,7 @@ WR_Menu(Function:="",Var*){
       InventoryGui.Add("Checkbox", "vYesEnableAutomation Checked" YesEnableAutomation " xs+5 ys+18", "Enable Automation ?").OnEvent("Click", UpdateExtra)
       InventoryGui.Add("Text", "y+8", "First Automation Action")
       InventoryGui.Add("DropDownList", "vFirstAutomationSetting y+3 w100", AutomationList).OnEvent("Change", UpdateExtra)
-      InventoryGui["FirstAutomationSetting"].Choose(FirstAutomationSetting)
+      Try InventoryGui["FirstAutomationSetting"].Choose(FirstAutomationSetting)
       InventoryGui.Add("Button", "x+10 w20 h20", "?").OnEvent("Click", helpAutomation)
       InventoryGui.Add("Checkbox", "vYesEnableNextAutomation Checked" YesEnableNextAutomation " xs+5 y+8", "Enable Second Automation ?").OnEvent("Click", UpdateExtra)
       InventoryGui.Add("Checkbox", "vYesEnableAutoSellConfirmation Checked" YesEnableAutoSellConfirmation " y+8", "Enable Auto Confirm Vendor ?").OnEvent("Click", WarningAutomation)
@@ -204,9 +204,9 @@ WR_Menu(Function:="",Var*){
       InventoryGui.Add("GroupBox", "w185 h135 Section xs y+10", "Map/Contract Options")
       InventoryGui.SetFont()
       InventoryGui.Add("DropDownList", "w40 vYesSkipMaps_eval xs+5 yp+18", [">=","<="]).OnEvent("Change", UpdateExtra)
-      InventoryGui["YesSkipMaps_eval"].Choose(YesSkipMaps_eval)
+      Try InventoryGui["YesSkipMaps_eval"].Choose(YesSkipMaps_eval)
       InventoryGui.Add("DropDownList", "w40 vYesSkipMaps x+3 yp", ["0","1","2","3","4","5","6","7","8","9","10","11","12"]).OnEvent("Change", UpdateExtra)
-      InventoryGui["YesSkipMaps"].Choose(YesSkipMaps)
+      Try InventoryGui["YesSkipMaps"].Choose(YesSkipMaps)
       InventoryGui.Add("Text", "yp+3 x+5", "Column to Skip")
       InventoryGui.Add("Checkbox", "vYesSkipMaps_normal Checked" YesSkipMaps_normal " xs+5 y+8", "Skip Normal?").OnEvent("Click", UpdateExtra)
       InventoryGui.Add("Checkbox", "vYesSkipMaps_magic Checked" YesSkipMaps_magic " x+0 yp", "Skip Magic?").OnEvent("Click", UpdateExtra)
@@ -560,7 +560,7 @@ WR_Menu(Function:="",Var*){
       CraftingGui.Add("DropDownList", "xs+5 ys+35 w40 vStartMapTier1 Choose" StartMapTier1, MapTierList)
       CraftingGui.Add("DropDownList", "xs+55 ys+35 w40 vEndMapTier1 Choose" EndMapTier1, MapTierList)
       CraftingGui.Add("DropDownList", "xs+105 ys+35 w175 vCraftingMapMethod1 Choose" CraftingMapMethod1, MapMethodList)
-      CraftingGui["CraftingMapMethod1"].Choose(CraftingMapMethod1)
+      Try CraftingGui["CraftingMapMethod1"].Choose(CraftingMapMethod1)
       CraftingGui.SetFont("Bold s9 cBlack", "Arial")
 
       CraftingGui.Add("GroupBox", "Section w285 h65 xs", "Map Tier Range 2:")
@@ -573,7 +573,7 @@ WR_Menu(Function:="",Var*){
       CraftingGui.Add("DropDownList", "xs+5 ys+35 w40 vStartMapTier2 Choose" StartMapTier2, MapTierList)
       CraftingGui.Add("DropDownList", "xs+55 ys+35 w40 vEndMapTier2 Choose" EndMapTier2, MapTierList)
       CraftingGui.Add("DropDownList", "xs+105 ys+35 w175 vCraftingMapMethod2 Choose" CraftingMapMethod2, MapMethodList)
-      CraftingGui["CraftingMapMethod2"].Choose(CraftingMapMethod2)
+      Try CraftingGui["CraftingMapMethod2"].Choose(CraftingMapMethod2)
       CraftingGui.SetFont()
       CraftingGui.SetFont("Bold s9 cBlack", "Arial")
 
@@ -587,7 +587,7 @@ WR_Menu(Function:="",Var*){
       CraftingGui.Add("DropDownList", "xs+5 ys+35 w40 vStartMapTier3 Choose" StartMapTier3, MapTierList)
       CraftingGui.Add("DropDownList", "xs+55 ys+35 w40 vEndMapTier3 Choose" EndMapTier3, MapTierList)
       CraftingGui.Add("DropDownList", "xs+105 ys+35 w175 vCraftingMapMethod3 Choose" CraftingMapMethod3, MapMethodList)
-      CraftingGui["CraftingMapMethod3"].Choose(CraftingMapMethod3)
+      Try CraftingGui["CraftingMapMethod3"].Choose(CraftingMapMethod3)
       CraftingGui.SetFont()
       CraftingGui.SetFont("Bold s9 cBlack", "Arial")
 
@@ -737,7 +737,7 @@ WR_Menu(Function:="",Var*){
       CraftingGui.SetFont()
       CraftingGui.Add("DropDownList", "vItemCraftingMethod xp+10 yp+25 w270", ["Alteration Spam","Alteration and Aug Spam","Alteration and Aug and Regal Spam","Scouring and Alchemy Spam","Chaos Spam"]).OnEvent("Change", ItemCraftingSubmit)
       ; Select DDL Value Based on Last Value Saved
-      CraftingGui["ItemCraftingMethod"].Choose(ItemCraftingMethod)
+      Try CraftingGui["ItemCraftingMethod"].Choose(ItemCraftingMethod)
 
       ; Guide
       CraftingGui.SetFont("Bold s9 cBlack", "Arial")

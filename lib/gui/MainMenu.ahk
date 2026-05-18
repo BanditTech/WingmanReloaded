@@ -20,7 +20,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	Loop Files A_ScriptDir "\save\profiles\perChar\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
 	MainGui.Add("ComboBox",  "vProfileMenuperChar xs+6 y+5 w117", profileList)
-	MainGui["ProfileMenuperChar"].Choose(ProfileMenuperChar)
+	Try MainGui["ProfileMenuperChar"].Choose(ProfileMenuperChar)
 	MainGui.Add("Button", "vMainMenu_perChar_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_perChar_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_perChar_Remove x+1 yp hp w50", "Remove").OnEvent("Click", Profile)
@@ -36,7 +36,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	Loop Files A_ScriptDir "\save\profiles\Flask\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
 	MainGui.Add("ComboBox",  "vProfileMenuFlask xs+6 y+5 w117", profileList)
-	MainGui["ProfileMenuFlask"].Choose(ProfileMenuFlask)
+	Try MainGui["ProfileMenuFlask"].Choose(ProfileMenuFlask)
 	MainGui.Add("Button", "vMainMenu_Flask_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_Flask_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_Flask_Remove x+1 yp hp w50", "Remove").OnEvent("Click", Profile)
@@ -52,7 +52,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	Loop Files A_ScriptDir "\save\profiles\Utility\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
 	MainGui.Add("ComboBox",  "vProfileMenuUtility xs+6 y+5 w117", profileList)
-	MainGui["ProfileMenuUtility"].Choose(ProfileMenuUtility)
+	Try MainGui["ProfileMenuUtility"].Choose(ProfileMenuUtility)
 	MainGui.Add("Button", "vMainMenu_Utility_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_Utility_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_Utility_Remove x+1 yp hp w50", "Remove").OnEvent("Click", Profile)
@@ -194,11 +194,11 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	MainGui.Add("Text", "xs+5 yp+20", "Wingman Reloaded  " VersionNumber)
 	ctrl := MainGui.Add("DropDownList", "vBranchName     w90   xs+5 y+5", ["master","Alpha"])
 	ctrl.OnEvent("Change", UpdateExtra)
-	MainGui["BranchName"].Choose(BranchName)
+	Try MainGui["BranchName"].Choose(BranchName)
 	MainGui.Add("Text",       "x+8 yp+3",                                                         "Update Branch")
 	ctrl := MainGui.Add("DropDownList", "vScriptUpdateTimeType   xs+5 y+10  w90", ["Off","days","hours","minutes"])
 	ctrl.OnEvent("Change", UpdateExtra)
-	MainGui["ScriptUpdateTimeType"].Choose(ScriptUpdateTimeType)
+	Try MainGui["ScriptUpdateTimeType"].Choose(ScriptUpdateTimeType)
 	ctrl := MainGui.Add("Edit", "vScriptUpdateTimeInterval  x+5   w40",  ScriptUpdateTimeInterval)
 	ctrl.OnEvent("Change", UpdateExtra)
 	MainGui.Add("Text",       "x+8 yp+3",                                    "Auto-check Update")
@@ -220,7 +220,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 
 	ctrl := MainGui.Add("DropDownList", "vResolutionScale     w160   x+8 yp-3", ["Standard","Classic","Cinematic","Cinematic(43:18)","UltraWide","WXGA(16:10)"])
 	ctrl.OnEvent("Change", UpdateResolutionScale)
-	MainGui["ResolutionScale"].Choose(ResolutionScale)
+	Try MainGui["ResolutionScale"].Choose(ResolutionScale)
 	MainGui.Add("Button", "x+5 yp", "Get ratio").OnEvent("Click", CheckAspectRatio)
 
 	MainGui.SetFont("Bold s9 cBlack", "Arial")
@@ -247,7 +247,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	MainGui.Add("Text", "xs+5 y+10", "League:")
 	MainGui.SetFont("Norm")
 	MainGui.Add("ComboBox", "vselectedLeague x+5 yp-3 w150", leagueList)
-	MainGui["selectedLeague"].Choose(selectedLeague)
+	Try MainGui["selectedLeague"].Choose(selectedLeague)
 	MainGui.Add("Button", "vUpdateLeaguesBtn x+5 yp-1", "Refresh").OnEvent("Click", UpdateLeagues)
 
 	MainGui.SetFont("Bold s9 cBlack", "Arial")
@@ -264,15 +264,15 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	MainGui.SetFont("Norm")
 	ctrl := MainGui.Add("DropDownList", "vLatency w40 xs+5 yp+20", [" 1","1.1","1.2","1.3","1.4","1.5","1.6","1.7","1.8","1.9","2","2.5","3"])
 	ctrl.OnEvent("Change", UpdateExtra)
-	MainGui["Latency"].Choose(Latency)
+	Try MainGui["Latency"].Choose(Latency)
 	MainGui.Add("Text",                     "x+5 yp+3 hp-3",               "Global Adjust")
 	ctrl := MainGui.Add("DropDownList", "vClickLatency w35 x+10 yp-3", [" -2","-1","0","1","2","3","4"])
 	ctrl.OnEvent("Change", UpdateExtra)
-	MainGui["ClickLatency"].Choose(ClickLatency)
+	Try MainGui["ClickLatency"].Choose(ClickLatency)
 	MainGui.Add("Text",                     "x+5 yp+3  hp-3",             "Click Adjust")
 	ctrl := MainGui.Add("DropDownList", "vClipLatency w35 x+10 yp-3", [" -2","-1","0","1","2","3","4"])
 	ctrl.OnEvent("Change", UpdateExtra)
-	MainGui["ClipLatency"].Choose(ClipLatency)
+	Try MainGui["ClipLatency"].Choose(ClipLatency)
 	MainGui.Add("Text",                     "x+5 yp+3  hp-3",             "Clip Adjust")
 
 	;Save Setting
