@@ -128,7 +128,7 @@ TGameTick(DoGuiCheck:=True){
 		If (WR.func.Toggle.Flask || WR.func.Toggle.Quit || WR.func.Toggle.Utility)
 		{
 			ScanGlobe()
-			if (WR.func.Toggle.Quit && Player.Percent[!WR.perChar.Setting.typeES?"Life":"ES"] < WR.perChar.Setting.quitBelow)
+			if (WR.func.Toggle.Quit && (!WR.perChar.Setting.typeES ? Player.Percent.Life : Player.Percent.ES) < WR.perChar.Setting.quitBelow)
 			{
 				LogoutCommand()
 				Exit
