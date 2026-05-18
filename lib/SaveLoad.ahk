@@ -1244,18 +1244,12 @@ updateEverything(senderCtrl:=0, *){
 		IniWrite(ForceMatch6Link, A_ScriptDir "\save\Settings.ini", "Database", "ForceMatch6Link")
 		IniWrite(ForceMatchGem20, A_ScriptDir "\save\Settings.ini", "Database", "ForceMatchGem20")
 
-		; Activate the game window FIRST so the HotIf(GameWindowActive)
-		; predicate is true by the time readFromFile re-binds hotkeys.
-		; Otherwise the user's first hotkey press immediately after Save
-		; happens while focus is still on the (now-hiding) script gui and
-		; the HotIf gate drops it silently.
+		readFromFile()
+		GuiUpdate()
 		if WinExist("ahk_group POEGameGroup")
 		{
 			WinActivate("ahk_group POEGameGroup")
-			WinWaitActive("ahk_group POEGameGroup", , 1)
 		}
-		readFromFile()
-		GuiUpdate()
 		Thread("NoTimers", false) ;End Critical
 	return
 }
