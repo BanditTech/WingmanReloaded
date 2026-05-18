@@ -156,8 +156,14 @@ readFromFile(){
 	YesCLFIgnoreImplicit := IniRead(A_ScriptDir "\save\Settings.ini", "General", "YesCLFIgnoreImplicit", 0)
 	YesSortFirst := IniRead(A_ScriptDir "\save\Settings.ini", "General", "YesSortFirst", 1)
 	Latency := IniRead(A_ScriptDir "\save\Settings.ini", "General", "Latency", 1)
+	If (Latency = "")
+		Latency := 1
 	ClickLatency := IniRead(A_ScriptDir "\save\Settings.ini", "General", "ClickLatency", 0)
+	If (ClickLatency = "")
+		ClickLatency := 0
 	ClipLatency := IniRead(A_ScriptDir "\save\Settings.ini", "General", "ClipLatency", 0)
+	If (ClipLatency = "")
+		ClipLatency := 0
 	ShowOnStart := IniRead(A_ScriptDir "\save\Settings.ini", "General", "ShowOnStart", 1)
 	PopFlaskRespectCD := IniRead(A_ScriptDir "\save\Settings.ini", "General", "PopFlaskRespectCD", 0)
 	ResolutionScale := IniRead(A_ScriptDir "\save\Settings.ini", "General", "ResolutionScale", "Standard")
