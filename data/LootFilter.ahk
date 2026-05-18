@@ -505,10 +505,6 @@ TestEval(*) {
     MsgBox("No")
 }
 
-Printout(*) {
-  Array_Gui(LootFilter)
-}
-
 PrintJSON(*) {
   Global LootFilter
   LootFilterGui.Submit(0)
