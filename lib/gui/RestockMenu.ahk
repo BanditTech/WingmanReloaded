@@ -179,8 +179,15 @@ RestockMenu(choice:="", *){
 			For sC, inner in loaded {
 				c := IsInteger(sC) ? Integer(sC) : sC
 				WR.Restock[c] := Map()
-				For sR, slot in inner
-					WR.Restock[c][IsInteger(sR) ? Integer(sR) : sR] := slot
+				For sR, slot in inner {
+					r := IsInteger(sR) ? Integer(sR) : sR
+					; Older saves stored RestockName as a DropDownList .Value
+					; (Integer index) instead of .Text. Clear those so the
+					; user re-picks once instead of mismapping to '1' / '2'.
+					If (slot is Map && slot.Has("RestockName") && IsInteger(slot["RestockName"]))
+						slot["RestockName"] := ""
+					WR.Restock[c][r] := slot
+				}
 			}
 		} Else {
 			WR.Restock := Map()
@@ -199,7 +206,12 @@ RestockMenu(choice:="", *){
 	{
 		saved := RestockGui.Submit(0)
 		VarName := RegExReplace(ctrl.Name, "^Restock", "")
-		LoadedValues[VarName] := RestockGui[ctrl.Name].Value
+		; RestockName is a DropDownList whose .Value returns the selected
+		; index (Integer); store the .Text instead so saved data carries
+		; the currency-name string the runtime actually needs to look up.
+		LoadedValues[VarName] := (VarName == "RestockName")
+			? RestockGui[ctrl.Name].Text
+			: RestockGui[ctrl.Name].Value
 		radios := ["Normal","Ignored","Restock"]
 		If indexOf(VarName,radios) {
 			For k,v in radios {
