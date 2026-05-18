@@ -159,7 +159,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 
 	MainGui.SetFont("Bold s9 cBlack", "Arial")
 	MainGui.Add("Text",           "Section          xs   y+10",         "Item and Inventory Settings:")
-	MainGui.Add("Button", "vWR_Btn_CLF  xs y+10 w110", "Custom Loot Filter").OnEvent("Click", LaunchLootFilter)
+	MainGui.Add("Button", "vWR_Btn_CLF  xs y+10 w110", "Custom Loot Sort").OnEvent("Click", LaunchLootFilter)
 	MainGui.Add("Button", "vWR_Btn_Inventory   x+10 yp w110", "Inventory Sorting").OnEvent("Click", WR_Update)
 	MainGui.Add("Button", "vWR_Btn_Crafting  xs y+10 w110", "Crafting").OnEvent("Click", WR_Update)
 	MainGui.SetFont()
