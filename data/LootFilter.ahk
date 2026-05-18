@@ -1,3 +1,6 @@
+#Include ..\lib\Aris\G33kDude\cJson.ahk
+#Include ..\lib\Helpers.ahk
+
   SaveDir := RegExReplace(A_ScriptDir, "data$", "save")
   SetWorkingDir(SaveDir)
 
@@ -772,6 +775,3 @@ GuiClose(*) {
 ReplaceDigit000(Name:="Group1"){
   Return "Group" . Format("{1:03i}",StrSplit(Name,," ",6)[6])
 }
-
-#Include ..\lib\Aris\G33kDude\cJson.ahk
-#Include ..\lib\Helpers.ahk
