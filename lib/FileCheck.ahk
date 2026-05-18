@@ -50,7 +50,7 @@ if !FileExist(A_ScriptDir "\data\WR.ico")
 	}
 }
 ; Verify we have essential files, and redownload if required
-For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","WR_Prop.json","WR_Pseudo.json","WR_Affix.json","Controller.png","InventorySlots.png"] {
+For k, str in ["7za.exe","mtee.exe","WR_Affix.json","Controller.png","InventorySlots.png"] {
 	if !FileExist(A_ScriptDir "\data\" str)
 	{
 		Try {
