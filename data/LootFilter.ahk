@@ -350,20 +350,7 @@ BuildNewGroupMenu(GKey)
 }
 
 LoadArray_Menu(*) {
-  Global LootFilter
-  picked := FileSelect(1, , "Select a LootFilter JSON to load", "LootFilter (*.json)")
-  If (picked == "")
-    Return
-  Try {
-    JSONtext := FileRead(picked)
-    obj := JSON.Load(JSONtext)
-    If !obj
-      Throw Error("Empty / malformed JSON")
-    LootFilter := obj
-  } Catch as e {
-    MsgBox("Failed to load LootFilter from:`n" picked "`n`n" (e.HasProp("Message") ? e.Message : ""), "Load CLF Error", 262144)
-    Return
-  }
+  LoadArray()
   SaveWinPos()
   LootFilterGui.Destroy()
   Redraw()
