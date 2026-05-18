@@ -149,11 +149,11 @@ DisableCloseButton(hWnd:="")
 {
   If (hWnd="")
     hWnd:=WinExist("A")
-  hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",False)
-  nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu)
-  DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-1,"Uint","0x400")
-  DllCall("RemoveMenu","Int",hSysMenu,"UInt",nCnt-2,"Uint","0x400")
-  DllCall("DrawMenuBar","Int",hWnd)
+  hSysMenu:=DllCall("GetSystemMenu","Ptr",hWnd,"Int",False,"Ptr")
+  nCnt:=DllCall("GetMenuItemCount","Ptr",hSysMenu)
+  DllCall("RemoveMenu","Ptr",hSysMenu,"UInt",nCnt-1,"UInt",0x400)
+  DllCall("RemoveMenu","Ptr",hSysMenu,"UInt",nCnt-2,"UInt",0x400)
+  DllCall("DrawMenuBar","Ptr",hWnd)
 Return ""
 }
 
@@ -611,13 +611,13 @@ UpdateScrollBars(thisGui, GuiWidth, GuiHeight)
   ; Update horizontal scroll bar.
   NumPut("UInt", ScrollWidth, si, 12) ; nMax
   NumPut("UInt", GuiWidth, si, 16) ; nPage
-  DllCall("SetScrollInfo", "uint", WinExist(), "uint", SB_HORZ, "uint", si, "int", 1)
+  DllCall("SetScrollInfo", "Ptr", WinExist(), "Int", SB_HORZ, "Ptr", si, "Int", 1)
 
   ; Update vertical scroll bar.
   ; NumPut("UInt", SIF_RANGE | SIF_PAGE | SIF_DISABLENOSCROLL, si, 4) ; fMask
   NumPut("UInt", ScrollHeight, si, 12) ; nMax
   NumPut("UInt", GuiHeight, si, 16) ; nPage
-  DllCall("SetScrollInfo", "uint", WinExist(), "uint", SB_VERT, "uint", si, "int", 1)
+  DllCall("SetScrollInfo", "Ptr", WinExist(), "Int", SB_VERT, "Ptr", si, "Int", 1)
 
   x := 0, y := 0
   if (Left < 0 && Right < GuiWidth)
@@ -625,7 +625,7 @@ UpdateScrollBars(thisGui, GuiWidth, GuiHeight)
   if (Top < 0 && Bottom < GuiHeight)
     y := Abs(Top) > GuiHeight-Bottom ? GuiHeight-Bottom : Abs(Top)
   if (x || y)
-    DllCall("ScrollWindow", "uint", WinExist(), "int", x, "int", y, "uint", 0, "uint", 0)
+    DllCall("ScrollWindow", "Ptr", WinExist(), "Int", x, "Int", y, "Ptr", 0, "Ptr", 0)
 }
 
 OnScroll(wParam, lParam, msg, hwnd)
@@ -637,11 +637,11 @@ OnScroll(wParam, lParam, msg, hwnd)
   si := Buffer(28, 0)
   NumPut("UInt", 28, si) ; cbSize
   NumPut("UInt", SIF_ALL, si, 4) ; fMask
-  if !DllCall("GetScrollInfo", "uint", hwnd, "int", bar, "uint", si)
+  if !DllCall("GetScrollInfo", "Ptr", hwnd, "Int", bar, "Ptr", si)
     return
 
   rect := Buffer(16)
-  DllCall("GetClientRect", "uint", hwnd, "uint", rect)
+  DllCall("GetClientRect", "Ptr", hwnd, "Ptr", rect)
 
   new_pos := NumGet(si, 20, "int") ; nPos
 
@@ -676,11 +676,11 @@ OnScroll(wParam, lParam, msg, hwnd)
   else
     y := old_pos-new_pos
   ; Scroll contents of window and invalidate uncovered area.
-  DllCall("ScrollWindow", "uint", hwnd, "int", x, "int", y, "uint", 0, "uint", 0)
+  DllCall("ScrollWindow", "Ptr", hwnd, "Int", x, "Int", y, "Ptr", 0, "Ptr", 0)
 
   ; Update scroll bar.
   NumPut("Int", new_pos, si, 20) ; nPos
-  DllCall("SetScrollInfo", "uint", hwnd, "int", bar, "uint", si, "int", 1)
+  DllCall("SetScrollInfo", "Ptr", hwnd, "Int", bar, "Ptr", si, "Int", 1)
 }
 
 PrintArray(Array, Display:=1, Level:=0)
