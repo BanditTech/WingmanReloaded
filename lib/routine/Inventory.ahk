@@ -870,14 +870,14 @@ RunRestock(){
 	BlockInput("MouseMove")
 	For C, vv in WR.Restock {
 		For R, v in vv {
-			If (v.Normal || v.Ignored || v.RestockName == "")
+			If (v["Normal"] || v["Ignored"] || v["RestockName"] == "")
 				Continue
-			If !(v.RestockName == "Custom") {
-				If !WR.loc.pixel.HasOwnProp(v.RestockName){
-					Notify("Missing Location","There is no entry for " v.RestockName,5)
+			If !(v["RestockName"] == "Custom") {
+				If !WR.loc.pixel.HasOwnProp(v["RestockName"]){
+					Notify("Missing Location","There is no entry for " v["RestockName"],5)
 					Continue
-				} Else If (WR.loc.pixel.%v.RestockName%.X == 0 && WR.loc.pixel.%v.RestockName%.Y == 0) {
-					Notify("Unscaled Location","The entry for " v.RestockName " has not been scaled from 0",5)
+				} Else If (WR.loc.pixel.%v["RestockName"]%.X == 0 && WR.loc.pixel.%v["RestockName"]%.Y == 0) {
+					Notify("Unscaled Location","The entry for " v["RestockName"] " has not been scaled from 0",5)
 					Continue
 				}
 			}
@@ -888,26 +888,26 @@ RunRestock(){
 				Item.Prop.Stack_Size := 0
 			; Store the item stack size
 			InvCount := Item.Prop.Stack_Size
-			If (InvCount == v.RestockTo && v.RestockTo == v.RestockMax) {
+			If (InvCount == v["RestockTo"] && v["RestockTo"] == v["RestockMax"]) {
 				Continue
 			}
-			If (InvCount < v.RestockMin || InvCount >= v.RestockMax) {
-				If (v.RestockName == "Custom") {
-					MoveStash(v.CustomTab)
-					StockX := v.CustomX
-					StockY := v.CustomY
+			If (InvCount < v["RestockMin"] || InvCount >= v["RestockMax"]) {
+				If (v["RestockName"] == "Custom") {
+					MoveStash(v["CustomTab"])
+					StockX := v["CustomX"]
+					StockY := v["CustomY"]
 				} Else {
 					MoveStash(StashTabCurrency)
 					LeftClick(WR.loc.pixel.CurrencyGeneral.X, WR.loc.pixel.CurrencyGeneral.Y)
-					StockX := WR.loc.pixel.%v.RestockName%.X
-					StockY := WR.loc.pixel.%v.RestockName%.Y
+					StockX := WR.loc.pixel.%v["RestockName"]%.X
+					StockY := WR.loc.pixel.%v["RestockName"]%.Y
 				}
 				ClipItem(StockX, StockY)
 				; Store the stash stack size
 				StashCount := Item.Prop.Stack_Size
 				; Determine if we need to add or subtract
-				If (InvCount > v.RestockTo) {
-					dif := InvCount - v.RestockTo
+				If (InvCount > v["RestockTo"]) {
+					dif := InvCount - v["RestockTo"]
 					ShiftClick(o.X, o.Y)
 					Sleep(120)
 					Send(dif)
@@ -917,9 +917,9 @@ RunRestock(){
 					LeftClick(StockX, StockY)
 					Sleep(120)
 				} Else {
-					dif := v.RestockTo - InvCount
+					dif := v["RestockTo"] - InvCount
 					If (StashCount < dif) {
-						Notify("Out of Stock","Attempting to restock " v.RestockName " but not enough in stock",2)
+						Notify("Out of Stock","Attempting to restock " v["RestockName"] " but not enough in stock",2)
 						Continue
 					} Else If (dif == 0) {
 						Continue
