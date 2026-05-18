@@ -2,9 +2,9 @@ RestockMenu(choice:="", *){
 	static Built := False
 	static Active := [1,1]
 	static LoadedValues := ""
-	Static DefaultSettings := Map("Normal","1"
-	                          , "Ignored","0"
-	                          , "Restock","0"
+	Static DefaultSettings := Map("Normal",1
+	                          , "Ignored",0
+	                          , "Restock",0
 	                          , "RestockName",""
 	                          , "RestockMin",20
 	                          , "RestockMax",40
