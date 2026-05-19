@@ -204,6 +204,10 @@ LootColorsMenu(*){
 		}
 		LootColors := newLC
 		IniWrite(hexArrToStr(LootColors), A_ScriptDir "\save\Settings.ini", "Loot Colors", "LootColors")
+		; Rebuild the LootScan ComboHex cache so the new colors take effect
+		; immediately. Without this the running scanner keeps using the old
+		; ComboHex from the previous LootColors until reload.
+		LootScan(1)
 		LootColorsGui.Destroy()
 		LootColorsMenu()
 	}
