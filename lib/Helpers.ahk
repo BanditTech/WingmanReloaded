@@ -120,11 +120,9 @@ Clamp( Val, Min, Max){
     Val := Max
   Return
 }
-; GameWindow / Speed / Latency are normally populated by the main
-; script (Rescale.ahk + GLOBALS.ahk). Initialize them at script scope
-; so any analyser or embedded-include context (e.g. data/LootFilter.ahk
-; pulling Helpers in standalone) sees defined values.
-Global GameWindow := {X:0, Y:0, W:0, H:0, BBarY:0}
+; Speed / Latency are normally populated by the main script from Settings.ini.
+; Initialize them at script scope so any analyser or embedded-include context
+; (e.g. data/LootFilter.ahk pulling Helpers in standalone) sees defined values.
 Global Speed := 1
 Global Latency := 1
 ; ClampGameScreen - Ensure points do not go outside Game Window
