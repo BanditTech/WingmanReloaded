@@ -1,391 +1,437 @@
-﻿
-Gui, Add, StatusBar, vWR_Statusbar hwndWR_hStatusbar, %WR_Statusbar%
-SB_SetParts(220,220)
-SB_SetText("Logic Status", 1)
-SB_SetText("Location Status", 2)
-SB_SetText("Percentage not updated", 3)
 
-Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|Debug
+Global MainGui := Gui()
+Global WR_StatusBarCtrl := ""
+WR_StatusBarCtrl := MainGui.Add("StatusBar",, WR_Statusbar)
+WR_hStatusbar := WR_StatusBarCtrl.Hwnd
+WR_StatusBarCtrl.SetParts(220,220)
+WR_StatusBarCtrl.SetText("Logic Status", 1)
+WR_StatusBarCtrl.SetText("Location Status", 2)
+WR_StatusBarCtrl.SetText("Percentage not updated", 3)
+
+MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Main","Configuration","Hotkeys","Debug"])
 ; #Main Tab
-	Gui, Tab, Main
-	Gui, Font,
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, GroupBox,         Section    w265 h77        xp+5   y+2,         Per Character Settings
-	Gui, Font,
-	Gui, Add, Button, gperCharMenu w255 xs+5 ys+20, Configure Character Options
-	l := [], s := ""
-	Loop, Files, %A_ScriptDir%\save\profiles\perChar\*.json
-		l.Push(StrReplace(A_LoopFileName,".json",""))
-	For k, v in l
-		s .=(k=1?"":"|") v
-	Gui, Add, ComboBox,  vProfileMenuperChar xs+6 y+5 w117, %s%
-	GuiControl, ChooseString, ProfileMenuperChar,% ProfileMenuperChar
-	Gui, Add, Button, gProfile vMainMenu_perChar_Save x+1 yp hp w40 , Save
-	Gui, Add, Button, gProfile vMainMenu_perChar_Load x+1 yp hp w40 , Load
-	Gui, Add, Button, gProfile vMainMenu_perChar_Remove x+1 yp hp w50 , Remove
+	MainGuiTabCtrl.UseTab(1)
+	MainGui.SetFont()
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",         "Section    w265 h77        xp+5   y+2",         "Per Character Settings")
+	MainGui.SetFont()
+	MainGui.Add("Button", "w255 xs+5 ys+20", "Configure Character Options").OnEvent("Click", perCharMenu)
+	profileList := []
+	Loop Files A_ScriptDir "\save\profiles\perChar\*.json"
+		profileList.Push(StrReplace(A_LoopFileName,".json",""))
+	MainGui.Add("ComboBox",  "vProfileMenuperChar xs+6 y+5 w117", profileList)
+	Try MainGui["ProfileMenuperChar"].Choose(ProfileMenuperChar)
+	MainGui.Add("Button", "vMainMenu_perChar_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
+	MainGui.Add("Button", "vMainMenu_perChar_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
+	MainGui.Add("Button", "vMainMenu_perChar_Remove x+1 yp hp w50", "Remove").OnEvent("Click", Profile)
 
 
 	; Flask
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, GroupBox,        Section    w265 h77 xs y+14  , Flask Settings
-	Gui, Font
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",        "Section    w265 h77 xs y+14  ", "Flask Settings")
+	MainGui.SetFont()
 	Loop 5
-	Gui, Add, Button, % "gFlaskMenu W46 -wrap " ((A_Index==1||A_Index==6)?"xs+6 yp+20":"x+5 yp") , Flask %A_Index%
-	l := [], s := ""
-	Loop, Files, %A_ScriptDir%\save\profiles\Flask\*.json
-		l.Push(StrReplace(A_LoopFileName,".json",""))
-	For k, v in l
-		s .=(k=1?"":"|") v
-	Gui, Add, ComboBox,  vProfileMenuFlask xs+6 y+5 w117, %s%
-	GuiControl, ChooseString, ProfileMenuFlask,% ProfileMenuFlask
-	Gui, Add, Button, gProfile vMainMenu_Flask_Save x+1 yp hp w40 , Save
-	Gui, Add, Button, gProfile vMainMenu_Flask_Load x+1 yp hp w40 , Load
-	Gui, Add, Button, gProfile vMainMenu_Flask_Remove x+1 yp hp w50 , Remove
+		MainGui.Add("Button", "W46 -wrap " ((A_Index==1||A_Index==6)?"xs+6 yp+20":"x+5 yp"), "Flask " A_Index).OnEvent("Click", FlaskMenu)
+	profileList := []
+	Loop Files A_ScriptDir "\save\profiles\Flask\*.json"
+		profileList.Push(StrReplace(A_LoopFileName,".json",""))
+	MainGui.Add("ComboBox",  "vProfileMenuFlask xs+6 y+5 w117", profileList)
+	Try MainGui["ProfileMenuFlask"].Choose(ProfileMenuFlask)
+	MainGui.Add("Button", "vMainMenu_Flask_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
+	MainGui.Add("Button", "vMainMenu_Flask_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
+	MainGui.Add("Button", "vMainMenu_Flask_Remove x+1 yp hp w50", "Remove").OnEvent("Click", Profile)
 
 	; Utility
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, GroupBox,        Section    w265 h105 xs y+14  , Utility Settings
-	Gui, Font
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",        "Section    w265 h105 xs y+14  ", "Utility Settings")
+	MainGui.SetFont()
 	Loop 10
-	Gui, Add, Button, % "gUtilityMenu W46 -wrap " (A_Index==1?"xs+6 yp+20":A_Index==6?"xs+6 y+5":"x+5 yp") , Utility %A_Index%
-	
-	l := [], s := ""
-	Loop, Files, %A_ScriptDir%\save\profiles\Utility\*.json
-		l.Push(StrReplace(A_LoopFileName,".json",""))
-	For k, v in l
-		s .=(k=1?"":"|") v
-	Gui, Add, ComboBox,  vProfileMenuUtility xs+6 y+5 w117, %s%
-	GuiControl, ChooseString, ProfileMenuUtility,% ProfileMenuUtility
-	Gui, Add, Button, gProfile vMainMenu_Utility_Save x+1 yp hp w40 , Save
-	Gui, Add, Button, gProfile vMainMenu_Utility_Load x+1 yp hp w40 , Load
-	Gui, Add, Button, gProfile vMainMenu_Utility_Remove x+1 yp hp w50 , Remove
+		MainGui.Add("Button", "W46 -wrap " (A_Index==1?"xs+6 yp+20":A_Index==6?"xs+6 y+5":"x+5 yp"), "Utility " A_Index).OnEvent("Click", UtilityMenu)
+
+	profileList := []
+	Loop Files A_ScriptDir "\save\profiles\Utility\*.json"
+		profileList.Push(StrReplace(A_LoopFileName,".json",""))
+	MainGui.Add("ComboBox",  "vProfileMenuUtility xs+6 y+5 w117", profileList)
+	Try MainGui["ProfileMenuUtility"].Choose(ProfileMenuUtility)
+	MainGui.Add("Button", "vMainMenu_Utility_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
+	MainGui.Add("Button", "vMainMenu_Utility_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
+	MainGui.Add("Button", "vMainMenu_Utility_Remove x+1 yp hp w50", "Remove").OnEvent("Click", Profile)
 
 	;Middle Vertical Lines
-	Gui, Add, Text,                   xm+279   y23    w1  h483 0x7
-	Gui, Add, Text,                   x+1   y23    w1  h483 0x7
+	MainGui.Add("Text",                   "xm+279   y23    w1  h483 0x7")
+	MainGui.Add("Text",                   "x+1   y23    w1  h483 0x7")
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, GroupBox,  Center   Section  w350 h210        x+15   ym+20 ,    Game Logic States
-	Gui, Font,
-	Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar hwndMainMenuIDOnChar, % "Character Active"
-	CtlColors.Attach(MainMenuIDOnChar, "52D165", "")
-	Gui, Add, Text, xp yp wp hp gupdateOnChar BackgroundTrans
-	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnOHB hwndMainMenuIDOnOHB, % "Overhead Health Bar"
-	CtlColors.Attach(MainMenuIDOnOHB, "52D165", "")
-	; Gui, Add, Text, xp yp wp hp gupdateOnOHB BackgroundTrans
-	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnChat hwndMainMenuIDOnChat, % "Chat Open"
-	CtlColors.Attach(MainMenuIDOnChat, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnChat BackgroundTrans
-	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnInventory hwndMainMenuIDOnInventory, % "Inventory Open"
-	CtlColors.Attach(MainMenuIDOnInventory, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnInventory BackgroundTrans
-	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnDiv hwndMainMenuIDOnDiv, % "Div Trade Open"
-	CtlColors.Attach(MainMenuIDOnDiv, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnDiv BackgroundTrans
-	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnStash hwndMainMenuIDOnStash, % "Stash Open"
-	CtlColors.Attach(MainMenuIDOnStash, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnStash BackgroundTrans
-	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnMenu hwndMainMenuIDOnMenu, % "Talent Menu Open"
-	CtlColors.Attach(MainMenuIDOnMenu, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnMenu BackgroundTrans
-	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnVendor hwndMainMenuIDOnVendor, % "Vendor Trade Open"
-	CtlColors.Attach(MainMenuIDOnVendor, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnVendor BackgroundTrans
-	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnDelveChart hwndMainMenuIDOnDelveChart, % "Delve Chart Open"
-	CtlColors.Attach(MainMenuIDOnDelveChart, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnDelveChart BackgroundTrans
-	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnLeft hwndMainMenuIDOnLeft, % "Left Panel Open"
-	CtlColors.Attach(MainMenuIDOnLeft, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnStash BackgroundTrans
-	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnDetonate hwndMainMenuIDOnDetonate, % "Detonate Shown"
-	CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateDetonate BackgroundTrans
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",  "Center   Section  w350 h210        x+15   ym+20",    "Game Logic States")
+	MainGui.SetFont()
+	ctrl := MainGui.Add("Text", "Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar", "Character Active")
+	MainMenuIDOnChar := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnChar, "RED", "")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnChar)
+	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnOHB", "Overhead Health Bar")
+	MainMenuIDOnOHB := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnOHB, "RED", "")
+	; MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnOHB)
+	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnChat", "Chat Open")
+	MainMenuIDOnChat := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnChat, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnChat)
+	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnInventory", "Inventory Open")
+	MainMenuIDOnInventory := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnInventory, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnInventory)
+	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnDiv", "Div Trade Open")
+	MainMenuIDOnDiv := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnDiv, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnDiv)
+	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnStash", "Stash Open")
+	MainMenuIDOnStash := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnStash, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnStash)
+	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnMenu", "Talent Menu Open")
+	MainMenuIDOnMenu := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnMenu, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnMenu)
+	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnVendor", "Vendor Trade Open")
+	MainMenuIDOnVendor := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnVendor, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnVendor)
+	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnDelveChart", "Delve Chart Open")
+	MainMenuIDOnDelveChart := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnDelveChart, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnDelveChart)
+	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnLeft", "Left Panel Open")
+	MainMenuIDOnLeft := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnLeft, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnStash)
+	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnDetonate", "Detonate Shown")
+	MainMenuIDOnDetonate := ctrl.Hwnd
+	CtlColors.Attach(MainMenuIDOnDetonate, "", "GREEN")
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateDetonate)
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, GroupBox,      Center       section        xs-20   y+35 w350 h60 ,         Gamestate Calibration
-	Gui, Font, s8
-	Gui, Add, Button, ghelpCalibration   xp+250 ys-4    h20, %  "? help"
-	Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs+10  ys+20 w105 h25,   Run Wizard
-	Gui, Add, Button, gWR_Update vWR_Btn_Globe         x+8 yp       wp,   Adjust Globes
-	; Gui, Add, Button, gWR_Update vWR_Btn_Locations         xs+10  y+10      wp,   Adjust Locations
-	Gui, Add, Button, gCheckPixelGrid x+8 yp wp , Inventory Grid
-	Gui, Font
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",      "Center       section        xs-20   y+35 w350 h60",         "Gamestate Calibration")
+	MainGui.SetFont("s8")
+	MainGui.Add("Button", "xp+250 ys-4    h20",  "? help").OnEvent("Click", helpCalibration)
+	MainGui.Add("Button", "vCalibrationWizardBtn  xs+10  ys+20 w105 h25",   "Run Wizard").OnEvent("Click", CalibrationWizard)
+	MainGui.Add("Button", "vWR_Btn_Globe         x+8 yp       wp",   "Adjust Globes").OnEvent("Click", WR_Update)
+	; MainGui.Add("Button", "vWR_Btn_Locations         xs+10  y+10      wp",   "Adjust Locations").OnEvent("Click", WR_Update)
+	MainGui.Add("Button", "x+8 yp wp", "Inventory Grid").OnEvent("Click", CheckPixelGrid)
+	MainGui.SetFont()
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, GroupBox,      Center       section        xs   y+20 w350 h80 ,        Active Functions
-	Gui, Font, s8
-	Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuAutoFlask hwndMainMenuIDAutoFlask, % "Flask Triggers"
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",      "Center       section        xs   y+20 w350 h80",        "Active Functions")
+	MainGui.SetFont("s8")
+	ctrl := MainGui.Add("Text", "Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuAutoFlask", "Flask Triggers")
+	MainMenuIDAutoFlask := ctrl.Hwnd
 	CtlColors.Attach(MainMenuIDAutoFlask, "52D165", "")
-	Gui, Add, Text, xp yp wp hp gtoggleAutoFlask BackgroundTrans
-	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuAutoQuit hwndMainMenuIDAutoQuit, % "Quit Trigger"
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", toggleAutoFlask)
+	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuAutoQuit", "Quit Trigger")
+	MainMenuIDAutoQuit := ctrl.Hwnd
 	CtlColors.Attach(MainMenuIDAutoQuit, "52D165", "")
-	Gui, Add, Text, xp yp wp hp gtoggleAutoQuit BackgroundTrans
-	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuAutoMove hwndMainMenuIDAutoMove, % "Move Triggers"
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", toggleAutoQuit)
+	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuAutoMove", "Move Triggers")
+	MainMenuIDAutoMove := ctrl.Hwnd
 	CtlColors.Attach(MainMenuIDAutoMove, "52D165", "")
-	Gui, Add, Text, xp yp wp hp gtoggleAutoMove BackgroundTrans
-	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuAutoUtility hwndMainMenuIDAutoUtility, % "Utility Triggers"
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", toggleAutoMove)
+	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuAutoUtility", "Utility Triggers")
+	MainMenuIDAutoUtility := ctrl.Hwnd
 	CtlColors.Attach(MainMenuIDAutoUtility, "52D165", "")
-	Gui, Add, Text, xp yp wp hp gtoggleAutoUtility BackgroundTrans
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", toggleAutoUtility)
 
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-	Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
-	Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
+	MainGui.Add("Button", "default x295 y470  w150 h23",   "Save Configuration").OnEvent("Click", updateEverything)
+	MainGui.Add("Button",      "x+5           h23",   "Website").OnEvent("Click", LaunchSite)
+	MainGui.Add("Button",      "x+5           h23",   "Grab Icon").OnEvent("Click", ft_Start)
 
 ; #Configuration Tab
-	Gui, Tab, Configuration
-	Gui, Add, Text,                   x279   y23    w1  h483 0x7
-	Gui, Add, Text,                   x+1   y23    w1  h483 0x7
+	MainGuiTabCtrl.UseTab(2)
+	MainGui.Add("Text",                   "x279   y23    w1  h483 0x7")
+	MainGui.Add("Text",                   "x+1   y23    w1  h483 0x7")
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, Text,           Section          x22   y30,         Automation Settings:
-	Gui, Add, Button, ghelpAutomationSetting   x+10 ys-4    h20, %  "? help"
-	Gui, add, button, gWR_Update vWR_Btn_Strings     xs ys+18 w110, Sample Strings
-	Gui, add, Button, gLootColorsMenu  vLootVacuumSettings x+8 yp w110, Loot Vacuum
-	Gui, Font, 
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Text",           "Section          x22   y30",         "Automation Settings:")
+	MainGui.Add("Button", "x+10 ys-4    h20",  "? help").OnEvent("Click", helpAutomationSetting)
+	MainGui.Add("Button", "vWR_Btn_Strings     xs ys+18 w110", "Sample Strings").OnEvent("Click", WR_Update)
+	MainGui.Add("Button", "vLootVacuumSettings x+8 yp w110", "Loot Vacuum").OnEvent("Click", LootColorsMenu)
+	MainGui.SetFont()
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, Text,           Section          xs   y+10,         Item and Inventory Settings:
-	Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, Custom Loot Filter
-	Gui, add, button, gWR_Update vWR_Btn_Inventory   x+10 yp w110, Inventory Sorting
-	Gui, add, button, gWR_Update vWR_Btn_Crafting  xs y+10 w110, Crafting
-	Gui, Font, 
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Text",           "Section          xs   y+10",         "Item and Inventory Settings:")
+	MainGui.Add("Button", "vWR_Btn_CLF  xs y+10 w110", "Custom Loot Sort").OnEvent("Click", LaunchLootFilter)
+	MainGui.Add("Button", "vWR_Btn_Inventory   x+10 yp w110", "Inventory Sorting").OnEvent("Click", WR_Update)
+	MainGui.Add("Button", "vWR_Btn_Crafting  xs y+10 w110", "Crafting").OnEvent("Click", WR_Update)
+	MainGui.SetFont()
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, Text,           Section          xs   y+10,         Interface Options:
-	Gui, Font, 
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Text",           "Section          xs   y+10",         "Interface Options:")
+	MainGui.SetFont()
 
-	Gui Add, Checkbox, gUpdateExtra  vYesOHB Checked%YesOHB%                                , Pause script when OHB missing?
-	Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                      , Show GUI on startup?
-	Gui Add, CheckBox, gSaveGeneral vYesInGameOverlay Checked%YesInGameOverlay%             , Show In-Game Overlay?
-	Gui Add, CheckBox, gSaveGeneral vYesChaosOverlay Checked%YesChaosOverlay%               , Show Chaos Overlay?
-	Gui Add, Checkbox, gUpdateExtra  vYesGuiLastPosition Checked%YesGuiLastPosition%   xs   , Remember Last GUI Position?
-	Gui Add, Checkbox, gUpdateExtra  vYesDX12 Checked%YesDX12%      xs                      , Use Direct X 12?
+	ctrl := MainGui.Add("CheckBox", "vYesOHB", "Pause script when OHB missing?")
+	ctrl.Value := YesOHB
+	ctrl.OnEvent("Click", UpdateExtra)
+	ctrl := MainGui.Add("CheckBox", "vShowOnStart", "Show GUI on startup?")
+	ctrl.Value := ShowOnStart
+	ctrl.OnEvent("Click", UpdateExtra)
+	ctrl := MainGui.Add("CheckBox", "vYesInGameOverlay", "Show In-Game Overlay?")
+	ctrl.Value := YesInGameOverlay
+	ctrl.OnEvent("Click", SaveGeneral)
+	ctrl := MainGui.Add("CheckBox", "vYesChaosOverlay", "Show Chaos Overlay?")
+	ctrl.Value := YesChaosOverlay
+	ctrl.OnEvent("Click", SaveGeneral)
+	ctrl := MainGui.Add("CheckBox", "vYesGuiLastPosition xs", "Remember Last GUI Position?")
+	ctrl.Value := YesGuiLastPosition
+	ctrl.OnEvent("Click", UpdateExtra)
+	ctrl := MainGui.Add("CheckBox", "vYesDX12 xs", "Use Direct X 12?")
+	ctrl.Value := YesDX12
+	ctrl.OnEvent("Click", UpdateExtra)
 
-	Gui,Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section x295 ym+20  w350 h130              ,Update Control
-	Gui,Font,Norm
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox","Section x295 ym+20  w350 h130",              "Update Control")
+	MainGui.SetFont("Norm")
 
-	Gui, Add, Text, xs+5 yp+20 , Wingman Reloaded  %VersionNumber% 
-	Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 y+5           , master|Alpha
-	GuiControl, ChooseString, BranchName                                                  , %BranchName%
-	Gui, Add, Text,       x+8 yp+3                                                        , Update Branch
-	Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs+5 y+10  w90                  , Off|days|hours|minutes
-	GuiControl, ChooseString, ScriptUpdateTimeType                                        , %ScriptUpdateTimeType%
-	Gui Add, Edit, gUpdateExtra  vScriptUpdateTimeInterval  x+5   w40                     , %ScriptUpdateTimeInterval%
-	Gui, Add, Text,       x+8 yp+3                                   , Auto-check Update
-	Gui, Add, Button, hwndHWND xs+5 y+10, Force Update
-	Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%     x+7 yp+4              , Turn off Auto-Update?
+	MainGui.Add("Text", "xs+5 yp+20", "Wingman Reloaded  " VersionNumber)
+	ctrl := MainGui.Add("DropDownList", "vBranchName     w90   xs+5 y+5", ["master","Alpha"])
+	ctrl.OnEvent("Change", UpdateExtra)
+	Try MainGui["BranchName"].Choose(BranchName)
+	MainGui.Add("Text",       "x+8 yp+3",                                                         "Update Branch")
+	ctrl := MainGui.Add("DropDownList", "vScriptUpdateTimeType   xs+5 y+10  w90", ["Off","days","hours","minutes"])
+	ctrl.OnEvent("Change", UpdateExtra)
+	Try MainGui["ScriptUpdateTimeType"].Choose(ScriptUpdateTimeType)
+	ctrl := MainGui.Add("Edit", "vScriptUpdateTimeInterval  x+5   w40",  ScriptUpdateTimeInterval)
+	ctrl.OnEvent("Change", UpdateExtra)
+	MainGui.Add("Text",       "x+8 yp+3",                                    "Auto-check Update")
+	forceUpdateBtn := MainGui.Add("Button", "xs+5 y+10", "Force Update")
+	MainMenuIDForceUpdate := forceUpdateBtn.Hwnd
+	ctrl := MainGui.Add("CheckBox", "vAutoUpdateOff     x+7 yp+4", "Turn off Auto-Update?")
+	ctrl.Value := AutoUpdateOff
+	ctrl.OnEvent("Click", UpdateExtra)
 
 
-	f := Func("checkUpdate").Bind(True)
-	GuiControl, +g,% HWND,% f
+	f := checkUpdate.Bind(True)
+	forceUpdateBtn.OnEvent("Click", f)
 	f := ""
 
-	Gui,Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section xs y+20  w350 h170                                                     , Game Setup
-	Gui, Add, Text,          xs+5 yp+20                                                             , Aspect Ratio:
-	Gui,Font,Norm
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox","Section xs y+20  w350 h170",                                                      "Game Setup")
+	MainGui.Add("Text",          "xs+5 yp+20",                                                              "Aspect Ratio:")
+	MainGui.SetFont("Norm")
 
-	Gui Add, DropDownList, gUpdateResolutionScale  vResolutionScale     w160   x+8 yp-3             , Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide|WXGA(16:10)
-	GuiControl, ChooseString, ResolutionScale                                                       , %ResolutionScale%
-	Gui, Add, Button, x+5 yp gCheckAspectRatio , Get ratio
+	ctrl := MainGui.Add("DropDownList", "vResolutionScale     w160   x+8 yp-3", ["Standard","Classic","Cinematic","Cinematic(43:18)","UltraWide","WXGA(16:10)"])
+	ctrl.OnEvent("Change", UpdateResolutionScale)
+	Try MainGui["ResolutionScale"].Choose(ResolutionScale)
+	MainGui.Add("Button", "x+5 yp", "Get ratio").OnEvent("Click", CheckAspectRatio)
 
-	Gui,Font, Bold s9 cBlack, Arial
-	Gui, Add, Text,          xs+5 y+10                                                             , POE LogFile:
-	Gui,Font,Norm
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Text",          "xs+5 y+10",                                                              "POE LogFile:")
+	MainGui.SetFont("Norm")
 
-	Gui, Add, Edit,       vClientLog         x+5 yp-3  w170  h23                                   ,   %ClientLog%
-	Gui, add, Button, gSelectClientLog hp yp x+5                                                 , Locate
+	MainGui.Add("Edit",       "vClientLog         x+5 yp-3  w170  h23",                                    ClientLog)
+	MainGui.Add("Button", "hp yp x+5",                                                  "Locate").OnEvent("Click", SelectClientLog)
 
-	IfNotExist, %A_ScriptDir%\data\leagues.json
+	if !FileExist(A_ScriptDir "\data\leagues.json")
 	{
-		UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+		Download("http://api.pathofexile.com/leagues", A_ScriptDir "\data\leagues.json")
 	}
 	Try {
-	LeagueIndex := JSON.Load(FileOpen(A_ScriptDir "\data\leagues.json","r").Read())
-	} Catch e {
-		MsgBox, 262144, Error loading leagues, % e
-		LeagueIndex := [{"id":"Standard"}]
+		LeagueIndex := JSON.LoadFile(A_ScriptDir "\data\leagues.json")
+	} catch as e {
+		MsgBox(e, "Error loading leagues", 262144)
+		LeagueIndex := [Map("id","Standard")]
 	}
-	textList= 
+	leagueList := []
 	For K, V in LeagueIndex
-		textList .= (!textList ? "" : "|") V["id"]
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, Text, xs+5 y+10, League:
-	Gui, Font,Norm
-	Gui, Add, ComboBox, vselectedLeague x+5 yp-3 w150, %textList%
-	GuiControl, ChooseString, selectedLeague, %selectedLeague%
-	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 yp-1 , Refresh
+		leagueList.Push(V["id"])
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Text", "xs+5 y+10", "League:")
+	MainGui.SetFont("Norm")
+	MainGui.Add("ComboBox", "vselectedLeague x+5 yp-3 w150", leagueList)
+	Try MainGui["selectedLeague"].Choose(selectedLeague)
+	MainGui.Add("Button", "vUpdateLeaguesBtn x+5 yp-1", "Refresh").OnEvent("Click", UpdateLeagues)
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, Text, xs+5 y+10 , PoE Cookie
-	Gui, Font,Norm
-	Gui, Add, Edit, password vPoECookie  x+5 yp-3 r1 -wrap  w240, %PoECookie%
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, Text, xs+5 y+10 , PoE Account Name
-	Gui, Font,Norm
-	Gui, Add, Edit, password vAccountNameSTR  x+5 yp-3 r1 -wrap  w120, %AccountNameSTR%
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Text", "xs+5 y+10", "PoE Cookie")
+	MainGui.SetFont("Norm")
+	MainGui.Add("Edit", "password vPoECookie  x+5 yp-3 r1 -wrap  w240", PoECookie)
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Text", "xs+5 y+10", "PoE Account Name")
+	MainGui.SetFont("Norm")
+	MainGui.Add("Edit", "password vAccountNameSTR  x+5 yp-3 r1 -wrap  w120", AccountNameSTR)
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section xs y+10  w350 h55                                                     , Script Latency
-	Gui, Font,Norm
-	Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs+5 yp+20                                       ,  1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
-	GuiControl, ChooseString, Latency, %Latency%
-	Gui, Add, Text,                     x+5 yp+3 hp-3              , Global Adjust
-	Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
-	GuiControl, ChooseString, ClickLatency, %ClickLatency%
-	Gui, Add, Text,                     x+5 yp+3  hp-3            , Click Adjust
-	Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
-	GuiControl, ChooseString, ClipLatency, %ClipLatency%
-	Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip Adjust
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox","Section xs y+10  w350 h55",                                                      "Script Latency")
+	MainGui.SetFont("Norm")
+	ctrl := MainGui.Add("DropDownList", "vLatency w40 xs+5 yp+20", [" 1","1.1","1.2","1.3","1.4","1.5","1.6","1.7","1.8","1.9","2","2.5","3"])
+	ctrl.OnEvent("Change", UpdateExtra)
+	Try MainGui["Latency"].Choose(Latency)
+	MainGui.Add("Text",                     "x+5 yp+3 hp-3",               "Global Adjust")
+	ctrl := MainGui.Add("DropDownList", "vClickLatency w35 x+10 yp-3", [" -2","-1","0","1","2","3","4"])
+	ctrl.OnEvent("Change", UpdateExtra)
+	Try MainGui["ClickLatency"].Choose(ClickLatency)
+	MainGui.Add("Text",                     "x+5 yp+3  hp-3",             "Click Adjust")
+	ctrl := MainGui.Add("DropDownList", "vClipLatency w35 x+10 yp-3", [" -2","-1","0","1","2","3","4"])
+	ctrl.OnEvent("Change", UpdateExtra)
+	Try MainGui["ClipLatency"].Choose(ClipLatency)
+	MainGui.Add("Text",                     "x+5 yp+3  hp-3",             "Clip Adjust")
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-	Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
+	MainGui.Add("Button", "default x295 y470  w150 h23",   "Save Configuration").OnEvent("Click", updateEverything)
+	MainGui.Add("Button",      "x+5           h23",   "Website").OnEvent("Click", LaunchSite)
 
 ; #Hotkey Tab
-	Gui, Tab, Hotkeys
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h180               xm+5   ym+25,         Main Script Keybinds:
-	Gui, Font
-	Gui,Add,Edit, section xp+5 yp+20        w60 h19   vhotkeyOptions           ,%hotkeyOptions%
-	Gui Add, Text,                     hp x+5   yp+3,         Open this GUI
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
-	Gui Add, Text,                     hp x+5   yp+3,         Toggle Auto-Flask
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyAutoQuit          ,%hotkeyAutoQuit%
-	Gui Add, Text,                     hp x+5   yp+3,         Toggle Auto-Quit
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyAutoMove          ,%hotkeyAutoMove%
-	Gui Add, Text,                     hp x+5   yp+3,         Toggle Auto-Move
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyAutoUtility       ,%hotkeyAutoUtility%
-	Gui Add, Text,                     hp x+5   yp+3,         Toggle Auto-Utility
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyPauseMines       ,%hotkeyPauseMines%
-	Gui Add, Text,                     hp x+5   yp+3,         Pause Detonate
+	MainGuiTabCtrl.UseTab(3)
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",    "center w170 h180               xm+5   ym+25",         "Main Script Keybinds:")
+	MainGui.SetFont()
+	MainGui.Add("Edit", "section xp+5 yp+20        w60 h19   vhotkeyOptions",            hotkeyOptions)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Open this GUI")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyAutoFlask",          hotkeyAutoFlask)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Toggle Auto-Flask")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyAutoQuit",           hotkeyAutoQuit)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Toggle Auto-Quit")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyAutoMove",           hotkeyAutoMove)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Toggle Auto-Move")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyAutoUtility",        hotkeyAutoUtility)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Toggle Auto-Utility")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyPauseMines",        hotkeyPauseMines)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Pause Detonate")
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h100               xm+5   y+5,       Trigger Keybinds: 
-	Gui, Font
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",    "center w170 h100               xm+5   y+5",       "Trigger Keybinds:")
+	MainGui.SetFont()
 
-	Gui Add, Edit, xp+5 yp+20   w60 h19   vhotkeyTriggerMovement   ,%hotkeyTriggerMovement%
-	Gui Add, Text,                     hp x+5   yp+3,         Movement Trigger
-	Gui Add, Edit, xs y+5   w60 h19   vhotkeyMainAttack        ,%hotkeyMainAttack%
-	Gui Add, Text,                     hp x+5   yp+3,         Main Attack
-	Gui Add, Edit, xs y+5   w60 h19   vhotkeySecondaryAttack   ,%hotkeySecondaryAttack%
-	Gui Add, Text,                     hp x+5   yp+3,         Secondary Attack
+	MainGui.Add("Edit", "xp+5 yp+20   w60 h19   vhotkeyTriggerMovement",    hotkeyTriggerMovement)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Movement Trigger")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyMainAttack",         hotkeyMainAttack)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Main Attack")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeySecondaryAttack",    hotkeySecondaryAttack)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Secondary Attack")
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h180               xm+5   y+5,       Ingame Assigned Keys: 
-	Gui, Font
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",    "center w170 h180               xm+5   y+5",       "Ingame Assigned Keys:")
+	MainGui.SetFont()
 
-	Gui,Add,Edit, xp+5 yp+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
-	Gui Add, Text, hp x+5   yp+3,         Close UI
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyInventory      ,%hotkeyInventory%
-	Gui Add, Text, hp x+5   yp+3,         Inventory
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyWeaponSwapKey    ,%hotkeyWeaponSwapKey%
-	Gui Add, Text, hp x+5   yp+3,         W-Swap
-	Gui,Add,Edit, xs y+5    w60 h19   vhotkeyLootScan        ,%hotkeyLootScan%
-	Gui Add, Text, hp x+5   yp+3,         Item Pickup
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyDetonateMines    ,%hotkeyDetonateMines%
-	Gui Add, Text, hp x+5   yp+3,         Detonate Mines
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyOpenPortal    ,%hotkeyOpenPortal%
-	Gui Add, Text, hp x+5   yp+3,         Open Portal
+	MainGui.Add("Edit", "xp+5 yp+20  w60 h19   vhotkeyCloseAllUI",     hotkeyCloseAllUI)
+	MainGui.Add("Text", "hp x+5   yp+3",         "Close UI")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyInventory",       hotkeyInventory)
+	MainGui.Add("Text", "hp x+5   yp+3",         "Inventory")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyWeaponSwapKey",     hotkeyWeaponSwapKey)
+	MainGui.Add("Text", "hp x+5   yp+3",         "W-Swap")
+	MainGui.Add("Edit", "xs y+5    w60 h19   vhotkeyLootScan",         hotkeyLootScan)
+	MainGui.Add("Text", "hp x+5   yp+3",         "Item Pickup")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyDetonateMines",     hotkeyDetonateMines)
+	MainGui.Add("Text", "hp x+5   yp+3",         "Detonate Mines")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyOpenPortal",     hotkeyOpenPortal)
+	MainGui.Add("Text", "hp x+5   yp+3",         "Open Portal")
 
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h440               xs+175   ym+25,       Tool Keybinds: 
-	Gui, Font
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",    "center w170 h440               xs+175   ym+25",       "Tool Keybinds:")
+	MainGui.SetFont()
 
-	Gui,Add,Edit, section xp+5 yp+20   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
-	Gui Add, Text,                     hp x+5   yp+3,         Logout
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
-	Gui Add, Text,                     hp x+5   yp+3,         Pop Flasks
-	Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xs y+1 , Pop Flasks Respect CD?
-	Gui,Add,Edit, xs y+3   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
-	Gui Add, Text,                     hp x+5   yp+3,         Quick-Portal
-	Gui,Add,Edit, xs y+3   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
-	Gui Add, Text,                     hp x+5   yp+3,         Gem-Swap
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
-	Gui Add, Text,                     hp x+5   yp+3,         Grab Currency
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
-	Gui Add, Text,                     hp x+5   yp+3,         Coord/Pixel
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
-	Gui Add, Text,                     hp x+5   yp+3,         Item Info
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
-	Gui Add, Text,                     hp x+5   yp+3,         Inventory Sort
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyStartCraft        ,%hotkeyStartCraft%
-	Gui Add, Text,                     hp x+5   yp+3,         Bulk Craft Maps
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyChaosRecipe       ,%hotkeyChaosRecipe%
-	Gui Add, Text,                     hp x+5   yp+3,         Chaos Recipe
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCraftBasic        ,%hotkeyCraftBasic%
-	Gui Add, Text,                     hp x+5   yp+3,         Basic Crafting
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyItemCrafting       ,%hotkeyItemCrafting%
-	Gui Add, Text,                     hp x+5   yp+3,         Item Crafting
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCtrlClicker        ,%hotkeyCtrlClicker%
-	Gui Add, Text,                     hp x+5   yp+3,         Ctrl Clicker
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCtrlShiftClicker   ,%hotkeyCtrlShiftClicker%
-	Gui Add, Text,                     hp x+5   yp+3,         CtrlShift Clicker
-	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyShiftClicker   ,%hotkeyShiftClicker%
-	Gui Add, Text,                     hp x+5   yp+3,         Shift Clicker
+	MainGui.Add("Edit", "section xp+5 yp+20   w60 h19   vhotkeyLogout",             hotkeyLogout)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Logout")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyPopFlasks",          hotkeyPopFlasks)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Pop Flasks")
+	ctrl := MainGui.Add("CheckBox", "vPopFlaskRespectCD                 xs y+1", "Pop Flasks Respect CD?")
+	ctrl.Value := PopFlaskRespectCD
+	ctrl.OnEvent("Click", UpdateExtra)
+	MainGui.Add("Edit", "xs y+3   w60 h19   vhotkeyQuickPortal",        hotkeyQuickPortal)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Quick-Portal")
+	MainGui.Add("Edit", "xs y+3   w60 h19   vhotkeyGemSwap",            hotkeyGemSwap)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Gem-Swap")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyGrabCurrency",       hotkeyGrabCurrency)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Grab Currency")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyGetMouseCoords",     hotkeyGetMouseCoords)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Coord/Pixel")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyItemInfo",           hotkeyItemInfo)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Item Info")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyItemSort",           hotkeyItemSort)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Inventory Sort")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyStartCraft",         hotkeyStartCraft)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Bulk Craft Maps")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyChaosRecipe",        hotkeyChaosRecipe)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Chaos Recipe")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyCraftBasic",         hotkeyCraftBasic)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Basic Crafting")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyItemCrafting",        hotkeyItemCrafting)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Item Crafting")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyCtrlClicker",         hotkeyCtrlClicker)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Ctrl Clicker")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyCtrlShiftClicker",    hotkeyCtrlShiftClicker)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "CtrlShift Clicker")
+	MainGui.Add("Edit", "xs y+5   w60 h19   vhotkeyShiftClicker",    hotkeyShiftClicker)
+	MainGui.Add("Text",                     "hp x+5   yp+3",         "Shift Clicker")
 
-	Gui, Font
-	Gui, Add, Checkbox, section xs+195 ys vYesController Checked%YesController%,     Enable Controller
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui, add, button, gWR_Update vWR_Btn_Controller  xs y+10 w130, Set Controller Keys
-	Gui, Font
+	MainGui.SetFont()
+	ctrl := MainGui.Add("CheckBox", "section xs+195 ys vYesController", "    Enable Controller")
+	ctrl.Value := YesController
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Button", "vWR_Btn_Controller  xs y+10 w130", "Set Controller Keys").OnEvent("Click", WR_Update)
+	MainGui.SetFont()
 
-	Gui, Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xs y+20                   , Enable chat Hotkeys?
-	Gui,Font, Bold s9 cBlack, Arial
-	Gui, add, button, gWR_Update vWR_Btn_Chat   xp y+10     w130, Set Chat Hotkeys
-	Gui,Font,
+	ctrl := MainGui.Add("CheckBox", "vEnableChatHotkeys   xs y+20", "Enable chat Hotkeys?")
+	ctrl.Value := EnableChatHotkeys
+	ctrl.OnEvent("Click", UpdateExtra)
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Button", "vWR_Btn_Chat   xp y+10     w130", "Set Chat Hotkeys").OnEvent("Click", WR_Update)
+	MainGui.SetFont()
 
-	Gui, Add, Checkbox, xs y+20  vYesStashKeys Checked%YesStashKeys%                    , Enable stash hotkeys?
-	Gui,Font, Bold s9 cBlack, Arial
-	Gui, add, button, gWR_Update vWR_Btn_hkStash   xp y+10     w130, Set Stash Hotkeys
-	Gui,Font,
+	ctrl := MainGui.Add("CheckBox", "xs y+20  vYesStashKeys", "Enable stash hotkeys?")
+	ctrl.Value := YesStashKeys
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("Button", "vWR_Btn_hkStash   xp y+10     w130", "Set Stash Hotkeys").OnEvent("Click", WR_Update)
+	MainGui.SetFont()
 
 	;~ =========================================================================================== Subgroup: Hints
-	Gui,Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section xs  y+25  w130 h80              ,Hotkey Modifiers
-	Gui, Add, Button,      gLaunchHelp vLaunchHelp     center wp,   Show Key Help
-	Gui,Font,Norm
-	Gui,Font,s8,Arial
-	Gui,Add,Text,          xs+15 ys+17          ,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
-	Gui,Add,Text,              y+5          ,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
-	Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox","Section xs  y+25  w130 h80",              "Hotkey Modifiers")
+	MainGui.Add("Button",      "vLaunchHelp     center wp",   "Show Key Help").OnEvent("Click", LaunchHelp)
+	MainGui.SetFont("Norm")
+	MainGui.SetFont("s8","Arial")
+	MainGui.Add("Text",          "xs+15 ys+17",          "!" A_Tab "=" A_Space A_Space A_Space A_Space "ALT")
+	MainGui.Add("Text",              "y+5",          "^" A_Tab "=" A_Space A_Space A_Space A_Space "CTRL")
+	MainGui.Add("Text",              "y+5",          "+" A_Tab "=" A_Space A_Space A_Space A_Space "SHIFT")
 
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything    x380 y470  w150 h23,   Save Configuration
-	Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
+	MainGui.Add("Button", "default x380 y470  w150 h23",   "Save Configuration").OnEvent("Click", updateEverything)
+	MainGui.Add("Button",      "x+5           h23",   "Website").OnEvent("Click", LaunchSite)
 
-	Gui, +LastFound +AlwaysOnTop
+	MainGui.Opt("+LastFound +AlwaysOnTop")
 ; Debug Tab
-	Gui, Tab, Debug
-	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,  section  center w200 h100               xm+5   ym+25,         Debug Tooltips:
-	Gui, Font
-	Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     xs+20 ys+20, Show Debug Tooltips
-	Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     , Logic Tooltips
-	Gui Add, Checkbox,   vYesLocation Checked%YesLocation%  gUpdateDebug , Location Tooltips
-	
-	Gui, Add, Button,      gActualTierCreator     xs ys+120          h23,   Update Actual Tiers
-	Gui, Add, Button,      gDBUpdateNinja           h23,   Update Ninja Database
-	Gui, Add, Button,      gRefreshChaosRecipe h23,   Reset Chaos Recipe Data
-	; Gui, Add, Button,      gForceUpdatePOEDB           h23,   Update PoeDB Affixes
+	MainGuiTabCtrl.UseTab(4)
+	MainGui.SetFont("Bold s9 cBlack", "Arial")
+	MainGui.Add("GroupBox",  "section  center w200 h100               xm+5   ym+25",         "Debug Tooltips:")
+	MainGui.SetFont()
+	ctrl := MainGui.Add("CheckBox",   "vDebugMessages     xs+20 ys+20", "Show Debug Tooltips")
+	ctrl.Value := DebugMessages
+	ctrl.OnEvent("Click", UpdateDebug)
+	ctrl := MainGui.Add("CheckBox",   "vYesTimeMS", "Logic Tooltips")
+	ctrl.Value := YesTimeMS
+	ctrl.OnEvent("Click", UpdateDebug)
+	ctrl := MainGui.Add("CheckBox",   "vYesLocation", "Location Tooltips")
+	ctrl.Value := YesLocation
+	ctrl.OnEvent("Click", UpdateDebug)
+
+	MainGui.Add("Button",      "xs ys+120          h23",   "Update Actual Tiers").OnEvent("Click", ActualTierCreator)
+	MainGui.Add("Button",      "h23",   "Update Ninja Database").OnEvent("Click", DBUpdateNinja)
+	MainGui.Add("Button",      "h23",   "Reset Chaos Recipe Data").OnEvent("Click", RefreshChaosRecipe)
+	; MainGui.Add("Button",      "h23",   "Update PoeDB Affixes").OnEvent("Click", ForceUpdatePOEDB)
 
 	; AHK Delay Adjustments
-	Gui Add, GroupBox,  section  center w200 h130               xm+5 y+15,         AHK Action Adjustment:
+	MainGui.Add("GroupBox",  "section  center w200 h130               xm+5 y+15",         "AHK Action Adjustment:")
 
-	Gui, Add, Edit, xs+20 ys+20 w40 h20 vSetKeyDelayValue1 gSaveDelays, %SetKeyDelayValue1%
-	Gui, Add, Text, x+5, Keypress Duration (ms)
+	MainGui.Add("Edit", "xs+20 ys+20 w40 h20 vSetKeyDelayValue1", SetKeyDelayValue1).OnEvent("Change", SaveDelays)
+	MainGui.Add("Text", "x+5", "Keypress Duration (ms)")
 
-	Gui, Add, Edit, xs+20 y+10 w40 h20 vSetKeyDelayValue2 gSaveDelays, %SetKeyDelayValue2%
-	Gui, Add, Text, x+5, Keypress Delay (ms)
+	MainGui.Add("Edit", "xs+20 y+10 w40 h20 vSetKeyDelayValue2", SetKeyDelayValue2).OnEvent("Change", SaveDelays)
+	MainGui.Add("Text", "x+5", "Keypress Delay (ms)")
 
-	Gui, Add, Edit, xs+20 y+10 w40 h20 vSetMouseDelayValue gSaveDelays, %SetMouseDelayValue%
-	Gui, Add, Text, x+5, Mouse Delay (ms)
+	MainGui.Add("Edit", "xs+20 y+10 w40 h20 vSetMouseDelayValue", SetMouseDelayValue).OnEvent("Change", SaveDelays)
+	MainGui.Add("Text", "x+5", "Mouse Delay (ms)")
 
-	Gui, Add, Edit, xs+20 y+10 w40 h20 vSetDefaultMouseSpeedValue gSaveDelays, %SetDefaultMouseSpeedValue%
-	Gui, Add, Text, x+5, Mouse Speed (0-100)
+	MainGui.Add("Edit", "xs+20 y+10 w40 h20 vSetDefaultMouseSpeedValue", SetDefaultMouseSpeedValue).OnEvent("Change", SaveDelays)
+	MainGui.Add("Text", "x+5", "Mouse Speed (0-100)")
 
-	
+	MainGuiTabCtrl.UseTab()

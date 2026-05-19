@@ -1,0 +1,1 @@
+﻿#include .\Gdip@d3ddef1\Gdip_All.ahk

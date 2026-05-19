@@ -1,9 +1,26 @@
-﻿; TGameTick - Main Logic timer - Coordinates all other functions
-TGameTick(GuiCheck:=True){
+; TGameTick - Main Logic timer - Coordinates all other functions
+TGameTick(DoGuiCheck:=True){
 	Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, OnScreenMM := 0
-	Global GlobeActive, CurrentMessage, NoGame, GamePID
+	Global GlobeActive, CurrentMessage, NoGame, GamePID, Detonated
+	t1 := 0
 	If (NoGame)
+	{
+		If CheckTime("seconds",5,"StatusBar1")
+			WR_StatusBarCtrl.SetText("No game found", 1)
+		If CheckTime("seconds",5,"StatusBar3")
+			WR_StatusBarCtrl.SetText("No game found", 3)
+		; clear in-game state flags so the main-menu Logic State chips
+		; reflect 'no game' (Char red, panels green) instead of freezing
+		; at whatever they were when the game window disappeared
+		Global OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor
+		Global OnDiv, OnLeft, OnDelveChart, OnDetonate, YesXButtonFound
+		OnChar := False, OnChat := False, OnMenu := False, OnInventory := False
+		OnStash := False, OnVendor := False, OnDiv := False, OnLeft := False
+		OnDelveChart := False, OnDetonate := False, YesXButtonFound := False
+		If CheckGamestates
+			mainmenuGameLogicState()
 		Return
+	}
 	If GamePID
 	{
 		If (YesController)
@@ -17,7 +34,7 @@ TGameTick(GuiCheck:=True){
 			:(!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.func.Toggle.Utility||WR.func.Toggle.Move||WR.perChar.Setting.autominesEnable||WR.perChar.Setting.autolevelgemsEnable||LootVacuum)?"All options disabled, pausing"
 			:"Error")))
 			If CheckTime("seconds",1,"StatusBar1")
-				SB_SetText(Msg, 1)
+				WR_StatusBarCtrl.SetText(Msg, 1)
 			If (CheckGamestates || GlobeActive || YesController)
 			{
 				GuiStatus()
@@ -40,13 +57,13 @@ TGameTick(GuiCheck:=True){
 		}
 
 		; Check what status is your character in the game
-		if (GuiCheck)
+		if (DoGuiCheck)
 		{
 			If !GuiStatus()
 			{
 				Msg := "Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(YesXButtonFound?"X Button is Detected":"Error"))))))))))
 				If CheckTime("seconds",1,"StatusBar1")
-					SB_SetText(Msg, 1)
+					WR_StatusBarCtrl.SetText(Msg, 1)
 				If CheckGamestates
 				{
 					mainmenuGameLogicState()
@@ -62,7 +79,7 @@ TGameTick(GuiCheck:=True){
 			Else If (YesOHB && !(WR.func.failsafe.OHB := CheckOHB()))
 			{
 				If CheckTime("seconds",1,"StatusBar1")
-					SB_SetText("Script paused while no OHB", 1)
+					WR_StatusBarCtrl.SetText("Script paused while no OHB", 1)
 				If (DebugMessages && YesTimeMS)
 					If ((t1-LastPauseMessage) > 100)
 					{
@@ -76,7 +93,7 @@ TGameTick(GuiCheck:=True){
 			; Else If (CheckDialogue()) ; kinda forgot what this was checking for :P
 			; {
 			;   If CheckTime("seconds",1,"StatusBar1")
-			;     SB_SetText("Script paused while NPC Dialogue", 1)
+			;     WR_StatusBarCtrl.SetText("Script paused while NPC Dialogue", 1)
 			;   If (DebugMessages && YesTimeMS)
 			;     If ((t1-LastPauseMessage) > 100)
 			;     {
@@ -86,7 +103,7 @@ TGameTick(GuiCheck:=True){
 			;   Exit
 			; }
 			Else If CheckTime("seconds",1,"StatusBar1")
-				SB_SetText("WingmanReloaded Active", 1)
+				WR_StatusBarCtrl.SetText("WingmanReloaded Active", 1)
 			If CheckGamestates
 				mainmenuGameLogicState()
 		}
@@ -97,7 +114,7 @@ TGameTick(GuiCheck:=True){
 			{
 				SendHotkey(hotkeyDetonateMines)
 				Detonated:=1
-				Settimer, TDetonated, % "-" WR.perChar.Setting.autominesBoomDelay
+				SetTimer(TDetonated, "-" WR.perChar.Setting.autominesBoomDelay)
 				a := A_TickCount - MainAttackLastRelease
 				If WR.perChar.Setting.autominesSmokeDashEnable&&GetKeyState(hotkeyTriggerMovement,"P")&&(a > 1000)
 				{
@@ -111,7 +128,7 @@ TGameTick(GuiCheck:=True){
 		If (WR.func.Toggle.Flask || WR.func.Toggle.Quit || WR.func.Toggle.Utility)
 		{
 			ScanGlobe()
-			if (WR.func.Toggle.Quit && Player.Percent[!WR.perChar.Setting.typeES?"Life":"ES"] < WR.perChar.Setting.quitBelow)
+			if (WR.func.Toggle.Quit && (!WR.perChar.Setting.typeES ? Player.Percent.Life : Player.Percent.ES) < WR.perChar.Setting.quitBelow)
 			{
 				LogoutCommand()
 				Exit
@@ -125,19 +142,20 @@ TGameTick(GuiCheck:=True){
 				Loop 5
 				{
 					If (WR.cdExpires.Flask[A_Index] > A_TickCount) {
-						If (WR.Flask[A_Index].ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask[A_Index].ResetCooldownAtHealthPercentageInput)
-						|| (WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentageInput) 
-						|| (WR.Flask[A_Index].ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask[A_Index].ResetCooldownAtManaPercentageInput) {
+						If (WR.Flask.%A_Index%.ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask.%A_Index%.ResetCooldownAtHealthPercentageInput)
+						|| (WR.Flask.%A_Index%.ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask.%A_Index%.ResetCooldownAtEnergyShieldPercentageInput)
+						|| (WR.Flask.%A_Index%.ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask.%A_Index%.ResetCooldownAtManaPercentageInput) {
 							WR.cdExpires.Flask[A_Index] := 0
-							WR.cdExpires.Group[WR.Flask[A_Index].Group] := 0
+							grp := WR.Flask.%A_Index%.Group
+							WR.cdExpires.Group[grp] := 0
 						}
-					} 
+					}
 					If (WR.cdExpires.Flask[A_Index] < A_TickCount) {
-						If ((WR.Flask[A_Index].Life && WR.Flask[A_Index].Life > Player.Percent.Life)
-						|| (WR.Flask[A_Index].ES && WR.Flask[A_Index].ES > Player.Percent.ES)
-						|| (WR.Flask[A_Index].Mana && WR.Flask[A_Index].Mana > Player.Percent.Mana))
+						If ((WR.Flask.%A_Index%.Life && WR.Flask.%A_Index%.Life > Player.Percent.Life)
+						|| (WR.Flask.%A_Index%.ES && WR.Flask.%A_Index%.ES > Player.Percent.ES)
+						|| (WR.Flask.%A_Index%.Mana && WR.Flask.%A_Index%.Mana > Player.Percent.Mana))
 						{
-							Trigger(WR.Flask[A_Index])
+							Trigger(WR.Flask.%A_Index%)
 							Continue
 						}
 					}
@@ -148,53 +166,53 @@ TGameTick(GuiCheck:=True){
 			{
 				If WR.func.Toggle.Flask
 					Loop 5
-						If (WR.Flask[A_Index].MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-							Trigger(WR.Flask[A_Index],true)
+						If (WR.Flask.%A_Index%.MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
+							Trigger(WR.Flask.%A_Index%,true)
 				If WR.func.Toggle.Utility
-					Loop, 10
-						If (WR.Utility[A_Index].Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility[A_Index].MainAttack)
-							Trigger(WR.Utility[A_Index],true)
+					Loop 10
+						If (WR.Utility.%A_Index%.Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility.%A_Index%.MainAttack)
+							Trigger(WR.Utility.%A_Index%,true)
 			}
 			If SecondaryAttackPressedActive
 			{
 				If WR.func.Toggle.Flask
 					Loop 5
-						If (WR.Flask[A_Index].SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-							Trigger(WR.Flask[A_Index],true)
+						If (WR.Flask.%A_Index%.SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
+							Trigger(WR.Flask.%A_Index%,true)
 				If WR.func.Toggle.Utility
-					Loop, 10
-						If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility[A_Index].SecondaryAttack)
-							Trigger(WR.Utility[A_Index],true)
+					Loop 10
+						If (WR.Utility.%A_Index%.Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility.%A_Index%.SecondaryAttack)
+							Trigger(WR.Utility.%A_Index%,true)
 			}
 
 			If (WR.func.Toggle.Utility) ; Trigger Utilities
 			{
-				Loop, 10
+				Loop 10
 				{
-					If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] <= A_TickCount)
+					If (WR.Utility.%A_Index%.Enable && WR.cdExpires.Utility[A_Index] <= A_TickCount)
 					{
-						If (NOT WR.Utility[A_Index].MainAttackOnly || ( WR.Utility[A_Index].MainAttackOnly && MainAttackPressedActive ))
-						{																									 
-							If (( WR.Utility[A_Index].OnCD )
-							|| ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
-							|| ( WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
-							|| ( WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana ))
-								Trigger(WR.Utility[A_Index])
-							Else If (WR.Utility[A_Index].Icon)
+						If (NOT WR.Utility.%A_Index%.MainAttackOnly || ( WR.Utility.%A_Index%.MainAttackOnly && MainAttackPressedActive ))
+						{
+							If (( WR.Utility.%A_Index%.OnCD )
+							|| ( WR.Utility.%A_Index%.ES && WR.Utility.%A_Index%.ES > Player.Percent.ES )
+							|| ( WR.Utility.%A_Index%.Life && WR.Utility.%A_Index%.Life > Player.Percent.Life )
+							|| ( WR.Utility.%A_Index%.Mana && WR.Utility.%A_Index%.Mana > Player.Percent.Mana ))
+								Trigger(WR.Utility.%A_Index%)
+							Else If (WR.Utility.%A_Index%.Icon)
 							{
-								If (WR.Utility[A_Index].IconSearch == 1) ; Search Buff Area
+								If (WR.Utility.%A_Index%.IconSearch == 1) ; Search Buff Area
 									x1:=GameX, y1:=GameY, x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/81))
-								Else If (WR.Utility[A_Index].IconSearch == 2) ; Search Debuff Area
+								Else If (WR.Utility.%A_Index%.IconSearch == 2) ; Search Debuff Area
 									x1:=GameX, y1:=GameY+Round(GameH/(1080/81)), x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/162))
-								Else If (WR.Utility[A_Index].IconSearch == 3) ; Custom Icon Area
-									x1:=WR.Utility[A_Index].IconArea.X1, y1:=WR.Utility[A_Index].IconArea.Y1, x2:=WR.Utility[A_Index].IconArea.X2, y2:=WR.Utility[A_Index].IconArea.Y2
+								Else If (WR.Utility.%A_Index%.IconSearch == 3) ; Custom Icon Area
+									x1:=WR.Utility.%A_Index%.IconArea.X1, y1:=WR.Utility.%A_Index%.IconArea.Y1, x2:=WR.Utility.%A_Index%.IconArea.X2, y2:=WR.Utility.%A_Index%.IconArea.Y2
 
-								BuffIcon := FindText(x1, y1, x2, y2, WR.Utility[A_Index].IconVar1, WR.Utility[A_Index].IconVar0, WR.Utility[A_Index].Icon,0)
-								
-								If ((WR.Utility[A_Index].IconShown && BuffIcon) || (!WR.Utility[A_Index].IconShown && !BuffIcon))
-									Trigger(WR.Utility[A_Index],True)
+								BuffIcon := FindText(&FT_X, &FT_Y, x1, y1, x2, y2, WR.Utility.%A_Index%.IconVar1, WR.Utility.%A_Index%.IconVar0, WR.Utility.%A_Index%.Icon,0)
+
+								If ((WR.Utility.%A_Index%.IconShown && BuffIcon) || (!WR.Utility.%A_Index%.IconShown && !BuffIcon))
+									Trigger(WR.Utility.%A_Index%,True)
 								Else
-									WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
+									WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility.%A_Index%.IconShow ? 150 : WR.Utility.%A_Index%.CD)
 							}
 						}
 					}
@@ -205,12 +223,12 @@ TGameTick(GuiCheck:=True){
 		If (WR.func.Toggle.Move && GuiCheck())
 		{
 			Loop 5
-				If WR.Flask[A_Index].Move
-					Trigger(WR.Flask[A_Index])
+				If WR.Flask.%A_Index%.Move
+					Trigger(WR.Flask.%A_Index%)
 			if (WR.func.Toggle.Utility)
 				Loop 10
-					If WR.Utility[A_Index].Move
-						Trigger(WR.Utility[A_Index])
+					If WR.Utility.%A_Index%.Move
+						Trigger(WR.Utility.%A_Index%)
 		}
 
 		If (WR.perChar.Setting.channelrepressEnable)
@@ -242,13 +260,14 @@ TGameTick(GuiCheck:=True){
 	Else
 	{
 		If CheckTime("seconds",5,"StatusBar1")
-			SB_SetText("No game found", 1)
+			WR_StatusBarCtrl.SetText("No game found", 1)
 		If CheckTime("seconds",5,"StatusBar3")
-			SB_SetText("No game found", 3)
-	} 
+			WR_StatusBarCtrl.SetText("No game found", 3)
+	}
 	Return
 }
 ; TDetonated - Detonate CD Timer
-TDetonated:
+TDetonated(){
+  Global Detonated
   Detonated:=0
-return
+}

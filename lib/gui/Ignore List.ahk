@@ -1,66 +1,79 @@
-﻿IgnoreClose:
-IgnoreEscape:
+IgnoreClose(GuiObj) {
 	SaveIgnoreArray()
-	Gui, Ignore: Destroy
-	Gui, Inventory: Show
-Return
+	IgnoreGui.Destroy()
+	InventoryGui.Show()
+}
+IgnoreEscape(GuiObj) {
+	SaveIgnoreArray()
+	IgnoreGui.Destroy()
+	InventoryGui.Show()
+}
 
 
-BuildIgnoreMenu:
-	Gui, Submit
-	Gui, Ignore: +LabelIgnore -MinimizeBox +AlwaysOnTop
-	Gui, Ignore: Font, Bold
-	Gui, Ignore: Add, GroupBox, w660 h305 Section xm ym, Ignored Inventory Slots:
-	Gui, Ignore: Add, Picture, w650 h-1 xs+5 ys+15, %A_ScriptDir%\data\InventorySlots.png
-	Gui, Ignore: Font
+BuildIgnoreMenu() {
+	Global IgnoreGui, InventoryGui, InventoryGridX, InventoryGridY, IgnoredSlot
+	MainGui.Submit(0)
+	IgnoreGui := Gui("+LabelIgnore -MinimizeBox +AlwaysOnTop")
+	IgnoreGui.SetFont("Bold")
+	IgnoreGui.Add("GroupBox", "w660 h305 Section xm ym", "Ignored Inventory Slots:")
+	IgnoreGui.Add("Picture", "w650 h-1 xs+5 ys+15", A_ScriptDir "\data\InventorySlots.png")
+	IgnoreGui.SetFont()
 	LoadIgnoreArray()
 
-	Gui, Ignore: Add, Text, w1 h1 xs+25 ys+13, ""
+	IgnoreGui.Add("Text", "w1 h1 xs+25 ys+13", "")
+	ind := 0
 	For C, GridX in InventoryGridX
 	{
 		If (C != 1)
-			Gui, Ignore: Add, Text, w1 h1 x+18 ys+13, ""
+			IgnoreGui.Add("Text", "w1 h1 x+18 ys+13", "")
 		For R, GridY in InventoryGridY
 		{
 			++ind
 			checkboxStr := "IgnoredSlot_" . C . "_" . R
 			checkboxTik := IgnoredSlot[C][R]
-			Gui, Ignore: Add, Checkbox, v%checkboxStr% gUpdateCheckbox y+25 h27 Checked%checkboxTik%,% (ind < 10 ? "0" . ind : ind)
+			cb := IgnoreGui.Add("Checkbox", "v" checkboxStr " y+25 h27 Checked" checkboxTik, (ind < 10 ? "0" . ind : ind))
+			cb.OnEvent("Click", UpdateCheckbox)
 		}
 	}
-	ind=0
+	ind := 0
 	MainMenu()
-	Gui, Ignore: Show
-Return
+	IgnoreGui.Show()
+}
 
-UpdateCheckbox:
-	Gui, Ignore: Submit, NoHide
-	btnArr := StrSplit(A_GuiControl, "_")
+UpdateCheckbox(ctrl, *) {
+	Global IgnoreGui, IgnoredSlot
+	IgnoreGui.Submit(0)
+	btnArr := StrSplit(ctrl.Name, "_")
 	C := btnArr[2]
 	R := btnArr[3]
-	IgnoredSlot[C][R] := %A_GuiControl%
-Return
+	IgnoredSlot[C][R] := IgnoreGui[ctrl.Name].Value
+}
 
 LoadIgnoreArray()
 {
-	IgnoredSlot := JSON.Load(FileOpen(A_ScriptDir "\save\IgnoredSlot.json","r").Read())
+	Global IgnoredSlot
+	IgnoredSlot := FileExist(A_ScriptDir "\save\IgnoredSlot.json")
+		? JSON.LoadFile(A_ScriptDir "\save\IgnoredSlot.json")
+		: {}
 	Return
 }
 
 SaveIgnoreArray()
 {
-	SaveIgnoreArray:
-	Gui, Ignore: Submit, NoHide
-	JSONtext := JSON.Dump(IgnoredSlot,,2)
-	FileDelete, %A_ScriptDir%\save\IgnoredSlot.json
-	FileAppend, %JSONtext%, %A_ScriptDir%\save\IgnoredSlot.json
+	Global IgnoreGui, IgnoredSlot
+	IgnoreGui.Submit(0)
+	JSONtext := JSON.Dump(IgnoredSlot, 2)
+	If FileExist(A_ScriptDir "\save\IgnoredSlot.json")
+		FileDelete(A_ScriptDir "\save\IgnoredSlot.json")
+	FileAppend(JSONtext, A_ScriptDir "\save\IgnoredSlot.json")
 	LoadIgnoreArray()
 	Return
 }
 
 IgnoreSlotSetup(){
+  Global IgnoredSlot, InventoryGridX, InventoryGridY
   ;Ignore Slot setup
-  IfNotExist, %A_ScriptDir%\save\IgnoredSlot.json
+  if !FileExist(A_ScriptDir "\save\IgnoredSlot.json")
   {
     For C, GridX in InventoryGridX
     {
@@ -71,7 +84,7 @@ IgnoreSlotSetup(){
       }
     }
     SaveIgnoreArray()
-  } 
+  }
   Else
     LoadIgnoreArray()
 }

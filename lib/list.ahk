@@ -1,27 +1,18 @@
-﻿#Include, %A_ScriptDir%\lib\ref\JSON.ahk
-#Include, %A_ScriptDir%\lib\ref\JSONcom.ahk
-#Include, %A_ScriptDir%\lib\ref\GDIP.ahk
-#Include, %A_ScriptDir%\lib\ref\TF.ahk
-#Include, %A_ScriptDir%\lib\ref\XGraph.ahk
-#Include, %A_ScriptDir%\lib\ref\RadialMenu.ahk
-#Include, %A_ScriptDir%\lib\ref\DeepClone.ahk
-#Include, %A_ScriptDir%\lib\ref\Decimal2Fraction.ahk
-#Include, %A_ScriptDir%\lib\ref\Class_CtlColors.ahk
-#Include, %A_ScriptDir%\lib\ref\Hotkey.ahk
-#Include, %A_ScriptDir%\lib\ref\CreateScript.ahk
-#Include, %A_ScriptDir%\lib\ref\DynaRun.ahk
-#Include, %A_ScriptDir%\lib\ref\LutBotLite.ahk
-#Include, %A_ScriptDir%\lib\ref\OrderedArray.ahk
-#Include, %A_ScriptDir%\lib\ref\OrderedAssociativeArray.ahk
-#Include, %A_ScriptDir%\lib\ref\LetUserSelectRect.ahk
-#Include, %A_ScriptDir%\lib\ref\XInput.ahk
-#Include, %A_ScriptDir%\lib\ref\Notify.ahk
-#Include, %A_ScriptDir%\lib\ref\Hotkey.ahk
-#Include, %A_ScriptDir%\lib\ref\Load_Bar.ahk
-#Include, %A_ScriptDir%\lib\ref\Ping4.ahk
-#Include, %A_ScriptDir%\lib\ref\CBMatchingGUI.ahk
-#Include, %A_ScriptDir%\lib\ref\FindText.ahk
-#Include, %A_ScriptDir%\lib\ref\ColorRange.ahk
-#Include, %A_ScriptDir%\lib\ref\DoPoePricesRequest.ahk
-#Include, %A_ScriptDir%\lib\ref\FindText.ahk
-#Include, %A_ScriptDir%\lib\ref\BigA.ahk
+; Third-party library includes
+; Packages managed by Aris (https://github.com/Descolada/Aris) live under lib\Aris\
+; All libs below have been ported to AHK v2
+
+; --- Aris-managed packages + ported ref libs ---
+; Suppress LocalSameAsGlobal for all third-party code (Aris and lib\ref).
+; Project code loaded after this point in Library.ahk will have the warning active.
+#Warn LocalSameAsGlobal, Off
+#Include %A_ScriptDir%\lib\Aris\packages.ahk
+
+; --- Ported third-party libs (lib\ref) ---
+#Include %A_ScriptDir%\lib\ref\XGraph.ahk
+#Include %A_ScriptDir%\lib\ref\RadialMenu.ahk
+#Include %A_ScriptDir%\lib\ref\Class_CtlColors.ahk
+#Include %A_ScriptDir%\lib\ref\Load_Bar.ahk
+#Include %A_ScriptDir%\lib\ref\LutBotLite.ahk
+#Include %A_ScriptDir%\lib\ref\LetUserSelectRect.ahk
+#Include %A_ScriptDir%\lib\ref\ColorRange.ahk

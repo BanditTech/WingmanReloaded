@@ -1,9 +1,9 @@
-﻿Class RefreshAffixes {
+Class RefreshAffixes {
 	Maps(){
-		Static FileList := [ {"category":"Map", "subfield":"low_tier_map"}
-			,{"category":"Map", "subfield":"mid_tier_map"}
-			,{"category":"Map", "subfield":"top_tier_map"}]
-		Download := {}
+		Static FileList := [{category:"Map", subfield:"low_tier_map"}
+			,{category:"Map", subfield:"mid_tier_map"}
+			,{category:"Map", subfield:"top_tier_map"}]
+		Download := Map()
 		This.ReturnList := []
 		For k, v in FileList {
 			Download[v.subfield] := This.Download(v.category,v.subfield)
@@ -12,7 +12,7 @@
 			Try {
 				obj := Json.Load(v)
 				; MsgBox % isObject(obj)
-			} Catch e {
+			} catch as e {
 				Util.Err(e,"Issue loading JSON for " subfield)
 			}
 			For k, vv in obj.normal {
@@ -33,7 +33,7 @@
 		; MsgBox % line
 		strLines := StrSplit(line, "<br>")
 		For k, v in strLines {
-			If (v = "" || indexOf(v,ignored) || indexOf(v,This.ReturnList))
+			If (v == "" || indexOf(v,ignored) || indexOf(v,This.ReturnList))
 				Continue
 			This.ReturnList.Push(v)
 		}
@@ -50,4 +50,3 @@
 		Return Str
 	}
 }
-

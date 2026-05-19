@@ -1,224 +1,255 @@
-﻿SaveINI(type:="General") {
-	Gui, Submit, NoHide
-	If A_GuiControl ~= "UpDown"
-	{
-		control := StrReplace(A_GuiControl, "UpDown", "")
-		IniWrite,% %control%, %A_ScriptDir%\save\Settings.ini,% type,% control
-	}
-	Else
-	IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini,% type,% A_GuiControl
+SaveINI(ctrl, type:="General") {
+	ctrlName := ctrl.Name
+	gui := ctrl.Gui
+	If ctrlName ~= "UpDown"
+		ctrlName := StrReplace(ctrlName, "UpDown", "")
+	IniWrite(gui[ctrlName].Value, A_ScriptDir "\save\Settings.ini", type, ctrlName)
 	Return
 }
 
-SaveGeneral:
-	SaveINI("General")
-Return
+SaveGeneral(GuiCtrl, *) {
+	SaveINI(GuiCtrl, "General")
+}
 
-SaveDelays:
-	SaveINI("Delays")
-Return
+SaveDelays(GuiCtrl, *) {
+	SaveINI(GuiCtrl, "Delays")
+}
 
-SaveChaos:
-	SaveINI("Chaos Recipe")
-Return
+SaveChaos(GuiCtrl, *) {
+	SaveINI(GuiCtrl, "Chaos Recipe")
+}
 
-SaveBasicCraft:
-	SaveINI("Basic Craft")
-Return
+SaveBasicCraft(GuiCtrl, *) {
+	SaveINI(GuiCtrl, "Basic Craft")
+}
 
-BasicCraftRadio:
-	Gui, Submit, NoHide
-	IniWrite, %BasicCraftChanceMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftChanceMethod
-	IniWrite, %BasicCraftColorMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftColorMethod
-	IniWrite, %BasicCraftLinkMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftLinkMethod
-	IniWrite, %BasicCraftSocketMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftSocketMethod
-Return
+BasicCraftRadio(ctrl, *) {
+	Global BasicCraftChanceMethod, BasicCraftColorMethod, BasicCraftLinkMethod, BasicCraftSocketMethod
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
+	IniWrite(BasicCraftChanceMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftChanceMethod")
+	IniWrite(BasicCraftColorMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftColorMethod")
+	IniWrite(BasicCraftLinkMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftLinkMethod")
+	IniWrite(BasicCraftSocketMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftSocketMethod")
+}
 
-SaveStashTabs:
-	SaveINI("Stash Tab")
+SaveStashTabs(GuiCtrl, *) {
+	SaveINI(GuiCtrl, "Stash Tab")
 	GreyOutAffinity()
-Return
+}
 
-SaveChaosRadio:
-	Gui, Submit, NoHide
-	IniWrite, %ChaosRecipeTypePure%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypePure
-	IniWrite, %ChaosRecipeTypeHybrid%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeHybrid
-	IniWrite, %ChaosRecipeTypeRegal%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeRegal
-	IniWrite, %ChaosRecipeStashMethodDump%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodDump
-	IniWrite, %ChaosRecipeStashMethodTab%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodTab
-	IniWrite, %ChaosRecipeStashMethodSort%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodSort
-Return
+SaveChaosRadio(ctrl, *) {
+	Global ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal
+	Global ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
+	IniWrite(ChaosRecipeTypePure, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypePure")
+	IniWrite(ChaosRecipeTypeHybrid, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypeHybrid")
+	IniWrite(ChaosRecipeTypeRegal, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypeRegal")
+	IniWrite(ChaosRecipeStashMethodDump, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeStashMethodDump")
+	IniWrite(ChaosRecipeStashMethodTab, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeStashMethodTab")
+	IniWrite(ChaosRecipeStashMethodSort, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeStashMethodSort")
+}
 
-UpdateExtra:
-	Gui, Submit, NoHide
+UpdateExtra(ctrl, *) {
+	Global BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType, LootVacuum, LootVacuumTapZ
+	Global LootVacuumTapZEnd, LootVacuumTapZSec, YesVendor, YesStash, YesSkipMaps, YesSkipMaps_Prep
+	Global YesSkipMaps_eval, YesSkipMaps_normal, YesSkipMaps_magic, YesSkipMaps_rare, YesSkipMaps_unique
+	Global YesSkipMaps_tier, YesIdentify, YesDiv, YesMapUnid, YesInfluencedUnid, YesSynthesisId
+	Global YesSortFirst, Latency, ClickLatency, ClipLatency, PopFlaskRespectCD, ShowOnStart
+	Global AutoUpdateOff, YesGuiLastPosition, YesDX12, AreaScale, LVdelay, YesOHB
+	Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation
+	Global YesEnableAutoSellConfirmation, YesEnableAutoSellConfirmationSafe, YesLootChests, YesLootDelve
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
 	; Gui, Inventory: Submit, NoHide
-	IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
-	IniWrite, %ScriptUpdateTimeInterval%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval
-	IniWrite, %ScriptUpdateTimeType%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType
-	IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
-	IniWrite, %LootVacuumTapZ%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZ
-	IniWrite, %LootVacuumTapZEnd%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZEnd
-	IniWrite, %LootVacuumTapZSec%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZSec
-	IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
-	IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
-	IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
-	IniWrite, %YesSkipMaps_Prep%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_Prep
-	IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
-	IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
-	IniWrite, %YesSkipMaps_magic%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic
-	IniWrite, %YesSkipMaps_rare%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare
-	IniWrite, %YesSkipMaps_unique%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique
-	IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
-	IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
-	IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
-	IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
-	IniWrite, %YesInfluencedUnid%, %A_ScriptDir%\save\Settings.ini, General, YesInfluencedUnid
-	IniWrite, %YesSynthesisId%, %A_ScriptDir%\save\Settings.ini, General, YesSynthesisId
-	IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
-	IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
-	IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
-	IniWrite, %ClipLatency%, %A_ScriptDir%\save\Settings.ini, General, ClipLatency
-	IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
-	IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
-	IniWrite, %AutoUpdateOff%, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
-	IniWrite, %YesGuiLastPosition%, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition
-	IniWrite, %YesDX12%, %A_ScriptDir%\save\Settings.ini, General, YesDX12
-	IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
-	IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
-	IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
+	IniWrite(BranchName, A_ScriptDir "\save\Settings.ini", "General", "BranchName")
+	IniWrite(ScriptUpdateTimeInterval, A_ScriptDir "\save\Settings.ini", "General", "ScriptUpdateTimeInterval")
+	IniWrite(ScriptUpdateTimeType, A_ScriptDir "\save\Settings.ini", "General", "ScriptUpdateTimeType")
+	IniWrite(LootVacuum, A_ScriptDir "\save\Settings.ini", "General", "LootVacuum")
+	IniWrite(LootVacuumTapZ, A_ScriptDir "\save\Settings.ini", "General", "LootVacuumTapZ")
+	IniWrite(LootVacuumTapZEnd, A_ScriptDir "\save\Settings.ini", "General", "LootVacuumTapZEnd")
+	IniWrite(LootVacuumTapZSec, A_ScriptDir "\save\Settings.ini", "General", "LootVacuumTapZSec")
+	IniWrite(YesVendor, A_ScriptDir "\save\Settings.ini", "General", "YesVendor")
+	IniWrite(YesStash, A_ScriptDir "\save\Settings.ini", "General", "YesStash")
+	IniWrite(YesSkipMaps, A_ScriptDir "\save\Settings.ini", "General", "YesSkipMaps")
+	IniWrite(YesSkipMaps_Prep, A_ScriptDir "\save\Settings.ini", "General", "YesSkipMaps_Prep")
+	IniWrite(YesSkipMaps_eval, A_ScriptDir "\save\Settings.ini", "General", "YesSkipMaps_eval")
+	IniWrite(YesSkipMaps_normal, A_ScriptDir "\save\Settings.ini", "General", "YesSkipMaps_normal")
+	IniWrite(YesSkipMaps_magic, A_ScriptDir "\save\Settings.ini", "General", "YesSkipMaps_magic")
+	IniWrite(YesSkipMaps_rare, A_ScriptDir "\save\Settings.ini", "General", "YesSkipMaps_rare")
+	IniWrite(YesSkipMaps_unique, A_ScriptDir "\save\Settings.ini", "General", "YesSkipMaps_unique")
+	IniWrite(YesSkipMaps_tier, A_ScriptDir "\save\Settings.ini", "General", "YesSkipMaps_tier")
+	IniWrite(YesIdentify, A_ScriptDir "\save\Settings.ini", "General", "YesIdentify")
+	IniWrite(YesDiv, A_ScriptDir "\save\Settings.ini", "General", "YesDiv")
+	IniWrite(YesMapUnid, A_ScriptDir "\save\Settings.ini", "General", "YesMapUnid")
+	IniWrite(YesInfluencedUnid, A_ScriptDir "\save\Settings.ini", "General", "YesInfluencedUnid")
+	IniWrite(YesSynthesisId, A_ScriptDir "\save\Settings.ini", "General", "YesSynthesisId")
+	IniWrite(YesSortFirst, A_ScriptDir "\save\Settings.ini", "General", "YesSortFirst")
+	IniWrite(Latency, A_ScriptDir "\save\Settings.ini", "General", "Latency")
+	IniWrite(ClickLatency, A_ScriptDir "\save\Settings.ini", "General", "ClickLatency")
+	IniWrite(ClipLatency, A_ScriptDir "\save\Settings.ini", "General", "ClipLatency")
+	IniWrite(PopFlaskRespectCD, A_ScriptDir "\save\Settings.ini", "General", "PopFlaskRespectCD")
+	IniWrite(ShowOnStart, A_ScriptDir "\save\Settings.ini", "General", "ShowOnStart")
+	IniWrite(AutoUpdateOff, A_ScriptDir "\save\Settings.ini", "General", "AutoUpdateOff")
+	IniWrite(YesGuiLastPosition, A_ScriptDir "\save\Settings.ini", "General", "YesGuiLastPosition")
+	IniWrite(YesDX12, A_ScriptDir "\save\Settings.ini", "General", "YesDX12")
+	IniWrite(AreaScale, A_ScriptDir "\save\Settings.ini", "General", "AreaScale")
+	IniWrite(LVdelay, A_ScriptDir "\save\Settings.ini", "General", "LVdelay")
+	IniWrite(YesOHB, A_ScriptDir "\save\Settings.ini", "OHB", "YesOHB")
 
 	;Automation Settings
-	IniWrite, %YesEnableAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation
-	IniWrite, %FirstAutomationSetting%, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting
-	IniWrite, %YesEnableNextAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation
-	IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
-	IniWrite, %YesEnableAutoSellConfirmationSafe%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmationSafe
-	IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
-	IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
-Return
+	IniWrite(YesEnableAutomation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutomation")
+	IniWrite(FirstAutomationSetting, A_ScriptDir "\save\Settings.ini", "Automation Settings", "FirstAutomationSetting")
+	IniWrite(YesEnableNextAutomation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableNextAutomation")
+	IniWrite(YesEnableAutoSellConfirmation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutoSellConfirmation")
+	IniWrite(YesEnableAutoSellConfirmationSafe, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutoSellConfirmationSafe")
+	IniWrite(YesLootChests, A_ScriptDir "\save\Settings.ini", "General", "YesLootChests")
+	IniWrite(YesLootDelve, A_ScriptDir "\save\Settings.ini", "General", "YesLootDelve")
+}
 
-UpdateStackRelease:
-	Gui, Submit, NoHide
-	IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini, StackRelease,% A_GuiControl
-Return
+UpdateStackRelease(GuiCtrl, *) {
+	Global MainGui
+	IniWrite(GuiCtrl.Value, A_ScriptDir "\save\Settings.ini", "StackRelease", GuiCtrl.Name)
+}
 
-UpdateStringEdit:
-	Gui, Submit, NoHide
-	IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini, FindText Strings,% A_GuiControl
-	If A_GuiControl = HealthBarStr
+UpdateStringEdit(GuiCtrl, *) {
+	Global MainGui, HealthBarStr, OHBStrW, debuffCurseStr
+	Global debuffCurseEleWeakStr, debuffCurseVulnStr, debuffCurseEnfeebleStr, debuffCurseTempChainStr
+	Global debuffCurseCondStr, debuffCurseFlamStr, debuffCurseFrostStr, debuffCurseWarMarkStr
+	IniWrite(GuiCtrl.Value, A_ScriptDir "\save\Settings.ini", "FindText Strings", GuiCtrl.Name)
+	If GuiCtrl.Name == "HealthBarStr"
 		OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
-	If InStr(A_GuiControl, "debuffCurse")
+	If InStr(GuiCtrl.Name, "debuffCurse")
 		debuffCurseStr := debuffCurseEleWeakStr . debuffCurseVulnStr . debuffCurseEnfeebleStr . debuffCurseTempChainStr . debuffCurseCondStr . debuffCurseFlamStr . debuffCurseFrostStr . debuffCurseWarMarkStr
-Return
+}
 
-UpdateResolutionScale:
-	Gui, Submit, NoHide
-	IniWrite, %ResolutionScale%, %A_ScriptDir%\save\Settings.ini, General, ResolutionScale
+UpdateResolutionScale(ctrl, *) {
+	Global ResolutionScale
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
+	IniWrite(ResolutionScale, A_ScriptDir "\save\Settings.ini", "General", "ResolutionScale")
 	Rescale()
-Return
+}
 
 
-UpdateDebug:
-	Gui, Submit, NoHide
-	IniWrite, %DebugMessages%, %A_ScriptDir%\save\Settings.ini, General, DebugMessages
-	IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
-	IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
-Return
-
-LoadArray:
-	LoadArray()
-return
+UpdateDebug(ctrl, *) {
+	Global DebugMessages, YesTimeMS, YesLocation
+	saved := ctrl.Gui.Submit(0)
+	For propName, val in saved.OwnProps()
+		Try %propName% := val
+	IniWrite(DebugMessages, A_ScriptDir "\save\Settings.ini", "General", "DebugMessages")
+	IniWrite(YesTimeMS, A_ScriptDir "\save\Settings.ini", "General", "YesTimeMS")
+	IniWrite(YesLocation, A_ScriptDir "\save\Settings.ini", "General", "YesLocation")
+}
 
 LoadArray(){
-	LootFilter := JSON.Load(FileOpen(A_ScriptDir "\save\LootFilter.json","r").Read())
+	Global LootFilter
+	LootFilter := FileExist(A_ScriptDir "\save\LootFilter.json")
+		? JSON.LoadFile(A_ScriptDir "\save\LootFilter.json")
+		: Map()
 	If !LootFilter
-		LootFilter:={}
+		LootFilter := Map()
 	Return
 }
 
-optionsCommand:
+optionsCommand(*) {
 	MainMenu()
-return
+}
 
-GuiEscape:
-	Gui, Cancel
+GuiEscape(GuiObj) {
+	Global CheckGamestates
+	GuiObj.Hide()
 	CheckGamestates:= False
-return
+}
 
-ItemInfoEscape:
-ItemInfoClose:
-	Gui, ItemInfo: Hide
-Return
+ItemInfoEscape(GuiObj) {
+	Global ItemInfoGui
+	ItemInfoGui.Hide()
+}
+ItemInfoClose(GuiObj) {
+	Global ItemInfoGui
+	ItemInfoGui.Hide()
+}
 
-LaunchLootFilter:
-	Run, %A_ScriptDir%\data\LootFilter.ahk ; Open the custom loot filter editor
-Return
+LaunchLootFilter(*) {
+	Run(A_ScriptDir "\data\LootFilter.ahk") ; Open the custom loot filter editor
+}
 
-LaunchHelp:
-	Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
-Return
+LaunchHelp(*) {
+	Run("https://www.autohotkey.com/docs/KeyList.htm") ; Open the AutoHotkey List of Keys
+}
 
-LaunchSite:
-	Run, https://bandittech.github.io/WingmanReloaded ; Open the Website page for the script
-Return
+LaunchSite(*) {
+	Run("https://bandittech.github.io/WingmanReloaded") ; Open the Website page for the script
+}
 
-LaunchDonate:
-	Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&item_name=Open+Source+Script+Building&currency_code=USD&source=url ; Open the donation page for the script
-Return
+LaunchDonate(*) {
+	Run("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&item_name=Open+Source+Script+Building&currency_code=USD&source=url") ; Open the donation page for the script
+}
 
-ft_Start:
-	Gui, Submit
+ft_Start(*) {
+	Global MainGui, CheckGamestates
+	MainGui.Submit()
 	CheckGamestates:= False
-	Run, FindText.ahk, %A_ScriptDir%\lib\ref\
-Return
+	FindText().Gui("Show")
+}
 
-helpCalibration:
-	MsgBox, 262144, Calibration Tips, % "Use Game Logic States to observe what panels or game states are considered true or false. Open and close Panels within the game to see their respective status change from green to red. If all status are showing green, the script status should say Wingman Active.`n`n"
+helpCalibration(*) {
+	MsgBox("Use Game Logic States to observe what panels or game states are considered true or false. Open and close Panels within the game to see their respective status change from green to red. If all status are showing green, the script status should say Wingman Active.`n`n"
 	. "If many are not responding to changes in the game, use the Wizard to calibrate them all at once. Just remember to follow the prompts closely in order to ensure proper calibration.`n`n"
 	. "Sometimes it may be easier to calibrate one sample at a time, click on any of the labels to perform an individual calibration.`n`n"
-	. "If the issue is instead with the percentages of Health, ES, and/or Mana, then you will need to Adjust Globes. Use the menu to change the Scan options which the percentages will be shown in real time on the menu."
-Return
+	. "If the issue is instead with the percentages of Health, ES, and/or Mana, then you will need to Adjust Globes. Use the menu to change the Scan options which the percentages will be shown in real time on the menu.", "Calibration Tips", 262144)
+}
 
-helpAutomationSetting:
-	MsgBox, 262144, Automation Tips, % "Use Loot Vacuum to configure picking up loot, this function uses the Item Pickup hotkey bound in game. You must enable the In-Game option to only highlight loot when pressed, then you can calibrate colors within the script.`n`n"
-	. "Sample Strings will allow you to change the image captures that have been saved for use with the script. Replace the default strings with your own, or use the ones available in the dropdown menus which match your resolution height."
-Return
+helpAutomationSetting(*) {
+	MsgBox("Use Loot Vacuum to configure picking up loot, this function uses the Item Pickup hotkey bound in game. You must enable the In-Game option to only highlight loot when pressed, then you can calibrate colors within the script.`n`n"
+	. "Sample Strings will allow you to change the image captures that have been saved for use with the script. Replace the default strings with your own, or use the ones available in the dropdown menus which match your resolution height.", "Automation Tips", 262144)
+}
 
-SelectClientLog:
-	If (A_GuiControl = "ClientLog") {
-		Gui, submit, NoHide
+SelectClientLog(GuiCtrl, *) {
+	Global MainGui, ClientLog
+	If (GuiCtrl.Name == "ClientLog") {
+		MainGui.Submit(0)
 		If FileExist(ClientLog) {
-			IniWrite, %ClientLog%, %A_ScriptDir%\save\Settings.ini, Log, ClientLog
+			IniWrite(ClientLog, A_ScriptDir "\save\Settings.ini", "Log", "ClientLog")
 			Monitor_GameLogs(1)
 		}
 	} Else {
-		Gui, submit
-		FileSelectFile, SelectClientLog, 1, 0, Select the location of your Client Log file, Client.txt
-		If SelectClientLog !=
+		MainGui.Submit()
+		SelectClientLogVar := FileSelect(1, 0, "Select the location of your Client Log file", "Client.txt")
+		If SelectClientLogVar != ""
 		{
-			ClientLog := SelectClientLog
-			GuiControl,, ClientLog, %SelectClientLog%
-			IniWrite, %SelectClientLog%, %A_ScriptDir%\save\Settings.ini, Log, ClientLog
+			ClientLog := SelectClientLogVar
+			MainGui["ClientLog"].Value := SelectClientLogVar
+			IniWrite(SelectClientLogVar, A_ScriptDir "\save\Settings.ini", "Log", "ClientLog")
 			Monitor_GameLogs(1)
 		}
 		MainMenu()
 	}
-Return
+}
 
 GreyOutAffinity() {
+  Global InventoryGui
+  If !(IsSet(InventoryGui) && InventoryGui is Gui)
+    Return
   for key, val in ["Blight","Delirium","Divination","Fragment","Ultimatum","Delve","Essence","Map","Currency","Unique","Gem","Flask"] {
-    GuiControlGet, CheckBoxState,, StashTabYes%val%
-    If (CheckBoxState == 0) { 
-      GuiControl, Disable, %val%Edit
-      GuiControl, , %val%EditText, Disable Type
+    CheckBoxState := InventoryGui["StashTabYes" val].Value
+    If (CheckBoxState == 0) {
+      InventoryGui[val "Edit"].Enabled := false
+      InventoryGui[val "EditText"].Value := "Disable Type"
     } Else If (CheckBoxState == 1) {
-      GuiControl, Enable, %val%Edit
-      GuiControl, , %val%EditText, Assign a Tab
+      InventoryGui[val "Edit"].Enabled := true
+      InventoryGui[val "EditText"].Value := "Assign a Tab"
     } Else {
       if(val !="Currency" ) {
-        GuiControl, Disable, %val%Edit
+        InventoryGui[val "Edit"].Enabled := false
       }
-      GuiControl, , %val%EditText, Enable Affinity
+      InventoryGui[val "EditText"].Value := "Enable Affinity"
     }
   }
   Return
@@ -226,10 +257,11 @@ GreyOutAffinity() {
 
 ; GuiUpdate - Update Overlay ON OFF states
 GuiUpdate() {
-  GuiControl, 2:, overlayT1,% "Quit: " (WR.func.Toggle.Quit?"ON":"OFF")
-  GuiControl, 2:, overlayT2,% "Flask: " (WR.func.Toggle.Flask?"ON":"OFF")
-  GuiControl, 2:, overlayT3,% "Move: " (WR.func.Toggle.Move?"ON":"OFF")
-  GuiControl, 2:, overlayT4,% "Util: " (WR.func.Toggle.Utility?"ON":"OFF")
+  Global OverlayGui
+  OverlayGui["overlayT1"].Value := "Quit: " (WR.func.Toggle.Quit?"ON":"OFF")
+  OverlayGui["overlayT2"].Value := "Flask: " (WR.func.Toggle.Flask?"ON":"OFF")
+  OverlayGui["overlayT3"].Value := "Move: " (WR.func.Toggle.Move?"ON":"OFF")
+  OverlayGui["overlayT4"].Value := "Util: " (WR.func.Toggle.Utility?"ON":"OFF")
   ShowHideOverlay()
   CtlColors.Change(MainMenuIDAutoFlask, (WR.func.Toggle.Flask?"52D165":"E0E0E0"), "")
   CtlColors.Change(MainMenuIDAutoQuit, (WR.func.Toggle.Quit?"52D165":"E0E0E0"), "")
@@ -239,16 +271,16 @@ GuiUpdate() {
 }
 
 ShowHideOverlay() {
-  Global overlayT1, overlayT2, overlayT3, overlayT4
-  GuiControl,2: Show%YesInGameOverlay%, overlayT1
-  GuiControl,2: Show%YesInGameOverlay%, overlayT2
-  GuiControl,2: Show%YesInGameOverlay%, overlayT3
-  GuiControl,2: Show%YesInGameOverlay%, overlayT4
+  Global OverlayGui, ChaosGui, YesInGameOverlay, YesChaosOverlay
+  OverlayGui["overlayT1"].Visible := YesInGameOverlay
+  OverlayGui["overlayT2"].Visible := YesInGameOverlay
+  OverlayGui["overlayT3"].Visible := YesInGameOverlay
+  OverlayGui["overlayT4"].Visible := YesInGameOverlay
 
   If (YesChaosOverlay) {
-    Gui Chaos: Show, NA
+    ChaosGui.Show("NA")
   } Else {
-    Gui Chaos: Show, Hide
+    ChaosGui.Show("Hide")
   }
   Return
 }
@@ -262,108 +294,110 @@ mainmenuGameLogicState(refresh:=False) {
     If OnChar
       CtlColors.Change(MainMenuIDOnChar, "52D165", "")
     Else
-      CtlColors.Change(MainMenuIDOnChar, "Red", "")
+      CtlColors.Change(MainMenuIDOnChar, "RED", "")
   }
   If ((NewOHB := (CheckOHB()?1:0)) != OldOHB) || refresh {
     OldOHB := NewOHB
     If NewOHB
       CtlColors.Change(MainMenuIDOnOHB, "52D165", "")
     Else
-      CtlColors.Change(MainMenuIDOnOHB, "Red", "")
+      CtlColors.Change(MainMenuIDOnOHB, "RED", "")
   }
   If (OnInventory != OldOnInventory) || refresh {
     OldOnInventory := OnInventory
     If (OnInventory)
-      CtlColors.Change(MainMenuIDOnInventory, "Red", "")
+      CtlColors.Change(MainMenuIDOnInventory, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnInventory, "", "Green")
+      CtlColors.Change(MainMenuIDOnInventory, "", "GREEN")
   }
   If (OnChat != OldOnChat) || refresh {
     OldOnChat := OnChat
     If OnChat
-      CtlColors.Change(MainMenuIDOnChat, "Red", "")
+      CtlColors.Change(MainMenuIDOnChat, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnChat, "", "Green")
+      CtlColors.Change(MainMenuIDOnChat, "", "GREEN")
   }
   If (OnStash != OldOnStash) || refresh {
     OldOnStash := OnStash
     If (OnStash)
-      CtlColors.Change(MainMenuIDOnStash, "Red", "")
+      CtlColors.Change(MainMenuIDOnStash, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnStash, "", "Green")
+      CtlColors.Change(MainMenuIDOnStash, "", "GREEN")
   }
   If (OnDiv != OldOnDiv) || refresh {
     OldOnDiv := OnDiv
     If (OnDiv)
-      CtlColors.Change(MainMenuIDOnDiv, "Red", "")
+      CtlColors.Change(MainMenuIDOnDiv, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnDiv, "", "Green")
+      CtlColors.Change(MainMenuIDOnDiv, "", "GREEN")
   }
   If (OnLeft != OldOnLeft) || refresh {
     OldOnLeft := OnLeft
     If (OnLeft)
-      CtlColors.Change(MainMenuIDOnLeft, "Red", "")
+      CtlColors.Change(MainMenuIDOnLeft, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnLeft, "", "Green")
+      CtlColors.Change(MainMenuIDOnLeft, "", "GREEN")
   }
   If (OnDelveChart != OldOnDelveChart) || refresh {
     OldOnDelveChart := OnDelveChart
     If (OnDelveChart)
-      CtlColors.Change(MainMenuIDOnDelveChart, "Red", "")
+      CtlColors.Change(MainMenuIDOnDelveChart, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
+      CtlColors.Change(MainMenuIDOnDelveChart, "", "GREEN")
   }
   If (OnVendor != OldOnVendor) || refresh {
     OldOnVendor := OnVendor
     If (OnVendor)
-      CtlColors.Change(MainMenuIDOnVendor, "Red", "")
+      CtlColors.Change(MainMenuIDOnVendor, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnVendor, "", "Green")
+      CtlColors.Change(MainMenuIDOnVendor, "", "GREEN")
   }
   If (OnDetonate != OldOnDetonate) || refresh {
     OldOnDetonate := OnDetonate
     If (OnDetonate)
-      CtlColors.Change(MainMenuIDOnDetonate, "Red", "")
+      CtlColors.Change(MainMenuIDOnDetonate, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
+      CtlColors.Change(MainMenuIDOnDetonate, "", "GREEN")
   }
   If (OnMenu != OldOnMenu) || refresh {
     OldOnMenu := OnMenu
     If (OnMenu)
-      CtlColors.Change(MainMenuIDOnMenu, "Red", "")
+      CtlColors.Change(MainMenuIDOnMenu, "RED", "")
     Else
-      CtlColors.Change(MainMenuIDOnMenu, "", "Green")
+      CtlColors.Change(MainMenuIDOnMenu, "", "GREEN")
   }
-  Return
-
-  CheckPixelGrid:
-    ;Check if inventory is open
-    Gui, 1: Hide
-    if (!OnInventory) {
-      TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
-    } else {
-      TT := "Grid information:" . "`n"
-      FindText.ScreenShot()
-      For C, GridX in InventoryGridX {
-        For R, GridY in InventoryGridY {
-          PointColor := FindText.GetColor(GridX,GridY)
-          if (indexOf(PointColor, varEmptyInvSlotColor)) {        
-            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
-          } else {
-            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
-          }
-        }
-      }
-    }
-    MsgBox %TT%  
-    MainMenu()
   Return
 }
 
+CheckPixelGrid(*) {
+  Global MainGui, OnInventory, InventoryGridX, InventoryGridY, varEmptyInvSlotColor
+  ;Check if inventory is open
+  MainGui.Hide()
+  if (!OnInventory) {
+    TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+  } else {
+    TT := "Grid information:" . "`n"
+    FindText().ScreenShot()
+    For C, GridX in InventoryGridX {
+      For R, GridY in InventoryGridY {
+        PointColor := FindText().GetColor(GridX,GridY)
+        if (indexOf(PointColor, varEmptyInvSlotColor)) {
+          TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+        } else {
+          TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
+        }
+      }
+    }
+  }
+  MsgBox(TT)
+  MainMenu()
+}
 
-helpAutomation:
-  Gui, submit
-  MsgBox,% "Automation can start from two ways:`n`n"
+
+helpAutomation(*) {
+  Global MainGui
+  MainGui.Submit()
+  MsgBox("Automation can start from two ways:`n`n"
     . "* Search for the Stash, and begin sorting items`n`n"
     . "* Search for the Vendor, and begin selling items`n`n"
     . "If you Enable Second Automation, both routines will occur`n"
@@ -378,70 +412,80 @@ helpAutomation:
     . "5) Search for Vendor > Auto Vendor Routine > Wait at Vendor UI 30s >`n"
     . "Search Stash > Auto Stash Routine > END`n`n"
     . "6) Search for Vendor > Auto Vendor Routine > Auto Confirm Sell >`n"
-    . "Search for Stash > Auto Stash Routine > END"
+    . "Search for Stash > Auto Stash Routine > END")
   MainMenu()
-Return
+}
 
-WarningAutomation:
-  Gui, submit, nohide
+WarningAutomation(*) {
+  Global MainGui, YesEnableAutoSellConfirmation, InventoryGui
+  MainGui.Submit(0)
   If YesEnableAutoSellConfirmation {
-    Gui, submit
-    MsgBox,1,% "WARNING!!!", % "Please Be Advised`n`n"
+    MainGui.Submit()
+    result := MsgBox("Please Be Advised`n`n"
     . "Enabling this option will auto confirm vendoring items, only use this option if you have a well configured CLF to catch good items`n`n"
     . "We will not be responsible for anything lost using this option.`n`n"
     . "If you are unsure about this option, We strongly recomend doing more research before enabling.`n`n"
     . "Come to WingmanReloaded Discord to talk with us or look for more information.`n`n"
     . "You have been warned!!! This option can be dangerous if done incorrectly!!!`n"
-    . "Press OK to accept"
-    IfMsgBox, OK 
+    . "Press OK to accept", "WARNING!!!", 1)
+    If (result == "OK")
     {
-      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+      IniWrite(YesEnableAutoSellConfirmation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutoSellConfirmation")
       MainMenu()
-    } Else IfMsgBox, Cancel 
+    } Else If result == "Cancel"
     {
       YesEnableAutoSellConfirmation := 0
       MainMenu()
-      GuiControl,Inventory:, YesEnableAutoSellConfirmation, 0
-      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+      InventoryGui["YesEnableAutoSellConfirmation"].Value := 0
+      IniWrite(YesEnableAutoSellConfirmation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutoSellConfirmation")
     } Else {
       YesEnableAutoSellConfirmation := 0
       MainMenu()
-      GuiControl,Inventory:, YesEnableAutoSellConfirmation, 0
-      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+      InventoryGui["YesEnableAutoSellConfirmation"].Value := 0
+      IniWrite(YesEnableAutoSellConfirmation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutoSellConfirmation")
     }
-  } Else 
-    IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
-Return
+  } Else
+    IniWrite(YesEnableAutoSellConfirmation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutoSellConfirmation")
+}
 
 MouseTip(x:="", y:="", w:=21, h:=21)
 {
   if (x="") {
-    VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
+    pt := Buffer(16, 0), DllCall("GetCursorPos","ptr",pt)
     x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
   }
   If IsObject(x) {
-    w := Abs(x.X2-x.X1)
-    h := Abs(x.Y2-x.Y1)
-    y := (x.Y1<x.Y2?x.Y1:x.Y2)
-    x := (x.X1<x.X2?x.X1:x.X2)
+    ; Callers pass either a Map (e.g. Globe[AreaType]) or a plain Object
+    ; (e.g. UtilityIconAreas[slot] from LetUserSelectRect). Read via bracket
+    ; for Map, dot for Object.
+    If (x is Map) {
+      X1 := x["X1"], Y1 := x["Y1"], X2 := x["X2"], Y2 := x["Y2"]
+    } Else {
+      X1 := x.X1, Y1 := x.Y1, X2 := x.X2, Y2 := x.Y2
+    }
+    w := Abs(X2-X1)
+    h := Abs(Y2-Y1)
+    y := (Y1<Y2?Y1:Y2)
+    x := (X1<X2?X1:X2)
   }
   ; x:=Round(x-10), y:=Round(y-10)
   ;-------------------------
-  Gui, _MouseTip_: +AlwaysOnTop -Caption +ToolWindow +Hwndmyid +E0x08000000
-  Gui, _MouseTip_: Show, Hide w%w% h%h%
+  MouseTipGui := Gui("+AlwaysOnTop -Caption +ToolWindow +E0x08000000")
+  MouseTipGui.Show("Hide w" w " h" h)
+  myid := MouseTipGui.Hwnd
   ;-------------------------
   dhw:=A_DetectHiddenWindows
-  DetectHiddenWindows, On
+  DetectHiddenWindows(true)
   d:=1, i:=w-d, j:=h-d
-  s=0-0 %w%-0 %w%-%h% 0-%h% 0-0
-  s=%s%  %d%-%d% %i%-%d% %i%-%j% %d%-%j% %d%-%d%
-  WinSet, Region, %s%, ahk_id %myid%
-  DetectHiddenWindows, %dhw%
+  s := "0-0 " w "-0 " w "-" h " 0-" h " 0-0"
+  s := s "  " d "-" d " " i "-" d " " i "-" j " " d "-" j " " d "-" d
+  WinSetRegion(s, "ahk_id " myid)
+  DetectHiddenWindows(dhw)
   ;-------------------------
-  Gui, _MouseTip_: Show, NA x%x% y%y%
-  Loop, 4 {
-    Gui, _MouseTip_: Color, % A_Index & 1 ? "Red" : "Blue"
-    Sleep, 500
+  MouseTipGui.Show("NA x" x " y" y)
+  Loop 4 {
+    MouseTipGui.BackColor := A_Index & 1 ? "Red" : "Blue"
+    Sleep(500)
   }
-  Gui, _MouseTip_: Destroy
+  MouseTipGui.Destroy()
 }

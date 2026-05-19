@@ -1,8 +1,9 @@
-﻿; Efficient HTTP requests for POE resources
+; Efficient HTTP requests for POE resources
 Class PoERequest {
   Stash(TabDigit) {
+    global PoECookie, selectedLeague, AccountNameSTR
     Static Url := "https://www.pathofexile.com/character-window/get-stash-items"
-    Static Headers := { "connection":"keep-alive", "cache-control":"max-age=0"}
+    Static Headers := Map("connection","keep-alive","cache-control","max-age=0")
     Headers["cookie"] := PoECookie
     postdata := {}
     postdata.league := UriEncode(selectedLeague)
@@ -14,8 +15,9 @@ Class PoERequest {
     Return This.HandleResponse(response)
   }
   Account() {
+    global PoECookie
     Static Url := "https://www.pathofexile.com/character-window/get-account-name"
-    Static Headers := { "cache-control":"max-age=0", "accept-encoding":"gzip, deflate, br" }
+    Static Headers := Map("cache-control","max-age=0","accept-encoding","gzip, deflate, br")
     Headers["cookie"] := PoECookie
     response := Util.HttpGet(Url,Headers)
     ; Log("Account Response ","Request for account information returned:",response)
@@ -28,16 +30,16 @@ Class PoERequest {
     Return This.HandleResponse(response)
   }
   HandleResponse(response){
-    ; response := RegexReplace(response,"[]","")
-    response := RegexReplace(response,"^[^\]\[\{\}""]*","")
-    response := RegexReplace(response,"[^\]\[\{\}""]*$","")
+    ; response := RegexReplace(response,"[]","")
+    response := RegexReplace(response,"^[^\]\[\{\}`"]*","")
+    response := RegexReplace(response,"[^\]\[\{\}`"]*$","")
     Try {
       obj := JSON.Load(response)
-      If obj.error {
+      If (obj is Map && obj.Has("error") && obj["error"]) {
         Log("POERequest Error ", "API endpoint returned an error code",obj)
         Return False
       }
-    } Catch e {
+    } catch as e {
       Log("POERequest Error ","Invalid JSON error" . "`n" response)
       Return False
     }

@@ -1,18 +1,21 @@
-﻿; horrible looking UI to print an object, needs work
-PromptForObject(){
-  Global
-  Gui, ArrayPrint: New
-  Gui, ArrayPrint: Add, Edit, xm+20 ym+20 w200 h23 vSubmitObjectName
-  Gui, ArrayPrint: Add, Button, wp hp gPrintObj, Submit
-  Gui, ArrayPrint: Show
+; horrible looking UI to print an object, needs work
+PromptForObject(*){
+  ArrayPrintGui := Gui()
+  ArrayPrintGui.Add("Edit", "xm+20 ym+20 w200 h23 vSubmitObjectName")
+  btn := ArrayPrintGui.Add("Button", "wp hp", "Submit")
+  btn.OnEvent("Click", PrintObj)
+  ArrayPrintGui.Show()
   Return
 
-  PrintObj:
-    Gui, Submit, NoHide
-    Gui, ArrayPrint: Destroy
-    If IsObject(SubmitObjectName) 
-      Array_Gui(%SubmitObjectName%)
+  PrintObj(ctrl, *) {
+    name := ArrayPrintGui["SubmitObjectName"].Value
+    ArrayPrintGui.Destroy()
+    ; Build a map of inspectable global objects by name
+    Global WR, Item, LootFilter, Globe, RecipeMap
+    objLookup := Map("WR", WR, "Item", Item, "LootFilter", LootFilter, "Globe", Globe, "RecipeMap", RecipeMap)
+    If objLookup.Has(name)
+      MsgBoxVals(objLookup[name])
     Else
-    MsgBox % %SubmitObjectName%
-  Return
+      MsgBox(name)
+  }
 }
