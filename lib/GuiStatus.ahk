@@ -100,26 +100,26 @@ ScanGlobe(SS:=0)
 {
   Global Globe, Player, GlobeActive
   Static OldLife := 111, OldES := 111, OldMana := 111
-  If (Life := FindText(&FT_X, &FT_Y, Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,1))
-    Player.Percent.Life := Round(((Globe.Life.Y2 - Life[1].2) / Globe.Life.Height) * 100)
+  If (Life := FindText(&FT_X, &FT_Y, Globe["Life"]["X1"], Globe["Life"]["Y1"], Globe["Life"]["X2"], Globe["Life"]["Y2"], 0,0,Globe["Life"]["Color"]["Str"],SS,1))
+    Player.Percent.Life := Round(((Globe["Life"]["Y2"] - Life[1].2) / Globe["Life"]["Height"]) * 100)
   Else
     Player.Percent.Life := -1
   If (WR.perChar.Setting.typeEldritch)
   {
-    If (EB := FindText(&FT_X, &FT_Y, Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,1))
-      Player.Percent.ES := Round(((Globe.EB.Y2 - EB[1].2) / Globe.EB.Height) * 100)
+    If (EB := FindText(&FT_X, &FT_Y, Globe["EB"]["X1"], Globe["EB"]["Y1"], Globe["EB"]["X2"], Globe["EB"]["Y2"], 0,0,Globe["EB"]["Color"]["Str"],SS,1))
+      Player.Percent.ES := Round(((Globe["EB"]["Y2"] - EB[1].2) / Globe["EB"]["Height"]) * 100)
     Else
       Player.Percent.ES := -1
   }
   Else
   {
-    If (ES := FindText(&FT_X, &FT_Y, Globe.ES.X1, Globe.ES.Y1, Globe.ES.X2, Globe.ES.Y2, 0,0,Globe.ES.Color.Str,SS,0))
-      Player.Percent.ES := Round(((Globe.ES.Y2 - ES[1].2) / Globe.ES.Height) * 100)
+    If (ES := FindText(&FT_X, &FT_Y, Globe["ES"]["X1"], Globe["ES"]["Y1"], Globe["ES"]["X2"], Globe["ES"]["Y2"], 0,0,Globe["ES"]["Color"]["Str"],SS,0))
+      Player.Percent.ES := Round(((Globe["ES"]["Y2"] - ES[1].2) / Globe["ES"]["Height"]) * 100)
     Else
       Player.Percent.ES := -1
   }
-  If (Mana := FindText(&FT_X, &FT_Y, Globe.Mana.X1, Globe.Mana.Y1, Globe.Mana.X2, Globe.Mana.Y2, 0,0,Globe.Mana.Color.Str,SS,1))
-    Player.Percent.Mana := Round(((Globe.Mana.Y2 - Mana[1].2) / Globe.Mana.Height) * 100)
+  If (Mana := FindText(&FT_X, &FT_Y, Globe["Mana"]["X1"], Globe["Mana"]["Y1"], Globe["Mana"]["X2"], Globe["Mana"]["Y2"], 0,0,Globe["Mana"]["Color"]["Str"],SS,1))
+    Player.Percent.Mana := Round(((Globe["Mana"]["Y2"] - Mana[1].2) / Globe["Mana"]["Height"]) * 100)
   Else
     Player.Percent.Mana := -1
   If (Player.Percent.Life != OldLife) ||  (Player.Percent.ES != OldES) || (Player.Percent.Mana != OldMana)

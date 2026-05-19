@@ -17,7 +17,7 @@ Rescale(){
     {
       WR_Menu("JSON","Load","Globe")
       GlobeImported := True
-      Base.Globe := adash.cloneDeep(Globe)
+      Base.Globe := cloneDeepM(Globe)
     }
     Else If (VersionNumber == "")
       GlobeImported := True
@@ -44,35 +44,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(1920/106)) 
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(1920/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(1920/106)) 
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(1920/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(1920/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(1920/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(1920/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(1920/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(1920/1720)) 
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(1920/1800)) 
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(1920/1720)) 
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(1920/1800)) 
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(1920/1760)) 
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(1920/1830)) 
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(1920/1760)) 
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(1920/1830)) 
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := adash.cloneDeep(Globe)
+        Base.Globe := cloneDeepM(Globe)
       }
       ; Stash grid area
       ; ---Needs to be done with all aspect ratio---
@@ -272,35 +272,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(1440/106)) ; left side does not require repositioning
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(1440/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(1440/106)) ; left side does not require repositioning
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(1440/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(1440/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(1440/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(1440/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(1440/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(1440/1240)) ; Width - 200
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(1440/1320)) ; Width - 120
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(1440/1240)) ; Width - 200
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(1440/1320)) ; Width - 120
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(1440/1280)) ; Width - 160
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(1440/1350)) ; Width - 90
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(1440/1280)) ; Width - 160
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(1440/1350)) ; Width - 90
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := adash.cloneDeep(Globe)
+        Base.Globe := cloneDeepM(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -477,35 +477,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(2560/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(2560/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(2560/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(2560/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(2560/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(2560/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(2560/2360)) ; Width - 200
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(2560/2440)) ; Width - 120
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(2560/2360)) ; Width - 200
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(2560/2440)) ; Width - 120
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(2560/2400)) ; Width - 160
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(2560/2470)) ; Width - 90
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(2560/2400)) ; Width - 160
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(2560/2470)) ; Width - 90
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := adash.cloneDeep(Globe)
+        Base.Globe := cloneDeepM(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -680,35 +680,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(2560/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(2560/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(2560/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(2560/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(2560/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(2560/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(2560/2360)) ; Width - 200
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(2560/2440)) ; Width - 120
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(2560/2360)) ; Width - 200
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(2560/2440)) ; Width - 120
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(2560/2400)) ; Width - 160
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(2560/2470)) ; Width - 90
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(2560/2400)) ; Width - 160
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(2560/2470)) ; Width - 90
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := adash.cloneDeep(Globe)
+        Base.Globe := cloneDeepM(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -887,35 +887,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(3840/106)) ; left side does not require repositioning
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(3840/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(3840/106)) ; left side does not require repositioning
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(3840/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(3840/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(3840/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(3840/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(3840/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(3840/3640)) ; Width - 200
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(3840/3720)) ; Width - 120
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(3840/3640)) ; Width - 200
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(3840/3720)) ; Width - 120
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(3840/3680)) ; Width - 160
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(3840/3750)) ; Width - 90
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(3840/3680)) ; Width - 160
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(3840/3750)) ; Width - 90
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := adash.cloneDeep(Globe)
+        Base.Globe := cloneDeepM(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -1089,39 +1089,39 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(1680/96))
-        Globe.Life.Y1 := GameY + Round(GameH/(1050/854))
-        Globe.Life.X2 := GameX + Round(GameW/(1680/135))
-        Globe.Life.Y2 := GameY + Round(GameH/(1050/1043))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(1680/96))
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1050/854))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(1680/135))
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1050/1043))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
 
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(1680/116))
-        Globe.ES.Y1 := GameY + Round(GameH/(1050/847))
-        Globe.ES.X2 := GameX + Round(GameW/(1680/212))
-        Globe.ES.Y2 := GameY + Round(GameH/(1050/1049))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(1680/116))
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1050/847))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(1680/212))
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1050/1049))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
 
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(1680/1720))
-        Globe.EB.Y1 := GameY + Round(GameH/(1050/886))
-        Globe.EB.X2 := GameX + Round(GameW/(1680/1800))
-        Globe.EB.Y2 := GameY + Round(GameH/(1050/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(1680/1720))
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1050/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(1680/1800))
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1050/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
 
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(1680/1541))
-        Globe.Mana.Y1 := GameY + Round(GameH/(1050/848))
-        Globe.Mana.X2 := GameX + Round(GameW/(1680/1594))
-        Globe.Mana.Y2 := GameY + Round(GameH/(1050/1049))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(1680/1541))
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1050/848))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(1680/1594))
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1050/1049))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
 
         ; Set the base values for restoring default
-        Base.Globe := adash.cloneDeep(Globe)
+        Base.Globe := cloneDeepM(Globe)
       }
 
       ; Stash grid area
