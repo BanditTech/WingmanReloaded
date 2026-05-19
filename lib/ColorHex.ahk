@@ -66,6 +66,23 @@ ToHex(Color){
   Else
     Return Format("0x{1:02X}",Color)
 }
+; HighlightColor - Approximates PoE's mouseover-highlight of a loot label
+; background color. Empirically fit from sampled pairs:
+;   0xEE581C -> 0xEE844B    0xE8960D -> 0xEEC140    0xD2B286 -> 0xECDDB2
+; Each channel gets a fixed boost, but the boost is truncated to whatever
+; is left to reach a cap of 238 (=0xEE). Already-saturated channels (e.g.
+; R in pure white) get zero lift, so white stays white.
+HighlightColor(color){
+  Static BOOST := 46, CAP := 238
+  c := Integer(color)
+  r := (c >> 16) & 0xFF
+  g := (c >> 8) & 0xFF
+  b := c & 0xFF
+  r += Min(BOOST, Max(0, CAP - r))
+  g += Min(BOOST, Max(0, CAP - g))
+  b += Min(BOOST, Max(0, CAP - b))
+  Return Format("0x{1:06X}", (r << 16) | (g << 8) | b)
+}
 ; Converts a hex BGR color into RGB format or vice versa
 hexBGRToRGB(color){
     b := Format("{1:02X}",(color >> 16) & 0xFF)
