@@ -5,14 +5,10 @@
 
 ; Main function of the LutBot logout method
 logout(executable){
-	; global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
-
 	; Setup for LutBot logout method
-	; Static full_command_line := DllCall("GetCommandLine", "str")
 	Static GetTable := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "Ptr"), "AStr", "GetExtendedTcpTable", "Ptr")
 	Static SetEntry := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "Ptr"), "AStr", "SetTcpEntry", "Ptr")
 	Static EnumProcesses := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr"), "AStr", "EnumProcesses", "Ptr")
-	; Static preloadPsapi := DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr")
 	Static OpenProcessToken := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "OpenProcessToken", "Ptr")
 	Static LookupPrivilegeValue := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "LookupPrivilegeValue", "Ptr")
 	Static AdjustTokenPrivileges := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "AdjustTokenPrivileges", "Ptr")
@@ -22,7 +18,8 @@ logout(executable){
 
 	poePID := []
 	s := 4096
-	h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", ProcessExist(), "Ptr")
+	selfPID := DllCall("GetCurrentProcessId", "UInt")
+	h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", selfPID, "Ptr")
 
 	t := 0
 	DllCall(OpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", &t)
@@ -52,11 +49,14 @@ logout(executable){
 				continue
 			n := Buffer(s, 0)
 			e := DllCall("Psapi\GetModuleBaseName", "Ptr", h, "Ptr", 0, "Ptr", n, "UInt", s // 2)
-			if !e
+			nStr := ""
+			if !e {
 				if e := DllCall("Psapi\GetProcessImageFileName", "Ptr", h, "Ptr", n, "UInt", s // 2)
-					SplitPath(StrGet(n), &nName)
+					SplitPath(StrGet(n), &nStr)
+			} else {
+				nStr := StrGet(n)
+			}
 			DllCall("CloseHandle", "Ptr", h)
-			nStr := e ? (n ? StrGet(n) : "") : ""
 			if (nStr && e)
 			if (nStr == executable) {
 				poePID.Push(id)
@@ -73,7 +73,7 @@ logout(executable){
 
 		dwSize := Buffer(4, 0)
 		result := DllCall(GetTable, "UInt", 0, "UInt", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
-		TcpTable := Buffer(NumGet(dwSize, "UInt"), 0)
+		TcpTable := Buffer(NumGet(dwSize, 0, "UInt"), 0)
 
 		result := DllCall(GetTable, "Ptr", TcpTable, "Ptr", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
 
