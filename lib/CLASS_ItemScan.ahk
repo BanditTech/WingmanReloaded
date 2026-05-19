@@ -983,7 +983,13 @@ class ItemScan
 	{
 		If !(This.Prop.ItemClass && WR.ActualTier.HasOwnProp(This.Prop.ItemClass))
 			Return
-		for a , b in WR.ActualTier.%This.Prop.ItemClass%
+		; WR.ActualTier.<ItemClass> can still be the empty plain-Object pre-init
+		; (e.g. ActualTierCreator hasn't run for this class, or save file
+		; missing). Iterating a non-Array would throw 'Value not enumerable'.
+		tiers := WR.ActualTier.%This.Prop.ItemClass%
+		If !(tiers is Array)
+			Return
+		for a , b in tiers
 		{
 			ILvLList := b["ILvL"]
 			AffixList := b["AffixLine"]

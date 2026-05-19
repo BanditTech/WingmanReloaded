@@ -1270,10 +1270,16 @@ Settings(name:="perChar",Action:="Load"){
 			; replacing them. obj[k] is a cJson Map; direct assignment would
 			; clobber the plain-Object slot and break later dot-access like
 			; WR.Flask.%slot%.CD ('Map has no property named CD').
+			;
+			; Exception: when the JSON value is an Array (e.g. WR.ActualTier
+			; per-class arrays of tier records, or WR.CustomMapMods.MapMods),
+			; replace wholesale. The pre-init for those is an empty plain
+			; Object with no fields to merge, so iterating .OwnProps() would
+			; no-op and the loaded data would be lost.
 			For k, v in WR.%name%.OwnProps() {
 				If !obj.Has(k)
 					Continue
-				If (IsObject(v) && IsObject(obj[k]))
+				If (IsObject(v) && IsObject(obj[k]) && !(obj[k] is Array))
 					For l, w in v.OwnProps()
 						If (obj[k].Has(l))
 							WR.%name%.%k%.%l% := obj[k][l]
