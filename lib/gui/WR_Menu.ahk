@@ -1292,9 +1292,14 @@ WR_Menu(Function:="",Var*){
       CurPos := 1
       newhex := ""
       editVal := GlobeGui["WR_Edit_Color_" AreaType].Text
+      ; Pre-init so the later .new read can't throw on plain Object.
+      Split.new := ""
       Loop 3
       {
-        RegExMatch(editVal, "(x[0-9A-Fa-f]{6})", &m, CurPos)
+        ; v2: RegExMatch sets &m to "" when there's no match; m.Pos(0)
+        ; would throw on a String. Bail out cleanly instead.
+        If !RegExMatch(editVal, "(x[0-9A-Fa-f]{6})", &m, CurPos)
+          Break
         CurPos := m.Pos(0) + m.Len(0) - 1
         If (m[1] != Split.hex && m[1] != "")
         {
