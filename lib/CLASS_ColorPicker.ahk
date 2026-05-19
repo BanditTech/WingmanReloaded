@@ -23,20 +23,17 @@ class ColorPicker {
     Edit_Trigger := This.UpdateColor.Bind(This)
 
     This.GUI_NAME.Add("Edit", "x" This.X - 9 " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Red_Edit_Hex", Format("{1:02X}",This.Start_Red))
-    This.Slider_Red := Progress_Slider(This.GUI_NAME,This.ID "_Red",This.X ,This.Y,This.W_Bar,This.H,0,255,This.Start_Red,"550000","BB0000",2,This.ID "_Red_Edit",0,1)
+    This.Slider_Red := Progress_Slider(This.GUI_NAME,This.ID "_Red",This.X ,This.Y,This.W_Bar,This.H,0,255,This.Start_Red,"550000","BB0000",2,This.ID "_Red_Edit",0,1,1,"",Edit_Trigger)
     RedEditCtrl := This.GUI_NAME.Add("Edit", "x" This.X - 10 " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Red_Edit", This.Start_Red)
-    RedEditCtrl.OnEvent("Change", Edit_Trigger)
 
     This.GUI_NAME.Add("Edit", "x" This.X - 9 + This.Spacing " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Green_Edit_Hex", Format("{1:02X}",This.Start_Green))
-    This.Slider_Green := Progress_Slider(This.GUI_NAME,This.ID "_Green",This.X + This.Spacing,This.Y,This.W_Bar,This.H,0,255,This.Start_Green,"005500","00BB00",2,This.ID "_Green_Edit",0,1)
+    This.Slider_Green := Progress_Slider(This.GUI_NAME,This.ID "_Green",This.X + This.Spacing,This.Y,This.W_Bar,This.H,0,255,This.Start_Green,"005500","00BB00",2,This.ID "_Green_Edit",0,1,1,"",Edit_Trigger)
     GreenEditCtrl := This.GUI_NAME.Add("Edit", "x" This.X - 10 + This.Spacing " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Green_Edit", This.Start_Green)
-    GreenEditCtrl.OnEvent("Change", Edit_Trigger)
 
 
     This.GUI_NAME.Add("Edit", "x" This.X - 9 + This.Spacing * 2 " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Blue_Edit_Hex", Format("{1:02X}",This.Start_Blue))
-    This.Slider_Blue := Progress_Slider(This.GUI_NAME,This.ID "_Blue",This.X + This.Spacing*2,This.Y,This.W_Bar,This.H,0,255,This.Start_Blue,"000055","0000BB",2,This.ID "_Blue_Edit",0,1)
+    This.Slider_Blue := Progress_Slider(This.GUI_NAME,This.ID "_Blue",This.X + This.Spacing*2,This.Y,This.W_Bar,This.H,0,255,This.Start_Blue,"000055","0000BB",2,This.ID "_Blue_Edit",0,1,1,"",Edit_Trigger)
     BlueEditCtrl := This.GUI_NAME.Add("Edit", "x" This.X - 10 + This.Spacing * 2 " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Blue_Edit", This.Start_Blue)
-    BlueEditCtrl.OnEvent("Change", Edit_Trigger)
 
 
     This.GUI_NAME.SetFont("s15 w600")
@@ -61,7 +58,12 @@ class ColorPicker {
   }
   UpdateColor(*){
     hex := Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
-    This.GUI_NAME[This.ID "_Group_Color"].Opt("+c" hex)
+    swatch := This.GUI_NAME[This.ID "_Group_Color"]
+    swatch.Opt("+c" hex)
+    ; .Opt("+c") changes the bar color but doesn't trigger a redraw when
+    ; the Value is unchanged. Bounce 99 -> 100 to force a repaint.
+    swatch.Value := 99
+    swatch.Value := 100
     This.GUI_NAME[This.ID "_Group_Color_Hex"].Value := "0x" hex
   }
   SetColor(newColor){
