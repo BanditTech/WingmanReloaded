@@ -76,7 +76,9 @@ logout(executable){
 		}
 
 		dwSize := Buffer(4, 0)
-		result := DllCall(GetTable, "UInt", 0, "UInt", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
+		; Pointer args must be "Ptr" on x64 — "UInt" truncates Buffer addresses
+		; above 4GB so the size probe silently fails and dwSize stays 0.
+		result := DllCall(GetTable, "Ptr", 0, "Ptr", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
 		TcpTable := Buffer(NumGet(dwSize, 0, "UInt"), 0)
 
 		result := DllCall(GetTable, "Ptr", TcpTable, "Ptr", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
