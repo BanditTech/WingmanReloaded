@@ -4,7 +4,7 @@ LootScan(Reset:=0){
 		Static LV_LastClick := 0
 		Global LootVacuumActive, ComboHex, ComboHexX, ComboHexY
 		Global SetKeyDelayValue1, SetKeyDelayValue2, SetMouseDelayValue, SetDefaultMouseSpeedValue
-		Global LootColors, LVdelay, LootVacuum
+		Global LootColors, LVdelay, LootVacuum, LootVacuumVary
 		Global OnMines, YesLootDelve, YesLootChests, DelveStr, ChestStr
 		AreaScale := 15
 		MaxArea := 600
@@ -13,13 +13,14 @@ LootScan(Reset:=0){
 		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
 		If (!ComboHex || Reset)
 		{
-			; vary=1 (FindText accuracy 0.99) allows ~2 units of single-channel
-			; noise from PoE's gamma / AA / blending. Larger vary lets dark
-			; filter colors snap onto random world/UI pixels, producing false
-			; positives. Manually-resampled exact-pixel values stay inside this.
-			ComboHex := Hex2FindText(LootColors,1,0,"",30,8)
-			ComboHexX := Hex2FindText(LootColors,1,0,"",30,1)
-			ComboHexY := Hex2FindText(LootColors,1,0,"",1,30)
+			; vary controls FindText accuracy: 0 = exact pixel match (best for
+			; manually resampled values); 3 = recommended default for filter
+			; imports (covers PoE's render dithering); higher values invite
+			; false positives against world / UI pixels. Adjusted via the Debug
+			; section of the Loot Vacuum settings GUI; default 3.
+			ComboHex := Hex2FindText(LootColors,LootVacuumVary,0,"",30,8)
+			ComboHexX := Hex2FindText(LootColors,LootVacuumVary,0,"",30,1)
+			ComboHexY := Hex2FindText(LootColors,LootVacuumVary,0,"",1,30)
 			If Reset
 				Return
 		}
