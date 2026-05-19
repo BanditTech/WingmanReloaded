@@ -42,9 +42,11 @@ LetUserSelectRect(PixelToo:=0)
 	lusr_ret := (*) => 0
 
 	PauseTooltips := 1
+	hidMain := False
 	If (GamePID)
 	{
 		MainGui.Hide()
+		hidMain := True
 		WinActivate(GameStr)
 	}
 	If PixelToo
@@ -77,6 +79,8 @@ LetUserSelectRect(PixelToo:=0)
 			A_Clipboard := col " @ " xorigin "," yorigin
 			Notify.Show(A_Clipboard,"Copied to the clipboard",5)
 			DrawZoom("Toggle")
+			If hidMain
+				MainGui.Show()
 			Return False
 		}
 	} Until GetKeyState("LButton", "P")
@@ -97,7 +101,8 @@ LetUserSelectRect(PixelToo:=0)
 	PauseTooltips := 0
 	Ding(1,-11,"")
 	DrawZoom("Toggle")
-	MainGui.Show()
+	If hidMain
+		MainGui.Show()
 	return { X1:X1, Y1:Y1, X2:X2, Y2:Y2 }
 }
 
@@ -105,9 +110,11 @@ LetUserSelectPixel(){
 	HotIf()
 	; Create the "selection rectangle" GUIs (one for each edge).
 	PauseTooltips := 1
+	hidMain := False
 	If (GamePID)
 	{
 		MainGui.Hide()
+		hidMain := True
 		WinActivate(GameStr)
 	}
 	Ding(0,-11,"Click or Press CTRL to select a location")
@@ -134,6 +141,7 @@ LetUserSelectPixel(){
 	PauseTooltips := 0
 	Ding(1,-11,"")
 	DrawZoom("Toggle")
-	MainGui.Show()
+	If hidMain
+		MainGui.Show()
 	return { X:xorigin, Y:yorigin, Color:col }
 }
