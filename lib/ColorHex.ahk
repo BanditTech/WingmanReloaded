@@ -68,12 +68,12 @@ ToHex(Color){
 }
 ; HighlightColor - Approximates PoE's mouseover-highlight of a loot label
 ; background color. Empirically fit from sampled pairs:
-;   0xEE581C -> 0xEE844B    0xE8960D -> 0xEEC140    0xD2B286 -> 0xECDDB2
-; Each channel gets a fixed boost, but the boost is truncated to whatever
-; is left to reach a cap of 238 (=0xEE). Already-saturated channels (e.g.
-; R in pure white) get zero lift, so white stays white.
+;   0xEF581C -> 0xFE844B    0xF8960D -> 0xFEC140    0xD2B286 -> 0xFCDDB2
+; Each channel gets a fixed boost (+44), truncated to whatever is left
+; to reach a cap of 254 (=0xFE). Already-saturated channels (e.g. white,
+; 255) get zero lift, so white stays white.
 HighlightColor(color){
-  Static BOOST := 46, CAP := 238
+  Static BOOST := 44, CAP := 254
   c := Integer(color)
   r := (c >> 16) & 0xFF
   g := (c >> 8) & 0xFF
