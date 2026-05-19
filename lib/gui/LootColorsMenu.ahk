@@ -43,6 +43,8 @@ LootColorsMenu(*){
 	LG_Add.OnEvent("Click", AdjustLootGroup)
 	LG_Rem := LootColorsGui.Add("Button", "vLG_Rem yp x+5 h22 wp", "Rem Color Set")
 	LG_Rem.OnEvent("Click", AdjustLootGroup)
+	importBtn := LootColorsGui.Add("Button", "yp x+5 h22 wp", "Import Filter")
+	importBtn.OnEvent("Click", ImportLootColorsFromFilter)
 	colorIdx := 0
 	For k, color in LootColors
 	{
@@ -143,6 +145,66 @@ LootColorsMenu(*){
 		LootScan(1)
 		MsgBox("LootColors saved with the following hex values:"
 			. "`n" . LCstr)
+	}
+
+	; Pull SetBackgroundColor values out of a PoE .filter file and rebuild
+	; LootColors from them. Only Show rules contribute (Hide / Disable rules
+	; don't render on screen, so their colors are useless to the vacuum).
+	; Each unique RGB becomes a pair where Mouseover = Background; user is
+	; expected to refine Mouseover per group with the in-game Resample button.
+	ImportLootColorsFromFilter(*) {
+		Global LootColors, LootColorsGui
+		initDir := A_MyDocuments "\My Games\Path of Exile"
+		If !DirExist(initDir)
+			initDir := ""
+		filterPath := FileSelect(1, initDir ? initDir "\" : "", "Select Path of Exile loot filter", "Filter (*.filter)|All Files (*.*)")
+		If !filterPath
+			Return
+		If !FileExist(filterPath) {
+			MsgBox("File not found:`n" filterPath)
+			Return
+		}
+		uniqueColors := Map()   ; insertion-ordered set of "0xRRGGBB"
+		inShow := False
+		Loop Read, filterPath
+		{
+			line := Trim(A_LoopReadLine)
+			If !line || SubStr(line, 1, 1) == "#"
+				Continue
+			If (line ~= "i)^Show\b") {
+				inShow := True
+				Continue
+			}
+			If (line ~= "i)^(Hide|Disable)\b") {
+				inShow := False
+				Continue
+			}
+			If !inShow
+				Continue
+			If RegExMatch(line, "^SetBackgroundColor\s+(\d+)\s+(\d+)\s+(\d+)", &m) {
+				hex := Format("0x{1:06X}", (Integer(m[1]) << 16) | (Integer(m[2]) << 8) | Integer(m[3]))
+				uniqueColors[hex] := True
+			}
+		}
+		If !uniqueColors.Count {
+			MsgBox("No SetBackgroundColor entries found in Show rules of:`n" filterPath)
+			Return
+		}
+		If (MsgBox("Found " uniqueColors.Count " unique background colors in filter."
+				. "`n`nReplace the current Loot Colors with these?"
+				. "`n`nEach pair will start with Mouseover = Background; use Resample"
+				. " per group in-game to refine the Mouseover color."
+				, "Import Loot Colors", "YesNo Icon?") != "Yes")
+			Return
+		newLC := []
+		For hex in uniqueColors {
+			newLC.Push(hex)   ; Mouseover (odd index)
+			newLC.Push(hex)   ; Background (even index)
+		}
+		LootColors := newLC
+		IniWrite(hexArrToStr(LootColors), A_ScriptDir "\save\Settings.ini", "Loot Colors", "LootColors")
+		LootColorsGui.Destroy()
+		LootColorsMenu()
 	}
 
 	LootColorsClose(GuiObj) {
