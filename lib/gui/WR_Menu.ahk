@@ -1310,7 +1310,12 @@ WR_Menu(Function:="",Var*){
       Globe[AreaType]["Color"]["hex"] := newHex
       GlobeGui["WR_Edit_Color_" AreaType].Text := newHex
       Globe[AreaType]["Color"]["Str"] := Hex2FindText(Globe[AreaType]["Color"]["hex"],Globe[AreaType]["Color"]["variance"],0,AreaType,1,1)
-      GlobeGui["WR_Progress_Color_" AreaType].Opt("+c" newHex)
+      ; Progress.Opt("+c") sets a new color but doesn't repaint unless Value
+      ; also changes. Bounce 99 -> 100 to force redraw.
+      progBar := GlobeGui["WR_Progress_Color_" AreaType]
+      progBar.Opt("+c" newHex)
+      progBar.Value := 99
+      progBar.Value := 100
     }
   } Else If (Function == "hkStash") {
     Static hkStashBuilt := False

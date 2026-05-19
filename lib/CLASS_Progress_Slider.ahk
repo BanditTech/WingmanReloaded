@@ -1,7 +1,8 @@
 ; Progress_Slider - Class written by Hellbent on AHK forum, adjusted by Bandit
 class Progress_Slider  {
-  __New(pSlider_GUI_NAME , pSlider_Control_ID , pSlider_X , pSlider_Y , pSlider_W , pSlider_H , pSlider_Range_Start , pSlider_Range_End , pSlider_Value:=0 , pSlider_Background_Color := "Black" , pSlider_Top_Color := "Red" , pSlider_Pair_With_Edit := 0 , pSlider_Paired_Edit_ID := "" , pSlider_Use_Tooltip := 0 ,  pSlider_Vertical := 0 , pSlider_Smooth := 1, SaveINISection := ""){
+  __New(pSlider_GUI_NAME , pSlider_Control_ID , pSlider_X , pSlider_Y , pSlider_W , pSlider_H , pSlider_Range_Start , pSlider_Range_End , pSlider_Value:=0 , pSlider_Background_Color := "Black" , pSlider_Top_Color := "Red" , pSlider_Pair_With_Edit := 0 , pSlider_Paired_Edit_ID := "" , pSlider_Use_Tooltip := 0 ,  pSlider_Vertical := 0 , pSlider_Smooth := 1, SaveINISection := "", pSlider_Callback := ""){
     This.GUI_NAME:=pSlider_GUI_NAME
+    This.Callback := pSlider_Callback
     This.Control_ID:=pSlider_Control_ID
     This.X := pSlider_X
     This.Y := pSlider_Y
@@ -66,6 +67,10 @@ class Progress_Slider  {
         }
         if(This.Pair_With_Edit>=2)
           This.GUI_NAME[This.Paired_Edit_ID_Hex].Value := Format("{1:02X}",This.Slider_Value)
+        ; v2: programmatic Edit .Value writes don't fire OnEvent("Change"),
+        ; so fire the parent's callback directly to refresh dependent UI.
+        If (This.Callback)
+          This.Callback.Call(This.Slider_Value)
       }
       if(This.Use_Tooltip=1 && A_TickCount - LastTT > 100 )
       {
