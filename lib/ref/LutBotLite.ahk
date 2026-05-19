@@ -5,10 +5,14 @@
 
 ; Main function of the LutBot logout method
 logout(executable){
+	; global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
+
 	; Setup for LutBot logout method
+	; Static full_command_line := DllCall("GetCommandLine", "str")
 	Static GetTable := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "Ptr"), "AStr", "GetExtendedTcpTable", "Ptr")
 	Static SetEntry := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "Ptr"), "AStr", "SetTcpEntry", "Ptr")
 	Static EnumProcesses := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr"), "AStr", "EnumProcesses", "Ptr")
+	; Static preloadPsapi := DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr")
 	Static OpenProcessToken := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "OpenProcessToken", "Ptr")
 	Static LookupPrivilegeValue := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "LookupPrivilegeValue", "Ptr")
 	Static AdjustTokenPrivileges := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "AdjustTokenPrivileges", "Ptr")
