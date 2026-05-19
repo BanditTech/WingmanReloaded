@@ -14,7 +14,7 @@ logout(executable){
 	Static pfnEnumProcesses := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr"), "AStr", "EnumProcesses", "Ptr")
 	; Static preloadPsapi := DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr")
 	Static pfnOpenProcessToken := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "OpenProcessToken", "Ptr")
-	Static pfnLookupPrivilegeValue := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "LookupPrivilegeValue", "Ptr")
+	Static pfnLookupPrivilegeValue := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "LookupPrivilegeValueW", "Ptr")
 	Static pfnAdjustTokenPrivileges := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "AdjustTokenPrivileges", "Ptr")
 
 	Thread("NoTimers", true)    ;Critical
