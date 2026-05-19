@@ -192,14 +192,15 @@ LootColorsMenu(*){
 		}
 		If (MsgBox("Found " uniqueColors.Count " unique background colors in filter."
 				. "`n`nReplace the current Loot Colors with these?"
-				. "`n`nEach pair will start with Mouseover = Background; use Resample"
-				. " per group in-game to refine the Mouseover color."
+				. "`n`nThe Mouseover color of each pair will be derived from the Background"
+				. " using PoE's approximate highlight formula. Use Resample per group"
+				. " in-game if you need a tighter match."
 				, "Import Loot Colors", "YesNo Icon?") != "Yes")
 			Return
 		newLC := []
 		For hex in uniqueColors {
-			newLC.Push(hex)   ; Mouseover (odd index)
-			newLC.Push(hex)   ; Background (even index)
+			newLC.Push(HighlightColor(hex))   ; Mouseover (odd index)
+			newLC.Push(hex)                   ; Background (even index)
 		}
 		LootColors := newLC
 		IniWrite(hexArrToStr(LootColors), A_ScriptDir "\save\Settings.ini", "Loot Colors", "LootColors")
