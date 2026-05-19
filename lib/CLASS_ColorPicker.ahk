@@ -20,7 +20,7 @@ class ColorPicker {
     This.GUI_NAME.BackColor := "000000"
     This.GUI_NAME.SetFont("s10 w600")
 
-    Edit_Trigger := This.UpdateColor.Bind( THIS )
+    Edit_Trigger := This.UpdateColor
 
     This.GUI_NAME.Add("Edit", "x" This.X - 9 " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Red_Edit_Hex", Format("{1:02X}",This.Start_Red))
     This.Slider_Red := Progress_Slider(This.GUI_NAME,This.ID "_Red",This.X ,This.Y,This.W_Bar,This.H,0,255,This.Start_Red,"550000","BB0000",2,This.ID "_Red_Edit",0,1)
@@ -42,7 +42,7 @@ class ColorPicker {
     This.GUI_NAME.SetFont("s15 w600")
     This.GUI_NAME.Add("Edit", "x" This.X + This.Spacing * 3 " y" This.Y - 22 " w" This.SideBar " h17 -E0x200 Center Disabled v" This.ID "_Group_Color_Hex", Format("0x{1:06X}",This.Start_Color))
 
-    Copy_Trigger := This.CopyColor.Bind( THIS )
+    Copy_Trigger := This.CopyColor
 
     CopyTriggerCtrl := This.GUI_NAME.Add("Text", "x" This.X + This.Spacing * 3 " y" This.Y " w" This.SideBar " h" This.H // 2 + 40 " center",)
     CopyTriggerCtrl.OnEvent("Click", Copy_Trigger)
@@ -59,7 +59,7 @@ class ColorPicker {
 
     ; Gui,% This.GUI_NAME ":Show", AutoSize, Color Picker
   }
-  UpdateColor(){
+  UpdateColor(*){
     hex := Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
     This.GUI_NAME[This.ID "_Group_Color"].Opt("+c" hex)
     This.GUI_NAME[This.ID "_Group_Color_Hex"].Value := "0x" hex
@@ -76,7 +76,7 @@ class ColorPicker {
       ; so refresh the swatch + hex display ourselves.
       This.UpdateColor()
   }
-  CopyColor(){
+  CopyColor(*){
     A_Clipboard := "0x" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
     ; MsgBox(262144, "Color Copied", "The Hex color code has been copied to the Clipboard `n`n " A_Clipboard)
     Notify.Show("Copied To Clipboard`n`n" A_Clipboard,"",3)
