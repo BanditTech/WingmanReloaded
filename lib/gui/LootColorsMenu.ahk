@@ -88,8 +88,9 @@ LootColorsMenu(*){
 	}
 
 	ResampleLootColor(ctrl, *) {
-		Global LootColors, LootColorsGui, ScrCenter, GameH, GameWindow
+		Global LootColors, LootColorsGui, hotkeyLootScan, ScrCenter, GameH
 		Global PauseTooltips
+		; Thread, NoTimers, True ; Critical
 		RemoveToolTip()
 		PauseTooltips := 1
 		groupNumber := StrSplit(ctrl.Text, A_Space)[2]
@@ -101,11 +102,9 @@ LootColorsMenu(*){
 			MsgBox("PoE Window does not exist. `nCannot sample the loot color.")
 			Return
 		}
-		ToolTip("Hover the mouse over the item label and press `"A`" to sample."
-			. "`nHold Alt during sampling so the label stays visible at the"
-			. "`noriginal pixel after the cursor moves off it."
-			. "`nHold Escape and press `"A`" to cancel."
-			, ScrCenter.X - 150, ScrCenter.Y - GameH // 3)
+		ToolTip("Press `"A`" to sample loot background"
+			. "`nHold Escape and press `"A`" to cancel"
+			, ScrCenter.X - 115 , ScrCenter.Y - GameH // 3)
 		KeyWait("a", "D L")
 		ToolTip()
 		KeyWait("a")
@@ -119,22 +118,15 @@ LootColorsMenu(*){
 		if WinActive("ahk_group POEGameGroup"){
 			BlockInput("MouseMove")
 			MouseGetPos(&mX, &mY)
-			; First sample: cursor is ON the item label - mouseover/highlighted color.
-			FindText().ScreenShot()
-			MO_Color := FindText().GetColor(mX, mY)
-			; Move the cursor away so the original pixel loses its mouseover
-			; highlight. The user is expected to keep Alt held so the label
-			; remains rendered at (mX, mY) once the cursor leaves it.
-			MouseMove(GameWindow.X + 5, GameWindow.Y + 5, 0)
-			Sleep(150)
-			; Second sample at the SAME pixel, now without the cursor over it.
-			FindText().ScreenShot()
-			BG_Color := FindText().GetColor(mX, mY)
-			; Restore cursor to where the user had it.
-			MouseMove(mX, mY, 0)
+			FindText().ScreenShot(), BG_Color := FindText().GetColor(mX,mY)
+			LootColors[BG_Index] := Format("0x{1:06X}",BG_Color)
+			Sleep(100)
+			SendInput("{" hotkeyLootScan " down}")
+			Sleep(200)
+			FindText().ScreenShot(), MO_Color := FindText().GetColor(mX,mY)
+			LootColors[MO_Index] := Format("0x{1:06X}",MO_Color)
+			SendInput("{" hotkeyLootScan " up}")
 			BlockInput("MouseMoveOff")
-			LootColors[MO_Index] := Format("0x{1:06X}", MO_Color)
-			LootColors[BG_Index] := Format("0x{1:06X}", BG_Color)
 		} else {
 			MsgBox("PoE Window is not active. `nSampling the loot color didn't work")
 			LootColorsGui.Show()
@@ -143,6 +135,7 @@ LootColorsMenu(*){
 		LootColorsGui.Destroy()
 		PauseTooltips := 0
 		LootColorsMenu()
+		Thread("NoTimers", false)    ;End Critical
 	}
 
 	SaveLootColorArray(*) {
@@ -164,7 +157,7 @@ LootColorsMenu(*){
 		initDir := A_MyDocuments "\My Games\Path of Exile"
 		If !DirExist(initDir)
 			initDir := ""
-		filterPath := FileSelect(1, initDir ? initDir "\" : "", "Select Path of Exile loot filter", "Filter (*.filter)")
+		filterPath := FileSelect(1, initDir ? initDir "\" : "", "Select Path of Exile loot filter", "Filter (*.filter)`nAll Files (*.*)")
 		If !filterPath
 			Return
 		If !FileExist(filterPath) {
