@@ -9,13 +9,13 @@ logout(executable){
 
 	; Setup for LutBot logout method
 	; Static full_command_line := DllCall("GetCommandLine", "str")
-	Static GetTable := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "Ptr"), "AStr", "GetExtendedTcpTable", "Ptr")
-	Static SetEntry := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "Ptr"), "AStr", "SetTcpEntry", "Ptr")
-	Static EnumProcesses := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr"), "AStr", "EnumProcesses", "Ptr")
+	Static pfnGetTable := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "Ptr"), "AStr", "GetExtendedTcpTable", "Ptr")
+	Static pfnSetEntry := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "Ptr"), "AStr", "SetTcpEntry", "Ptr")
+	Static pfnEnumProcesses := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr"), "AStr", "EnumProcesses", "Ptr")
 	; Static preloadPsapi := DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr")
-	Static OpenProcessToken := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "OpenProcessToken", "Ptr")
-	Static LookupPrivilegeValue := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "LookupPrivilegeValue", "Ptr")
-	Static AdjustTokenPrivileges := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "AdjustTokenPrivileges", "Ptr")
+	Static pfnOpenProcessToken := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "OpenProcessToken", "Ptr")
+	Static pfnLookupPrivilegeValue := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "LookupPrivilegeValue", "Ptr")
+	Static pfnAdjustTokenPrivileges := DllCall("GetProcAddress", "Ptr", DllCall("LoadLibrary", "Str", "Advapi32.dll", "Ptr"), "AStr", "AdjustTokenPrivileges", "Ptr")
 
 	Thread("NoTimers", true)    ;Critical
 	start := A_TickCount
@@ -26,23 +26,23 @@ logout(executable){
 	h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", selfPID, "Ptr")
 
 	t := 0
-	DllCall(OpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", &t)
+	DllCall(pfnOpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", &t)
 	ti := Buffer(16, 0)
 	NumPut("UInt", 1, ti, 0)
 
 	luid := 0
-	DllCall(LookupPrivilegeValue, "Ptr", 0, "Str", "SeDebugPrivilege", "Int64P", &luid)
+	DllCall(pfnLookupPrivilegeValue, "Ptr", 0, "Str", "SeDebugPrivilege", "Int64P", &luid)
 	NumPut("Int64", luid, ti, 4)
 	NumPut("UInt", 2, ti, 12)
 
-	r := DllCall(AdjustTokenPrivileges, "Ptr", t, "Int", false, "Ptr", ti, "UInt", 0, "Ptr", 0, "Ptr", 0)
+	r := DllCall(pfnAdjustTokenPrivileges, "Ptr", t, "Int", false, "Ptr", ti, "UInt", 0, "Ptr", 0, "Ptr", 0)
 	DllCall("CloseHandle", "Ptr", t)
 	DllCall("CloseHandle", "Ptr", h)
 
 	try	{
 		a := Buffer(s, 0)
 		c := 0
-		DllCall(EnumProcesses, "Ptr", a, "UInt", s, "UIntP", &r)
+		DllCall(pfnEnumProcesses, "Ptr", a, "UInt", s, "UIntP", &r)
 		Loop r // 4
 		{
 			id := NumGet(a, A_Index * 4, "UInt")
@@ -76,10 +76,10 @@ logout(executable){
 		}
 
 		dwSize := Buffer(4, 0)
-		result := DllCall(GetTable, "UInt", 0, "UInt", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
+		result := DllCall(pfnGetTable, "UInt", 0, "UInt", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
 		TcpTable := Buffer(NumGet(dwSize, 0, "UInt"), 0)
 
-		result := DllCall(GetTable, "Ptr", TcpTable, "Ptr", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
+		result := DllCall(pfnGetTable, "Ptr", TcpTable, "Ptr", dwSize, "UInt", 0, "UInt", 2, "UInt", 5, "UInt", 0)
 
 		tcpNum := NumGet(TcpTable, 0, "UInt")
 
@@ -104,7 +104,7 @@ logout(executable){
 					NumPut("UInt", NumGet(TcpTable, cutby+12, "UInt"), newEntry, 8)
 					NumPut("UInt", NumGet(TcpTable, cutby+16, "UInt"), newEntry, 12)
 					NumPut("UInt", NumGet(TcpTable, cutby+20, "UInt"), newEntry, 16)
-					result := DllCall(SetEntry, "Ptr", newEntry)
+					result := DllCall(pfnSetEntry, "Ptr", newEntry)
 					if result != 0
 					{
 						Log("Logout","TCP" . result,out,result,l,executable)
