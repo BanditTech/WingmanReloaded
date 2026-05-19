@@ -13,13 +13,13 @@ LootScan(Reset:=0){
 		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
 		If (!ComboHex || Reset)
 		{
-			; vary=5 (FindText accuracy 0.95) allows ~12 units of per-channel
-			; variance so filter-imported colors (which differ from rendered
-			; pixels by ~1-3 units due to PoE's gamma/AA/blending) still match.
-			; Manually-resampled exact-pixel values stay well inside this.
-			ComboHex := Hex2FindText(LootColors,5,0,"",30,8)
-			ComboHexX := Hex2FindText(LootColors,5,0,"",30,1)
-			ComboHexY := Hex2FindText(LootColors,5,0,"",1,30)
+			; vary=1 (FindText accuracy 0.99) allows ~2 units of single-channel
+			; noise from PoE's gamma / AA / blending. Larger vary lets dark
+			; filter colors snap onto random world/UI pixels, producing false
+			; positives. Manually-resampled exact-pixel values stay inside this.
+			ComboHex := Hex2FindText(LootColors,1,0,"",30,8)
+			ComboHexX := Hex2FindText(LootColors,1,0,"",30,1)
+			ComboHexY := Hex2FindText(LootColors,1,0,"",1,30)
 			If Reset
 				Return
 		}

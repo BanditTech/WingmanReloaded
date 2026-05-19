@@ -165,6 +165,8 @@ LootColorsMenu(*){
 			Return
 		}
 		uniqueColors := Map()   ; insertion-ordered set of "0xRRGGBB"
+		skippedDim := 0         ; count of colors dropped for being too dark
+		Static BRIGHTNESS_MIN := 100   ; max(R,G,B) must exceed this to import
 		inShow := False
 		Loop Read, filterPath
 		{
@@ -182,15 +184,25 @@ LootColorsMenu(*){
 			If !inShow
 				Continue
 			If RegExMatch(line, "^SetBackgroundColor\s+(\d+)\s+(\d+)\s+(\d+)", &m) {
-				hex := Format("0x{1:06X}", (Integer(m[1]) << 16) | (Integer(m[2]) << 8) | Integer(m[3]))
+				r := Integer(m[1]), g := Integer(m[2]), b := Integer(m[3])
+				; Skip dark filter backgrounds - max channel < 100 are typically
+				; subtle NeverSink backgrounds (0x000014, 0x001414, etc.) that
+				; overlap with random world/UI pixels and produce false positives.
+				If (Max(r, g, b) < BRIGHTNESS_MIN) {
+					skippedDim++
+					Continue
+				}
+				hex := Format("0x{1:06X}", (r << 16) | (g << 8) | b)
 				uniqueColors[hex] := True
 			}
 		}
 		If !uniqueColors.Count {
-			MsgBox("No SetBackgroundColor entries found in Show rules of:`n" filterPath)
+			MsgBox("No bright SetBackgroundColor entries (max channel >= "
+				. BRIGHTNESS_MIN ") found in Show rules of:`n" filterPath)
 			Return
 		}
 		If (MsgBox("Found " uniqueColors.Count " unique background colors in filter."
+				. (skippedDim ? "`n(Skipped " skippedDim " dim entries with max channel < " BRIGHTNESS_MIN ".)" : "")
 				. "`n`nReplace the current Loot Colors with these?"
 				. "`n`nThe Mouseover color of each pair will be derived from the Background"
 				. " using PoE's approximate highlight formula. Use Resample per group"
