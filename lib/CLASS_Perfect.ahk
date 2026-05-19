@@ -65,31 +65,43 @@ RefreshPoeWatchPerfect() {
     JSONtext := FileRead(A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json")
     Try {
         WR.Data.Perfect := JSON.Load(JSONtext)
-        For ku, itemDB in WR.Data.Perfect {
-            ; PoE.Watch occasionally returns non-object entries at the top
-            ; level (counters, metadata, JSON null/numbers). Skip anything
-            ; that isn't a Map - integers don't have __Item, so itemDB[type]
-            ; would throw "no property named __Item".
-            If !(itemDB is Map)
-                Continue
-            pushto := {}
-            For kt, type in ["implicits", "explicits"] {
-                pushto.%type% := {}
-                ; PoE.Watch returns JSON null for items with no implicits/explicits
-                ; (e.g. unique flasks). cJson maps null -> JSON.Null sentinel, which
-                ; isn't an Array and isn't enumerable. Skip non-Array values.
-                If !(itemDB.Has(type) && itemDB[type] is Array)
-                    Continue
-                For ki, mod in itemDB[type] {
-                    mod     := RegExReplace(mod, "1 to \(", "(1-1) to (")
-                    replace := Perfect(mod)
-                    WR.Data.Perfect[ku][type][ki] := replace.o
-                }
-            }
-        }
-        FileOpen(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json", "w").Write(JSON.Dump(WR.Data.Perfect, 1))
     } catch as e {
         MsgBox("There was an Error while Loading Perfect Price `n`n" ErrorText(e))
         WR.Data.Perfect := Map()
+        Return
     }
+    skipped := 0
+    For ku, itemDB in WR.Data.Perfect {
+        ; PoE.Watch occasionally returns non-object entries at the top
+        ; level (counters, metadata, JSON null/numbers). Skip anything
+        ; that isn't a Map - integers don't have __Item, so itemDB[type]
+        ; would throw "no property named __Item".
+        If !(itemDB is Map)
+            Continue
+        For kt, type in ["implicits", "explicits"] {
+            ; PoE.Watch returns JSON null for items with no implicits/explicits
+            ; (e.g. unique flasks). cJson maps null -> JSON.Null sentinel,
+            ; which isn't an Array and isn't enumerable. Skip non-Array values.
+            If !(itemDB.Has(type) && itemDB[type] is Array)
+                Continue
+            For ki, mod in itemDB[type] {
+                ; Each mod is expected to be a string of mod text. Guard
+                ; against null / non-string entries so one weird row doesn't
+                ; abort the whole batch and prevent the cache write below
+                ; (which would force a redownload on every script start).
+                Try {
+                    If !(mod is String)
+                        Continue
+                    mod := RegExReplace(mod, "1 to \(", "(1-1) to (")
+                    WR.Data.Perfect[ku][type][ki] := Perfect(mod).o
+                } catch {
+                    skipped++
+                }
+            }
+        }
+    }
+    Try
+        FileOpen(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json", "w").Write(JSON.Dump(WR.Data.Perfect, 1))
+    catch as e
+        MsgBox("Failed to write Perfect cache:`n`n" ErrorText(e))
 }
