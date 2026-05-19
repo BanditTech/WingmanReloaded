@@ -43,7 +43,7 @@ LetUserSelectRect(PixelToo:=0)
 
 	PauseTooltips := 1
 	hidMain := False
-	If (GamePID)
+	If (GamePID && DllCall("IsWindowVisible", "Ptr", MainGui.Hwnd, "Int"))
 	{
 		MainGui.Hide()
 		hidMain := True
@@ -111,7 +111,7 @@ LetUserSelectPixel(){
 	; Create the "selection rectangle" GUIs (one for each edge).
 	PauseTooltips := 1
 	hidMain := False
-	If (GamePID)
+	If (GamePID && DllCall("IsWindowVisible", "Ptr", MainGui.Hwnd, "Int"))
 	{
 		MainGui.Hide()
 		hidMain := True
