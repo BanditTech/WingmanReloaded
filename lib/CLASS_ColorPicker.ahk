@@ -72,6 +72,9 @@ class ColorPicker {
       This.Slider_Red.SET_pSlider(This.Start_Red)
       This.Slider_Green.SET_pSlider(This.Start_Green)
       This.Slider_Blue.SET_pSlider(This.Start_Blue)
+      ; v2: programmatic .Value writes don't fire OnEvent("Change"),
+      ; so refresh the swatch + hex display ourselves.
+      This.UpdateColor()
   }
   CopyColor(){
     A_Clipboard := "0x" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
