@@ -150,10 +150,18 @@ LootColorsMenu(*){
 	; Pull SetBackgroundColor values out of a PoE .filter file and rebuild
 	; LootColors from them. Only Show rules contribute (Hide / Disable rules
 	; don't render on screen, so their colors are useless to the vacuum).
-	; Each unique RGB becomes a pair where Mouseover = Background; user is
-	; expected to refine Mouseover per group with the in-game Resample button.
+	; Each unique RGB becomes a pair where Mouseover is derived from Background
+	; via HighlightColor; user can refine Mouseover per group with the in-game
+	; Resample button if needed.
+	;
+	; Colors are ordered by NeverSink's value signals so the scanner prioritises
+	; expensive items: primary key is max SetFontSize seen across the rules
+	; using that color (NeverSink convention: 45=top-tier currency, 40=high,
+	; 35=mid, 32=default, 25=low). Tiebreak by lowest PlayAlertSound number
+	; (1 = mirror-tier), then by lowest section comment id (# [[NNNN]]).
 	ImportLootColorsFromFilter(*) {
 		Global LootColors, LootColorsGui
+		Static BRIGHTNESS_MIN := 100   ; max(R,G,B) must exceed this to import
 		initDir := A_MyDocuments "\My Games\Path of Exile"
 		If !DirExist(initDir)
 			initDir := ""
@@ -164,21 +172,35 @@ LootColorsMenu(*){
 			MsgBox("File not found:`n" filterPath)
 			Return
 		}
-		uniqueColors := Map()   ; insertion-ordered set of "0xRRGGBB"
-		skippedDim := 0         ; count of colors dropped for being too dark
-		Static BRIGHTNESS_MIN := 100   ; max(R,G,B) must exceed this to import
+		; hex -> {fontSize, soundOrder, sectionId} preserving first-seen order.
+		colorMeta := Map()
+		skippedDim := 0
 		inShow := False
+		currentBg := ""
+		currentFont := 32       ; NeverSink default for rules without SetFontSize
+		currentSound := 9999    ; "no sound" rank - worse than any real sound
+		currentSection := 9999  ; before any # [[NNNN]] has been seen
 		Loop Read, filterPath
 		{
 			line := Trim(A_LoopReadLine)
+			; Section marker like '# [[0200]] Gold' - update *outside* block
+			; tracking so it applies to all subsequent rules.
+			If RegExMatch(line, "#\s*\[\[(\d+)]]", &m) {
+				currentSection := Integer(m[1])
+				Continue
+			}
 			If !line || SubStr(line, 1, 1) == "#"
 				Continue
 			If (line ~= "i)^Show\b") {
+				ImportCommitBlock(colorMeta, currentBg, currentFont, currentSound, currentSection)
 				inShow := True
+				currentBg := "", currentFont := 32, currentSound := 9999
 				Continue
 			}
 			If (line ~= "i)^(Hide|Disable)\b") {
+				ImportCommitBlock(colorMeta, currentBg, currentFont, currentSound, currentSection)
 				inShow := False
+				currentBg := ""
 				Continue
 			}
 			If !inShow
@@ -190,29 +212,61 @@ LootColorsMenu(*){
 				; overlap with random world/UI pixels and produce false positives.
 				If (Max(r, g, b) < BRIGHTNESS_MIN) {
 					skippedDim++
+					currentBg := ""   ; mark as ineligible so we don't commit
 					Continue
 				}
-				hex := Format("0x{1:06X}", (r << 16) | (g << 8) | b)
-				uniqueColors[hex] := True
+				currentBg := Format("0x{1:06X}", (r << 16) | (g << 8) | b)
+				Continue
+			}
+			If RegExMatch(line, "^SetFontSize\s+(\d+)", &m) {
+				currentFont := Integer(m[1])
+				Continue
+			}
+			If RegExMatch(line, "^PlayAlertSound\s+(\d+)", &m) {
+				currentSound := Integer(m[1])
+				Continue
 			}
 		}
-		If !uniqueColors.Count {
+		ImportCommitBlock(colorMeta, currentBg, currentFont, currentSound, currentSection)
+		If !colorMeta.Count {
 			MsgBox("No bright SetBackgroundColor entries (max channel >= "
 				. BRIGHTNESS_MIN ") found in Show rules of:`n" filterPath)
 			Return
 		}
-		If (MsgBox("Found " uniqueColors.Count " unique background colors in filter."
+		; Build a sortable list, then insertion-sort by descending value:
+		; primary -fontSize, secondary soundOrder asc, tertiary sectionId asc.
+		sortable := []
+		For hex, meta in colorMeta
+			sortable.Push({hex: hex, fontSize: meta.fontSize, soundOrder: meta.soundOrder, sectionId: meta.sectionId})
+		Loop sortable.Length - 1 {
+			i := A_Index + 1
+			key := sortable[i]
+			j := i - 1
+			While (j >= 1) {
+				ex := sortable[j]
+				better := (key.fontSize > ex.fontSize)
+					|| (key.fontSize == ex.fontSize && key.soundOrder < ex.soundOrder)
+					|| (key.fontSize == ex.fontSize && key.soundOrder == ex.soundOrder && key.sectionId < ex.sectionId)
+				If !better
+					Break
+				sortable[j+1] := ex
+				j--
+			}
+			sortable[j+1] := key
+		}
+		If (MsgBox("Found " sortable.Length " unique background colors in filter."
 				. (skippedDim ? "`n(Skipped " skippedDim " dim entries with max channel < " BRIGHTNESS_MIN ".)" : "")
-				. "`n`nReplace the current Loot Colors with these?"
+				. "`n`nReplace the current Loot Colors with these,"
+				. " ordered highest-value first (by max FontSize, then alert-sound rank)?"
 				. "`n`nThe Mouseover color of each pair will be derived from the Background"
 				. " using PoE's approximate highlight formula. Use Resample per group"
 				. " in-game if you need a tighter match."
 				, "Import Loot Colors", "YesNo Icon?") != "Yes")
 			Return
 		newLC := []
-		For hex in uniqueColors {
-			newLC.Push(HighlightColor(hex))   ; Mouseover (odd index)
-			newLC.Push(hex)                   ; Background (even index)
+		For item in sortable {
+			newLC.Push(HighlightColor(item.hex))   ; Mouseover (odd index)
+			newLC.Push(item.hex)                   ; Background (even index)
 		}
 		LootColors := newLC
 		IniWrite(hexArrToStr(LootColors), A_ScriptDir "\save\Settings.ini", "Loot Colors", "LootColors")
@@ -222,6 +276,25 @@ LootColorsMenu(*){
 		LootScan(1)
 		LootColorsGui.Destroy()
 		LootColorsMenu()
+	}
+
+	; Helper for ImportLootColorsFromFilter: record (or update) the metadata for
+	; the current Show block's background color. Maps are reference types in v2
+	; so the mutation propagates back to the caller's colorMeta.
+	ImportCommitBlock(metaMap, bg, font, sound, section) {
+		If !bg
+			Return
+		If !metaMap.Has(bg) {
+			metaMap[bg] := {fontSize: font, soundOrder: sound, sectionId: section}
+			Return
+		}
+		m := metaMap[bg]
+		If (font > m.fontSize)
+			m.fontSize := font
+		If (sound < m.soundOrder)
+			m.soundOrder := sound
+		If (section < m.sectionId)
+			m.sectionId := section
 	}
 
 	LootColorsClose(GuiObj) {
