@@ -1113,7 +1113,7 @@ WR_Menu(Function:="",Var*){
       If (Element == "Reset")
       {
         GlobeGui.Destroy()
-        Globe := adash.cloneDeep(Base.Globe)
+        Globe := cloneDeepM(Base.Globe)
       }
       Built_Globe := 1
       GlobeGui := Gui("+AlwaysOnTop -MinimizeBox -MaximizeBox")
@@ -1122,18 +1122,18 @@ WR_Menu(Function:="",Var*){
       GlobeGui.SetFont("Bold s9 c777777")
       GlobeGui.Add("GroupBox", "xm ym w205 h100 Section", "Life Scan Area")
       GlobeGui.SetFont("Bold c777777")
-      GlobeGui.Add("Text", "vGlobe_Life_X1 xs+10 yp+20", "X1:" Globe.Life.X1)
-      GlobeGui.Add("Text", "vGlobe_Life_Y1 x+5 yp", "Y1:" Globe.Life.Y1)
-      GlobeGui.Add("Text", "vGlobe_Life_X2 xs+10 y+8", "X2:" Globe.Life.X2)
-      GlobeGui.Add("Text", "vGlobe_Life_Y2 x+5 yp", "Y2:" Globe.Life.Y2)
+      GlobeGui.Add("Text", "vGlobe_Life_X1 xs+10 yp+20", "X1:" Globe["Life"]["X1"])
+      GlobeGui.Add("Text", "vGlobe_Life_Y1 x+5 yp", "Y1:" Globe["Life"]["Y1"])
+      GlobeGui.Add("Text", "vGlobe_Life_X2 xs+10 y+8", "X2:" Globe["Life"]["X2"])
+      GlobeGui.Add("Text", "vGlobe_Life_Y2 x+5 yp", "Y2:" Globe["Life"]["Y2"])
       GlobeGui.Add("Text", "xs+10 y+8", "Color:")
       GlobeGui.SetFont()
-      GlobeGui.Add("Edit", "vWR_Edit_Color_Life x+2 yp-2 hp+4 w60", Format("0x{1:06X}",Globe.Life.Color.Hex)).OnEvent("Change", WR_Update)
+      GlobeGui.Add("Edit", "vWR_Edit_Color_Life x+2 yp-2 hp+4 w60", Format("0x{1:06X}",Globe["Life"]["Color"].Hex)).OnEvent("Change", WR_Update)
       GlobeGui.SetFont("Bold c777777")
       GlobeGui.Add("Text", "x+5 yp+2", "Variance:")
-      GlobeGui.Add("Text", "x+2 yp w35", Globe.Life.Color.Variance)
-      GlobeGui.Add("UpDown", "vWR_UpDown_Color_Life x+1 yp hp", Globe.Life.Color.Variance).OnEvent("Change", WR_Update)
-      TempC := Format("0x{1:06X}",Globe.Life.Color.Hex)
+      GlobeGui.Add("Text", "x+2 yp w35", Globe["Life"]["Color"].Variance)
+      GlobeGui.Add("UpDown", "vWR_UpDown_Color_Life x+1 yp hp", Globe["Life"]["Color"].Variance).OnEvent("Change", WR_Update)
+      TempC := Format("0x{1:06X}",Globe["Life"]["Color"].Hex)
       GlobeGui.Add("Text", "xs+10 y+6 hp w185").OnEvent("Click", ColorLabel_Life)
       GlobeGui.Add("Progress", "vWR_Progress_Color_Life xs+10 yp hp wp c" TempC " BackgroundBlack", 100)
       GlobeGui.Add("Button", "vWR_Btn_Area_Life h18 xs+115 ys+15", "Choose Area").OnEvent("Click", WR_Update)
@@ -1142,18 +1142,18 @@ WR_Menu(Function:="",Var*){
       GlobeGui.SetFont("Bold s9 c777777")
       GlobeGui.Add("GroupBox", "xs+220 ys w205 h100 Section", "Mana Scan Area")
       GlobeGui.SetFont("Bold c777777")
-      GlobeGui.Add("Text", "vGlobe_Mana_X1 xs+10 yp+20", "X1:" Globe.Mana.X1)
-      GlobeGui.Add("Text", "vGlobe_Mana_Y1 x+5 yp", "Y1:" Globe.Mana.Y1)
-      GlobeGui.Add("Text", "vGlobe_Mana_X2 xs+10 y+8", "X2:" Globe.Mana.X2)
-      GlobeGui.Add("Text", "vGlobe_Mana_Y2 x+5 yp", "Y2:" Globe.Mana.Y2)
+      GlobeGui.Add("Text", "vGlobe_Mana_X1 xs+10 yp+20", "X1:" Globe["Mana"]["X1"])
+      GlobeGui.Add("Text", "vGlobe_Mana_Y1 x+5 yp", "Y1:" Globe["Mana"]["Y1"])
+      GlobeGui.Add("Text", "vGlobe_Mana_X2 xs+10 y+8", "X2:" Globe["Mana"]["X2"])
+      GlobeGui.Add("Text", "vGlobe_Mana_Y2 x+5 yp", "Y2:" Globe["Mana"]["Y2"])
       GlobeGui.Add("Text", "xs+10 y+8", "Color:")
       GlobeGui.SetFont()
-      GlobeGui.Add("Edit", "vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60", Format("0x{1:06X}",Globe.Mana.Color.Hex)).OnEvent("Change", WR_Update)
+      GlobeGui.Add("Edit", "vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60", Format("0x{1:06X}",Globe["Mana"]["Color"].Hex)).OnEvent("Change", WR_Update)
       GlobeGui.SetFont("Bold c777777")
       GlobeGui.Add("Text", "x+5 yp+2", "Variance:")
-      GlobeGui.Add("Text", "x+2 yp w35", Globe.Mana.Color.Variance)
-      GlobeGui.Add("UpDown", "vWR_UpDown_Color_Mana x+1 yp hp", Globe.Mana.Color.Variance).OnEvent("Change", WR_Update)
-      TempC := Format("0x{1:06X}",Globe.Mana.Color.Hex)
+      GlobeGui.Add("Text", "x+2 yp w35", Globe["Mana"]["Color"].Variance)
+      GlobeGui.Add("UpDown", "vWR_UpDown_Color_Mana x+1 yp hp", Globe["Mana"]["Color"].Variance).OnEvent("Change", WR_Update)
+      TempC := Format("0x{1:06X}",Globe["Mana"]["Color"].Hex)
       GlobeGui.Add("Text", "xs+10 y+6 hp w185").OnEvent("Click", ColorLabel_Mana)
       GlobeGui.Add("Progress", "vWR_Progress_Color_Mana xs+10 yp hp wp c" TempC " BackgroundBlack", 100)
       GlobeGui.Add("Button", "vWR_Btn_Area_Mana h18 xs+115 ys+15", "Choose Area").OnEvent("Click", WR_Update)
@@ -1162,18 +1162,18 @@ WR_Menu(Function:="",Var*){
       GlobeGui.SetFont("Bold s9 c777777")
       GlobeGui.Add("GroupBox", "xm y+60 w205 h100 Section", "Energy Shield Scan Area")
       GlobeGui.SetFont("Bold c777777")
-      GlobeGui.Add("Text", "vGlobe_ES_X1 xs+10 yp+20", "X1:" Globe.ES.X1)
-      GlobeGui.Add("Text", "vGlobe_ES_Y1 x+5 yp", "Y1:" Globe.ES.Y1)
-      GlobeGui.Add("Text", "vGlobe_ES_X2 xs+10 y+8", "X2:" Globe.ES.X2)
-      GlobeGui.Add("Text", "vGlobe_ES_Y2 x+5 yp", "Y2:" Globe.ES.Y2)
+      GlobeGui.Add("Text", "vGlobe_ES_X1 xs+10 yp+20", "X1:" Globe["ES"]["X1"])
+      GlobeGui.Add("Text", "vGlobe_ES_Y1 x+5 yp", "Y1:" Globe["ES"]["Y1"])
+      GlobeGui.Add("Text", "vGlobe_ES_X2 xs+10 y+8", "X2:" Globe["ES"]["X2"])
+      GlobeGui.Add("Text", "vGlobe_ES_Y2 x+5 yp", "Y2:" Globe["ES"]["Y2"])
       GlobeGui.Add("Text", "xs+10 y+8", "Color:")
       GlobeGui.SetFont()
-      GlobeGui.Add("Edit", "vWR_Edit_Color_ES x+2 yp-2 hp+4 w60", Format("0x{1:06X}",Globe.ES.Color.Hex)).OnEvent("Change", WR_Update)
+      GlobeGui.Add("Edit", "vWR_Edit_Color_ES x+2 yp-2 hp+4 w60", Format("0x{1:06X}",Globe["ES"]["Color"].Hex)).OnEvent("Change", WR_Update)
       GlobeGui.SetFont("Bold c777777")
       GlobeGui.Add("Text", "x+5 yp+2", "Variance:")
-      GlobeGui.Add("Text", "x+2 yp w35", Globe.ES.Color.Variance)
-      GlobeGui.Add("UpDown", "vWR_UpDown_Color_ES x+1 yp hp", Globe.ES.Color.Variance).OnEvent("Change", WR_Update)
-      TempC := Format("0x{1:06X}",Globe.ES.Color.Hex)
+      GlobeGui.Add("Text", "x+2 yp w35", Globe["ES"]["Color"].Variance)
+      GlobeGui.Add("UpDown", "vWR_UpDown_Color_ES x+1 yp hp", Globe["ES"]["Color"].Variance).OnEvent("Change", WR_Update)
+      TempC := Format("0x{1:06X}",Globe["ES"]["Color"].Hex)
       GlobeGui.Add("Text", "xs+10 y+6 hp w185").OnEvent("Click", ColorLabel_ES)
       GlobeGui.Add("Progress", "vWR_Progress_Color_ES xs+10 yp hp wp c" TempC " BackgroundBlack", 100)
       GlobeGui.Add("Button", "vWR_Btn_Area_ES h18 xs+115 ys+15", "Choose Area").OnEvent("Click", WR_Update)
@@ -1182,18 +1182,18 @@ WR_Menu(Function:="",Var*){
       GlobeGui.SetFont("Bold s9 c777777")
       GlobeGui.Add("GroupBox", "xs+220 ys w205 h100 Section", "Eldritch Battery Scan Area")
       GlobeGui.SetFont("Bold")
-      GlobeGui.Add("Text", "vGlobe_EB_X1 xs+10 yp+20", "X1:" Globe.EB.X1)
-      GlobeGui.Add("Text", "vGlobe_EB_Y1 x+5 yp", "Y1:" Globe.EB.Y1)
-      GlobeGui.Add("Text", "vGlobe_EB_X2 xs+10 y+8", "X2:" Globe.EB.X2)
-      GlobeGui.Add("Text", "vGlobe_EB_Y2 x+5 yp", "Y2:" Globe.EB.Y2)
+      GlobeGui.Add("Text", "vGlobe_EB_X1 xs+10 yp+20", "X1:" Globe["EB"]["X1"])
+      GlobeGui.Add("Text", "vGlobe_EB_Y1 x+5 yp", "Y1:" Globe["EB"]["Y1"])
+      GlobeGui.Add("Text", "vGlobe_EB_X2 xs+10 y+8", "X2:" Globe["EB"]["X2"])
+      GlobeGui.Add("Text", "vGlobe_EB_Y2 x+5 yp", "Y2:" Globe["EB"]["Y2"])
       GlobeGui.Add("Text", "xs+10 y+8", "Color:")
       GlobeGui.SetFont()
-      GlobeGui.Add("Edit", "vWR_Edit_Color_EB x+2 yp-2 hp+4 w60", Format("0x{1:06X}",Globe.EB.Color.Hex)).OnEvent("Change", WR_Update)
+      GlobeGui.Add("Edit", "vWR_Edit_Color_EB x+2 yp-2 hp+4 w60", Format("0x{1:06X}",Globe["EB"]["Color"].Hex)).OnEvent("Change", WR_Update)
       GlobeGui.SetFont("Bold c777777")
       GlobeGui.Add("Text", "x+5 yp+2", "Variance:")
-      GlobeGui.Add("Text", "x+2 yp w35", Globe.EB.Color.Variance)
-      GlobeGui.Add("UpDown", "vWR_UpDown_Color_EB x+1 yp hp", Globe.EB.Color.Variance).OnEvent("Change", WR_Update)
-      TempC := Format("0x{1:06X}",Globe.EB.Color.Hex)
+      GlobeGui.Add("Text", "x+2 yp w35", Globe["EB"]["Color"].Variance)
+      GlobeGui.Add("UpDown", "vWR_UpDown_Color_EB x+1 yp hp", Globe["EB"]["Color"].Variance).OnEvent("Change", WR_Update)
+      TempC := Format("0x{1:06X}",Globe["EB"]["Color"].Hex)
       GlobeGui.Add("Text", "xs+10 y+6 hp w185").OnEvent("Click", ColorLabel_EB)
       GlobeGui.Add("Progress", "vWR_Progress_Color_EB xs+10 yp hp wp c" TempC " BackgroundBlack", 100)
       GlobeGui.Add("Button", "vWR_Btn_Area_EB h18 xs+115 ys+15", "Choose Area").OnEvent("Click", WR_Update)
@@ -1264,8 +1264,8 @@ WR_Menu(Function:="",Var*){
     GlobeGui.Hide()
     Grab := LetUserSelectRect()
     AreaType := Var[2]
-    Globe.%AreaType%.X1 := Grab.X1, Globe.%AreaType%.Y1 := Grab.Y1, Globe.%AreaType%.X2 := Grab.X2, Globe.%AreaType%.Y2 := Grab.Y2
-      , Globe.%AreaType%.Width := Grab.X2 - Grab.X1, Globe.%AreaType%.Height := Grab.Y2 - Grab.Y1
+    Globe[AreaType]["X1"] := Grab.X1, Globe[AreaType]["Y1"] := Grab.Y1, Globe[AreaType]["X2"] := Grab.X2, Globe[AreaType]["Y2"] := Grab.Y2
+      , Globe[AreaType]["Width"] := Grab.X2 - Grab.X1, Globe[AreaType]["Height"] := Grab.Y2 - Grab.Y1
     GlobeGui["Globe_" AreaType "_X1"].Text := "X1:" Grab.X1
     GlobeGui["Globe_" AreaType "_Y1"].Text := "Y1:" Grab.Y1
     GlobeGui["Globe_" AreaType "_X2"].Text := "X2:" Grab.X2
@@ -1274,18 +1274,18 @@ WR_Menu(Function:="",Var*){
   } Else if (Function == "Show") {
     GlobeGui.Submit(0)
     AreaType := Var[2]
-    MouseTip(Globe.%AreaType%)
+    MouseTip(Globe[AreaType])
     GlobeGui.Show()
   } Else if (Function == "Color") {
     AreaType := Var[2]
     Element := Var[1]
     Split := {}
-    Split.hex := Globe.%AreaType%.Color.Hex
+    Split.hex := Globe[AreaType]["Color"]["hex"]
     GlobeGui.Submit(0)
     If (Element == "UpDown")
     {
-      Globe.%AreaType%.Color.Variance := GlobeGui["WR_UpDown_Color_" AreaType].Value
-      Globe.%AreaType%.Color.Str := Hex2FindText(Globe.%AreaType%.Color.hex,Globe.%AreaType%.Color.variance,0,AreaType,1,1)
+      Globe[AreaType]["Color"]["variance"] := GlobeGui["WR_UpDown_Color_" AreaType].Value
+      Globe[AreaType]["Color"]["Str"] := Hex2FindText(Globe[AreaType]["Color"]["hex"],Globe[AreaType]["Color"]["variance"],0,AreaType,1,1)
     }
     Else If (Element == "Edit")
     {
@@ -1307,9 +1307,9 @@ WR_Menu(Function:="",Var*){
       Else
         m := "0" Split.hex
       newHex := Format("0x{1:06X}", m)
-      Globe.%AreaType%.Color.Hex := newHex
+      Globe[AreaType]["Color"]["hex"] := newHex
       GlobeGui["WR_Edit_Color_" AreaType].Text := newHex
-      Globe.%AreaType%.Color.Str := Hex2FindText(Globe.%AreaType%.Color.hex,Globe.%AreaType%.Color.variance,0,AreaType,1,1)
+      Globe[AreaType]["Color"]["Str"] := Hex2FindText(Globe[AreaType]["Color"]["hex"],Globe[AreaType]["Color"]["variance"],0,AreaType,1,1)
       GlobeGui["WR_Progress_Color_" AreaType].Opt("+c" newHex)
     }
   } Else If (Function == "hkStash") {
@@ -1411,19 +1411,19 @@ WR_Update(GuiCtrl, *) {
 
 ColorLabel_Life(*) {
   Global Globe, Picker
-  Picker.SetColor(Globe.Life.Color.hex)
+  Picker.SetColor(Globe["Life"]["Color"]["hex"])
 }
 ColorLabel_Mana(*) {
   Global Globe, Picker
-  Picker.SetColor(Globe.Mana.Color.hex)
+  Picker.SetColor(Globe["Mana"]["Color"]["hex"])
 }
 ColorLabel_ES(*) {
   Global Globe, Picker
-  Picker.SetColor(Globe.ES.Color.hex)
+  Picker.SetColor(Globe["ES"]["Color"]["hex"])
 }
 ColorLabel_EB(*) {
   Global Globe, Picker
-  Picker.SetColor(Globe.EB.Color.hex)
+  Picker.SetColor(Globe["EB"]["Color"]["hex"])
 }
 
 WR_SubGui_Close(GuiObj, *) {

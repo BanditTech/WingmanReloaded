@@ -236,6 +236,30 @@ ObjCount(obj){
     n++
   Return n
 }
+; cloneDeepM - Deep clone that preserves Map keys. adash.cloneDeep flattens
+; anything with __Item into an Array, which silently destroys Map data.
+; Recurses through Map / Array / plain Object; primitives pass through.
+cloneDeepM(input){
+  If (input is Map) {
+    out := Map()
+    For k, v in input
+      out[k] := cloneDeepM(v)
+    Return out
+  }
+  If (input is Array) {
+    out := []
+    For v in input
+      out.Push(cloneDeepM(v))
+    Return out
+  }
+  If IsObject(input) {
+    out := {}
+    For k, v in input.OwnProps()
+      out.%k% := cloneDeepM(v)
+    Return out
+  }
+  Return input
+}
 ; SemverCompare - Compare two dotted version strings numerically component-by-component.
 ; Returns -1 if a < b, 0 if equal, 1 if a > b. Missing trailing components are treated
 ; as 0 ("3.0" == "3.0.0").
