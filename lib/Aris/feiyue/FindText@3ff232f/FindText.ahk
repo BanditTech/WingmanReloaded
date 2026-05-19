@@ -1028,7 +1028,7 @@ GetBitsFromScreen(&x:=0, &y:=0, &w:=0, &h:=0
   , h:=Min(y+h,zy+zh), y:=Max(y,zy), h-=y
   if (!ScreenShot || w<1 || h<1 || !bits.hBM)
   {
-    Critical cri
+    Critical(cri)
     return bits
   }
   if IsSet(GetBitsFromScreen2) && (GetBitsFromScreen2 is Func)
@@ -1038,7 +1038,7 @@ GetBitsFromScreen(&x:=0, &y:=0, &w:=0, &h:=0
     ; Each small range of data obtained from DXGI must be
     ; copied to the screenshot cache using FindText().CopyBits()
     zx:=bits.zx, zy:=bits.zy, zw:=bits.zw, zh:=bits.zh
-    Critical cri
+    Critical(cri)
     return bits
   }
   mDC:=DllCall("CreateCompatibleDC", "Ptr",0, "Ptr")
@@ -1079,7 +1079,7 @@ GetBitsFromScreen(&x:=0, &y:=0, &w:=0, &h:=0
     this.CaptureCursor(mDC, zx, zy, zw, zh)
   DllCall("SelectObject", "Ptr",mDC, "Ptr",oBM)
   DllCall("DeleteDC", "Ptr",mDC)
-  Critical cri
+  Critical(cri)
   return bits
 }
 
@@ -1599,7 +1599,7 @@ GetRange(ww:=25, hh:=8, key:="RButton")
   }
   HotIfWinExist
   ;---------------------
-  Critical (cri:=A_IsCritical)?"Off":"Off"
+  Critical((cri:=A_IsCritical)?"Off":"Off")
   CoordMode "Mouse"
   tip:=this.Lang("s5")
   hk:="", oldx:=oldy:="", keydown:=0
@@ -1641,7 +1641,7 @@ GetRange(ww:=25, hh:=8, key:="RButton")
     Try Hotkey "*" v, KeyOff, "Off"
   HotIfWinExist
   GetRange_HotkeyIf.Destroy()
-  Critical cri
+  Critical(cri)
   return [x-ww, y-hh, x+ww, y+hh, Bind_ID]
 }
 
@@ -2324,7 +2324,7 @@ Gui(cmd, arg1:="", args*)
       MenuTray.ClickCount:=1
       TraySetIcon "Shell32.dll", 23
     }
-    Critical cri
+    Critical(cri)
     Gui("+LastFound").Destroy()
   }
   Switch cmd, 1
@@ -2643,7 +2643,7 @@ Gui(cmd, arg1:="", args*)
     _Gui.Show("Center")
     Event:=Result:=""
     DetectHiddenWindows 0
-    Critical "Off"
+    Critical("Off")
     WinWaitClose "ahk_id " _Gui.Hwnd
     Critical
     ToolTip
