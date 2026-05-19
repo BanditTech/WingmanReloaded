@@ -236,6 +236,24 @@ ObjCount(obj){
     n++
   Return n
 }
+; MapToObj - Recursively convert a Map (and nested Maps/Arrays) into a plain
+; Object so dot-access works. JSON.LoadFile returns Maps for JSON objects in
+; cJson v2, but the codebase uses dot-access on shapes like Globe.Life.X1.
+MapToObj(input){
+  If (input is Map) {
+    obj := {}
+    For k, v in input
+      obj.%k% := MapToObj(v)
+    Return obj
+  }
+  If (input is Array) {
+    arr := []
+    For v in input
+      arr.Push(MapToObj(v))
+    Return arr
+  }
+  Return input
+}
 ; SemverCompare - Compare two dotted version strings numerically component-by-component.
 ; Returns -1 if a < b, 0 if equal, 1 if a > b. Missing trailing components are treated
 ; as 0 ("3.0" == "3.0.0").
