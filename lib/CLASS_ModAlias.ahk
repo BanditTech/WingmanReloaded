@@ -1,4 +1,4 @@
-﻿Class ModAlias {
+Class ModAlias {
 	Translate(StatKey){
 		If !(This.Loaded) {
 			This.LoadDatabase()
@@ -14,24 +14,24 @@
 		Return string
 	}
 	LoadDatabase(){
-		This.ModObject := JSONcom.Parse(FileOpen(A_ScriptDir "\Data\mods.min.json","r").Read(),true)
-		This.TransObject := JSONcom.Parse(FileOpen(A_ScriptDir "\Data\stat_translations.min.json","r").Read(),true)
+		This.ModObject := JSON.LoadFile(A_ScriptDir "\Data\mods.min.json")
+		This.TransObject := JSON.LoadFile(A_ScriptDir "\Data\stat_translations.min.json")
 		This.Loaded := True
 	}
 	GetReference(StatKey){
 		referenceid := This.ModObject[StatKey]["stats"][0]["id"]
 		referencemax := This.ModObject[StatKey]["stats"][0]["max"]
 		referencemin := This.ModObject[StatKey]["stats"][0]["min"]
-		Return {"id":referenceid,"max":referencemax,"min":referencemin}
+		Return {id:referenceid, max:referencemax, min:referencemin}
 	}
 	Locate(StatID){
-		Loop % This.TransObject.length {
+		Loop This.TransObject.length {
 			k := A_Index - 1
 			v := This.TransObject[k]["ids"]
-			loop % v.length {
+			loop v.length {
 				i := A_Index - 1
 				strkey := v[i]
-				If (strkey = StatID) {
+				If (strkey == StatID) {
 					return This.TransObject[k]["English"]
 				}
 			}
@@ -39,6 +39,6 @@
 		Return False
 	}
 	ConvertJStoAHK(Obj){
-		Return JSON.Load(JSONcom.Stringify(Obj,true))
+		Return JSON.Load(JSON.Dump(Obj))
 	}
 }

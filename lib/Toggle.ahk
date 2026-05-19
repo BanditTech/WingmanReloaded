@@ -1,5 +1,5 @@
-﻿; AutoQuit - Toggle the scripts quit function on
-toggleAutoQuit(){
+; AutoQuit - Toggle the scripts quit function on
+toggleAutoQuit(*){
 	WR.func.Toggle.Quit := !WR.func.Toggle.Quit
 	Settings("func","Save")
 	GuiUpdate()
@@ -7,43 +7,43 @@ toggleAutoQuit(){
 }
 
 ; AutoFlask - Toggle flask usage on
-toggleAutoFlask(){
+toggleAutoFlask(*){
 	WR.func.Toggle.Flask := !WR.func.Toggle.Flask
 	Settings("func","Save")
-	GuiUpdate()  
+	GuiUpdate()
 	return
 }
 ; AutoMove - Toggle movement triggers
-toggleAutoMove(){
-	WR.func.Toggle.Move := !WR.func.Toggle.Move  
+toggleAutoMove(*){
+	WR.func.Toggle.Move := !WR.func.Toggle.Move
 	Settings("func","Save")
 	GuiUpdate()
 	return
 }
 ; AutoUtility - Toggle utility triggers
-toggleAutoUtility(){
-	WR.func.Toggle.Utility := !WR.func.Toggle.Utility  
+toggleAutoUtility(*){
+	WR.func.Toggle.Utility := !WR.func.Toggle.Utility
 	Settings("func","Save")
 	GuiUpdate()
 	return
 }
 ; Hotkey to pause the detonate mines
 PauseMines(){
-	PauseMinesCommand:
+		Global Detonated, PauseTooltips
 		if (!WR.perChar.Setting.autominesEnable || !GuiCheck())
 		return
 		static keyheld := 0
 		keyheld++
-		settimer, keyheldReset, 200
+		SetTimer(keyheldReset, 200)
 		if keyheld > 1
 			return
-		KeyWait, %hotkeyPauseMines%, T0.3 ; Wait .3 seconds until Detonate key is released.
-		If ErrorLevel = 1 ; If not released, just exit out
+		local keyReleased := KeyWait(hotkeyPauseMines, "T0.3") ; Wait .3 seconds until Detonate key is released.
+		If !keyReleased ; If not released (timed out), just exit out
 			Exit
 		keyheld := 0
 		If (WR.perChar.Setting.autominesPauseSingleTap == 1)
 			pauseToggle := !pauseToggle
-		else if (A_PriorHotkey <> "$~" . hotkeyPauseMines || A_TimeSincePriorHotkey > WR.perChar.Setting.autominesPauseDoubleTapSpeed)
+		else if (A_PriorHotkey != "$~" . hotkeyPauseMines || A_TimeSincePriorHotkey > WR.perChar.Setting.autominesPauseDoubleTapSpeed)
 		{    ;This is a not a double tap
 			pauseToggle := false
 		}
@@ -59,19 +59,20 @@ PauseMines(){
 		{
 			Detonated := False
 			PauseTooltips := 0
-			Tooltip
+			ToolTip()
 		}
 		else if (pauseToggle)
 		{
-			SetTimer, TDetonated, Delete
+			SetTimer(TDetonated, 0)
 			Detonated := True
 			PauseTooltips := 1
-			Tooltip, Auto-Mines Paused, % A_ScreenWidth / 2 - 57, % A_ScreenHeight / 8
+			ToolTip("Auto-Mines Paused", A_ScreenWidth / 2 - 57, A_ScreenHeight / 8)
 		}
-	Return
 
-	keyheldReset:
+	keyheldReset() {
 		keyheld := 0
-	return
+	}
 }
-
+PauseMinesCommand(*) {
+	PauseMines()
+}

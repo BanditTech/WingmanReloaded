@@ -1,8 +1,15 @@
-﻿; Crafting Section - main routine and all subroutines and popup
+; Crafting Section - main routine and all subroutines and popup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Hotkey wrapper — Hotkey() invokes its callback with (ThisHotkey), which would
+; otherwise overwrite Crafting's 'selection' default and trigger the "Unknown
+; Result" branch. Wrap to call Crafting() with the default selection.
+StartCraftingCommand(*) {
+	Crafting()
+}
 Crafting(selection:="Maps"){
+	Global CurrentTab
 	; Thread, NoTimers, True
-	MouseGetPos xx, yy
+	MouseGetPos(&xx, &yy)
 	CheckRunning()
 	If GameActive
 	{
@@ -10,7 +17,7 @@ Crafting(selection:="Maps"){
 		GuiStatus()
 		If (!OnChar)
 		{
-			Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
+			Notify.Show("You do not appear to be in game.","Likely need to calibrate Character Active",1)
 			CheckRunning("Off")
 			Return
 		}
@@ -42,9 +49,22 @@ Crafting(selection:="Maps"){
 				CurrentTab := 0
 				MoveStash(StashTabCurrency)
 				If indexOf(selection,["Maps","Socket","Color","Link","Chance","Item"])
-					Crafting%selection%()
-				Else
-					Notify("Unknown Result is:",selection,2)
+			{
+				If (selection == "Maps")
+					CraftingMaps()
+				Else If (selection == "Socket")
+					CraftingSocket()
+				Else If (selection == "Color")
+					CraftingColor()
+				Else If (selection == "Link")
+					CraftingLink()
+				Else If (selection == "Chance")
+					CraftingChance()
+				Else If (selection == "Item")
+					CraftingItem()
+			}
+			Else
+				Notify.Show("Unknown Result is:",selection,2)
 			}
 			Else
 			{
@@ -54,36 +74,32 @@ Crafting(selection:="Maps"){
 			}
 		}
 	}
-	MouseMove %xx%, %yy%
+	MouseMove(xx, yy)
 	CheckRunning("Off")
 	Return
 }
 ; CraftingChance - Use the settings to apply chance to item(s) until unique
 CraftingChance(){
-	Global
 	local f
-	; Notify("Chance Logic Coming Soon","",2)
-	f := New Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
+	; Notify.Show("Chance Logic Coming Soon","",2)
+	f := Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
 }
 ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
 CraftingColor(){
-	Global
 	local f
-	f := New Craft("Color",BasicCraftColorMethod,{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
+	f := Craft("Color",BasicCraftColorMethod,{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
 }
 ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
 CraftingLink(){
-	Global
 	local f
-	f := New Craft("Link",BasicCraftLinkMethod,{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
+	f := Craft("Link",BasicCraftLinkMethod,{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
 }
 ; CraftingSocket - Use the settings to apply Jewellers to item(s) until minimum sockets
 CraftingSocket(){
-	Global
 	local f
-	f := New Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
+	f := Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
 }
-CraftingItemCaller(){
+CraftingItemCaller(*){
 	Crafting("Item")
 }
 
@@ -104,7 +120,7 @@ ItemCraftingBaseComparator(base1,base2){
 
 CraftingItem(){
 	Global RunningToggle
-	MouseGetPos xx, yy
+	MouseGetPos(&xx, &yy)
 	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 		Return
 	; Move mouse away for Screenshot
@@ -124,53 +140,53 @@ CraftingItem(){
 		CurrencyList.Push("Chaos")
 
 	WR.data.Counts := CountCurrency(CurrencyList)
-	MouseMove %xx%, %yy%
-	Sleep, 150
+	MouseMove(xx, yy)
+	Sleep(150)
 	ClipItem(xx,yy)
 	Log("[Start] Item Crafting ","Initial Clip",JSON.Dump(Item))
-	Sleep, 45*Latency
+	Sleep(45*Latency)
 
 	/*
 	Each case must be revised
 	If (!ItemCraftingBaseComparator(ItemCraftingSubCategorySelector,Item.Prop.ItemClass)) {
-		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
+		Notify.Show("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
 		Return
 	}
 	*/
-	If (WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector].Count() == 0) {
-		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
+	If (ObjCount(WR.ItemCrafting.%ItemCraftingCategorySelector%.%ItemCraftingSubCategorySelector%) == 0) {
+		Notify.Show("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
-	} 
+	}
 	If (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
-		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
+		Notify.Show("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
 		Return
 	}
 	If (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
-		Notify("Missing Advanced Tooltip","Restore the default binding for advanced tooltip in-game to Alt as this is required for CTRL+ALT+C to get advanced clip information")
+		Notify.Show("Missing Advanced Tooltip","Restore the default binding for advanced tooltip in-game to Alt as this is required for CTRL+ALT+C to get advanced clip information")
 		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","Restore the default binding for advanced tooltip in-game to Alt as this is required for CTRL+ALT+C to get advanced clip information")
 		Return
 	}
 
 	If(ItemCraftingMethod == "Alteration Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
-			Notify("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
+			Notify.Show("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
 			Log("[End]Item Crafting - Item Crafting Error","Match conditions are out of range for a magic item, reduce the required count")
 			Return
 		}
 		ItemCraftingRoll("Alt", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
-			Notify("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
+			Notify.Show("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
 			Log("[End]Item Crafting - Item Crafting Error","Match conditions are out of range for a magic item, reduce the required count")
 			Return
 		}
 		ItemCraftingRoll("AltAug", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug and Regal Spam"){
 		If(((ItemCraftingNumberPrefix + ItemCraftingNumberSuffix) > 3) || ItemCraftingNumberCombination > 3){
-			Notify("Magic Item Mismatch","Magic Itens with Regal Orb can only have 3 Mods",4)
+			Notify.Show("Magic Item Mismatch","Magic Itens with Regal Orb can only have 3 Mods",4)
 			Log("[End]Item Crafting - Item Crafting Error","Magic Itens with Regal Orb can only have 3 Mods")
 			Return
 		}
@@ -184,14 +200,14 @@ CraftingItem(){
 }
 ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
 CraftingMaps(){
-	Global RunningToggle
+	Global RunningToggle, BlackList
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
-	BlackList := Array_DeepClone(BlackList_Default)
+	BlackList := adash.cloneDeep(BlackList_Default)
 	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Chaos","Augmentation"])
 	; MsgBoxVals(WR.data.Counts)
-	MapList := {}
+	MapList := Map()
 	; Start Scan on Inventory
 	For C, GridX in InventoryGridX
 	{
@@ -201,10 +217,10 @@ CraftingMaps(){
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
+			If (BlackList[C][R] || !WR.Restock[C][R]["Normal"])
 				Continue
 			Grid := RandClick(GridX, GridY)
-			PointColor := FindText.GetColor(GridX,GridY)
+			PointColor := FindText().GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor)
 			{
 				;Seems to be an empty slot, no need to clip item info
@@ -214,12 +230,12 @@ CraftingMaps(){
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
 			mapCraftingMethod := getMapCraftingMethod()
-			If (Item.Affix["Unidentified"]&&YesIdentify)
+			If (Item.Affix.Has("Unidentified")&&YesIdentify)
 			{
-				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) 
+				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap)
 					&& (!YesMapUnid
 							|| ( Item.Prop.RarityMagic && mapCraftingMethod ~= "(Alchemy|Hybrid|Binding|Chaos)" )
-							|| ( Item.Affix.Unidentified && mapCraftingMethod ~= "Chisel" && Item.Prop.Map_Quality < 20 )	)
+							|| ( Item.Affix.Has("Unidentified") && mapCraftingMethod ~= "Chisel" && Item.Prop.Map_Quality < 20 )	)
 					&& !Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
@@ -235,24 +251,24 @@ CraftingMaps(){
 			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique)
 			{
 				If (mapCraftingMethod ~= "Chisel") {
-					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5 
-					:	Item.Prop.Map_Tier > 5 ? 10 
-					:	Item.Prop.Map_Tier >= 1 ? 20 
+					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5
+					:	Item.Prop.Map_Tier > 5 ? 10
+					:	Item.Prop.Map_Tier >= 1 ? 20
 					: 1
 					numberChisel := 0
 
 					If (Item.Prop.Map_Quality < 20) {
 						numberChisel := ForceMaxChisel ? Ceil((20 - Item.Prop.Map_Quality)/qualityPerChisel) : (20 - Item.Prop.Map_Quality)//qualityPerChisel
 					}
-				
+
 					If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
 						Return False
 				}
 
 				If (!Item.Prop.RarityNormal)
 				{
-					If ( (Item.Prop.RarityMagic && mapCraftingMethod == "Transmutation+Augmentation") 
-						|| (Item.Prop.RarityRare && (mapCraftingMethod == "Transmutation+Augmentation" || mapCraftingMethod ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)")) 
+					If ( (Item.Prop.RarityMagic && mapCraftingMethod == "Transmutation+Augmentation")
+						|| (Item.Prop.RarityRare && (mapCraftingMethod == "Transmutation+Augmentation" || mapCraftingMethod ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)"))
 						|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && mapCraftingMethod ~= "(Alchemy|Binding|Hybrid|Chaos)") )
 					{
 						If (!Item.Prop.MapKeepFlag)
@@ -288,15 +304,15 @@ CraftingMaps(){
 		For k, obj in MapList {
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If Slots.Count() {
+			If ObjCount(Slots) {
 				split := StrSplit(k," ")
 				C := split.1
 				R := split.2
 				gogo := Slots.Pop()
 				LeftClick(obj.X,obj.Y)
-				Sleep, 180 + (15 * ClickLatency)
+				Sleep(180 + (15 * ClickLatency))
 				LeftClick(gogo.X,gogo.Y)
-				Sleep, 120 + (15 * ClickLatency)
+				Sleep(120 + (15 * ClickLatency))
 			}	Else
 				Break
 		}
@@ -306,53 +322,56 @@ CraftingMaps(){
 InMapArea(C:=0){
 	If (C <= 0)
 		Return False
-	If (C >= YesSkipMaps && YesSkipMaps_eval = ">=")
-		|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=")
+	If (C >= YesSkipMaps && YesSkipMaps_eval == ">=")
+		|| (C <= YesSkipMaps && YesSkipMaps_eval == "<=")
 		Return True
 	Return False
 }
 getMapCraftingMethod(){
-	Loop, 3
+	StartMapTierArr := [StartMapTier1, StartMapTier2, StartMapTier3]
+	EndMapTierArr := [EndMapTier1, EndMapTier2, EndMapTier3]
+	CraftingMapMethodArr := [CraftingMapMethod1, CraftingMapMethod2, CraftingMapMethod3]
+	Loop 3
 	{
-		If ( EndMapTier%A_Index% >= StartMapTier%A_Index%
-			&& CraftingMapMethod%A_Index% != "Disable"
-			&& Item.Prop.Map_Tier >= StartMapTier%A_Index%
-			&& Item.Prop.Map_Tier <= EndMapTier%A_Index% )
-			Return CraftingMapMethod%A_Index%
+		If ( EndMapTierArr[A_Index] >= StartMapTierArr[A_Index]
+			&& CraftingMapMethodArr[A_Index] != "Disable"
+			&& Item.Prop.Map_Tier >= StartMapTierArr[A_Index]
+			&& Item.Prop.Map_Tier <= EndMapTierArr[A_Index] )
+			Return CraftingMapMethodArr[A_Index]
 	}
 	Return False
 }
 ; Find the stack sizes of all relevant currency, returns count object
 CountCurrency(NameList:=""){
-	retCount := {}
-	If (NameList = "")
+	retCount := Map()
+	If (NameList == "")
 		Return False
 	If !IsObject(NameList)
 		NameList := StrSplit(NameList,",")
 	For key, currency in NameList {
-		If !WR.loc.pixel.HasKey(currency)
+		If !WR.loc.pixel.HasOwnProp(currency)
 			Return False
-		If (WR.loc.pixel[currency].X = 0 && WR.loc.pixel[currency].Y = 0) {
-			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
+		If (WR.loc.pixel.%currency%.X == 0 && WR.loc.pixel.%currency%.Y == 0) {
+			Notify.Show("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
 			retCount[currency] := 0
 		} Else {
-			ClipItem(WR.loc.pixel[currency].X,WR.loc.pixel[currency].Y)
+			ClipItem(WR.loc.pixel.%currency%.X,WR.loc.pixel.%currency%.Y)
 			retCount[currency] := Item.Prop.Stack_Size ? Item.Prop.Stack_Size : 0
 		}
 	}
-	Return retCount.Count() ? retCount : False
+	Return ObjCount(retCount) ? retCount : False
 }
 ; ApplyCurrency - Using cname = currency name string and x, y as apply position
 ApplyCurrency(cname, x, y, Amount:=1){
 	If (Amount < 1)
 		Return True
-	If (cname = "Hybrid") {
-		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+	If (cname == "Hybrid") {
+		If (WR.data.Counts["Binding"] >= WR.data.Counts["Alchemy"])
 			cname := "Binding"
 		Else
 			cname := "Alchemy"
 	}
-	If WR.data.Counts.HasKey(cname) {
+	If WR.data.Counts.Has(cname) {
 		If (WR.data.Counts[cname] <= 0) {
 			Log("Error","Not enough " cname " to continue crafting")
 			Return False
@@ -360,24 +379,24 @@ ApplyCurrency(cname, x, y, Amount:=1){
 		WR.data.Counts[cname]--
 	}
 	Log("Currency","Applying " cname " onto item at " x "," y)
-	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
-	Sleep, 45*Latency
+	RightClick(WR.loc.pixel.%cname%.X, WR.loc.pixel.%cname%.Y)
+	Sleep(45*Latency)
 	If (Amount > 1) {
-		Send, {Shift down}
+		Send("{Shift down}")
 		RandomSleep(30,45)
 	}
-	Loop, %Amount% {
+	Loop Amount {
 		LeftClick(x,y)
-		Sleep, 30
+		Sleep(30)
 	}
 	If (Amount > 1) {
 		RandomSleep(30,45)
-		Send, {Shift up}
+		Send("{Shift up}")
 		RandomSleep(30,45)
 	}
-	Sleep, 90*Latency
+	Sleep(90*Latency)
 	ClipItem(x,y)
-	Sleep, 45*Latency
+	Sleep(45*Latency)
 	return True
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
@@ -399,7 +418,7 @@ MapRoll(Method, x, y){
 	}
 	Else If (Method ~= "Chaos")
 	{
-		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+		If (WR.data.Counts["Binding"] >= WR.data.Counts["Alchemy"])
 			cname := "Binding"
 		Else
 			cname := "Alchemy"
@@ -407,7 +426,7 @@ MapRoll(Method, x, y){
 	}
 	Else If (Method ~= "Hybrid")
 	{
-		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+		If (WR.data.Counts["Binding"] >= WR.data.Counts["Alchemy"])
 			cname := "Binding"
 		Else
 			cname := "Alchemy"
@@ -417,17 +436,17 @@ MapRoll(Method, x, y){
 	{
 		return
 	}
-	If (Item.Affix["Unidentified"])
+	If (Item.Affix.Has("Unidentified"))
 	{
-		If (Item.Prop.Rarity_Digit > 1 && cname = "Transmutation" && YesMapUnid )
+		If (Item.Prop.Rarity_Digit > 1 && cname == "Transmutation" && YesMapUnid )
 		{
 			Return
 		}
-		Else If (Item.Prop.Rarity_Digit > 2 && cname = "Alchemy" && YesMapUnid )
+		Else If (Item.Prop.Rarity_Digit > 2 && cname == "Alchemy" && YesMapUnid )
 		{
 			Return
 		}
-		Else If (Item.Prop.Rarity_Digit > 2 && cname = "Binding" && YesMapUnid )
+		Else If (Item.Prop.Rarity_Digit > 2 && cname == "Binding" && YesMapUnid )
 		{
 			Return
 		}
@@ -435,7 +454,7 @@ MapRoll(Method, x, y){
 		{
 			WisdomScroll(x,y)
 			ClipItem(x,y)
-			Sleep, 45*Latency
+			Sleep(45*Latency)
 		}
 	}
 	; Apply Currency if Normal
@@ -444,7 +463,7 @@ MapRoll(Method, x, y){
 		If !ApplyCurrency(cname, x, y)
 			Return False
 	}
-	If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic && cname = "Transmutation")
+	If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic && cname == "Transmutation")
 	{
 		If !ApplyCurrency("Augmentation",x,y)
 			Return False
@@ -453,13 +472,13 @@ MapRoll(Method, x, y){
 	BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
 	BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
-	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
+	While (!Item.Affix.Has("Unidentified") && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
 	{
 		If (!RunningToggle) {
 			break
 		}
 		If(!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)){
-			Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
+			Notify.Show("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 			Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 			Return
 		}
@@ -532,11 +551,11 @@ ItemCraftingRoll(Method, x, y){
 	{
 		Return
 	}
-	If (Item.Affix["Unidentified"])
+	If (Item.Affix.Has("Unidentified"))
 	{
 		WisdomScroll(x,y)
 		ClipItem(x,y)
-		Sleep, 45*Latency
+		Sleep(45*Latency)
 	}
 	While (!Item.Prop.ItemCraftingHit){
 		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
@@ -582,7 +601,7 @@ ItemCraftingRoll(Method, x, y){
 
 	}
 	If (Item.Prop.ItemCraftingHit) {
-		Notify("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
+		Notify.Show("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
 		Log("[End]Item Crafting - Sucess ","End Routine")
 	}
 

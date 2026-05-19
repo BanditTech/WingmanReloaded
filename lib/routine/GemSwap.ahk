@@ -1,14 +1,13 @@
-﻿; GemSwap - Swap gems between two locations
+; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GemSwap(){
-	GemSwapCommand:
-		SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
-		SetMouseDelay, %SetMouseDelayValue%
-		SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
-		Critical
-		Keywait, Alt
-		BlockInput, MouseMove
-		MouseGetPos xx, yy
+		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+		SetMouseDelay(SetMouseDelayValue)
+		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
+		Critical(1)
+		Keywait("Alt")
+		BlockInput("MouseMove")
+		MouseGetPos(&xx, &yy)
 		RandomSleep(45,45)
 
 		If !GuiStatus("OnInventory")
@@ -17,8 +16,8 @@ GemSwap(){
 			RandomSleep(45,45)
 		}
 		;First Gem or Item Swap
-		If (WR.perChar.Setting.swap1Xa && WR.perChar.Setting.swap1Ya 
-		&& WR.perChar.Setting.swap1Xb && WR.perChar.Setting.swap1Yb) 
+		If (WR.perChar.Setting.swap1Xa && WR.perChar.Setting.swap1Ya
+		&& WR.perChar.Setting.swap1Xb && WR.perChar.Setting.swap1Yb)
 		{
 			If (WR.perChar.Setting.swap1Item)
 			{
@@ -45,8 +44,8 @@ GemSwap(){
 			RandomSleep(90,120)
 		}
 		;Second Gem of Item Swap
-		If (WR.perChar.Setting.swap2Xa && WR.perChar.Setting.swap2Ya 
-		&& WR.perChar.Setting.swap2Xb && WR.perChar.Setting.swap2Yb) 
+		If (WR.perChar.Setting.swap2Xa && WR.perChar.Setting.swap2Ya
+		&& WR.perChar.Setting.swap2Xb && WR.perChar.Setting.swap2Yb)
 		{
 			If (WR.perChar.Setting.swap2Item)
 			{
@@ -73,7 +72,11 @@ GemSwap(){
 			RandomSleep(90,120)
 		}
 		SendHotkey(hotkeyInventory)
-		MouseMove, xx, yy, 0
-		BlockInput, MouseMoveOff
+		MouseMove(xx, yy, 0)
+		BlockInput("MouseMoveOff")
 	return
+}
+
+GemSwapCommand(*) {
+	GemSwap()
 }

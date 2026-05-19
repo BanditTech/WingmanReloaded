@@ -1,4 +1,4 @@
-﻿; Wingman Crafting Labels - By DanMarzola
+; Wingman Crafting Labels - By DanMarzola
 
 RowNumber := 0
 
@@ -10,7 +10,7 @@ ItemCraftingNamingMaping(Content)
     if (v ~= "increased Quantity of Items found in this Area" || v ~= "increased Rarity of Items found in this Area" || v ~= "increased Pack size"){
       Continue
     }Else{
-      Output .= v . (k==Content.Length()?"":" | ")
+      Output .= v . (k==Content.Length?"" : " | ")
     }
   }
 
@@ -23,24 +23,24 @@ RefreshMapList()
   Mods := LoadOnDemand("Maps","top_tier_map")
   For k, v in Mods
   {
-    LV_Add("",v["generation_type"],v["name"],ItemCraftingNamingMaping(v["text"]),v["weight"],"Good","1")
+    CustomMapModsGui["listview1"].Add("",v["generation_type"],v["name"],ItemCraftingNamingMaping(v["text"]),v["weight"],"Good","1")
   }
   Mods := []
   ;;Check Box
-  Loop % LV_GetCount()
+  Loop CustomMapModsGui["listview1"].GetCount()
   {
     Index := A_Index
-    LV_GetText(OutputVar, A_Index , 2)
+    OutputVar := CustomMapModsGui["listview1"].GetText(A_Index, 2)
     For k, v in WR.CustomMapMods.MapMods
     {
       If (v["Map Affix"] == OutputVar)
-        LV_Modify(Index,"Check",,,,,v["Mod Type"],v["Weight"])
+        CustomMapModsGui["listview1"].Modify(Index,"Check",,,,,v["Mod Type"],v["Weight"])
     }
   }
   ;; Style
-  Loop % LV_GetCount("Column")
-    LV_ModifyCol(A_Index,"AutoHdr")
-  LV_ModifyCol(1, "Sort")
+  Loop CustomMapModsGui["listview1"].GetCount("Column")
+    CustomMapModsGui["listview1"].ModifyCol(A_Index,"AutoHdr")
+  CustomMapModsGui["listview1"].ModifyCol(1, "Sort")
   Return
 }
 
@@ -50,153 +50,174 @@ RefreshHeistList()
   Mods := LoadOnDemand("Contracts","Contracts")
   For k, v in Mods
   {
-    LV_Add("","Contracts",v["generation_type"],v["name"],ItemCraftingNamingMaping(v["text"]),v["weight"],"Good","1")
+    CustomMapModsGui["listview1"].Add("","Contracts",v["generation_type"],v["name"],ItemCraftingNamingMaping(v["text"]),v["weight"],"Good","1")
   }
   Mods := LoadOnDemand("Blueprints","Blueprints")
   For k, v in Mods
   {
-    LV_Add("","Blueprints",v["generation_type"],v["name"],ItemCraftingNamingMaping(v["text"]),v["weight"],"Good","1")
+    CustomMapModsGui["listview1"].Add("","Blueprints",v["generation_type"],v["name"],ItemCraftingNamingMaping(v["text"]),v["weight"],"Good","1")
   }
   Mods := []
   ;;Check Box
-  Loop % LV_GetCount()
+  Loop CustomMapModsGui["listview1"].GetCount()
   {
     Index := A_Index
-    LV_GetText(OutputVar, A_Index , 2)
+    OutputVar := CustomMapModsGui["listview1"].GetText(A_Index, 2)
     For k, v in WR.CustomMapMods.HeistMods
     {
       If (v["Map Affix"] == OutputVar)
-        LV_Modify(Index,"Check",,,,,,v["Mod Type"],v["Weight"])
+        CustomMapModsGui["listview1"].Modify(Index,"Check",,,,,,v["Mod Type"],v["Weight"])
     }
   }
   ;; Style
-  Loop % LV_GetCount("Column")
-    LV_ModifyCol(A_Index,"AutoHdr")
-  LV_ModifyCol(1, "Sort")
+  Loop CustomMapModsGui["listview1"].GetCount("Column")
+    CustomMapModsGui["listview1"].ModifyCol(A_Index,"AutoHdr")
+  CustomMapModsGui["listview1"].ModifyCol(1, "Sort")
   Return
 }
 
-CustomMapModsUI:
-  Gui, CustomMapModsUI: New
-  Gui, CustomMapModsUI: Default
-  Gui, CustomMapModsUI: +AlwaysOnTop -MinimizeBox
-  Gui, CustomMapModsUI: Add, ListView , w1200 h350 -wrap -Multi Grid Checked gMyListViewMap vlistview1, Affix Type|Affix Name|Detail|Mod Weight|Mod Type|Weight
+CustomMapModsUI(*)
+{
+  global CustomMapModsGui
+  CustomMapModsGui := Gui()
+  CustomMapModsGui.Opt("+AlwaysOnTop -MinimizeBox")
+  lv := CustomMapModsGui.Add("ListView", "w1200 h350 -wrap -Multi Grid Checked vlistview1", ["Affix Type","Affix Name","Detail","Mod Weight","Mod Type","Weight"])
+  lv.OnEvent("DoubleClick", MyListViewMap)
   RefreshMapList()
-  Gui, CustomMapModsUI: Add, Button, gSaveMapData x+5 w120 h30 center, Save Map Modifiers
-  Gui, CustomMapModsUI: Add, Button, gResetMapData w120 h30 center, Reset Map Modifiers
-  Gui, CustomMapModsUI: Show, , Custom Map Mods
-Return
+  btn1 := CustomMapModsGui.Add("Button", "x+5 w120 h30 center", "Save Map Modifiers")
+  btn1.OnEvent("Click", SaveMapData)
+  btn2 := CustomMapModsGui.Add("Button", "w120 h30 center", "Reset Map Modifiers")
+  btn2.OnEvent("Click", ResetMapData)
+  CustomMapModsGui.Title := "Custom Map Mods"
+  CustomMapModsGui.Show()
+}
 
-CustomHeistModsUI:
-  Gui, CustomMapModsUI: New
-  Gui, CustomMapModsUI: Default
-  Gui, CustomMapModsUI: +AlwaysOnTop -MinimizeBox
-  Gui, CustomMapModsUI: Add, ListView , w1200 h350 -wrap -Multi Grid Checked gMyListViewHeist vlistview1, Affix Type|Affix Name|Detail|Mod Weight|Mod Type|Weight
+CustomHeistModsUI(*)
+{
+  global CustomMapModsGui
+  CustomMapModsGui := Gui()
+  CustomMapModsGui.Opt("+AlwaysOnTop -MinimizeBox")
+  lv := CustomMapModsGui.Add("ListView", "w1200 h350 -wrap -Multi Grid Checked vlistview1", ["Affix Type","Affix Name","Detail","Mod Weight","Mod Type","Weight"])
+  lv.OnEvent("DoubleClick", MyListViewHeist)
   RefreshHeistList()
-  Gui, CustomMapModsUI: Add, Button, gSaveHeistData x+5 w120 h30 center, Save Heist Modifiers
-  Gui, CustomMapModsUI: Add, Button, gResetHeistData w120 h30 center, Reset Heist Modifiers
-  Gui, CustomMapModsUI: Show, , Custom Heist
-Return
+  btn1 := CustomMapModsGui.Add("Button", "x+5 w120 h30 center", "Save Heist Modifiers")
+  btn1.OnEvent("Click", SaveHeistData)
+  btn2 := CustomMapModsGui.Add("Button", "w120 h30 center", "Reset Heist Modifiers")
+  btn2.OnEvent("Click", ResetHeistData)
+  CustomMapModsGui.Title := "Custom Heist"
+  CustomMapModsGui.Show()
+}
 
-MyListViewMap:
-  if (A_GuiEvent = "DoubleClick")
-  {
-    RowNumber := A_EventInfo
-    LV_GetText(OutputVar1, RowNumber,5)
-    LV_GetText(OutputVar2, RowNumber,6)
-    Gui, CustomUI: New
-    Gui, CustomUI: +AlwaysOnTop -MinimizeBox
-    Gui, CustomUI: Add, Text,, Mod Type:
-    Gui, CustomUI: Add, DropDownList, vCMP_ModType, Good|Bad|Impossible
-    GuiControl, ChooseString, CMP_ModType, %OutputVar1%
-    Gui, CustomUI: Add, Text,,Weight:
-    Gui, CustomUI: Add, Edit, Number w40, %OutputVar2%
-    Gui, CustomUI: Add, UpDown,Range1-100 vCMP_Weight, %OutputVar2%
-    Gui, CustomUI: Add, Button, gSaveRowLVM y+8 w120 h30 center, Save
-    Gui, CustomUI: Show, , Edit Map Mod
-  }
-Return
+MyListViewMap(ctrl, rowNum, *)
+{
+  global RowNumber, CustomMapModsGui
+  If !rowNum
+    Return
+  RowNumber := rowNum
+  OutputVar1 := CustomMapModsGui["listview1"].GetText(RowNumber, 5)
+  OutputVar2 := CustomMapModsGui["listview1"].GetText(RowNumber, 6)
+  CustomUI := Gui()
+  CustomUI.Opt("+AlwaysOnTop -MinimizeBox")
+  CustomUI.Add("Text",, "Mod Type:")
+  ddl := CustomUI.Add("DropDownList", "vCMP_ModType", ["Good","Bad","Impossible"])
+  ddl.Choose(OutputVar1)
+  CustomUI.Add("Text",, "Weight:")
+  CustomUI.Add("Edit", "Number w40", OutputVar2)
+  ud := CustomUI.Add("UpDown", "Range1-100 vCMP_Weight", OutputVar2)
+  btn := CustomUI.Add("Button", "y+8 w120 h30 center", "Save")
+  btn.OnEvent("Click", (*) => SaveRowLVM(CustomUI))
+  CustomUI.Title := "Edit Map Mod"
+  CustomUI.Show()
+}
 
-MyListViewHeist:
-  if (A_GuiEvent = "DoubleClick")
-  {
-    RowNumber := A_EventInfo
-    LV_GetText(OutputVar1, RowNumber,5)
-    LV_GetText(OutputVar2, RowNumber,6)
-    Gui, CustomUI: New
-    Gui, CustomUI: +AlwaysOnTop -MinimizeBox
-    Gui, CustomUI: Add, Text,, Mod Type:
-    Gui, CustomUI: Add, DropDownList, vCMP_ModType, Good|Bad|Impossible
-    GuiControl, ChooseString, CMP_ModType, %OutputVar1%
-    Gui, CustomUI: Add, Text,,Weight:
-    Gui, CustomUI: Add, Edit, Number w40, %OutputVar2%
-    Gui, CustomUI: Add, UpDown,Range1-100 vCMP_Weight, %OutputVar2%
-    Gui, CustomUI: Add, Button, gSaveRowLVM y+8 w120 h30 center, Save
-    Gui, CustomUI: Show, , Edit Map Mod
-  }
-Return
+MyListViewHeist(ctrl, rowNum, *)
+{
+  global RowNumber, CustomMapModsGui
+  If !rowNum
+    Return
+  RowNumber := rowNum
+  OutputVar1 := CustomMapModsGui["listview1"].GetText(RowNumber, 5)
+  OutputVar2 := CustomMapModsGui["listview1"].GetText(RowNumber, 6)
+  CustomUI := Gui()
+  CustomUI.Opt("+AlwaysOnTop -MinimizeBox")
+  CustomUI.Add("Text",, "Mod Type:")
+  ddl := CustomUI.Add("DropDownList", "vCMP_ModType", ["Good","Bad","Impossible"])
+  ddl.Choose(OutputVar1)
+  CustomUI.Add("Text",, "Weight:")
+  CustomUI.Add("Edit", "Number w40", OutputVar2)
+  ud := CustomUI.Add("UpDown", "Range1-100 vCMP_Weight", OutputVar2)
+  btn := CustomUI.Add("Button", "y+8 w120 h30 center", "Save")
+  btn.OnEvent("Click", (*) => SaveRowLVM(CustomUI))
+  CustomUI.Title := "Edit Map Mod"
+  CustomUI.Show()
+}
 
-SaveRowLVM:
-  Gui, CustomUI: Submit, NoHide
-  Gui, CustomMapModsUI:Default
-  LV_Modify(RowNumber,,,,,,CMP_ModType,CMP_Weight)
-  Gui, CustomUI: Hide
-Return
+SaveRowLVM(CustomUI)
+{
+  global RowNumber, CustomMapModsGui
+  saved := CustomUI.Submit(0)
+  CustomMapModsGui["listview1"].Modify(RowNumber,,,,,,saved.CMP_ModType,saved.CMP_Weight)
+  CustomUI.Hide()
+}
 
-SaveMapData:
-  Gui, CustomMapModsUI:Default
-  TrueIndex:=0
+SaveMapData(*)
+{
+  global CustomMapModsGui
+  TrueIndex := 0
   WR.CustomMapMods.MapMods := []
   RowNumber := 0
   Loop
   {
-    RowNumber := LV_GetNext(RowNumber,"C")
+    RowNumber := CustomMapModsGui["listview1"].GetNext(RowNumber,"C")
     If not RowNumber
       Break
     TrueIndex++
-    LV_GetText(MapAffix, RowNumber, 2)
-    LV_GetText(Detail, RowNumber, 3)
-    LV_GetText(ModType, RowNumber, 5)
-    LV_GetText(Weight, RowNumber, 6)
-    aux:={"ID":TrueIndex,"Map Affix":MapAffix,"Map Detail":Detail,"Mod Type":ModType,"Weight":Weight}
+    MapAffix := CustomMapModsGui["listview1"].GetText(RowNumber, 2)
+    Detail   := CustomMapModsGui["listview1"].GetText(RowNumber, 3)
+    ModType  := CustomMapModsGui["listview1"].GetText(RowNumber, 5)
+    Weight   := CustomMapModsGui["listview1"].GetText(RowNumber, 6)
+    aux := Map("ID",TrueIndex,"Map Affix",MapAffix,"Map Detail",Detail,"Mod Type",ModType,"Weight",Weight)
     WR.CustomMapMods.MapMods.Push(aux)
   }
   Settings("CustomMapMods","Save")
-Return
+}
 
-ResetMapData:
-  Gui, CustomMapModsUI:Default
-  Loop % LV_GetCount()
-    LV_Modify(A_Index,"-Check")
+ResetMapData(*)
+{
+  global CustomMapModsGui
+  Loop CustomMapModsGui["listview1"].GetCount()
+    CustomMapModsGui["listview1"].Modify(A_Index,"-Check")
   WR.CustomMapMods.MapMods := []
   Settings("CustomMapMods","Save")
-Return
+}
 
-SaveHeistData:
-  Gui, CustomHeistModsUI:Default
-  TrueIndex:=0
+SaveHeistData(*)
+{
+  global CustomMapModsGui
+  TrueIndex := 0
   WR.CustomMapMods.HeistMods := []
   RowNumber := 0
   Loop
   {
-    RowNumber := LV_GetNext(RowNumber,"C")
+    RowNumber := CustomMapModsGui["listview1"].GetNext(RowNumber,"C")
     If not RowNumber
       Break
     TrueIndex++
-    LV_GetText(MapAffix, RowNumber, 2)
-    LV_GetText(Detail, RowNumber, 3)
-    LV_GetText(ModType, RowNumber, 5)
-    LV_GetText(Weight, RowNumber, 6)
-    aux:={"ID":TrueIndex,"Map Affix":MapAffix,"Map Detail":Detail,"Mod Type":ModType,"Weight":Weight}
+    MapAffix := CustomMapModsGui["listview1"].GetText(RowNumber, 2)
+    Detail   := CustomMapModsGui["listview1"].GetText(RowNumber, 3)
+    ModType  := CustomMapModsGui["listview1"].GetText(RowNumber, 5)
+    Weight   := CustomMapModsGui["listview1"].GetText(RowNumber, 6)
+    aux := Map("ID",TrueIndex,"Map Affix",MapAffix,"Map Detail",Detail,"Mod Type",ModType,"Weight",Weight)
     WR.CustomMapMods.HeistMods.Push(aux)
   }
   Settings("CustomMapMods","Save")
-Return
+}
 
-ResetHeistData:
-  Gui, CustomHeistModsUI:Default
-  Loop % LV_GetCount()
-    LV_Modify(A_Index,"-Check")
+ResetHeistData(*)
+{
+  global CustomMapModsGui
+  Loop CustomMapModsGui["listview1"].GetCount()
+    CustomMapModsGui["listview1"].Modify(A_Index,"-Check")
   WR.CustomMapMods.HeistMods := []
   Settings("CustomMapMods","Save")
-Return
+}

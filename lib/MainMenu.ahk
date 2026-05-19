@@ -1,17 +1,17 @@
-﻿; Hotkeys - Open main menu
+; Hotkeys - Open main menu
 MainMenu(){
-  global
+  Global CheckGamestates
   if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
     Return
   if(YesGuiLastPosition)
   {
-    If (WinGuiX = "" || WinGuiY = "")
+    If (WinGuiX == "" || WinGuiY == "")
       WinGuiX := WinGuiY := 0
-    Gui, 1: Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
+    MainGui.Show("Autosize x" WinGuiX " y" WinGuiY)
   }
   Else
   {
-    Gui, 1: Show, Autosize Center,   WingmanReloaded
+    MainGui.Show("Autosize Center")
   }
   mainmenuGameLogicState(True)
   GuiUpdate()

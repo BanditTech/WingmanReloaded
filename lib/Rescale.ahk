@@ -1,30 +1,32 @@
 ﻿; Rescale - Rescales values of the script to the user's resolution
 Rescale(){
-  Global GameX, GameY, GameW, GameH, Base, Globe, InvGrid, WR
+  Global GameX, GameY, GameW, GameH, Base, Globe, InvGrid, WR, RescaleRan
   If checkActiveType()
   {
     ; Build array framework
-    InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{},"Ritual":{}}
-            ,"SlotSpacing": 2
-            ,"SlotRadius": 25
-            ,"Ritual":{"X":{},"Y":{}}
-            ,"Stash":{"X":{},"Y":{}}
-            ,"StashQuad":{"X":{},"Y":{}}
-            ,"Inventory":{"X":{},"Y":{}}
-            ,"VendorRec":{"X":{},"Y":{}}
-            ,"VendorOff":{"X":{},"Y":{}}}
+    InvGrid:={Corners:{Stash:{}, Inventory:{}, VendorRec:{}, VendorOff:{}, Ritual:{}}
+            , SlotSpacing: 2
+            , SlotRadius: 25
+            , Ritual:{X:[], Y:[]}
+            , Stash:{X:[], Y:[]}
+            , StashQuad:{X:[], Y:[]}
+            , Inventory:{X:[], Y:[]}
+            , VendorRec:{X:[], Y:[]}
+            , VendorOff:{X:[], Y:[]}}
     If (FileExist(A_ScriptDir "\save\Globe.json") && VersionNumber != "")
     {
       WR_Menu("JSON","Load","Globe")
       GlobeImported := True
-      Base.Globe := Array_DeepClone(Globe)
+      Base.Globe := ObjDeepClone(Globe)
     }
-    Else If (VersionNumber = "")
+    Else If (VersionNumber == "")
       GlobeImported := True
     Else
       GlobeImported := False
+    ; StashImported has no save file path — always recalculate
+    StashImported := False
 
-    WinGetPos, GameX, GameY, GameW, GameH
+    WinGetPos(&GameX, &GameY, &GameW, &GameH)
 
     ; Scaled Resolutions for all aspects
     ; Checks to see if the game UI is displayed
@@ -42,35 +44,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(1920/106)) 
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(1920/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(1920/106)) 
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(1920/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(1920/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(1920/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(1920/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(1920/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(1920/1720)) 
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(1920/1800)) 
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(1920/1720)) 
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(1920/1800)) 
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(1920/1760)) 
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(1920/1830)) 
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(1920/1760)) 
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(1920/1830)) 
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := Array_DeepClone(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       ; ---Needs to be done with all aspect ratio---
@@ -232,7 +234,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1920 / 0))
+      WR.loc.pixel.OnChat.X:=GameX ; native 1920: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
@@ -270,35 +272,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(1440/106)) ; left side does not require repositioning
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(1440/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(1440/106)) ; left side does not require repositioning
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(1440/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(1440/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(1440/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(1440/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(1440/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(1440/1240)) ; Width - 200
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(1440/1320)) ; Width - 120
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(1440/1240)) ; Width - 200
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(1440/1320)) ; Width - 120
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(1440/1280)) ; Width - 160
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(1440/1350)) ; Width - 90
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(1440/1280)) ; Width - 160
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(1440/1350)) ; Width - 90
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := Array_DeepClone(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -437,7 +439,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1440 / 0))
+      WR.loc.pixel.OnChat.X:=GameX ; native 1440: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1440 / 1103))
@@ -475,35 +477,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(2560/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(2560/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(2560/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(2560/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(2560/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(2560/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(2560/2360)) ; Width - 200
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(2560/2440)) ; Width - 120
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(2560/2360)) ; Width - 200
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(2560/2440)) ; Width - 120
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(2560/2400)) ; Width - 160
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(2560/2470)) ; Width - 90
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(2560/2400)) ; Width - 160
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(2560/2470)) ; Width - 90
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := Array_DeepClone(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -640,7 +642,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (2560 / 0))
+      WR.loc.pixel.OnChat.X:=GameX ; native 2560: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (2560 / 2223))
@@ -678,35 +680,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(2560/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(2560/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(2560/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(2560/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(2560/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(2560/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(2560/2360)) ; Width - 200
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(2560/2440)) ; Width - 120
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(2560/2360)) ; Width - 200
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(2560/2440)) ; Width - 120
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(2560/2400)) ; Width - 160
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(2560/2470)) ; Width - 90
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(2560/2400)) ; Width - 160
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(2560/2470)) ; Width - 90
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := Array_DeepClone(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -848,7 +850,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (3440 / 0))
+      WR.loc.pixel.OnChat.X:=GameX ; native 3440: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (3440 / 2991))
@@ -885,35 +887,35 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(3840/106)) ; left side does not require repositioning
-        Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.Life.X2 := GameX + Round(GameW/(3840/146)) 
-        Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(3840/106)) ; left side does not require repositioning
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(3840/146)) 
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1080/1049))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(3840/165)) 
-        Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.ES.X2 := GameX + Round(GameW/(3840/210)) 
-        Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(3840/165)) 
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(3840/210)) 
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(3840/3640)) ; Width - 200
-        Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
-        Globe.EB.X2 := GameX + Round(GameW/(3840/3720)) ; Width - 120
-        Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(3840/3640)) ; Width - 200
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1080/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(3840/3720)) ; Width - 120
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1080/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(3840/3680)) ; Width - 160
-        Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
-        Globe.Mana.X2 := GameX + Round(GameW/(3840/3750)) ; Width - 90
-        Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(3840/3680)) ; Width - 160
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1080/878))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(3840/3750)) ; Width - 90
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1080/1060))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := Array_DeepClone(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -1048,7 +1050,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (3840 / 0))
+      WR.loc.pixel.OnChat.X:=GameX ; native 3840: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
       ;Status Check OnInventory
       WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (3840 / 3503))
@@ -1087,39 +1089,39 @@ Rescale(){
       If (!GlobeImported)
       {
         ; Life scan area
-        Globe.Life.X1 := GameX + Round(GameW/(1680/96))
-        Globe.Life.Y1 := GameY + Round(GameH/(1050/854))
-        Globe.Life.X2 := GameX + Round(GameW/(1680/135))
-        Globe.Life.Y2 := GameY + Round(GameH/(1050/1043))
-        Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
-        Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+        Globe["Life"]["X1"] := GameX + Round(GameW/(1680/96))
+        Globe["Life"]["Y1"] := GameY + Round(GameH/(1050/854))
+        Globe["Life"]["X2"] := GameX + Round(GameW/(1680/135))
+        Globe["Life"]["Y2"] := GameY + Round(GameH/(1050/1043))
+        Globe["Life"]["Width"] := Globe["Life"]["X2"] - Globe["Life"]["X1"]
+        Globe["Life"]["Height"] := Globe["Life"]["Y2"] - Globe["Life"]["Y1"]
 
         ; ES scan area
-        Globe.ES.X1 := GameX + Round(GameW/(1680/116))
-        Globe.ES.Y1 := GameY + Round(GameH/(1050/847))
-        Globe.ES.X2 := GameX + Round(GameW/(1680/212))
-        Globe.ES.Y2 := GameY + Round(GameH/(1050/1049))
-        Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
-        Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+        Globe["ES"]["X1"] := GameX + Round(GameW/(1680/116))
+        Globe["ES"]["Y1"] := GameY + Round(GameH/(1050/847))
+        Globe["ES"]["X2"] := GameX + Round(GameW/(1680/212))
+        Globe["ES"]["Y2"] := GameY + Round(GameH/(1050/1049))
+        Globe["ES"]["Width"] := Globe["ES"]["X2"] - Globe["ES"]["X1"]
+        Globe["ES"]["Height"] := Globe["ES"]["Y2"] - Globe["ES"]["Y1"]
 
         ; ES for Eldridtch Batterry scan area
-        Globe.EB.X1 := GameX + Round(GameW/(1680/1720))
-        Globe.EB.Y1 := GameY + Round(GameH/(1050/886))
-        Globe.EB.X2 := GameX + Round(GameW/(1680/1800))
-        Globe.EB.Y2 := GameY + Round(GameH/(1050/1064))
-        Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
-        Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+        Globe["EB"]["X1"] := GameX + Round(GameW/(1680/1720))
+        Globe["EB"]["Y1"] := GameY + Round(GameH/(1050/886))
+        Globe["EB"]["X2"] := GameX + Round(GameW/(1680/1800))
+        Globe["EB"]["Y2"] := GameY + Round(GameH/(1050/1064))
+        Globe["EB"]["Width"] := Globe["EB"]["X2"] - Globe["EB"]["X1"]
+        Globe["EB"]["Height"] := Globe["EB"]["Y2"] - Globe["EB"]["Y1"]
 
         ; Mana scan area
-        Globe.Mana.X1 := GameX + Round(GameW/(1680/1541))
-        Globe.Mana.Y1 := GameY + Round(GameH/(1050/848))
-        Globe.Mana.X2 := GameX + Round(GameW/(1680/1594))
-        Globe.Mana.Y2 := GameY + Round(GameH/(1050/1049))
-        Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
-        Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+        Globe["Mana"]["X1"] := GameX + Round(GameW/(1680/1541))
+        Globe["Mana"]["Y1"] := GameY + Round(GameH/(1050/848))
+        Globe["Mana"]["X2"] := GameX + Round(GameW/(1680/1594))
+        Globe["Mana"]["Y2"] := GameY + Round(GameH/(1050/1049))
+        Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
+        Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
 
         ; Set the base values for restoring default
-        Base.Globe := Array_DeepClone(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
 
       ; Stash grid area
@@ -1262,7 +1264,7 @@ Rescale(){
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
       
       ;Status Check OnChat
-      WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1680 / 0))
+      WR.loc.pixel.OnChat.X:=GameX ; native 1680: x=0, no horizontal scaling
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
       
       ;Status Check OnInventory
@@ -1305,9 +1307,9 @@ Rescale(){
 
     x_center := GameX + GameW / 2
     compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
-    Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) ,"Yadjusted" : GameY + GameH / 2 / compensation}
+    Global ScrCenter := {X: GameX + Round(GameW / 2) , Y: GameY + Round(GameH / 2) , Yadjusted: GameY + GameH / 2 / compensation}
     RescaleRan := True
-    Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
+    Global GameWindow := {X: GameX, Y: GameY, W: GameW, H: GameH, BBarY: (GameY + (GameH / (1080 / 75)))}
     BuildGridsFromCorners()
   }
   return
@@ -1319,13 +1321,13 @@ BuildGridsFromCorners(){
   , totalY:=InvGrid.Corners.Stash.Y2 - InvGrid.Corners.Stash.Y1
   ; Fill in array with grid locations for 12x12 stash
   Cnum:=Rnum:=12
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   InvGrid.SlotRadius := (Cwidth//2 + Rwidth//2) // 2
   InvGrid.SlotSize := (Cwidth + Rwidth) // 2
-  Loop, %Cnum%
+  Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.Stash.X1+Cwidth//2, PointY:=InvGrid.Corners.Stash.Y1+Rwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing, PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1334,11 +1336,11 @@ BuildGridsFromCorners(){
   }
   ; Fill in array with grid locations for 24x24 stash
   Cnum:=Rnum:=24
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
-  Loop, %Cnum%
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.Stash.X1+Cwidth//2, PointY:=InvGrid.Corners.Stash.Y1+Rwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing, PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1351,19 +1353,19 @@ BuildGridsFromCorners(){
   ; Fill in array with grid locations for 12x5 Inventory
   Cnum:=12
   Rnum:=5
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
-  Loop, %Cnum%
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.Inventory.X1+Cwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing
     InvGrid.Inventory.X.Push(Round(PointX))
   }
-  Loop, %Rnum%
+  Loop Rnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointY:=InvGrid.Corners.Inventory.Y1+Rwidth//2
     Else
       PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1375,19 +1377,19 @@ BuildGridsFromCorners(){
   ; Fill in array with grid locations for 12x5 Receive Area
   Cnum:=12
   Rnum:=5
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
-  Loop, %Cnum%
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.VendorRec.X1+Cwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing
     InvGrid.VendorRec.X.Push(Round(PointX))
   }
-  Loop, %Rnum%
+  Loop Rnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointY:=InvGrid.Corners.VendorRec.Y1+Rwidth//2
     Else
       PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1399,19 +1401,19 @@ BuildGridsFromCorners(){
   ; Fill in array with grid locations for 12x5 Offer Area
   Cnum:=12
   Rnum:=5
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
-  Loop, %Cnum%
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.VendorOff.X1+Cwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing
     InvGrid.VendorOff.X.Push(Round(PointX))
   }
-  Loop, %Rnum%
+  Loop Rnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointY:=InvGrid.Corners.VendorOff.Y1+Rwidth//2
     Else
       PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1423,19 +1425,19 @@ BuildGridsFromCorners(){
   ; Fill in array with grid locations for 12x10 Offer Area
   Cnum:=12
   Rnum:=10
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
-  Loop, %Cnum%
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.Ritual.X1+Cwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing
     InvGrid.Ritual.X.Push(Round(PointX))
   }
-  Loop, %Rnum%
+  Loop Rnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointY:=InvGrid.Corners.Ritual.Y1+Rwidth//2
     Else
       PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1445,7 +1447,7 @@ BuildGridsFromCorners(){
 
 FirstScale(){
   ;Begin scaling resolution values
-  IfWinExist, ahk_group POEGameGroup
+  if WinExist("ahk_group POEGameGroup")
   {
     Rescale()
   } else {

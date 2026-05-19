@@ -1,4 +1,43 @@
-﻿Class SortByNum {
+; Shim replacing the v1 AHK (adash) instance.
+; adash v0.6.0 lacks sortBy/sumBy/meanBy, so they are implemented here.
+Class AHK {
+	static reverse(arr) => adash.reverse(arr)
+	; Internal: resolve iteratee to a callable mapping obj -> sort key.
+	; Accepts a string property name or a function reference.
+	static _iteratee(it) {
+		If (it is String)
+			Return (o) => o[it]
+		Return it
+	}
+	static sortBy(arr, it) {
+		fn := AHK._iteratee(it)
+		sorted := arr.Clone()
+		Loop sorted.Length - 1 {
+			i := A_Index + 1
+			While (i > 1 && fn(sorted[i-1]) > fn(sorted[i])) {
+				temp := sorted[i]
+				sorted[i] := sorted[i-1]
+				sorted[i-1] := temp
+				i--
+			}
+		}
+		Return sorted
+	}
+	static sumBy(arr, it) {
+		fn := AHK._iteratee(it)
+		total := 0
+		For _, obj in arr
+			total += fn(obj)
+		Return total
+	}
+	static meanBy(arr, it) {
+		If !arr.Length
+			Return 0
+		Return AHK.sumBy(arr, it) / arr.Length
+	}
+}
+
+Class SortByNum {
 	__New(sortlist,maxOver:=14,min:=40){
 		; Initiate values, get the total number of potential groups
 		This.Excess := AHK.reverse(AHK.sortBy(sortlist,"Q"))
@@ -6,7 +45,7 @@
 		This.Max := This.Min + maxOver
 		This.MaxOver := maxOver
 		This.TotalQ := This.GetQ(This.Excess)
-		This.TotalNum := This.Excess.Count()
+		This.TotalNum := This.Excess.Length
 		This.Mean := Round(AHK.meanBy(This.Excess,"Q"))
 		; Find the optimum starting number of groups, then create them
 		This.GetGroupNum()
@@ -42,18 +81,18 @@
 				txt .= " " vv.Q
 			txt .= "`n"
 		}
-		txt .= "Excess:" This.ExcessQ " Count:" This.Excess.Count() "`n"
+		txt .= "Excess:" This.ExcessQ " Count:" This.Excess.Length "`n"
 		For k, v in This.Excess {
 			txt .= v.Q " "
 		}
-		Tooltip % txt
+		ToolTip(txt)
 	}
 	SwapForBetter(){
 		While (Results := This.MultiSwap() ) {
-			binNum := Results.1.1
-			binKey := Results.1.2
-			binKey2 := Results.1.3
-			key := Results.2.1
+			binNum := Results[1][1]
+			binKey := Results[1][2]
+			binKey2 := Results[1][3]
+			key := Results[2][1]
 			fetch := This.SortGroups[binNum][binKey]
 			fetch2 := This.SortGroups[binNum][binKey2]
 			replace := This.Excess[key]
@@ -66,10 +105,10 @@
 			; This.ReSort()
 		}
 		While (Results := This.Swap() ) {
-			binNum := Results.1.1
-			binKey := Results.1.2
-			key1 := Results.2.1
-			key2 := Results.2.2
+			binNum := Results[1][1]
+			binKey := Results[1][2]
+			key1 := Results[2][1]
+			key2 := Results[2][2]
 			fetch := This.SortGroups[binNum][binKey]
 			replace := This.Excess[key1]
 			If key2 {
@@ -99,7 +138,7 @@
 						Return [[binNum,binKey],[key1]]
 					Else {
 						For key2, obj2 in This.Excess {
-							If (key1 = key2)
+							If (key1 == key2)
 								Continue 1
 							newQ := groupQ - binObj.Q + obj1.Q + obj2.Q
 							If (newQ >= This.Min && newQ - This.Min < overQ)
@@ -120,7 +159,7 @@
 			For binKey, binObj in bin {
 				; Going through each bin, finding replacements to lower overQ
 				For binKey2, binObj2 in bin {
-					If (binKey2 = binKey)
+					If (binKey2 == binKey)
 						Continue
 					For key, obj in This.Excess {
 						newQ := groupQ - binObj.Q - binObj2.Q + obj.Q
@@ -159,7 +198,7 @@
 	}
 	ReturnToExcess(binNum,tkey:=""){
 		For key, obj in This.SortGroups[binNum] {
-			If (tkey="" || tkey && key = tkey)
+			If (tkey="" || tkey && key == tkey)
 				This.Excess.Push(obj)
 		}
 		If (tkey="")
@@ -169,7 +208,7 @@
 	}
 	GroupsAreFull(){
 		For k, bin in This.SortGroups {
-			If (This.GetQ(bin) < This.Min) 
+			If (This.GetQ(bin) < This.Min)
 				Return False
 		}
 		Return True
@@ -261,19 +300,19 @@
 				Return [FirstKey]
 			} Else If (depth >= 2) {
 				For SecondKey, SecondObj in This.Excess {
-					If (FirstKey = SecondKey)
+					If (FirstKey == SecondKey)
 						Continue 1
 					If ((groupQ + FirstObj.Q + SecondObj.Q) >= This.Min && (groupQ + FirstObj.Q + SecondObj.Q) <= This.Max) {
 						Return [FirstKey,SecondKey]
 					}	Else If (depth >= 3) {
 						For ThirdKey, ThirdObj in This.Excess {
-							If (FirstKey = ThirdKey || SecondKey = ThirdKey)
+							If (FirstKey == ThirdKey || SecondKey == ThirdKey)
 								Continue 1
 							If ((groupQ + FirstObj.Q + SecondObj.Q + ThirdObj.Q) >= This.Min && (groupQ + FirstObj.Q + SecondObj.Q + ThirdObj.Q) <= This.Max) {
 								Return [FirstKey,SecondKey,ThirdKey]
 							} Else If (depth >= 4) {
 								For FourthKey, FourthObj in This.Excess {
-									If (FirstKey = FourthKey || SecondKey = FourthKey || ThirdKey = FourthKey)
+									If (FirstKey == FourthKey || SecondKey == FourthKey || ThirdKey == FourthKey)
 										Continue 1
 									If ((groupQ + FirstObj.Q + SecondObj.Q + ThirdObj.Q + FourthObj.Q) >= This.Min && (groupQ + FirstObj.Q + SecondObj.Q + ThirdObj.Q + FourthObj.Q) <= This.Max) {
 										Return [FirstKey,SecondKey,ThirdKey,FourthKey]
@@ -281,7 +320,7 @@
 								}
 							}
 						}
-					}						
+					}
 				}
 			}
 		}
@@ -298,7 +337,7 @@
 	}
 	BuildSortGroups(){
 		This.SortGroups := []
-		Loop, % This.GroupNum - 1 {
+		Loop This.GroupNum - 1 {
 			This.SortGroups.Push([])
 		}
 	}
@@ -319,12 +358,12 @@
 	GetCounts(){
 		objCount := 0
 		For k, bin in This.SortGroups {
-			objCount += bin.Count()
+			objCount += bin.Length
 		}
-		objCount += This.Excess.Count()
+		objCount += This.Excess.Length
 		If (objCount != This.TotalNum)
-			MsgBox % "There is a mismatching number of end objects"
-			. "`nStarting Count:" This.TotalNum "`tEnd:" objCount
+			MsgBox("There is a mismatching number of end objects"
+			. "`nStarting Count:" This.TotalNum "`tEnd:" objCount)
 		Return objCount
 	}
 }

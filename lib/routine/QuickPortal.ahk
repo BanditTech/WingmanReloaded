@@ -1,26 +1,25 @@
-﻿; QuickPortal - Open Town Portal
+; QuickPortal - Open Town Portal
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 QuickPortal(){
-	QuickPortalCommand:
 		If (OnTown || OnHideout || OnMines)
 			Return
 		if (hotkeyOpenPortal == A_Space) {
-			Notify("Hotkey Unset","Set the keybinding to match the in-game Open Portal key.",3)
+			Notify.Show("Hotkey Unset","Set the keybinding to match the in-game Open Portal key.",3)
 			Return
 		}
 
-		Critical
-		BlockInput MouseMove
-		MouseGetPos xx, yy
+		Critical(1)
+		BlockInput("MouseMove")
+		MouseGetPos(&xx, &yy)
 
 		; Release both the left and right mouse keys
 		lState := GetKeyState("LButton","P")
 		rState := GetKeyState("RButton","P")
 		If (lState || rState) {
 			if (lState)
-				Click, up
+				Click("up")
 			if (rState)
-				Click, Right, up
+				Click("Right up")
 			RandomSleep(75,90)
 		}
 
@@ -29,7 +28,7 @@ QuickPortal(){
 			SendHotkey(hotkeyInventory)
 			RandomSleep(75,90)
 		}
-		
+
 		centerX := GameX + Round(GameW/2)
 		centerY := GameY + Round(GameH*0.48148148148148148148148148148148)
 
@@ -41,7 +40,11 @@ QuickPortal(){
 		; Click the center of screen to use the portal.
 		LeftClick(centerX,centerY)
 
-		BlockInput MouseMoveOff
+		BlockInput("MouseMoveOff")
 		RandomSleep(300,600)
 	return
+}
+
+QuickPortalCommand(*) {
+	QuickPortal()
 }

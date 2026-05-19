@@ -1,10 +1,10 @@
-﻿; Add simple shared functions 
+; Add simple shared functions
 Class Util {
 	Static Name := "WingmanReloaded"
 	; List the files within a folder
-	FileList(dir,pat:="*.*"){
+	static FileList(dir,pat:="*.*"){
 		Local Files := []
-		Loop %dir%\%pat% {
+		Loop Files dir "\" pat {
 			Files.Push(A_LoopFileName)
 		}
 		If Files
@@ -13,7 +13,7 @@ Class Util {
 			Return False
 	}
 	; Simple 1d array printing
-	PrintArray(Obj,showkey:=True){
+	static PrintArray(Obj,showkey:=True){
 		local Msg := "", k, v
 		For k, v in Obj {
 			Msg .= (Msg?"`n":"") (showkey? k " : " : "" )  (IsObject(v)?"{OBJECT}":v)
@@ -21,15 +21,15 @@ Class Util {
 		Return Msg
 	}
 	; Retreive HWND of a process
-	HwndOfPID(pid){
+	static HwndOfPID(pid){
 		local hWnd
-		DetectHiddenWindows, On
-		WinGet, hWnd, ID, % "ahk_pid " pid
-		DetectHiddenWindows, Off
+		DetectHiddenWindows(true)
+		hWnd := WinGetID("ahk_pid " pid)
+		DetectHiddenWindows(false)
 		return hWnd
 	}
 	; JSON wrapper for loading files
-	Load(File){
+	static Load(File){
 		local t, f, fStr, _JSON
 		Try {
 			If File {
@@ -60,16 +60,16 @@ Class Util {
 					Return "00" ; Loading File Failed
 			} Else
 				Return "0" ; No File Object
-		} Catch e {
+		} catch as e {
 			This.Err(e, "Failed during JSON Load:", "fileParam: " File, "fStr: " fStr, "fLoaded: " (IsObject(f) ? "True" : "False" ))
 		}
 	}
 	; JSON wrapper for saving files
-	Save(File,Object){
+	static Save(File,Object){
 		local t, f, fStr, _JSON
 		Try {
 			If !FileExist(This.Dir.save "\"){
-				FileCreateDir, % This.Dir.save
+				DirCreate(This.Dir.save)
 			}
 			If File {
 				If (File ~= "^\w:\\.+\.json$") { ; This File is a Full Path
@@ -83,26 +83,26 @@ Class Util {
 			} Else
 				Return "00" ; No File Reference
 			If f {
-				f.Write(JSON.Dump(Object,,2))
+				f.Write(JSON.Dump(Object, 2))
 				f.close()
 				Return True
 			} Else
 				Return "0" ; File object not loaded
-		} Catch e {
+		} catch as e {
 			This.Err( e, "Failed during JSON Save:", "fileParam: " File, "fStr: " fStr, "fLoaded: " (IsObject(f) ? "True" : "False" ) )
 		}
 	}
 	; Simple JSON string dump
-	JString(Object){
+	static JString(Object){
 		Try {
-			Return JSON.Dump(Object,,2)
-		} Catch e {
+			Return JSON.Dump(Object, 2)
+		} catch as e {
 			This.Err( e )
 		}
 	}
 	; Error report for standard error message
-	Err(e,t*){
-		local l, k, v
+	static Err(e,t*){
+		local l := "", k, v
 		For k, v in t
 			If IsObject(v)
 				l := t.RemoveAt(k)
@@ -112,17 +112,17 @@ Class Util {
 			l.Push(v)
 		l.Push("Error Report:")
 		For k, v in ["what","file","line","message","extra"]
-			l.Push(v ": " e[v])
+			l.Push(v ": " e.%v%)
 		This.Log.Msg("Error ", l)
 		If This.Debug.ErrorMsgBox
-			MsgBox,% 4096+16, %A_ScriptName%,% This.PrintArray(l,False)
+			MsgBox(This.PrintArray(l,False), A_ScriptName, 4096+16)
 		Return l
 	}
 	; Com method of fetching URL text data.
 	; Pass postdata, headers and cookies as keypair arrays, if postdata is text do not prepend "?"
-	HttpGet(url,headers:="",postdata:="",cookies:=""){
+	static HttpGet(url,headers:="",postdata:="",cookies:=""){
 		Try {
-			whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+			whr := ComObject("WinHttp.WinHttpRequest.5.1")
 			If (postdata){
 				appended := ""
 				If isObject(postdata) {
@@ -160,16 +160,16 @@ Class Util {
 				Log("HttpGet Response ","Response was:",response,"---------Headers---------",responseheaders)
 			}
 			Return response
-		} catch e {
+		} catch as e {
 			This.Err(e,"Download failed for " url)
 		}
 	}
 	; Allow child process to terminate script
-	Quit() {
+	static Quit() {
 		This.Log.Msg("Quit Was Called")
 		If This.Debug.AllowQuit {
-			DetectHiddenWindows On  ; WM_CLOSE=0x10
-			PostMessage 0x10,,,, ahk_id %A_ScriptHwnd%
+			DetectHiddenWindows(true)  ; WM_CLOSE=0x10
+			PostMessage(0x10,,,, "ahk_id " A_ScriptHwnd)
 		} ; Now return, so the client's call to Quit() succeeds.
 	}
 	; Store our directories for simple calls to files
@@ -199,44 +199,46 @@ Class Util {
 	Class Log extends Util {
 		Static Limit := 10
 		Static ActiveFile := ""
-		Open(){
+		static Open(){
 			local loglist, filename, TimeString
 			If !FileExist(This.Dir.logs "\"){
-				FileCreateDir, % This.Dir.logs
+				DirCreate(This.Dir.logs)
 			}
 			This.Log.ActiveFile := This.Dir.logs "\" This.Name " " A_Now ".log"
 			This.Log.File := FileOpen(This.Log.ActiveFile,"w")
 			This.Log.File.Close()
 			loglist := This.FileList(This.Dir.logs, This.Name " ??????????????.log")
-			If (loglist.Count() > This.Log.Limit && This.Log.Limit)
+			If (loglist.Length > This.Log.Limit && This.Log.Limit)
 			{
-				While (loglist.Count() > This.Log.Limit) {
-					FileDelete,% This.Dir.logs "\" loglist.RemoveAt(1)
+				While (loglist.Length > This.Log.Limit) {
+					FileDelete(This.Dir.logs "\" loglist.RemoveAt(1))
 				}
 			}
-			FormatTime, TimeString, T12, Time
-			FormatTime, TimeString, A_Now, yyyy/MM/d
+			TimeString := FormatTime(, "Time")
+			TimeString := FormatTime(A_Now, "yyyy/MM/d")
 			This.Log.Msg(This.Name " Log ", TimeString
 			, "Script Version " VersionNumber
-			, "AHK v" A_AhkVersion " " (A_IsUnicode ? "Unicode" : "ANSI") " " (A_PtrSize = 4 ? 32 : 64) "-b"
+			, "AHK v" A_AhkVersion " Unicode " (A_PtrSize == 4 ? 32 : 64) "-b"
 			, "AHK " A_AhkPath
-			, "OS " (A_OSVersion ~= "^WIN_" ? A_OSVersion : A_OSVersion >= 10 ? "WIN_"A_OSVersion : "Unknown OS " A_OSVersion) (A_Is64bitOS?" 64-b":" 32-b")
+			, "OS " (A_OSVersion ~= "^WIN_" ? A_OSVersion : Integer(StrSplit(A_OSVersion, ".")[1]) >= 10 ? "WIN_" . A_OSVersion : "Unknown OS " A_OSVersion) (A_Is64bitOS?" 64-b":" 32-b")
 			, "Screen W" A_ScreenWidth " H" A_ScreenHeight
-			, "Screen DPI " Round(( A_ScreenDPI / 96 ) * 100) "% (" A_ScreenDPI " DPI)" ) 
+			, "Screen DPI " Round(( A_ScreenDPI / 96 ) * 100) "% (" A_ScreenDPI " DPI)" )
 		}
-		Msg(t*){
+		static Msg(t*){
 			local flag := "", k, v, File, line := ""
-			If (t.1 ~= "Verbose" && !This.Debug.Verbose)
+			If !t.Length
 				Return
-			Else If (t.1 ~= "^\w+$" || t.1 ~= ".+ $")
+			If (t[1] ~= "Verbose" && !This.Debug.Verbose)
+				Return
+			Else If (t[1] ~= "^\w+$" || t[1] ~= ".+ $")
 				flag := Rtrim(t.RemoveAt(1))
 			If !(flag ~= "[eE]rror|WingmanReloaded|[iI]nit|[bB]ug|[iI]ssue|[fF]ail") && (This.Debug.Log >= 0 && !This.Debug.Log)
 				Return False
 			If !This.Log.ActiveFile
 				This.Log.Open()
 			File := FileOpen(This.Log.ActiveFile,"a")
-			If t.1.Count()
-				t := t.1
+			If (t.Length && t[1] is Array && t[1].Length)
+				t := t[1]
 			For k, v in t {
 				If isObject(v)
 					vstr := JSON.Dump(v)
@@ -248,8 +250,8 @@ Class Util {
 			File.WriteLine( line )
 			File.Close()
 		}
-		Close(t*){
-			If t.Count()
+		static Close(t*){
+			If t.Length
 				This.Log.Msg(t*)
 			This.Log.Msg(This.Name " Log ","End of File")
 			This.Log.ActiveFile := ""
@@ -258,7 +260,7 @@ Class Util {
 }
 
 ; Log file function
-Log(var*) 
+Log(var*)
 {
 	Util.Log.Msg(var*)
 	return

@@ -1,13 +1,26 @@
-﻿; LootScan - Finds matching colors under the cursor while key pressed
+; LootScan - Finds matching colors under the cursor while key pressed
+Global LootVacuumActive := False
 LootScan(Reset:=0){
-		SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
-		SetMouseDelay, %SetMouseDelayValue%
-		SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
 		Static LV_LastClick := 0
-		Global LootVacuumActive
+		Global LootVacuumActive, ComboHex, ComboHexX, ComboHexY
+		Global SetKeyDelayValue1, SetKeyDelayValue2, SetMouseDelayValue, SetDefaultMouseSpeedValue
+		Global LootColors, LVdelay, LootVacuum, LootVacuumVary
+		Global OnMines, YesLootDelve, YesLootChests, DelveStr, ChestStr
+		AreaScale := 15
+		MaxArea := 600
+		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+		SetMouseDelay(SetMouseDelayValue)
+		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
 		If (!ComboHex || Reset)
 		{
-			ComboHex := Hex2FindText(LootColors,0,0,"",3,3)
+			; vary controls FindText accuracy: 0 = exact pixel match (best for
+			; manually resampled values); 3 = recommended default for filter
+			; imports (covers PoE's render dithering); higher values invite
+			; false positives against world / UI pixels. Adjusted via the Debug
+			; section of the Loot Vacuum settings GUI; default 3.
+			ComboHex := Hex2FindText(LootColors,LootVacuumVary,0,"",30,8)
+			ComboHexX := Hex2FindText(LootColors,LootVacuumVary,0,"",30,1)
+			ComboHexY := Hex2FindText(LootColors,LootVacuumVary,0,"",1,30)
 			If Reset
 				Return
 		}
@@ -15,100 +28,136 @@ LootScan(Reset:=0){
 			Return
 		If (LootVacuumActive&&LootVacuum)
 		{
-			If AreaScale
-			{
-				MouseGetPos mX, mY
-				ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
-				ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-				If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0,,,,5))
+			GrowingAreaScale := AreaScale
+				While GrowingAreaScale < MaxArea
 				{
-					ScanPx := loot.1.x + 10, ScanPy := loot.1.y + 10
-					, ScanId := loot.1.id
-					If ( LootVacuumActive )
-						GoSub LootScan_Click
-					LV_LastClick := A_TickCount
-					Return
-				}
-				If OnMines && YesLootDelve
-				{
-					MouseGetPos mX, mY
-					ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
-					ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
-					loot := FindText(x,y,xx,yy,0.1,0.1,DelveStr,0,0)
-				}
-				Else If YesLootChests
-				{
-					MouseGetPos mX, mY
-					ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
-					ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
-					loot := FindText(x,y,xx,yy,0.1,0.1,ChestStr,0,0)
-				}
-				If (loot)
-				{
-					ScanPx := loot.1.1, ScanPy := loot.1.y
-					, ScanPy += 30
-					If (OnMines && !(loot.Id ~= "cache" || loot.Id ~= "vein"))
-						ScanPx += loot.3
-					GoSub LootScan_Click
-					LV_LastClick := A_TickCount
-					Return
-				}
-
-			}
-			Else
-			{
-				MouseGetPos mX, mY
-				PixelGetColor, scolor, mX, mY, RGB
-				If (indexOf(scolor,LootColors) )
-					If ( LootVacuumActive )
+					MouseGetPos(&mX, &mY)
+					x := mX - GrowingAreaScale, y := mY - GrowingAreaScale
+					ClampGameScreen(&x, &y)
+					xx := mX + GrowingAreaScale, yy := mY + GrowingAreaScale
+					ClampGameScreen(&xx, &yy)
+					If (loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0,0,ComboHex,0,0,,,,5))
 					{
-						click %mX%, %mY%
+						ScanPx := loot[1].x
+						ScanPy := loot[1].y
+						width := loot[1].3
+						height := loot[1].4
+						loot_x := loot[1].1
+						loot_xx := loot_x + width
+						loot_y := loot[1].2
+						loot_yy := loot_y + height
+
+						; FindCenterX
+						x1 := loot_x
+						x2 := loot_xx
+						; FindLeftEdge
+						match := loot
+						Loop {
+							xx := match[1].1
+							x := xx - match[1].3
+							match := FindText(&FT_X, &FT_Y, x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
+						} Until !match
+						x1 := xx
+						; FindRightEdge
+						match := loot
+						Loop {
+							x := match[1].1 + match[1].3
+							xx := x + match[1].3
+							match := FindText(&FT_X, &FT_Y, x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
+						} Until !match
+						x2 := x
+						ScanPx := (x1 + x2) / 2
+
+						; FindCenterY
+						x := x1, y := loot_y - 22
+						ClampGameScreen(&x, &y)
+						xx := x1 + 10, yy := loot_yy + 22
+						ClampGameScreen(&xx, &yy)
+						if (match := FindText(&FT_X, &FT_Y, x,y,xx,yy,0,0,ComboHexY,0,0,,,,9))
+							ScanPy := match[1].y
+
+						If ( LootVacuumActive )
+							LootScan_Click()
 						LV_LastClick := A_TickCount
+						Return
 					}
-			}
+					If OnMines && YesLootDelve
+					{
+						MouseGetPos(&mX, &mY)
+						x := mX - (AreaScale + 80), y := mY - (AreaScale + 80)
+						ClampGameScreen(&x, &y)
+						xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80)
+						ClampGameScreen(&xx, &yy)
+						loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0.1,0.1,DelveStr,0,0)
+					}
+					Else If YesLootChests
+					{
+						MouseGetPos(&mX, &mY)
+						x := mX - (AreaScale + 80), y := mY - (AreaScale + 80)
+						ClampGameScreen(&x, &y)
+						xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80)
+						ClampGameScreen(&xx, &yy)
+						loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0.1,0.1,ChestStr,0,0)
+					}
+					If (loot)
+					{
+						ScanPx := loot[1].1, ScanPy := loot[1].y
+						, ScanPy += 30
+						If (OnMines && !(loot[1].id ~= "cache" || loot[1].id ~= "vein"))
+							ScanPx += loot[1].3
+						LootScan_Click()
+						LV_LastClick := A_TickCount
+						Return
+					}
+					GrowingAreaScale += 69
+				}
 		}
 		Else
 			LootVacuumActive := False
 	Return
 
-	LootScanCommand:
-		If !LootVacuumActive
-		{
-			LootVacuumActive:=True
-		}
-		If (LootVacuum && LootVacuumTapZ && !LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
-			Send {z}
-			Sleep, 10
-			Send {z}
-		}
-	Return
-	LootScanCommandRelease:
-		If LootVacuumActive
-		{
-			LootVacuumActive:=False
-		}
-		If (LootVacuum && LootVacuumTapZ && LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
-			Send {z}
-			Sleep, 10
-			Send {z}
-		}
-	Return
-
-	LootScan_Click:
+	LootScan_Click() {
 		LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
 		If (LP || RP)
 		{
 			If LP
-				Click, up
+				Click("up")
 			If RP
-				Click, Right, up
-			Sleep, 30
+				Click("Right up")
+			Sleep(30)
 		}
-		; MouseMove, ScanPx, ScanPy
-		BlockInput, MouseMove
-		Click %ScanPx%, %ScanPy%
-		BlockInput, Mousemoveoff
+		BlockInput("MouseMove")
+
+		MouseMove(ScanPx, ScanPy)
+		Sleep(10)
+
+		Click(ScanPx " " ScanPy)
+		BlockInput("Mousemoveoff")
 		If (GetKeyState("RButton","P"))
-			Click, Right, down
-	Return
+			Click("Right down")
+	}
+}
+LootScanCommand(*) {
+	Global LootVacuumActive
+	If !LootVacuumActive
+	{
+		LootVacuumActive:=True
+	}
+	If (LootVacuum && LootVacuumTapZ && !LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
+		Send("{z}")
+		Sleep(10)
+		Send("{z}")
+	}
+}
+LootScanCommandRelease(*) {
+	Global LootVacuumActive
+	If LootVacuumActive
+	{
+		LootVacuumActive:=False
+	}
+	If (LootVacuum && LootVacuumTapZ && LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
+		Send("{z}")
+		Sleep(10)
+		Send("{z}")
+	}
 }

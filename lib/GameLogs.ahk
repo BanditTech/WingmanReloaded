@@ -1,43 +1,43 @@
-﻿; Captures the current Location and determines if in Town, Hideout or Azurite Mines
+; Captures the current Location and determines if in Town, Hideout or Azurite Mines
 CompareLocation(cStr:="")
 {
+  Global CurrentLocation, OnTown, OnHideout, OnMines
   Static Lang := ""
   ;                                                     English / Thai                French                 German                  Russian                     Spanish                   Portuguese               Chinese             Korean
-  Static ClientTowns :=  { "Lioneye's Watch" :    [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"    , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"       , "라이온아이 초소에" ]
-                      , "The Forest Encampment" : [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"       , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"       , "숲 야영지에" ]
-                      , "The Sarn Encampment" :   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"  , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"       , "사안 야영지에" ]
-                      , "Highgate" :              [ "Highgate"              , "Hautevoie"              , "Hohenpforte"         , "Македы"                , "Atalaya"                                             , "統治者之殿"     , "하이게이트에" ]
-                      , "Overseer's Tower" :      [ "Overseer's Tower"      , "La Tour du Superviseur","Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"       , "감시탑에" ]
-                      , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"       , "다리 야영지에" ]
-                      , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath", "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"     , "오리아스 부두에" ]
-                      , "Oriath" :                [ "Oriath"                                                                   , "Ориат"                                                                         , "奧瑞亞"         , "오리아스에" ]
-                      , "Karui Shores" :          [ "Karui Shores" ]
-                      , "Kingsmarch" :            [ "Kingsmarch" ]
-                      , "The Rogue Harbour" :     [ "The Rogue Harbour","ท่าเรือโจร","Le Port des Malfaiteurs", "Der Hafen der Abtrünnigen", "Разбойничья гавань", "El Puerto de los renegados","O Porto dos Renegados","도둑 항구에"] }
-  Static LangString :=  { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"   , "German" : " : Ihr habt '"
-              , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
+  Static ClientTowns :=  Map("Lioneye's Watch",    [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"    , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"       , "라이온아이 초소에" ]
+                      , "The Forest Encampment", [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"       , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"       , "숲 야영지에" ]
+                      , "The Sarn Encampment",   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"  , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"       , "사안 야영지에" ]
+                      , "Highgate",              [ "Highgate"              , "Hautevoie"              , "Hohenpforte"         , "Македы"                , "Atalaya"                                             , "統治者之殿"     , "하이게이트에" ]
+                      , "Overseer's Tower",      [ "Overseer's Tower"      , "La Tour du Superviseur","Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"       , "감시탑에" ]
+                      , "The Bridge Encampment", [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"       , "다리 야영지에" ]
+                      , "Oriath Docks",          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath", "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"     , "오리아스 부두에" ]
+                      , "Oriath",                [ "Oriath"                                                                   , "Ориат"                                                                         , "奧瑞亞"         , "오리아스에" ]
+                      , "Karui Shores",          [ "Karui Shores" ]
+                      , "Kingsmarch",            [ "Kingsmarch" ]
+                      , "The Rogue Harbour",     [ "The Rogue Harbour","ท่าเรือโจร","Le Port des Malfaiteurs", "Der Hafen der Abtrünnigen", "Разбойничья гавань", "El Puerto de los renegados","O Porto dos Renegados","도둑 항구에"])
+  Static LangString :=  {English: ": You have entered"  , Spanish: " : Has entrado a "   , Chinese: " : 你已進入："   , Korean: "진입했습니다"   , German: " : Ihr habt '"
+              , Russian: " : Вы вошли в область "  , French: " : Vous êtes à présent dans : "   , Portuguese: " : Você entrou em: "  , Thai: " : คุณเข้าสู่ " }
   Static MineStrings := ["Azurite Mine"]
   If (cStr="Town")
     Return indexOfArr(CurrentLocation,ClientTowns)
-  If (Lang = "")
+  If (Lang == "")
   {
-    For k, v in LangString
+    For k, v in LangString.OwnProps()
     {
       If InStr(cStr, v)
       {
         Lang := k
-        If (VersionNumber > 0)
+        If (VersionNumber != "")
         Log("Verbose","Client.txt language has been detected as: " Lang)
         Break
       }
     }
   }
-  If (Lang = "English") ; This is the default setting
+  If (Lang == "English") ; This is the default setting
   {
     ; first we confirm if this line contains our zone change phrase
     If InStr(cStr, ": You have entered")
     {
-      ZoneChangeCount++
       ; We split away the rest of the sentence for only location
       CurrentLocation := StrSplit(cStr, " : You have entered "," .`r`n" )[2]
       ; We should now have our location name and can begin comparing
@@ -58,14 +58,14 @@ CompareLocation(cStr:="")
         OnMines := False
 
       ; Now we set a timer to run our zone change logic
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     } Else If (cStr ~= ": \w+ \(\w+\) is now level \d") {
-      RegExMatch(cStr, "O)is now level (\d*)", RxMatch)
+      RegExMatch(cStr, "is now level (\d*)", &RxMatch)
       Player.Level := RxMatch[1]
     }
   }
-  Else If (Lang = "Spanish") 
+  Else If (Lang == "Spanish")
   {
     If InStr(cStr, " : Has entrado a ")
     {
@@ -78,15 +78,15 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Mina de Azurita")
+      If (CurrentLocation == "Mina de Azurita")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Chinese") 
+  Else If (Lang == "Chinese")
   {
     If InStr(cStr, " : 你已進入：")
     {
@@ -99,15 +99,15 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "碧藍礦坑")
+      If (CurrentLocation == "碧藍礦坑")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Korean") 
+  Else If (Lang == "Korean")
   {
     If InStr(cStr, "진입했습니다")
     {
@@ -120,15 +120,15 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "남동석 광산에")
+      If (CurrentLocation == "남동석 광산에")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "German") 
+  Else If (Lang == "German")
   {
     If InStr(cStr, " : Ihr habt '")
     {
@@ -141,15 +141,15 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Azuritmine")
+      If (CurrentLocation == "Azuritmine")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Russian") 
+  Else If (Lang == "Russian")
   {
     If InStr(cStr, " : Вы вошли в область ")
     {
@@ -162,15 +162,15 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Азуритовая шахта")
+      If (CurrentLocation == "Азуритовая шахта")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "French") 
+  Else If (Lang == "French")
   {
     If InStr(cStr, " : Vous êtes à présent dans : ")
     {
@@ -183,15 +183,15 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "La Mine d'Azurite")
+      If (CurrentLocation == "La Mine d'Azurite")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Portuguese") 
+  Else If (Lang == "Portuguese")
   {
     If InStr(cStr, " : Você entrou em: ")
     {
@@ -204,15 +204,15 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Mina de Azurita")
+      If (CurrentLocation == "Mina de Azurita")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Thai") 
+  Else If (Lang == "Thai")
   {
     If InStr(cStr, " : คุณเข้าสู่ ")
     {
@@ -225,27 +225,40 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Azurite Mine")
+      If (CurrentLocation == "Azurite Mine")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
   Return False
 }
 ; Monitor for changes in log since initialized
-Monitor_GameLogs(Initialize:=0) 
+Monitor_GameLogs(Initialize:=0)
 {
   global ClientLog, CLogFO, CurrentLocation
   OldTown := OnTown, OldHideout := OnHideout, OldMines := OnMines, OldLocation := CurrentLocation
   if (Initialize)
   {
+    errchk := 0
+    If !FileExist(ClientLog)
+    {
+      CurrentLocation := "Client.txt not found"
+      Log("Error","Client.txt not found at configured path",ClientLog)
+      Return
+    }
     Try
     {
       CLogFO := FileOpen(ClientLog, "r")
-      FileGetSize, errchk, %ClientLog%, M
+      If !CLogFO
+      {
+        CurrentLocation := "Client.txt open failed"
+        Log("Error","FileOpen returned 0 for Client.txt",ClientLog)
+        Return
+      }
+      errchk := FileGetSize(ClientLog, "M")
       If (errchk >= 64)
       {
         CurrentLocation := "Log too large"
@@ -253,7 +266,7 @@ Monitor_GameLogs(Initialize:=0)
         If (VersionNumber != "")
         {
           Log("Error","Client.txt Log File is too large (" . errchk . "MB)")
-          Notify("Client.txt file is too large (" . errchk . "MB)`nDelete contents of the log file and reload`nYou Must change zones to update Location","",0,,110)
+          Notify.Show("Client.txt file is too large (" . errchk . "MB)`nDelete contents of the log file and reload`nYou Must change zones to update Location","",0,,110)
         }
         Return
       }
@@ -261,8 +274,8 @@ Monitor_GameLogs(Initialize:=0)
       If (VersionNumber != "")
         Ding(0,-10,"Parsing Client.txt Logfile")
       latestFileContent := CLogFo.Read()
-      latestFileContent := TF_ReverseLines(latestFileContent)
-      Loop, Parse,% latestFileContent,`n,`r
+      latestFileContent := ReverseLines(latestFileContent)
+      Loop Parse, latestFileContent, "`n", "`r"
       {
         If InStr(A_LoopField, "] :")
           If CompareLocation(A_LoopField)
@@ -274,12 +287,12 @@ Monitor_GameLogs(Initialize:=0)
           Break
         }
       }
-      If (CurrentLocation = "")
+      If (CurrentLocation == "")
         CurrentLocation := "Nothing Found"
       If (VersionNumber != "")
         Ding(500,-10,"Parsed Client.txt logs in " . A_TickCount - T1 . "MS`nSize: " . errchk . "MB")
       StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
-      SB_SetText("Status:" StatusText " `(" CurrentLocation "`)",2)
+      WR_StatusBarCtrl.SetText("Status:" StatusText " `(" CurrentLocation "`)",2)
       If (DebugMessages && YesLocation && WinActive(GameStr))
       {
         Ding(6000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
@@ -288,19 +301,22 @@ Monitor_GameLogs(Initialize:=0)
       If (VersionNumber != "")
         Log("Location","Client.txt File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
     }
-    Catch, loaderror
+    Catch as loaderror
     {
-      Ding(5000,-10,"Client.txt Critical Load Error`nSize: " . errchk . "MB")
+      errMsg  := IsObject(loaderror) && loaderror.HasProp("Message") ? loaderror.Message : String(loaderror)
+      errFile := IsObject(loaderror) && loaderror.HasProp("File")    ? loaderror.File    : ""
+      errLine := IsObject(loaderror) && loaderror.HasProp("Line")    ? loaderror.Line    : ""
+      Ding(5000,-10,"Client.txt Critical Load Error`nSize: " errchk "MB`n" errMsg)
       CurrentLocation := "Client File Load Error"
-      Log("Error","Error loading File, Submit information about your client.txt",loaderror)
+      Log("Error","Error loading File, Submit information about your client.txt",errMsg,errFile,errLine)
     }
     Return
   } Else {
     latestFileContent := CLogFo.Read()
 
-    if (latestFileContent) 
+    if (latestFileContent)
     {
-      Loop, Parse,% latestFileContent,`n,`r 
+      Loop Parse, latestFileContent, "`n", "`r"
       {
         If InStr(A_LoopField, "] :")
           CompareLocation(A_LoopField)
@@ -316,7 +332,7 @@ Monitor_GameLogs(Initialize:=0)
       StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
       If YesLocation
         Log("Location","Zone Change Detected", StatusText , "Located:" CurrentLocation)
-      SB_SetText("Status:" StatusText " (" CurrentLocation ")",2)
+      WR_StatusBarCtrl.SetText("Status:" StatusText " (" CurrentLocation ")",2)
     }
     Return
   }
@@ -327,10 +343,10 @@ LastLine(SomeFileObject) {
   static SEEK_END := 2
   loop {
     SomeFileObject.Seek(-1, SEEK_CUR)
-    
-    if (SomeFileObject.Read(1) = "`n") {
+
+    if (SomeFileObject.Read(1) == "`n") {
       StartPosition := SomeFileObject.Tell()
-      
+
       Line := SomeFileObject.ReadLine()
       SomeFileObject.Seek(StartPosition - 1)
       return Line
@@ -340,4 +356,12 @@ LastLine(SomeFileObject) {
     }
   } until (A_Index >= 1000000)
   Return ; this should never happen
+}
+
+ReverseLines(text) {
+  lines := StrSplit(text, "`n", "`r")
+  out := ""
+  Loop lines.Length
+    out .= lines[lines.Length - A_Index + 1] . (A_Index < lines.Length ? "`n" : "")
+  Return out
 }

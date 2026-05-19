@@ -1,4 +1,4 @@
-﻿; Compare two hex colors as their R G B elements, puts all the below together
+; Compare two hex colors as their R G B elements, puts all the below together
 CompareHex(color1, color2, vary:=1, BGR:=0){
   If BGR
   {
@@ -19,16 +19,16 @@ Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2,LR_Border:=0){
   If (Height < 1)
     Height := 1
   bitstr := ""
-  Loop % LR_Border
+  Loop LR_Border
     bitstr .= "0"
-  Loop % Width
+  Loop Width
     bitstr .= "1"
-  Loop % LR_Border
+  Loop LR_Border
     bitstr .= "0"
   endstr := bitstr
-  Loop % Height - 1
+  Loop Height - 1
   endstr .= "`n" . bitstr
-  bitstr := FindText.bit2base64(endstr)
+  bitstr := FindText().bit2base64(endstr)
   ; Width += 2*LR_Border
   If IsObject(Color)
   {
@@ -50,11 +50,11 @@ Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2,LR_Border:=0){
 }
 ; Converts a hex BGR color into its R G B elements
 ToRGBfromBGR(color){
-  return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
+  return {b: (color >> 16) & 0xFF, g: (color >> 8) & 0xFF, r: color & 0xFF}
 }
 ; Converts a hex RGB color into its R G B elements
 ToRGB(color){
-  return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
+  return {r: (color >> 16) & 0xFF, g: (color >> 8) & 0xFF, b: color & 0xFF}
 }
 ; Converts R G B elements back to hex
 ToHex(Color){
@@ -65,6 +65,23 @@ ToHex(Color){
   }
   Else
     Return Format("0x{1:02X}",Color)
+}
+; HighlightColor - Approximates PoE's mouseover-highlight of a loot label
+; background color. Empirically fit from sampled pairs:
+;   0xEF581C -> 0xFE844B    0xF8960D -> 0xFEC140    0xD2B286 -> 0xFCDDB2
+; Each channel gets a fixed boost (+44), truncated to whatever is left
+; to reach a cap of 254 (=0xFE). Already-saturated channels (e.g. white,
+; 255) get zero lift, so white stays white.
+HighlightColor(color){
+  Static BOOST := 44, CAP := 254
+  c := Integer(color)
+  r := (c >> 16) & 0xFF
+  g := (c >> 8) & 0xFF
+  b := c & 0xFF
+  r += Min(BOOST, Max(0, CAP - r))
+  g += Min(BOOST, Max(0, CAP - g))
+  b += Min(BOOST, Max(0, CAP - b))
+  Return Format("0x{1:06X}", (r << 16) | (g << 8) | b)
 }
 ; Converts a hex BGR color into RGB format or vice versa
 hexBGRToRGB(color){
@@ -106,17 +123,17 @@ AverageAreaColor(AreaObj){
   M_Index := W * H
   Size := Round((W * H) / 300)
   ColorList := []
-  FindText.ScreenShot()
+  FindText().ScreenShot()
   Load_BarControl(,,1)
   ColorCount:=R_Count:=G_Count:=B_Count:=LastDisplay_LB:=EscBreak:=0
-  Loop, % W
+  Loop W
   {
     W_Index := A_Index
     Cur_X := X1 + (A_Index - 1)
-    Loop, % H
+    Loop H
     {
       Cur_Y := Y1 + (A_Index - 1)
-      Temp_Hex := FindText.GetColor(Cur_X,Cur_Y)
+      Temp_Hex := FindText().GetColor(Cur_X,Cur_Y)
       if !(indexOf(Temp_Hex, ColorList))
       {
         ColorCount++
@@ -133,7 +150,7 @@ AverageAreaColor(AreaObj){
     } Until EscBreak := GetKeyState("Escape", "P")
     If EscBreak
     {
-      Notify("Canceled area calculation","",3,,110)
+      Notify.Show("Canceled area calculation","",3,,110)
       Load_BarControl(100,"Canceled",-1)
       Return
     }
@@ -145,15 +162,15 @@ AverageAreaColor(AreaObj){
     G_Count += Split.g
     B_Count += Split.b
   }
-  Split := {"r":Round(R_Count / ColorCount),"g":Round(G_Count / ColorCount),"b":Round(B_Count / ColorCount)}
+  Split := {r:Round(R_Count / ColorCount), g:Round(G_Count / ColorCount), b:Round(B_Count / ColorCount)}
   Load_BarControl(100,"Done.",-1)
   Return ToHex(Split)
 }
 ; Check if a specific hex value is part of an array within a variance and return the index
 indexOfHex(var, Arr, fromIndex:=1, vary:=2){
   for index, value in Arr {
-    h1 := ToRGB(value) 
-    h2 := ToRGB(var) 
+    h1 := ToRGB(value)
+    h2 := ToRGB(var)
     if (index < fromIndex){
       Continue
     }else if (CompareRGB(h1, h2, vary)){
