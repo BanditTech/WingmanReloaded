@@ -157,7 +157,7 @@ LootColorsMenu(*){
 		initDir := A_MyDocuments "\My Games\Path of Exile"
 		If !DirExist(initDir)
 			initDir := ""
-		filterPath := FileSelect(1, initDir ? initDir "\" : "", "Select Path of Exile loot filter", "Filter (*.filter)|All Files (*.*)")
+		filterPath := FileSelect(1, initDir ? initDir "\" : "", "Select Path of Exile loot filter", "Filter (*.filter)`nAll Files (*.*)")
 		If !filterPath
 			Return
 		If !FileExist(filterPath) {
