@@ -45,7 +45,7 @@ logout(executable){
 		DllCall(EnumProcesses, "Ptr", a, "UInt", s, "UIntP", &r)
 		Loop r // 4
 		{
-			id := NumGet(a, A_Index * 4, "UInt")
+			id := NumGet(a, (A_Index - 1) * 4, "UInt")
 
 			h := DllCall("OpenProcess", "UInt", 0x0010 | 0x0400, "Int", false, "UInt", id, "Ptr")
 
