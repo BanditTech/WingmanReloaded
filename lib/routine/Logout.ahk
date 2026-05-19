@@ -7,7 +7,9 @@ LogoutCommand(*){
     SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
     Critical(1)
     Static LastLogout := 0
-    if (WR.perChar.Setting.quitDC || (WR.perChar.Setting.quitPortal && (OnMines || OnTown || OnHideout))) {
+    ; perChar.Setting values are stored as string "1"/"0"; in v2 the string
+    ; "0" is truthy, so compare explicitly against "1".
+    if (WR.perChar.Setting.quitDC = "1" || (WR.perChar.Setting.quitPortal = "1" && (OnMines || OnTown || OnHideout))) {
       global POEGameArr
       dc := False
       succ := logout(Active_executable)
@@ -31,7 +33,7 @@ LogoutCommand(*){
       }
       If !dc
         Log("Error","Logout Failed","Could not find game EXE",tt)
-      If WR.perChar.Setting.quitLogBackIn
+      If (WR.perChar.Setting.quitLogBackIn = "1")
       {
         RandomSleep(750,750)
         ControlSend("{Enter}", , GameStr)
@@ -39,7 +41,7 @@ LogoutCommand(*){
         ControlSend("{Enter}", , GameStr)
       }
     }
-    Else If WR.perChar.Setting.quitPortal
+    Else If (WR.perChar.Setting.quitPortal = "1")
     {
       If ((A_TickCount - LastLogout) > 10000)
       {
@@ -49,16 +51,16 @@ LogoutCommand(*){
         LastLogout := A_TickCount
       }
     }
-    Else If WR.perChar.Setting.quitExit
+    Else If (WR.perChar.Setting.quitExit = "1")
     {
       Send("{Enter}/exit{Enter}")
-      If WR.perChar.Setting.quitLogBackIn
+      If (WR.perChar.Setting.quitLogBackIn = "1")
       {
         RandomSleep(900,900)
         ControlSend("{Enter}", , GameStr)
       }
     }
-    If (!WR.perChar.Setting.typeES)
+    If (WR.perChar.Setting.typeES != "1")
       Log("Logout","Exit with " . Player.Percent.Life . "`% Life", CurrentLocation)
     Else
       Log("Logout","Exit with " . Player.Percent.ES . "`% ES", CurrentLocation)
