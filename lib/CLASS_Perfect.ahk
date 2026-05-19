@@ -66,13 +66,19 @@ RefreshPoeWatchPerfect() {
     Try {
         WR.Data.Perfect := JSON.Load(JSONtext)
         For ku, itemDB in WR.Data.Perfect {
+            ; PoE.Watch occasionally returns non-object entries at the top
+            ; level (counters, metadata, JSON null/numbers). Skip anything
+            ; that isn't a Map - integers don't have __Item, so itemDB[type]
+            ; would throw "no property named __Item".
+            If !(itemDB is Map)
+                Continue
             pushto := {}
             For kt, type in ["implicits", "explicits"] {
                 pushto.%type% := {}
                 ; PoE.Watch returns JSON null for items with no implicits/explicits
                 ; (e.g. unique flasks). cJson maps null -> JSON.Null sentinel, which
                 ; isn't an Array and isn't enumerable. Skip non-Array values.
-                If !(itemDB[type] is Array)
+                If !(itemDB.Has(type) && itemDB[type] is Array)
                     Continue
                 For ki, mod in itemDB[type] {
                     mod     := RegExReplace(mod, "1 to \(", "(1-1) to (")
