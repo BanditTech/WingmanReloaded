@@ -1,7 +1,7 @@
 LootColorsMenu(*){
 	Global LootColors, LG_Vary, LootColorsGui
 	Static LG_Add, LG_Rem
-	Global LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec
+	Global LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec, LootVacuumVary
 	Global AreaScale, LVdelay, YesLootChests, ChestStr, YesLootDelve, DelveStr
 	Global hotkeyLootScan, ScrCenter, GameH
 	MainGui.Submit()
@@ -66,6 +66,14 @@ LootColorsMenu(*){
 		LootColorsGui.Add("Text", "yp+29 xs+10", "Background " colorIdx " Colors: ")
 		LootColorsGui.Add("Progress", "x+10 yp-5 w50 h20 c" color " BackgroundBlack",100)
 	}
+	; --- Debug section: vary tolerance + future debug knobs -----------------
+	LootColorsGui.Add("GroupBox", "section xm y+15 w330 h50", "Debug:")
+	LootColorsGui.Add("Text", "xs+10 yp+22", "Vary:")
+	LootColorsGui.Add("Edit", "x+5 yp-3 w45")
+	udVary := LootColorsGui.Add("UpDown", "vLootVacuumVary range0-30", LootVacuumVary)
+	udVary.OnEvent("Change", UpdateExtra)
+	LootColorsGui.Add("Text", "x+8 yp+5", "color match tolerance (hover for details)")
+	; -----------------------------------------------------------------------
 	LootColorsGui.Title := "Loot Vacuum settings"
 	LootColorsGui.Show()
 

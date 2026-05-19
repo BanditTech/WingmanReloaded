@@ -4,7 +4,7 @@ readFromFile(){
 		, BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType
 		, Speed, Tick, KeyscanRate, QTick
 		, DebugMessages, YesTimeMS, YesLocation, ShowPixelGrid, ShowItemInfo
-		, LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec
+		, LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec, LootVacuumVary
 		, YesVendor, YesStash, YesIdentify, YesDiv
 		, YesMapUnid, YesInfluencedUnid, YesSynthesisId, YesCLFIgnoreImplicit, YesSortFirst
 		, Latency, ClickLatency, ClipLatency, ShowOnStart, PopFlaskRespectCD
@@ -146,6 +146,7 @@ readFromFile(){
 	LootVacuumTapZ := IniRead(A_ScriptDir "\save\Settings.ini", "General", "LootVacuumTapZ", 1)
 	LootVacuumTapZEnd := IniRead(A_ScriptDir "\save\Settings.ini", "General", "LootVacuumTapZEnd", 1)
 	LootVacuumTapZSec := IniRead(A_ScriptDir "\save\Settings.ini", "General", "LootVacuumTapZSec", 3)
+	LootVacuumVary := IniRead(A_ScriptDir "\save\Settings.ini", "General", "LootVacuumVary", 3)
 	YesVendor := IniRead(A_ScriptDir "\save\Settings.ini", "General", "YesVendor", 1)
 	YesStash := IniRead(A_ScriptDir "\save\Settings.ini", "General", "YesStash", 1)
 	YesIdentify := IniRead(A_ScriptDir "\save\Settings.ini", "General", "YesIdentify", 1)
@@ -728,7 +729,7 @@ updateEverything(senderCtrl:=0, *){
 		Global ToggleExist, WinGuiX, WinGuiY, AccountNameSTR, PoECookie
 			, BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType
 			, DebugMessages, YesTimeMS, YesLocation, ShowPixelGrid, ShowItemInfo
-			, LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec
+			, LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec, LootVacuumVary
 			, YesVendor, YesStash, YesIdentify, YesDiv
 			, YesMapUnid, YesInfluencedUnid, YesSynthesisId, YesCLFIgnoreImplicit, YesSortFirst
 			, Latency, ClickLatency, ClipLatency, ShowOnStart, PopFlaskRespectCD
@@ -947,6 +948,7 @@ updateEverything(senderCtrl:=0, *){
 		IniWrite(ShowPixelGrid, A_ScriptDir "\save\Settings.ini", "General", "ShowPixelGrid")
 		IniWrite(ShowItemInfo, A_ScriptDir "\save\Settings.ini", "General", "ShowItemInfo")
 		IniWrite(LootVacuum, A_ScriptDir "\save\Settings.ini", "General", "LootVacuum")
+		IniWrite(LootVacuumVary, A_ScriptDir "\save\Settings.ini", "General", "LootVacuumVary")
 		IniWrite(YesVendor, A_ScriptDir "\save\Settings.ini", "General", "YesVendor")
 		IniWrite(YesStash, A_ScriptDir "\save\Settings.ini", "General", "YesStash")
 		IniWrite(YesIdentify, A_ScriptDir "\save\Settings.ini", "General", "YesIdentify")

@@ -400,6 +400,7 @@ ft_ToolTip_Text_Part4 := "
 	PopAll == Include this in the Pop All hotkey
 	Move == Trigger this when the Movement key is pressed
 	Condition == Make the resource triggers fire when any are true, or when all are true
+	LootVacuumVary == Color match tolerance for the loot scanner.`r0 = exact pixel match (best for manually resampled colors).`r3 = recommended for filter-imported colors (covers PoE's render dithering).`rHigher = more permissive matching. WARNING: values above ~5 will pick up random world / UI pixels and produce frequent false-positive clicks.
 
 )"
 
@@ -536,6 +537,7 @@ Global LootVacuum := 1
 Global LootVacuumTapZ := 1
 Global LootVacuumTapZEnd := 1
 Global LootVacuumTapZSec := 3
+Global LootVacuumVary := 3
 Global YesVendor := 1
 Global YesStash := 1
 Global YesIdentify := 1
