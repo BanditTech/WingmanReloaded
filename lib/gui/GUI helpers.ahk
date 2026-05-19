@@ -455,10 +455,18 @@ MouseTip(x:="", y:="", w:=21, h:=21)
     x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
   }
   If IsObject(x) {
-    w := Abs(x.X2-x.X1)
-    h := Abs(x.Y2-x.Y1)
-    y := (x.Y1<x.Y2?x.Y1:x.Y2)
-    x := (x.X1<x.X2?x.X1:x.X2)
+    ; Callers pass either a Map (e.g. Globe[AreaType]) or a plain Object
+    ; (e.g. UtilityIconAreas[slot] from LetUserSelectRect). Read via bracket
+    ; for Map, dot for Object.
+    If (x is Map) {
+      X1 := x["X1"], Y1 := x["Y1"], X2 := x["X2"], Y2 := x["Y2"]
+    } Else {
+      X1 := x.X1, Y1 := x.Y1, X2 := x.X2, Y2 := x.Y2
+    }
+    w := Abs(X2-X1)
+    h := Abs(Y2-Y1)
+    y := (Y1<Y2?Y1:Y2)
+    x := (X1<X2?X1:X2)
   }
   ; x:=Round(x-10), y:=Round(y-10)
   ;-------------------------
