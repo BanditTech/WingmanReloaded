@@ -1356,21 +1356,28 @@ Profile(args*){
 				If WR.perChar.Setting.profilesUtility
 				Profile("Utility","Load",WR.perChar.Setting.profilesUtility)
 		}
-		MainGui["ProfileMenu" Type].Choose(name)
+		; Profile() is called from ScriptObject.ahk before gui/MainMenu.ahk
+		; has run, so MainGui may not exist yet. Only touch the dropdown if
+		; the gui actually exists.
+		If IsSet(MainGui) && MainGui is Gui
+			MainGui["ProfileMenu" Type].Choose(name)
 		IniWrite(name, A_ScriptDir "\save\Settings.ini", "Chosen Profile", Type)
 		Return
 	}	Else If (Action == "Remove"){
 		FileDelete(A_ScriptDir "\save\profiles\" Type "\" name ".json")
 	}
 
-	l := []
-	Loop Files, A_ScriptDir "\save\profiles\" Type "\*.json"
-		l.Push(StrReplace(A_LoopFileName,".json",""))
-	MainGui["ProfileMenu" Type].Delete()
-	If (l.Length)
-		MainGui["ProfileMenu" Type].Add(l)
-	If (Action != "Remove")
-		MainGui["ProfileMenu" Type].Choose(name)
+	; Rebuild the profile dropdown - skip entirely if MainGui isn't built yet.
+	If IsSet(MainGui) && MainGui is Gui {
+		l := []
+		Loop Files, A_ScriptDir "\save\profiles\" Type "\*.json"
+			l.Push(StrReplace(A_LoopFileName,".json",""))
+		MainGui["ProfileMenu" Type].Delete()
+		If (l.Length)
+			MainGui["ProfileMenu" Type].Add(l)
+		If (Action != "Remove")
+			MainGui["ProfileMenu" Type].Choose(name)
+	}
 	Return
 }
 
