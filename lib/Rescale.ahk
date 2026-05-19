@@ -17,7 +17,7 @@ Rescale(){
     {
       WR_Menu("JSON","Load","Globe")
       GlobeImported := True
-      Base.Globe := cloneDeepM(Globe)
+      Base.Globe := ObjDeepClone(Globe)
     }
     Else If (VersionNumber == "")
       GlobeImported := True
@@ -72,7 +72,7 @@ Rescale(){
         Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
         Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := cloneDeepM(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       ; ---Needs to be done with all aspect ratio---
@@ -300,7 +300,7 @@ Rescale(){
         Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
         Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := cloneDeepM(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -505,7 +505,7 @@ Rescale(){
         Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
         Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := cloneDeepM(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -708,7 +708,7 @@ Rescale(){
         Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
         Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := cloneDeepM(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -915,7 +915,7 @@ Rescale(){
         Globe["Mana"]["Width"] := Globe["Mana"]["X2"] - Globe["Mana"]["X1"]
         Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
         ; Set the base values for restoring default
-        Base.Globe := cloneDeepM(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
       ; Stash grid area
       If (!StashImported)
@@ -1121,7 +1121,7 @@ Rescale(){
         Globe["Mana"]["Height"] := Globe["Mana"]["Y2"] - Globe["Mana"]["Y1"]
 
         ; Set the base values for restoring default
-        Base.Globe := cloneDeepM(Globe)
+        Base.Globe := ObjDeepClone(Globe)
       }
 
       ; Stash grid area
