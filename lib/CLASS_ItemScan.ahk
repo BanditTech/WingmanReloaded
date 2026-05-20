@@ -72,8 +72,8 @@ class ItemScan
 					This.Data.Blocks.Enchant := SVal
 				} Else If (SVal ~= "Open Rooms:"){
 					temp := StrSplit(SVal,"Obstructed Rooms:")
-					This.Data.Blocks.TempleRooms := StrSplit(temp.1,"Open Rooms:").2
-					This.Data.Blocks.ObstructedRooms := RegExReplace(temp.2, "$", " (Obstructed)")
+					This.Data.Blocks.TempleRooms := StrSplit(temp[1],"Open Rooms:")[2]
+					This.Data.Blocks.ObstructedRooms := RegExReplace(temp[2], "$", " (Obstructed)")
 				}	Else {
 					This.Data.Blocks.Properties .= SVal "`r`n"
 				}
@@ -752,9 +752,9 @@ class ItemScan
 					For k, v in StrSplit(RxMatch,",")
 					{
 						values := This.MatchLine(v)
-						This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + (values.1 + values.2) / 2 )
-						This.Prop.Weapon_Min_Elemental_Dmg += values.1
-						This.Prop.Weapon_Max_Elemental_Dmg += values.2
+						This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + (values[1] + values[2]) / 2 )
+						This.Prop.Weapon_Min_Elemental_Dmg += values[1]
+						This.Prop.Weapon_Max_Elemental_Dmg += values[2]
 					}
 					values := ""
 				}
@@ -2864,12 +2864,12 @@ class ItemScan
 		} Else If (obj.ranges.Length >= 2) {
 			for k, v in obj.ranges
 			{
-				If !((base[key "_Value" k] >= v.1 && base[key "_Value" k] <= v.2)
-					|| (base[key "_Value" k] <= v.1 && base[key "_Value" k] >= v.2))
+				If !((base[key "_Value" k] >= v[1] && base[key "_Value" k] <= v[2])
+					|| (base[key "_Value" k] <= v[1] && base[key "_Value" k] >= v[2]))
 					Return False
 			}
 		} Else If (obj.values.Length == 1) {
-			If !(base[key] == obj.values.1 )
+			If !(base[key] == obj.values[1] )
 				Return False
 		} Else If (obj.values.Length >= 2) {
 			for k, v in obj.values
@@ -2944,10 +2944,12 @@ class ItemScan
 		This.Prop.UniquePerfectMaxVal := 0
 	}
 	perc(value,range){
-		Return abs(((value - range.1) * 100) / (range.2 - range.1))
+		; range is an Array literal from callers (e.g. [Range1, Range2]).
+		; v2 Arrays require [n] bracket indexing - .1 dot-numeric was v1.
+		Return abs(((value - range[1]) * 100) / (range[2] - range[1]))
 	}
 	percval(perc,range){
-		Return ((perc * (range.2 - range.1) / 100) + range.1)
+		Return ((perc * (range[2] - range[1]) / 100) + range[1])
 	}
 	DisenchantCalculation(multi, ilvl, quality){
 		quality := quality > 0 ? quality : 0
