@@ -1387,11 +1387,14 @@ class ItemScan
 	MatchLine(lineString){
 		If (RegExMatch(lineString, "`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , &RxMatch))
 		{
-			ret := {}
-			Loop RxMatch.Length
+			; v2: RegExMatchInfo exposes .Count for the subpattern count
+			; (.Length doesn't exist). Callers expect an Array of non-empty
+			; submatches (they index .Length on the returned value).
+			ret := []
+			Loop RxMatch.Count
 			{
 				If RxMatch[A_Index] != ""
-					ret.push(RxMatch[A_Index])
+					ret.Push(RxMatch[A_Index])
 			}
 			Return ret
 		}
