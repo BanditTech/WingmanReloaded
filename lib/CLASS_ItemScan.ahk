@@ -142,15 +142,17 @@ class ItemScan
 		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.HasImplicit) {
-			Static Tiers := {Lesser:1, Greater:2, Grand:3, Exceptional:4, Exquisite:5, Perfect:6}
+			; Map (not plain Object) so [key] bracket access works in v2;
+			; .Get with a default replaces the v1 truthy-or-fallback idiom.
+			Static Tiers := Map("Lesser", 1, "Greater", 2, "Grand", 3, "Exceptional", 4, "Exquisite", 5, "Perfect", 6)
 			If (RegExMatch(This.Data.Blocks.Implicit, "`am)Searing Exarch Implicit Modifier \((.*?)\)", &RxMatch)) {
-				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
+				This.Prop.TierImplicitSearing := Tiers.Get(RxMatch[1], 5)
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Searing Exarch"
 			}
 			If (RegExMatch(This.Data.Blocks.Implicit, "`am)Eater of Worlds Implicit Modifier \((.*?)\)", &RxMatch)){
-				This.Prop.TierImplicitEater := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
+				This.Prop.TierImplicitEater := Tiers.Get(RxMatch[1], 5)
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Eater of Worlds"
@@ -1291,9 +1293,11 @@ class ItemScan
 				Position := 1
 				While RegExMatch(A_LoopField, "`am)" rxNum "\(-*" rxNum "-*" rxNum "\)", &RxMatch, Position) {
 					Position := RxMatch.Len(0) + RxMatch.Pos(0)
-					Value := RxMatch.Value(1)
-					Range1 := RxMatch.Value(2)
-					Range2 := RxMatch.Value(3)
+					; v2: RegExMatchInfo exposes submatches via [n] indexing;
+					; .Value(n) was the v1 method form.
+					Value := RxMatch[1]
+					Range1 := RxMatch[2]
+					Range2 := RxMatch[3]
 					Perc := This.perc(Value,[Range1,Range2])
 					EndEntries := A_Index
 					EndValue += Perc
