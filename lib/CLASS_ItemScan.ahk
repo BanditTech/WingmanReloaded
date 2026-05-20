@@ -17,7 +17,41 @@ class ItemScan
 			, Catalyst:False, ChaosRecipe:False, RegalRecipe:False, Chromatic:False, Jeweller:False, Essence:False, Expedition:False, Flask:False, Fossil:False, Resonator:False, HarvestCurrency:False, Heist:False, Incubator:False, IsBeast:False, IsBlightedMap:False, IsBlightRavagedMap:False, IsBrickedMap:False, IsInvitation:False, IsMemory:False, IsOmen:False, IsRune:False, IsTattoo:False, MiscMapItem:False, MapImpossibleMod:False, Oil:False, Veiled:False, Ring:False, Corrupted:False, IsInfluenceItem:False, IsSynthesisItem:False, HasImplicit:False
 			, ChaosValue:0, ClusterKey:"", SpecialType:"", Gem_Tags:"", Item_Height:0, Item_Width:0, ItemLevel:0, Quality:0, Sockets_Link:0, Sockets_Num:0
 			, Weapon_APS:0, Weapon_Avg_Physical_Dmg:0, Weapon_DPS_Physical:0, Weapon_DPS_Elemental:0, Weapon_DPS_Chaos:0
-			, MapPrep:False, MapLikeItem:False}
+			, MapPrep:False, MapLikeItem:False
+			; Map-craft logic reads these unconditionally in MapCraftItemLogic; the
+			; parser only writes them when the corresponding line matches in the
+			; item text (so e.g. unidentified maps leave them unset).
+			, Map_Tier:0, Map_AtlasRegion:"", Map_Quantity:0, Map_Rarity:0, Map_PackSize:0, Map_Quality:0, Map_Delirium:False
+			, MapSumMod:0, MapKeepFlag:False, MapRerollFlag:False
+			; Weapon math fields read by stat builders; parser only writes them
+			; for weapon items.
+			, Weapon_Min_Physical_Dmg:0, Weapon_Max_Physical_Dmg:0, Weapon_Min_Elemental_Dmg:0, Weapon_Max_Elemental_Dmg:0, Weapon_Avg_Elemental_Dmg:0, Weapon_Min_Chaos_Dmg:0, Weapon_Max_Chaos_Dmg:0, Weapon_Avg_Chaos_Dmg:0, Weapon_Critical_Strike:0, Weapon_DPS_Total:0, Weapon_DPS_Total_Q20:0, Weapon_Range:0
+			; Heist-contract fields; parsed only for heist items.
+			, Heist_Client:"", Heist_Target:"", Heist_Contract_Type:"", Heist_AreaLevel:0, Heist_ItemQuantity:0, Heist_ItemRarity:0, Heist_AlertLevelReduction:0, Heist_TimeBeforeLockdown:0, Heist_MaximumAliveReinforcements:0, Heist_EscapeRoutesRevealed:0, Heist_EscapeRoutesRevealedMax:0, Heist_RewardRoomsRevealed:0, Heist_RewardRoomsRevealedMax:0, Heist_WingsRevealed:0, Heist_WingsRevealedMax:0
+			; Socket-detail counters; parser only writes them when sockets seen.
+			, Sockets_R:0, Sockets_G:0, Sockets_B:0, Sockets_W:0, Sockets_Raw:""
+			; Gem-detail fields; parsed only for gems.
+			, Gem_Level:0, Gem_MaxLevel:0, Gem_AltQuality:0, Gem_Awakened:0, Gem_Exceptional:0, VaalGem:False, Support:False
+			; Required attribute thresholds; parsed when present.
+			, Required_Level:0, Required_Str:0, Required_Dex:0, Required_Int:0
+			; Affix counters and flags written by mod-counting paths.
+			, AffixCount:0, PrefixCount:0, SuffixCount:0, OpenAffix:False, PercentageAffix:False, HasEnchant:False, HasRange:False, Enchanted:False, EldritchImplicit:False
+			; Stack-size for currency/fragments.
+			, Stack_Size:0, Stack_Max:0
+			; Rating percentages; parser writes when '% increased' lines present.
+			, Rating_Armour_Percent:0, Rating_EnergyShield_Percent:0, Rating_Evasion_Percent:0, Rating_Percent:0
+			; Tier-implicit thresholds for Eldritch implicits.
+			, TierImplicitEater:0, TierImplicitSearing:0
+			; Crafting / fractured / actual-tier scratch fields.
+			, CraftingMatchedPrefix:0, CraftingMatchedSuffix:0, CraftingBaseHigherILvLFound:False, CraftingBaseQuantFound:False, ItemCraftingHit:False, FracturedActualTier:"", FracturedModKey:""
+			; Unique pricing / valuation.
+			, UniqueNormalMean:0, UniquePerfectValue:0, UniquePerfectMaxVal:0, ExaltValue:0, DropLevel:0, ValuableBase:False, ValuableEnch:False
+			; Stash / dump / vendor classifier flags.
+			, Vendorable:False, DumpTabItem:False, StashChaosItem:False, StashReturnVal:""
+			; Misc item-type flags read by stash classifiers.
+			, IsItem:False, IsAbyss:False, IsOneHanded:False, IsTwoHanded:False, IsCurseOnHit:False, Amulet:False, Belt:False, Jewel:False, AbyssJewel:False, AtlasStone:False, DeliriumOrb:False, DeliriumSimulacrum:False, ClusterSkills:"", ClusterSmall:False, ClusterVariant:"", KalguuranRune:False, Ritual:False, OmenType:"", TattooType:"", VeiledType:"", ExpeditionCurrency:0
+			; Dust / disenchant calculation.
+			, DustPerSlot:0, DustValue:0}
 		This.Modifier := Map()
 		This.Percent := Map()
 		; Split our sections from the clipboard
