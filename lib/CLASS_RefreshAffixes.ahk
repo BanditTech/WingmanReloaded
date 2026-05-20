@@ -45,7 +45,7 @@ Class RefreshAffixes {
 			,["</span>",""]]
 		Str := Util.HttpGet("https://poedb.tw/us/json.php/Mods/Gen?cn=" category "&an=&tags=" subfield)
 		For k, v in replace {
-			Str := RegexReplace(Str,v.1,v.2)
+			Str := RegexReplace(Str,v[1],v[2])
 		}
 		Return Str
 	}
