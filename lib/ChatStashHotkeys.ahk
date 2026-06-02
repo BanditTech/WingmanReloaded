@@ -172,9 +172,9 @@ FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1,*){
 		If (func == "Enter")
 		{
 			local c1Texts := [c1Suffix1Text,c1Suffix2Text,c1Suffix3Text,c1Suffix4Text,c1Suffix5Text,c1Suffix6Text,c1Suffix7Text,c1Suffix8Text,c1Suffix9Text]
-			tempStr := StrReplace(c1Texts[SuffixNum], "CharacterName", CharName, , -1)
-			tempStr := StrReplace(tempStr, "RecipientName", RecipientName, , -1)
-			tempStr := StrReplace(tempStr, "!", "{!}", , -1)
+			tempStr := StrReplace(c1Texts[SuffixNum], "CharacterName", CharName)
+			tempStr := StrReplace(tempStr, "RecipientName", RecipientName)
+			tempStr := StrReplace(tempStr, "!", "{!}")
 			Send("{Enter}" tempStr "{Enter}")
 			ResetChat()
 		}
@@ -182,9 +182,9 @@ FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1,*){
 		{
 			GrabRecipientName()
 			local c2Texts := [c2Suffix1Text,c2Suffix2Text,c2Suffix3Text,c2Suffix4Text,c2Suffix5Text,c2Suffix6Text,c2Suffix7Text,c2Suffix8Text,c2Suffix9Text]
-			tempStr := StrReplace(c2Texts[SuffixNum], "CharacterName", CharName, , -1)
-			tempStr := StrReplace(tempStr, "RecipientName", RecipientName, , -1)
-			tempStr := StrReplace(tempStr, "!", "{!}", , -1)
+			tempStr := StrReplace(c2Texts[SuffixNum], "CharacterName", CharName)
+			tempStr := StrReplace(tempStr, "RecipientName", RecipientName)
+			tempStr := StrReplace(tempStr, "!", "{!}")
 			Send("^{Enter}" tempStr "{Enter}")
 			ResetChat()
 		}

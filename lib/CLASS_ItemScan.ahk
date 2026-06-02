@@ -14,10 +14,44 @@ class ItemScan
 		This.Affix := Map()
 		This.Prop := {Rarity:"", ItemClass:"", Rarity_Digit:0, ClusterJewel:False, SlotType:"", RarityUnique:False, IsWeapon:False, Quiver:False, WantedCraftingBase:False, HeistGear:False, Influence:"", RarityCurrency:False, RarityDivination:False, RarityGem:False, RarityNormal:False, RarityMagic:False, RarityRare:False, IsMap:False, ItemName:"", ItemBase:"", Rating_Armour:0, Rating_EnergyShield:0, Rating_Evasion:0, Rating_Block:0
 			, TimelessSplinter:False, TimelessEmblem:False, BreachSplinter:False, ConquererFragment:False, SacrificeFragment:False, MortalFragment:False, GuardianFragment:False, ProphecyFragment:False, Scarab:False, Offering:False, UberDuberOffering:False, Vessel:False
-			, Catalyst:False, ChaosRecipe:False, RegalRecipe:False, Chromatic:False, Jeweller:False, Essence:False, Expedition:False, Flask:False, Fossil:False, Resonator:False, HarvestCurrency:False, Heist:False, Incubator:False, IsBeast:False, IsBlightedMap:False, IsBrickedMap:False, IsInvitation:False, IsMemory:False, IsOmen:False, IsRune:False, IsTattoo:False, MiscMapItem:False, MapImpossibleMod:False, Oil:False, Veiled:False, Ring:False, Corrupted:False, IsInfluenceItem:False, IsSynthesisItem:False, HasImplicit:False
+			, Catalyst:False, ChaosRecipe:False, RegalRecipe:False, Chromatic:False, Jeweller:False, Essence:False, Expedition:False, Flask:False, Fossil:False, Resonator:False, HarvestCurrency:False, Heist:False, Incubator:False, IsBeast:False, IsBlightedMap:False, IsBlightRavagedMap:False, IsBrickedMap:False, IsInvitation:False, IsMemory:False, IsOmen:False, IsRune:False, IsTattoo:False, MiscMapItem:False, MapImpossibleMod:False, Oil:False, Veiled:False, Ring:False, Corrupted:False, IsInfluenceItem:False, IsSynthesisItem:False, HasImplicit:False
 			, ChaosValue:0, ClusterKey:"", SpecialType:"", Gem_Tags:"", Item_Height:0, Item_Width:0, ItemLevel:0, Quality:0, Sockets_Link:0, Sockets_Num:0
 			, Weapon_APS:0, Weapon_Avg_Physical_Dmg:0, Weapon_DPS_Physical:0, Weapon_DPS_Elemental:0, Weapon_DPS_Chaos:0
-			, MapPrep:False, MapLikeItem:False}
+			, MapPrep:False, MapLikeItem:False
+			; Map-craft logic reads these unconditionally in MapCraftItemLogic; the
+			; parser only writes them when the corresponding line matches in the
+			; item text (so e.g. unidentified maps leave them unset).
+			, Map_Tier:0, Map_AtlasRegion:"", Map_Quantity:0, Map_Rarity:0, Map_PackSize:0, Map_Quality:0, Map_Delirium:False
+			, MapSumMod:0, MapKeepFlag:False, MapRerollFlag:False
+			; Weapon math fields read by stat builders; parser only writes them
+			; for weapon items.
+			, Weapon_Min_Physical_Dmg:0, Weapon_Max_Physical_Dmg:0, Weapon_Min_Elemental_Dmg:0, Weapon_Max_Elemental_Dmg:0, Weapon_Avg_Elemental_Dmg:0, Weapon_Min_Chaos_Dmg:0, Weapon_Max_Chaos_Dmg:0, Weapon_Avg_Chaos_Dmg:0, Weapon_Critical_Strike:0, Weapon_DPS_Total:0, Weapon_DPS_Total_Q20:0, Weapon_Range:0
+			; Heist-contract fields; parsed only for heist items.
+			, Heist_Client:"", Heist_Target:"", Heist_Contract_Type:"", Heist_AreaLevel:0, Heist_ItemQuantity:0, Heist_ItemRarity:0, Heist_AlertLevelReduction:0, Heist_TimeBeforeLockdown:0, Heist_MaximumAliveReinforcements:0, Heist_EscapeRoutesRevealed:0, Heist_EscapeRoutesRevealedMax:0, Heist_RewardRoomsRevealed:0, Heist_RewardRoomsRevealedMax:0, Heist_WingsRevealed:0, Heist_WingsRevealedMax:0
+			; Socket-detail counters; parser only writes them when sockets seen.
+			, Sockets_R:0, Sockets_G:0, Sockets_B:0, Sockets_W:0, Sockets_Raw:""
+			; Gem-detail fields; parsed only for gems.
+			, Gem_Level:0, Gem_MaxLevel:0, Gem_AltQuality:0, Gem_Awakened:0, Gem_Exceptional:0, VaalGem:False, Support:False
+			; Required attribute thresholds; parsed when present.
+			, Required_Level:0, Required_Str:0, Required_Dex:0, Required_Int:0
+			; Affix counters and flags written by mod-counting paths.
+			, AffixCount:0, PrefixCount:0, SuffixCount:0, OpenAffix:False, PercentageAffix:False, HasEnchant:False, HasRange:False, Enchanted:False, EldritchImplicit:False
+			; Stack-size for currency/fragments.
+			, Stack_Size:0, Stack_Max:0
+			; Rating percentages; parser writes when '% increased' lines present.
+			, Rating_Armour_Percent:0, Rating_EnergyShield_Percent:0, Rating_Evasion_Percent:0, Rating_Percent:0
+			; Tier-implicit thresholds for Eldritch implicits.
+			, TierImplicitEater:0, TierImplicitSearing:0
+			; Crafting / fractured / actual-tier scratch fields.
+			, CraftingMatchedPrefix:0, CraftingMatchedSuffix:0, CraftingBaseHigherILvLFound:False, CraftingBaseQuantFound:False, ItemCraftingHit:False, FracturedActualTier:"", FracturedModKey:""
+			; Unique pricing / valuation.
+			, UniqueNormalMean:0, UniquePerfectValue:0, UniquePerfectMaxVal:0, ExaltValue:0, DropLevel:0, ValuableBase:False, ValuableEnch:False
+			; Stash / dump / vendor classifier flags.
+			, Vendorable:False, DumpTabItem:False, StashChaosItem:False, StashReturnVal:""
+			; Misc item-type flags read by stash classifiers.
+			, IsItem:False, IsAbyss:False, IsOneHanded:False, IsTwoHanded:False, IsCurseOnHit:False, Amulet:False, Belt:False, Jewel:False, AbyssJewel:False, AtlasStone:False, DeliriumOrb:False, DeliriumSimulacrum:False, ClusterSkills:"", ClusterSmall:False, ClusterVariant:"", KalguuranRune:False, Ritual:False, OmenType:"", TattooType:"", VeiledType:"", ExpeditionCurrency:0
+			; Dust / disenchant calculation.
+			, DustPerSlot:0, DustValue:0}
 		This.Modifier := Map()
 		This.Percent := Map()
 		; Split our sections from the clipboard
@@ -38,8 +72,8 @@ class ItemScan
 					This.Data.Blocks.Enchant := SVal
 				} Else If (SVal ~= "Open Rooms:"){
 					temp := StrSplit(SVal,"Obstructed Rooms:")
-					This.Data.Blocks.TempleRooms := StrSplit(temp.1,"Open Rooms:").2
-					This.Data.Blocks.ObstructedRooms := RegExReplace(temp.2, "$", " (Obstructed)")
+					This.Data.Blocks.TempleRooms := StrSplit(temp[1],"Open Rooms:")[2]
+					This.Data.Blocks.ObstructedRooms := RegExReplace(temp[2], "$", " (Obstructed)")
 				}	Else {
 					This.Data.Blocks.Properties .= SVal "`r`n"
 				}
@@ -108,15 +142,17 @@ class ItemScan
 		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.HasImplicit) {
-			Static Tiers := {Lesser:1, Greater:2, Grand:3, Exceptional:4, Exquisite:5, Perfect:6}
+			; Map (not plain Object) so [key] bracket access works in v2;
+			; .Get with a default replaces the v1 truthy-or-fallback idiom.
+			Static Tiers := Map("Lesser", 1, "Greater", 2, "Grand", 3, "Exceptional", 4, "Exquisite", 5, "Perfect", 6)
 			If (RegExMatch(This.Data.Blocks.Implicit, "`am)Searing Exarch Implicit Modifier \((.*?)\)", &RxMatch)) {
-				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
+				This.Prop.TierImplicitSearing := Tiers.Get(RxMatch[1], 5)
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Searing Exarch"
 			}
 			If (RegExMatch(This.Data.Blocks.Implicit, "`am)Eater of Worlds Implicit Modifier \((.*?)\)", &RxMatch)){
-				This.Prop.TierImplicitEater := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
+				This.Prop.TierImplicitEater := Tiers.Get(RxMatch[1], 5)
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Eater of Worlds"
@@ -716,9 +752,9 @@ class ItemScan
 					For k, v in StrSplit(RxMatch,",")
 					{
 						values := This.MatchLine(v)
-						This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + (values.1 + values.2) / 2 )
-						This.Prop.Weapon_Min_Elemental_Dmg += values.1
-						This.Prop.Weapon_Max_Elemental_Dmg += values.2
+						This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + (values[1] + values[2]) / 2 )
+						This.Prop.Weapon_Min_Elemental_Dmg += values[1]
+						This.Prop.Weapon_Max_Elemental_Dmg += values[2]
 					}
 					values := ""
 				}
@@ -983,7 +1019,13 @@ class ItemScan
 	{
 		If !(This.Prop.ItemClass && WR.ActualTier.HasOwnProp(This.Prop.ItemClass))
 			Return
-		for a , b in WR.ActualTier.%This.Prop.ItemClass%
+		; WR.ActualTier.<ItemClass> can still be the empty plain-Object pre-init
+		; (e.g. ActualTierCreator hasn't run for this class, or save file
+		; missing). Iterating a non-Array would throw 'Value not enumerable'.
+		tiers := WR.ActualTier.%This.Prop.ItemClass%
+		If !(tiers is Array)
+			Return
+		for a , b in tiers
 		{
 			ILvLList := b["ILvL"]
 			AffixList := b["AffixLine"]
@@ -1251,9 +1293,11 @@ class ItemScan
 				Position := 1
 				While RegExMatch(A_LoopField, "`am)" rxNum "\(-*" rxNum "-*" rxNum "\)", &RxMatch, Position) {
 					Position := RxMatch.Len(0) + RxMatch.Pos(0)
-					Value := RxMatch.Value(1)
-					Range1 := RxMatch.Value(2)
-					Range2 := RxMatch.Value(3)
+					; v2: RegExMatchInfo exposes submatches via [n] indexing;
+					; .Value(n) was the v1 method form.
+					Value := RxMatch[1]
+					Range1 := RxMatch[2]
+					Range2 := RxMatch[3]
 					Perc := This.perc(Value,[Range1,Range2])
 					EndEntries := A_Index
 					EndValue += Perc
@@ -1347,11 +1391,14 @@ class ItemScan
 	MatchLine(lineString){
 		If (RegExMatch(lineString, "`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , &RxMatch))
 		{
-			ret := {}
-			Loop RxMatch.Length
+			; v2: RegExMatchInfo exposes .Count for the subpattern count
+			; (.Length doesn't exist). Callers expect an Array of non-empty
+			; submatches (they index .Length on the returned value).
+			ret := []
+			Loop RxMatch.Count
 			{
 				If RxMatch[A_Index] != ""
-					ret.push(RxMatch[A_Index])
+					ret.Push(RxMatch[A_Index])
 			}
 			Return ret
 		}
@@ -2817,12 +2864,12 @@ class ItemScan
 		} Else If (obj.ranges.Length >= 2) {
 			for k, v in obj.ranges
 			{
-				If !((base[key "_Value" k] >= v.1 && base[key "_Value" k] <= v.2)
-					|| (base[key "_Value" k] <= v.1 && base[key "_Value" k] >= v.2))
+				If !((base[key "_Value" k] >= v[1] && base[key "_Value" k] <= v[2])
+					|| (base[key "_Value" k] <= v[1] && base[key "_Value" k] >= v[2]))
 					Return False
 			}
 		} Else If (obj.values.Length == 1) {
-			If !(base[key] == obj.values.1 )
+			If !(base[key] == obj.values[1] )
 				Return False
 		} Else If (obj.values.Length >= 2) {
 			for k, v in obj.values
@@ -2897,10 +2944,12 @@ class ItemScan
 		This.Prop.UniquePerfectMaxVal := 0
 	}
 	perc(value,range){
-		Return abs(((value - range.1) * 100) / (range.2 - range.1))
+		; range is an Array literal from callers (e.g. [Range1, Range2]).
+		; v2 Arrays require [n] bracket indexing - .1 dot-numeric was v1.
+		Return abs(((value - range[1]) * 100) / (range[2] - range[1]))
 	}
 	percval(perc,range){
-		Return ((perc * (range.2 - range.1) / 100) + range.1)
+		Return ((perc * (range[2] - range[1]) / 100) + range[1])
 	}
 	DisenchantCalculation(multi, ilvl, quality){
 		quality := quality > 0 ? quality : 0

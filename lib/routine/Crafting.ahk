@@ -306,8 +306,8 @@ CraftingMaps(){
 				Break
 			If ObjCount(Slots) {
 				split := StrSplit(k," ")
-				C := split.1
-				R := split.2
+				C := split[1]
+				R := split[2]
 				gogo := Slots.Pop()
 				LeftClick(obj.X,obj.Y)
 				Sleep(180 + (15 * ClickLatency))
