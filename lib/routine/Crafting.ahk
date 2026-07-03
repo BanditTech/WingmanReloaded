@@ -190,7 +190,7 @@ CraftingMaps(){
 	; Ignore Slot
 	BlackList := Array_DeepClone(BlackList_Default)
 	CurrencyList := ["Alchemy","Binding","Transmutation","Scouring","Vaal","Chaos","Augmentation"]
-	For idx, m in [CraftingMapMethod1, CraftingMapMethod2, CraftingMapMethod3] {
+	For idx, m in [CraftingMapMethod1, CraftingMapMethod2, CraftingMapMethod3, CraftingMapMethodOriginator, CraftingMapMethodNightmare] {
 		If (m ~= "Exalt") {
 			CurrencyList.Push("Exalted")
 			Break
@@ -302,10 +302,10 @@ InMapArea(C:=0){
 	Return False
 }
 getMapCraftingMethod(){
-	If (Item.Prop.IsOriginatorMap)
+	If (Item.Prop.Map_IsOriginatorMap)
 		If (CraftingMapMethodOriginator != "Disable")
 			Return CraftingMapMethodOriginator
-	If (Item.Prop.IsNightmareMap)
+	If (Item.Prop.Map_IsNightmareMap)
 		If (CraftingMapMethodNightmare != "Disable")
 			Return CraftingMapMethodNightmare
 
@@ -394,7 +394,7 @@ ExaltCheck(Method,x,y){
 	local MMQQuantity := MMapItemQuantity > 1 && Item.Prop.Map_Quantity >= Round(MMapItemQuantity * EffectiveMMQPct)
 	local MMQEligible := MMQRarity || MMQPackSize || MMQQuantity
 
-	local isSpecialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
+	local isSpecialMap := Item.Prop.Map_IsOriginatorMap || Item.Prop.Map_IsNightmareMap
 	local specialMaps := MMapMoreMaps > 0 && (Item.Prop.Map_MapDropPercent?Item.Prop.Map_MapDropPercent:0) >= Round(MMapMoreMaps * EffectiveSpecialPct)
 	local specialScarabs := MMapMoreScarabs > 0 && (Item.Prop.Map_ScarabDropPercent?Item.Prop.Map_ScarabDropPercent:0) >= Round(MMapMoreScarabs * EffectiveSpecialPct)
 	local specialCurrency := MMapMoreCurrency > 0 && (Item.Prop.Map_CurrencyDropPercent?Item.Prop.Map_CurrencyDropPercent:0) >= Round(MMapMoreCurrency * EffectiveSpecialPct)
@@ -520,9 +520,9 @@ MapRoll(Method, x, y){
 		BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
 		BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 
-		BelowMapDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreMaps > 0 && Item.Prop.Map_MapDropPercent < MMapMoreMaps
-		BelowScarabDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreScarabs > 0 && Item.Prop.Map_ScarabDropPercent < MMapMoreScarabs
-		BelowCurrencyDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreCurrency > 0 && Item.Prop.Map_CurrencyDropPercent < MMapMoreCurrency
+		BelowMapDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.Map_IsNightmareMap) && MMapMoreMaps > 0 && Item.Prop.Map_MapDropPercent < MMapMoreMaps
+		BelowScarabDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.Map_IsNightmareMap) && MMapMoreScarabs > 0 && Item.Prop.Map_ScarabDropPercent < MMapMoreScarabs
+		BelowCurrencyDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.Map_IsNightmareMap) && MMapMoreCurrency > 0 && Item.Prop.Map_CurrencyDropPercent < MMapMoreCurrency
 
 		Log("Crafting","Map reroll initiated because:"
 			. (Item.Prop.RarityNormal?" Normal Item":"")

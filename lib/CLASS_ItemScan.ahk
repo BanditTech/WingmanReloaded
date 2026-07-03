@@ -306,7 +306,7 @@
 				}
 				Else If (InStr(This.Prop.ItemBase, "Nightmare"))
 				{
-					This.Prop.IsNightmareMap := True
+					This.Prop.Map_IsNightmareMap := True
 					This.Prop.SpecialType := "Nightmare Map"
 				}
 				Else
@@ -755,7 +755,7 @@
 				This.Prop.Map_Tier := RxMatch1
 			Else If (RegExMatch(This.Prop.ItemName, "\(Tier (\d+)\)", RxMatch))
 				This.Prop.Map_Tier := RxMatch1
-			Else If (This.Prop.IsNightmareMap)
+			Else If (This.Prop.Map_IsNightmareMap)
 				This.Prop.Map_Tier := 17
 			Else If (InStr(This.Prop.ItemBase, "Shaper Guardian"))
 				This.Prop.Map_Tier := 16
@@ -918,7 +918,7 @@
 		;Check if MapSum > Minimum Weight Settings
 		ConsiderMMQ := (This.Prop.RarityMagic && EnableMQQForMagicMap) || This.Prop.RarityRare
 		If (ConsiderMMQ) {
-			IsSpecialMap := This.Prop.Map_IsOriginatorMap || This.Prop.IsNightmareMap
+			IsSpecialMap := This.Prop.Map_IsOriginatorMap || This.Prop.Map_IsNightmareMap
 			BaseMMQ := (This.Prop.Map_Rarity >= MMapItemRarity) && (This.Prop.Map_PackSize >= MMapMonsterPackSize) && (This.Prop.Map_Quantity >= MMapItemQuantity)
 			if (!IsSpecialMap) {
 				MeetsMMQ := BaseMMQ

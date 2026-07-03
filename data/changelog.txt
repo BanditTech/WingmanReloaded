@@ -1,3 +1,10 @@
+## Version .16.04 - Alpha Version - July/03/2026
+Bug Fixes
+  * Standardized naming convention for Map_IsOriginatorMap and Map_IsNightmareMap
+  * Include Originator and Nightmare methods to exalt check when appending to currency list
+
+---
+
 ## Version .16.03 - Alpha Version - March/24/2026
 Improvements
   * Several new options for rolling 16.5+ maps
