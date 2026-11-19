@@ -123,17 +123,17 @@ Rescale(){
       WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/150))
 
       ;Wisdom
-      WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/110))
+      WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/135))
       WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/205))
       ;Portal
-      WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1920/175))
+      WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1920/195))
       WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/205))
       ; Enkindling
-      WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(1920/300))
-      WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/205))
+      WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(1920/200))
+      WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/400))
       ; Instilling
-      WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(1920/355))
-      WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/205))
+      WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(1920/140))
+      WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/400))
       ; Blacksmith
       WR.loc.pixel.Blacksmith.X:=GameX + Round(GameW/(1920/430))
       WR.loc.pixel.Blacksmith.Y:=GameY + Round(GameH/(1080/205))
@@ -148,74 +148,72 @@ Rescale(){
       WR.loc.pixel.Gemcutter.Y:=GameY + Round(GameH/(1080/205))
 
       ; Transmutation
-      WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1920/50))
+      WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1920/85))
       WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/275))
       ; Alteration
-      WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1920/105))
+      WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1920/140))
       WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/275))
       ; Annulment
-      WR.loc.pixel.Annulment.X:=GameX + Round(GameW/(1920/165))
-      WR.loc.pixel.Annulment.Y:=GameY + Round(GameH/(1080/275))
+      WR.loc.pixel.Annulment.X:=GameX + Round(GameW/(1920/300))
+      WR.loc.pixel.Annulment.Y:=GameY + Round(GameH/(1080/335))
       ; Chance
-      WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/225))
-      WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/275))
+      WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/200))
+      WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/460))
       ; Exalted
-      WR.loc.pixel.Exalted.X:=GameX + Round(GameW/(1920/300))
-      WR.loc.pixel.Exalted.Y:=GameY + Round(GameH/(1080/275))
+      WR.loc.pixel.Exalted.X:=GameX + Round(GameW/(1920/355))
+      WR.loc.pixel.Exalted.Y:=GameY + Round(GameH/(1080/335))
       ; Regal
-      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(1920/435))
-      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1080/275))
+      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(1920/195))
+      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1080/330))
       ; Alchemy
-      WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1920/490))
+      WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1920/435))
       WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/275))
       ; Chaos
-      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(1920/550))
+      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(1920/490))
       WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1080/275))
       ; Blessed
-      WR.loc.pixel.Blessed.X:=GameX + Round(GameW/(1920/605))
+      WR.loc.pixel.Blessed.X:=GameX + Round(GameW/(1920/545))
       WR.loc.pixel.Blessed.Y:=GameY + Round(GameH/(1080/275))
 
       ; Augmentation
-      WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1920/225))
-      WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/330))
+      WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1920/200))
+      WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/275))
       ; Divine
-      WR.loc.pixel.Divine.X:=GameX + Round(GameW/(1920/605))
-      WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/330))
+      WR.loc.pixel.Divine.X:=GameX + Round(GameW/(1920/300))
+      WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/275))
 
       ; Jeweller
-      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/110))
-      WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/400))
+      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/490))
+      WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/335))
       ; Fusing
-      WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/165))
-      WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/400))
+      WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/550))
+      WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/335))
       ; Chromatic
-      WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/220))
-      WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/400))
+      WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/600))
+      WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/335))
       ; Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/430))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/455))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/400))
       ; Sacred
-      WR.loc.pixel.Sacred.X:=GameX + Round(GameW/(1920/490))
-      WR.loc.pixel.Sacred.Y:=GameY + Round(GameH/(1080/400))
+      WR.loc.pixel.Sacred.X:=GameX + Round(GameW/(1920/605))
+      WR.loc.pixel.Sacred.Y:=GameY + Round(GameH/(1080/275))
       ; Vaal
-      WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1920/600))
-      WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/400))
+      WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1920/515))
+      WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/460))
 
       ; Ancient
-      WR.loc.pixel.Ancient.X:=GameX + Round(GameW/(1920/110))
+      WR.loc.pixel.Ancient.X:=GameX + Round(GameW/(1920/140))
       WR.loc.pixel.Ancient.Y:=GameY + Round(GameH/(1080/455))
       ; Binding
-      WR.loc.pixel.Binding.X:=GameX + Round(GameW/(1920/165))
-      WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/455))
+      WR.loc.pixel.Binding.X:=GameX + Round(GameW/(1920/85))
+      WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/400))
       ; Regret
-      WR.loc.pixel.Regret.X:=GameX + Round(GameW/(1920/430))
-      WR.loc.pixel.Regret.Y:=GameY + Round(GameH/(1080/455))
+      WR.loc.pixel.Regret.X:=GameX + Round(GameW/(1920/515))
+      WR.loc.pixel.Regret.Y:=GameY + Round(GameH/(1080/400))
       ; Unmaking
-      WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(1920/490))
-      WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/455))
-      ; Veiled Exalted
-      WR.loc.pixel.VeiledEx.X:=GameX + Round(GameW/(1920/550))
-      WR.loc.pixel.VeiledEx.Y:=GameY + Round(GameH/(1080/455))
+      WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(1920/575))
+      WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/400))
+      
       ; Veiled Chaos
       WR.loc.pixel.VeiledC.X:=GameX + Round(GameW/(1920/600))
       WR.loc.pixel.VeiledC.Y:=GameY + Round(GameH/(1080/455))
